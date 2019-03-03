@@ -1,0 +1,470 @@
+﻿@using Services.Helpers;
+@model DataObjects.Entities.trPlanKela
+@{
+
+    ViewBag.Title = "Instructur Plan";
+}
+
+@section styles
+{
+    @Styles.Render("/assets/global/plugins/fullcalendar-3.0.0/fullcalendar.css")
+    <style>
+        .fc-time-grid .fc-slats td {
+            height: 5em;
+        }
+    </style>
+
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>
+            Plan <small>Instructur</small>
+        </h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="portlet light">
+    <div class="portlet-body">
+        <ul class="nav nav-tabs nav-justified steps">
+            <li class="active">
+                <a href="#tab1" data-toggle="tab" class="step">
+                    <span class="number">
+                        1
+                    </span>
+                    <span class="desc">
+                        <i class="fa fa-check"></i> Calendar
+                    </span>
+                </a>
+            </li>
+            <li id="li2">
+                <a href="#tab2" data-toggle="tab" class="step">
+                    <span class="number">
+                        2
+                    </span>
+                    <span class="desc">
+                        <i class="fa fa-check"></i> Instructor
+                    </span>
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab1">
+                <div class="row margin-bottom-20">
+                    <div class="col-md-12">
+                        <div class="portlet box green-meadow calendar">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-gift"></i>Calendar
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div class="row">
+                                    <form class="form-horizontal">
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">Instructur:</label>
+                                                <div class="col-md-4">
+                                                    @Html.TextBoxFor(m => m.PersonBOIDInstruktur, new { @class = "form-control instructur" })
+                                                    <div class="text-danger">
+                                                        @Html.ValidationMessageFor(m => m.PersonBOIDInstruktur)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="col-sm-12">
+                                        <div id="calendar" class="has-toolbar">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END CALENDAR PORTLET-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="tab2">
+                <div class="row">
+                    <div class="col-md-12">
+                        @using (Html.BeginForm("PlanInsert", "Plan", FormMethod.Post, new { @class = "form-horizontal form-row-seperated" }))
+                        {
+                            <div class="portlet">
+                                <div class="portlet-body">
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">
+                                                Instructur:
+                                                <span class="required"> * </span>
+                                            </label>
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(m => m.PersonBOIDInstruktur, new { @class = "form-control instructur" })
+                                                <span class="text-danger">@Html.ValidationMessageFor(m => m.PersonBOIDInstruktur)</span>
+                                                <span class="help-block">Instructur</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">
+                                                Kelas:
+                                                <span class="required"> * </span>
+                                            </label>
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(m => m.KelasID, new { @class = "form-control kelas" })
+                                                <span class="text-danger">@Html.ValidationMessageFor(m => m.KelasID)</span>
+                                                <span class="help-block">Kelas</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">
+                                                Day Of Week:
+                                                <span class="required"> * </span>
+                                            </label>
+                                            <div class="col-md-3">
+                                                @Html.DropDownListFor(m => m.DayOfWeek, new List<SelectListItem>()
+                                              {
+                                                  new SelectListItem()
+                                                  {
+                                                      Value = "1",
+                                                      Text = "Senin"
+                                                  },
+                                                  new SelectListItem()
+                                                  {
+                                                      Value = "2",
+                                                      Text = "Selasa"
+                                                  },
+                                                  new SelectListItem()
+                                                  {
+                                                      Value = "3",
+                                                      Text = "Rabu"
+                                                  },new SelectListItem()
+                                                  {
+                                                      Value = "4",
+                                                      Text = "Kamis"
+                                                  },
+                                                  new SelectListItem()
+                                                  {
+                                                      Value = "5",
+                                                      Text = "Jumat"
+                                                  },
+                                                  new SelectListItem()
+                                                  {
+                                                      Value = "6",
+                                                      Text = "Sabtu"
+                                                  },
+                                                  new SelectListItem()
+                                                  {
+                                                      Value = "0",
+                                                      Text = "Minggu"
+                                                  }
+                                              }, new { @class = "form-control" })
+                                                <span class="help-block">Select day</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">
+                                                start time:
+                                                <span class="required"> * </span>
+                                            </label>
+                                            <div class="col-md-3">
+                                                <div class="input-group">
+                                                    @Html.TextBoxFor(m => m.WaktuMulai, new { @class = "form-control waktumulai timepicker timepicker-24" })
+                                                    <span class="input-group-btn">
+                                                        <button class="btn default" type="button">
+                                                            <i class="fa fa-clock-o"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                                <span class="text-danger">@Html.ValidationMessageFor(m => m.WaktuMulai)</span>
+                                                <span class="help-block">Start Time</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">
+                                                End Time:
+                                                <span class="required"> * </span>
+                                            </label>
+                                            <div class="col-md-3">
+                                                <div class="input-group">
+                                                    @Html.TextBoxFor(m => m.WaktuSelesai, new { @class = "form-control waktuselesai disabled", @readonly = true })
+                                                    <span class="input-group-btn">
+                                                        <button class="btn default" type="button">
+                                                            <i class="fa fa-clock-o"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                                <span class="help-block">End Time</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <a href="javascript:;" class="btn button-next">
+                                                    Cancel <i class="m-icon-swapright "></i>
+                                                </a>
+                                                <button type="submit" formmethod="post" class="btn green button-submit">
+                                                    Submit <i class="m-icon-swapright m-icon-white"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*Edit Plan*@
+<div id="calModal" class="modal fade" data-backdrop="static" data-keyboard="true">
+    @using (Html.BeginForm("PlanInsert", "Plan", FormMethod.Post, new { @class = "", name = "popupPlanInsert" }))
+    {
+        @Html.HiddenFor(m => m.PlanKelasID)
+        @Html.HiddenFor(m => m.PersonBOIDInstruktur, new { @class = "poppersonboidinstructur" })
+        @Html.HiddenFor(m => m.DayOfWeek, new { @class = "popdayofweek" })
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Ubah Jadwal Aktifitas PT</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Waktu </label>
+                    <div class="input-group input-large">
+                        @Html.TextBoxFor(m => m.WaktuMulai, new { @class = "form-control waktumulaipop disabled", @readonly = true, value = "" })
+                        <span class="input-group-addon"> to </span>
+                        @Html.TextBoxFor(m => m.WaktuSelesai, new { @class = "form-control waktuselesaipop disabled", @readonly = true, value = "" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Instructur</label>
+                    <input type="text" class="form-control disabled" readonly="readonly" id="InstructurName"/>
+                </div>
+                <span class="field-validation-error">
+                    <span id="notification-error"></span>
+                </span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Kelas</label>
+                    @Html.TextBoxFor(m => m.KelasID, new { @class = "form-control kelas" })
+                </div>
+                <span class="field-validation-error">
+                    <span id="notification-error"></span>
+                </span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnPopupCancel" data-dismiss="modal" class="btn">Cancel</button>
+                <button type="submit" formaction="@Url.Action("RemoveEvent")" class="left btn red">Remove Event</button>
+                <button type="submit" id="btnPopupSave" class="btn btn-primary">Save event</button>
+                <button type="submit" id="btnPopupUpdate" formaction="@Url.Action("PlanUpdate")" class="btn btn-default green">Update event</button>
+            </div>
+        </div>
+    }
+</div>
+
+
+<div id="NotifModal" class="modal fade" data-backdrop="static" data-keyboard="true">
+    <div id="notifmodal-content" class="modal-content">
+        <div id="notifmodal-header" class="modal-header">
+            <h4 id="notifmodal-title" class="modal-title">Notification</h4>
+        </div>
+        <div id="notifmodal-body" class="modal-body">
+            <h1>Please Choose your Instructur First</h1>
+        </div>
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="left btn blue">Close</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("/assets/global/plugins/fullcalendar-3.0.0/lib/moment.min.js")
+    @Scripts.Render("/assets/global/plugins/fullcalendar-3.0.0/fullcalendar.js")
+    <script>
+        $(document).ready(function () {
+
+            $('.timepicker-24').timepicker({
+                autoclose: true,
+                minuteStep: 5,
+                showSeconds: false,
+                showMeridian: false
+
+            });
+
+
+
+            select2Control.init(".kelas", "Kelas Name",
+                "@Url.Action("GetKelas", "Kelas", new {area = "Office"})",
+                "@Url.Action("GetKelasById", "Kelas", new {area = "Office"})");
+
+
+            select2Control.init(".instructur", "Instructur Name",
+                "@Url.Action("GetInstructur", "UserBackOffice", new {area = "Office"})",
+                "@Url.Action("GetUserBoById", "UserBackOffice", new {area = "Office"})");
+
+            function clearPopupFormValues() {
+                $('.waktumulai').val('');
+                $('.waktuselesai').val('');
+                $('#Note').val('');
+                $('#PlanKelasID').val('');
+            }
+
+            $('#calendar').fullCalendar('destroy'); // destroy the calendar
+            $('#calendar').fullCalendar({
+                header: {
+                    left: '',
+                    center: '',
+                    right: '',
+                },
+                editable: true,
+                views: {
+                    settimana: {
+                        type: 'agendaWeek',
+                        duration: {
+                            days: 7
+                        },
+                        title: 'Apertura',
+                        columnFormat: 'dddd', // Format the day to only show like 'Monday'
+                    }
+                },
+                defaultView: 'settimana',
+                slotDuration: '00:60:00',
+                allDaySlot: false,
+                droppable: true,
+                eventDurationEditable: false,
+                minTime: '06:00:00',
+                maxTime: '22:00:00',
+                firstDay: 1,
+                timeFormat: {
+                    agenda: 'H:mm'
+                },
+                dragOpacity: {
+                    agenda: .5
+                },
+                axisFormat: 'HH:mm',
+                events:
+                    function (start, end, timezone, callback) {
+                        $.getJSON("@Url.Action("GetEvents", "Plan")", {
+                        }, function (locationsArray) {
+                            const result = $(locationsArray).map(function () {
+                                return {
+                                    id: this.id,
+                                    title: this.title,
+                                    start: this.start,
+                                    end: this.end,
+                                    boid: this.boid,
+                                    backgroundColor: this.background,
+                                    instname: this.instname
+                                };
+                            }).toArray();
+                            callback(result);
+                        });
+                    },
+                eventRender: function (event, element) {
+                    element.find(".fc-title").remove();
+                    element.find(".fc-time").remove();
+                    console.log(event);
+                    var kelasId = event.kelasId;
+                    var newDescription =
+                        "<div class='span6 text-center " + event.backgroundColor + "'>" +
+                            "<img alt='test image' height='35' style=width'900%'/> " +
+                            "<br />" + event.title + '<br/>' +
+                            "</div>";
+                    element.append(newDescription);
+                },
+                eventClick: function (event, jsEvent, view) {
+                    clearPopupFormValues();
+                    $('#modalTitle').html(event.title);
+                    $('#modalBody').html(event.description);
+                    $('.memberpop').select2("val", event.memberid);
+
+                    $('#InstructurName').val(event.ptname);
+                    $('.poppersonboidinstructur').val(event.boid);
+
+                    $('.waktumulaipop').val(moment(event.start).format("HH:mm"));
+                    $('.waktuselesaipop').val(moment(event.start).add('hours', 1).format("HH:mm"));
+                    $('.popdayofweek').val(moment(event.start).day());
+
+                    $('#Note').val(event.note);
+                    $('#PlanKelasID').val(event.id);
+
+                    $('#btnPopupUpdate').show();
+                    $('#btnPopupSave').hide();
+
+                    $('#calModal').modal();
+                },
+                dayClick: function (date, jsEvent, view) {
+                    if ($('#PersonBOIDInstruktur').val() !== '') {
+                        clearPopupFormValues();
+                        $('#modalTitle').html(view.name);
+                        $('#modalBody').html();
+                        $('.poppersonboidinstructur').val($('#PersonBOIDInstruktur').val());
+                        console.log($('#PersonBOIDInstruktur').val());
+                        console.log($('.poppersonboidinstructur').val());
+                        $('.waktumulaipop').val(moment(date).format("HH:mm"));
+                        $('.waktuselesaipop').val(moment(date).add('hours', 1).format("HH:mm"));
+                        $('.popdayofweek').val(moment(date).day());
+                        $('#btnPopupUpdate').hide();
+                        $('#btnPopupSave').show();
+                        $('#calModal').modal();
+                    } else {
+                        $('#NotifModal').modal();
+                    }
+                },
+                eventDrop: function (event, delta, revertFunc, jsEvent, ui, view) {
+
+                    console.log(event.id);
+                    console.log(moment(event.start).day());
+                    if (confirm("Confirm move?")) {
+                        $.ajax({
+                            type: 'GET',
+                            url: '@Url.Action("UpdateTimeEvent")',
+                            dataType: "json",
+                            contentType: "application/json",
+                            data: {
+                                'id': event.id,
+                                'startTime': event.start.format("HH:mm"),
+                                'endTime': event.end.format("HH:mm"),
+                                'dayWeek': moment(event.start).day()
+                            }
+                        }).done(function (message) {
+                            //                            if (message[0] !== false) {
+                            console.log(message[1]);
+                            //                            }
+                        });
+                    } else {
+                        revertFunc();
+                    }
+                }
+
+            });
+
+            $('#PersonBOIDInstruktur').on('change', function () {
+                $('#InstructurName').val($(this).select2('data').text);
+                $('.poppersonboidinstructur').val($(this).val());
+                console.log($('.poppersonboidinstructur').val());
+            });
+
+            $(window).load(function () {
+                const d = moment($('.waktumulai').val(), "HH:mm");
+                $('.waktuselesai').val(d.add(1, 'hours').format("HH:mm"));
+            });
+
+            $('.waktumulai').on('change', function () {
+                const d = moment($(this).val(), "HH:mm");
+                $('.waktuselesai').val(d.add(1, 'hours').format("HH:mm"));
+            });
+        });
+    </script>
+}
+

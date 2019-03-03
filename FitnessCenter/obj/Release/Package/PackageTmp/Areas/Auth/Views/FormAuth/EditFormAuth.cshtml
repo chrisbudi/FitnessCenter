@@ -1,0 +1,243 @@
+﻿@model ViewModel.Identity.FormAuth
+
+@{
+    ViewBag.Title = "Edit Form Role";
+    var count = 0;
+}
+
+
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Create <small>Form Auth</small></h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            @*<a href="index.html">Home</a>*@
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="#">Form Stuff</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="#">Form Controls</a>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN FORM PORTLET-->
+        <div class="portlet box green ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-plus"></i> Tambah Group Form
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @using (Html.BeginForm("CreateFormAuth", "FormAuth", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.TextBox("selectedForm")
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                @Html.Label("Role List :", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-9">
+                                @Html.DropDownListFor(m => m.GroupId, new SelectList(Model.ApplicationGroups, "id", "text"), new { @class = "form-control disabled", @disabled = true })
+                                @Html.HiddenFor(m => m.GroupId)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            Search
+                        </div>
+
+                        <table class="table table-striped table-bordered table-hover" id="tableModule">
+                            <thead>
+                                <tr>
+                                    <th width="3%">
+                                        No
+                                    </th>
+                                    <th>
+                                        FormName
+                                    </th>
+                                    <th width="3%">
+                                        R
+                                    </th>
+                                    <th width="3%">
+                                        C
+                                    </th>
+                                    <th width="3%">
+                                        U
+                                    </th>
+                                    <th width="3%">
+                                        D
+                                    </th>
+                                    <th>
+                                        <i class="fa fa-cogs fa-lg"></i>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-9">
+                                <button type="submit" class="btn btn-circle green bold"><i class="fa fa-check"></i> Simpan</button>
+                                <a href="@Url.Action("Index")" class="btn btn-circle red bold"><i class="fa fa-times"></i> Batal</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    <input type="checkbox" name="" value="" class="" id="" />
+    <script type="text/javascript" src="../../assets/global/plugins/jquery-multi-select/js/jquery.multi-select.js"></script>
+    <script type="text/javascript" src="../../assets/global/plugins/quicksearch/jquery.quicksearch.js"></script>
+
+    <script>
+
+        $(function () {
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+
+            var tableDetail = $("#tableModule")
+                .DataTable({
+                    "processing": true,
+                    "paging": false,
+                    "deferRender": true,
+                    "ajax": {
+                        url: "@Url.RouteUrl("Default", new {controller = "FormAuth", action = "FormResult"})",
+                        data: function (d) {
+                            d.idString = $("#GroupId").val();
+                        }
+                    },
+                    "serverSide": true,
+                    "filter": true,
+                    "columnDefs": [
+                        {
+                            "data": "No"
+                        },
+                        {
+                            "data": "Title"
+
+                        },
+                        {
+                            "targets": 2,
+                            "data": 2,
+                            "orderable": false,
+                            className: "td.center",
+                            "render": function (data) {
+                                var d = data.split("_")[0].trim();
+                                var s = data.split("_")[1].trim();
+                                var n = data.split("_")[2].trim();
+                                var tag = "";
+                                if (s === "T")
+                                    tag = '<input type="checkbox" name="Crud[' + n + '].Selected" class="checked"/>';
+                                else
+                                    tag = '<input type="checkbox" name="Crud[' + n + '].Selected"/>';
+
+                                tag = tag + ' <input type="hidden" name="Crud[' + n + '].Id" value="' + d + '"/>';
+                                return tag;
+                            },
+                            "width":
+                                "3%"
+                        },
+                        {
+                            "targets": 3,
+                            "data": 3,
+                            "orderable": false,
+                            className: "td.center",
+                            "render": function (data) {
+                                var d = data.split("_")[0].trim();
+                                var s = data.split("_")[1].trim();
+                                var n = data.split("_")[2].trim();
+                                var tag = "";
+                                if (s === "T")
+                                    tag = '<input type="checkbox" name="Crud[' + n + '].Selected" class="checked"/>';
+                                else
+                                    tag = '<input type="checkbox" name="Crud[' + n + '].Selected"/>';
+
+                                tag = tag + ' <input type="hidden" name="Crud[' + n + '].Id" value="' + d + '"/>';
+                                return tag;
+                            },
+                            "width": "3%"
+                        },
+                        {
+                            "targets": 4,
+                            "data": 4,
+                            "orderable": false,
+                            className: "td.center",
+                            "render": function (data) {
+                                var d = data.split("_")[0].trim();
+                                var s = data.split("_")[1].trim();
+                                var n = data.split("_")[2].trim();
+                                var tag = "";
+                                if (s === "T")
+                                    tag = '<input type="checkbox" name="Crud[' + n + '].Selected" class="checked"/>';
+                                else
+                                    tag = '<input type="checkbox" name="Crud[' + n + '].Selected"/>';
+
+                                tag = tag + ' <input type="hidden" name="Crud[' + n + '].Id" value="' + d + '" />';
+                                return tag;
+
+                            },
+                            "width": "3%"
+                        },
+                        {
+                            "targets": 5,
+                            "data": 5,
+                            "orderable": false,
+                            "className": "td.center",
+                            "render": function (data) {
+                                var d = data.split("_")[0].trim();
+                                var s = data.split("_")[1].trim();
+                                var n = data.split("_")[2].trim();
+                                var tag = "";
+                                if (s === "T")
+                                    tag = '<input type="checkbox" name="Crud[' + n + '].Selected" class="checked"/>';
+                                else
+                                    tag = '<input type="checkbox" name="Crud[' + n + '].Selected"/>';
+
+                                tag = tag + ' <input type="hidden" name="Crud[' + n + '].Id" value="' + d + '"/>';
+                                return tag;
+                            },
+                            "width": "3%"
+                        },
+                        {
+                            "targets": 6,
+                            "data": 0,
+                            "render": function (data, row) {
+                                var d = data;
+                                return '<input type="checkbox" id="CheckAll[' + d + ']" name="CheckAll[' + d + ']" value="' + d + '"/>';
+                            },
+                            "width": "3%"
+                        }
+                    ]
+                });
+
+            tableDetail.on('draw.dt', function () {
+                $('.checked').prop('checked', true);
+            });
+
+        });
+    </script>
+}

@@ -1,0 +1,229 @@
+﻿@{
+
+    ViewBag.Title = "Create Membership Index";
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Register <small>Membership</small></h1>
+    </div>
+</div>
+
+
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="index.html">Home</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="#">Register Memberbership</a>
+        <i class="fa fa-circle"></i>
+    </li>
+</ul>
+
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+
+<div class="portlet light">
+    <div class="portlet-body">
+        <div class="row margin-bottom-20">
+            <div class="col-md-12">
+                <div class="table-toolbar">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="btn-group pull-right">
+                                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                    Tools <i class="fa fa-angle-down"></i>
+                                </button>
+                                <ul class="dropdown-menu pull-right">
+                                    <li>
+                                        <a href="#">
+                                            Print
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Save as PDF
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Export to Excel
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered table-hover" id="TableMember">
+                    <thead>
+                        <tr role="row" class="heading">
+                            <th>
+                                No
+                            </th>
+                            <th>
+                                Nama
+                            </th>
+                            <th>
+                                Gender
+                            </th>
+                            <th>
+                                Alamat
+                            </th>
+                            <th>
+                                Telepon
+                            </th>
+                            <th>
+                                HP
+                            </th>
+                            <th>
+                                Action
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Actions
+                            </th>
+                        </tr>
+                        <tr role="row" class="filter">
+                            <td></td>
+                            <td>
+                                <input type="text" class="form-control form-filter input-sm" name="columns[1]FilterSearch">
+                            </td>
+                            <td></td>
+                            <td>
+                                <input type="text" class="form-control form-filter input-sm" name="columns[3]FilterSearch">
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div class="margin-bottom-5">
+                                    <button class="btn btn-sm yellow filter-submit margin-bottom"><i class="fa fa-search"></i>Search</button>
+                                </div>
+                                <button class="btn btn-sm red filter-cancel"><i class="fa fa-times"></i>Reset</button>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    <script>
+        var loadDDL = null;
+        $(function () {
+            Metronic.init(); // init metronic core components
+            Layout.init(); // init current layout
+
+
+            var grid = new Datatable();
+
+            grid.init({
+                src: $("#TableMember"),
+                onSuccess: function (grid) {
+                    //alert('sucsess');
+                },
+                onError: function (grid) {
+                    //alert('fail');
+                },
+                loadingMessage: 'Loading...',
+                dataTable: { // here you can define a typical datatable settings from http://datatables.net/usage/options
+
+                    // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
+                    // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/scripts/datatable.js).
+                    // So when dropdowns used the scrollable div should be removed.
+                    //"dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r>t<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
+
+                    "lengthMenu": [
+                        [10, 20, 50, 100, 150],
+                        [10, 20, 50, 100, 150] // change per page values here
+                    ],
+                    "pageLength": 10, // default record count per page
+                    "ajax": {
+                        "url": "@Url.Action("MembershipResult", "Membership")", // ajax source
+                    },
+                    "columns": [
+                   { "name": "No" },
+                   { "name": "tPerson.PNama" },
+                   { "name": "tPerson.PGender" },
+                   { "name": "tPerson.PAlamat" },
+                   { "name": "tPerson.PTelp" },
+                   { "name": "tPerson.PHP1" },
+                   { "name": "tSalesActions.ActionName" },
+                   { "name": "tMemberStates.MemberStateName" },
+                   {
+                       "data": 8,
+                       "render": function (data) {
+                           var d = data;
+                           return "<a href='@Url.Action("CreateMembership", "Membership")/" + d + "'><i class='fa fa-pencil'></i> Member</a>";
+                       },
+                       "orderable": false,
+                       "width": "5%"
+                   },
+                    ],
+                    "order": [
+                        [1, "asc"]
+                    ] // set first column as a default sort by asc
+                }
+            });
+
+            gridEvent.setEvent(grid);
+
+            //            var table = $('#TableMember');
+            //            // begin first table
+            //            table.DataTable({
+            //                "serverSide": true,
+            //                "processing": true,
+            //                "ajax": "@Url.Action("MembershipResult", "Membership")",
+            //                "deferRender": true,
+            //                "columns": [
+            //                    {
+            //                        "orderable": false,
+            //                        "width": "3%"
+            //                    },
+            //                    {
+            //                        "orderable": true,
+            //                    },
+            //                    null,
+            //                    {
+            //                        "orderable": false
+            //                    },
+            //                    {
+            //                        "orderable": false
+            //                    },
+            //                    {
+            //                        "orderable": false
+            //                    },
+            //                    {
+            //                        "orderable": false
+            //                    },
+            //                    {
+            //                        "orderable": false
+            //                    },
+            //                    {
+            //                        "targets": -1,
+            //                        "data": 8,
+            //                        "render": function (data) {
+            //                            var d = data;
+            //                            return "<a href='@Url.Action("CreateMembership", "Membership")/" + d + "'><i class='fa fa-edit fa-2x font-blue-soft'></i></a>";
+            //                        },
+            //                        "orderable": false,
+            //                        "className": "td.center",
+            //                        "width": "3%"
+            //                    }
+            //                ]
+            //            });
+
+        });
+    </script>
+}

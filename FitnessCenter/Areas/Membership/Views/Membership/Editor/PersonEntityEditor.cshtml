@@ -1,0 +1,76 @@
+﻿@using Services.Infrastructure
+@model ViewModel.Registrasi.Membership.ViewModelMembershipPerson
+@{
+    ViewData["dateTemp"] = Model.PTglLahir;
+    ViewBag.InGrid = true;
+}
+
+<tr>
+    @using (Html.BeginCollectionItem("persons"))
+    {
+        <td>
+            @Html.HiddenFor(m => m.PersonID)
+            @Html.HiddenFor(m => m.TrMembersipId)
+            @Html.HiddenFor(m => m.AgreementId)
+            @Html.HiddenFor(m => m.Seq)
+            @Html.TextBoxFor(m => m.AgreementId, new { @class = "form-control agreementid", @readonly = true })
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.PNama, new { @class = "form-control personpnama" })
+        </td>
+        <td>
+            <div class="radio-list">
+                <label>
+                    @(Model.PGender == "" ? Html.RadioButtonFor(m => m.PGender, 'M', new { @class = "gender", @checked = true, data_val = true }) : Html.RadioButtonFor(m => m.PGender, 'M', new { @class = "gender", data_val = true }))
+                    Male
+                </label>
+                <label>
+                    @Html.RadioButtonFor(m => m.PGender, 'F', new { @class = "gender" })
+                    Female
+                </label>
+            </div>
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.PGender)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.PIdentitas, new { @class = "form-control" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.PIdentitas)
+            </div>
+        </td>
+        <td style="width: 27%">
+            <div>
+                @Html.EditorFor(m => m.PTglLahir)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.PHP1, new { @class = "form-control" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.PHP1)
+
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.PPinBB, new { @class = "form-control" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.PPinBB)
+            </div>
+        </td>
+        <td>
+
+            @if (Model != null && Model.Seq == 1)
+            {
+                <a href="javascript:;" class="fa-stack fa-lg">
+                    <i class="fa fa-close fa-2x font-black"></i>
+                </a>
+            }
+            else
+            {
+                <a href="javascript:;" class="fa-stack fa-lg btnCancel">
+                    <i class="fa fa-close fa-2x font-red"></i>
+                </a>
+            }
+        </td>
+    }
+</tr>

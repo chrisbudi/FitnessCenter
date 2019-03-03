@@ -1,0 +1,127 @@
+﻿@*@model IEnumerable<ViewModel.Menu.SideBar>*@
+@**@
+@*<li class="sidebar-search-wrapper">*@
+@*    <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->*@
+@*    <form class="sidebar-search sidebar-search-bordered" action="extra_search.html" method="POST">*@
+@*        $1$        <a href="javascript:;" class="remove">#1#*@
+@*        $1$            <i class="icon-close"></i>#1#*@
+@*        $1$        </a>#1#*@
+@*        $1$        <div class="input-group">#1#*@
+@*        $1$            <input type="text" class="form-control" placeholder="Search...">#1#*@
+@*        $1$            <span class="input-group-btn">#1#*@
+@*        $1$                <button class="btn submit"><i class="icon-magnifier"></i></button>#1#*@
+@*        $1$            </span>#1#*@
+@*        $1$        </div>#1#*@
+@*    </form>*@
+@*    <!-- END RESPONSIVE QUICK SEARCH FORM -->*@
+@*</li>*@
+@**@
+@*@foreach (var side in Model.ToList())*@
+@*{*@
+@*    if (side.IsActive)*@
+@*    {*@
+@*        <li class="open">*@
+@*            <a href="javascript:;">*@
+@*                <i class="@side.Icon"></i>*@
+@*                <span class="title">*@
+@*                    @side.Title*@
+@*                </span>*@
+@*                <span class="arrow open">*@
+@*                </span>*@
+@*            </a>*@
+@*            <ul class="sub-menu" style="display: block;">*@
+@*                @foreach (var sideitem in side.SideBars.OrderBy(m => m.Title).ToList())*@
+@*                {*@
+@*                    if (sideitem.IsActive)*@
+@*                    {*@
+@*                        <li class="active">*@
+@*                            <a href="@Url.RouteUrl(sideitem.Area, new {controller = sideitem.Controller, action = sideitem.Action})/@sideitem.urlParameter">*@
+@*                                <i class="fa @sideitem.IconClass"></i>*@
+@*                                @sideitem.Title*@
+@*                            </a>*@
+@*                        </li>*@
+@*                    }*@
+@*                    else*@
+@*                    {*@
+@*                        <li>*@
+@*                            <a href="@Url.RouteUrl(sideitem.Area, new {controller = sideitem.Controller, action = sideitem.Action})/@sideitem.urlParameter">*@
+@*                                <i class="fa @sideitem.IconClass"></i>*@
+@*                                @sideitem.Title*@
+@*                            </a>*@
+@*                        </li>*@
+@*                    }*@
+@*                }*@
+@*            </ul>*@
+@*        </li>*@
+@**@
+@*    }*@
+@*    else*@
+@*    {*@
+@*        <li class="">*@
+@*            <a href="javascript:;">*@
+@*                <i class="@side.Icon"></i>*@
+@*                <span class="title">*@
+@*                    @side.Title*@
+@*                </span>*@
+@*                <span class="arrow">*@
+@*                </span>*@
+@*            </a>*@
+@*            <ul class="sub-menu">*@
+@*                @foreach (var sideitem in side.SideBars.ToList())*@
+@*                {*@
+@*                    <li>*@
+@*                        <a href="@Url.RouteUrl(sideitem.Area, new {controller = sideitem.Controller, action = sideitem.Action})/@sideitem.urlParameter">*@
+@*                            <i class="fa fa-chevron-right"></i>*@
+@*                            @sideitem.Title*@
+@*                        </a>*@
+@*                    </li>*@
+@*                }*@
+@*            </ul>*@
+@*        </li>*@
+@**@
+@*    }*@
+@*}*@
+
+@model IEnumerable<ViewModel.Menu.SideNav>
+<ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+    @foreach (var top in Model.ToList())
+    {
+        <li class="heading">
+            <h3 class="uppercase">@top.Title</h3>
+
+        </li>
+
+        foreach (var topItem in top.Nav)
+        {
+            <li class="@(topItem.IsActive? "active open": "")">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa @topItem.Icon"></i>
+                    <span class="title">@topItem.Module</span>
+                    @if (top.IsActive)
+                    {
+                        <span class="selected"></span>
+                        <span class="arrow open"></span>
+                    }
+                    else
+                    {
+                        <span class="arrow"></span>
+                    }
+                </a>
+                <ul class="sub-menu">
+                    @foreach (var dtl in topItem.NavDetail)
+                    {
+                        <li class="@(dtl.IsActive ? "active open" : "") ">
+                            <a href="@(dtl.Area == "Default"? "": Url.RouteUrl(dtl.Area, new {controller = dtl.Controller, action = dtl.Action}))/@dtl.urlParameter">
+                                <span class="title">@dtl.Title</span>
+                                @if (top.IsActive)
+                                {
+                                    <span class="selected"></span>
+                                }
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </li>
+        }
+    }
+</ul>

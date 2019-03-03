@@ -1,0 +1,1355 @@
+﻿@model ViewModel.Accounting.ViewModelDailyClosing
+@{
+    ViewBag.Title = "Check Account";
+}
+
+<!-- BEGIN PAGE HEADER-->
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>
+            Daily <small>Closing</small>
+        </h1>
+    </div>
+</div>
+
+
+@Html.Partial("_pageBreadcrumbs")
+
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+
+
+<div class="portlet light">
+    <div class="portlet-body">
+        <div class="portlet-tabs">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a aria-expanded="true" href="#portletMembership" data-toggle="tab">
+                        Membership
+                    </a>
+                </li>
+                <li>
+                    <a aria-expanded="false" href="#portletProject" data-toggle="tab">
+                        Flash Project
+                    </a>
+                </li>
+                <li>
+                    <a aria-expanded="false" href="#portletPT" data-toggle="tab">
+                        Personal Trainer
+                    </a>
+                </li>
+                <li>
+                    <a aria-expanded="false" href="#portletPOS" data-toggle="tab">
+                        POS
+                    </a>
+                </li>
+                <li>
+                    <a aria-expanded="false" href="#portletCollection" data-toggle="tab">
+                        Collection
+                    </a>
+                </li>
+                <li>
+                    <a aria-expanded="false" href="#portletFreeze" data-toggle="tab">
+                        Freeze
+                    </a>
+                </li>
+                <li>
+                    <a aria-expanded="false" href="#portletTransfer" data-toggle="tab">
+                        Transfer
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+
+                @*        Coding Membership*@
+
+                <div class="tab-pane active" id="portletMembership">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-arrow-right font-green-sharp"></i>
+                                <span class="caption-subject font-green-sharp bold uppercase">Membership</span>
+                                <span class="caption-helper">Closing data membership</span>
+                            </div>
+                            <div class="actions">
+
+                            </div>
+                        </div>
+
+                        <div class="portlet-body">
+                            <div class="row margin-bottom-20">
+                                @using (Html.BeginForm("CheckPayment", "CheckAccount", FormMethod.Post, new { @class = "" }))
+                                {
+                                    @Html.Hidden("membershipid")
+                                    <div class="form-body">
+                                        <table class="table table-striped table-bordered table-hover" id="tableMembership">
+                                            <thead>
+                                                <tr role="row" class="heading">
+                                                    <th width="1%">
+                                                        No
+                                                    </th>
+                                                    <th>
+                                                        MemberNO
+                                                    </th>
+                                                    <th>
+                                                        Nama Member
+                                                    </th>
+                                                    <th>
+                                                        Agreement&nbsp;ID
+                                                    </th>
+                                                    <th>
+                                                        Tanggal
+                                                    </th>
+                                                    <th>
+                                                        Amount
+                                                    </th>
+                                                    <th>
+                                                        Cash
+                                                    </th>
+                                                    <th>
+                                                        Debit
+                                                    </th>
+                                                    <th>
+                                                        Credit
+                                                    </th>
+                                                    <th>
+                                                        Transfer
+                                                    </th>
+                                                    <th>
+                                                        <input type="checkbox" class="parent_all">
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <hr />
+                                        <div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("Total Amount Checked Transaction", new { @class = "control-label col-md-2 text-left" })
+                                                <div class="col-md-5">
+                                                    <div class="input-group input-medium">
+                                                        @Html.TextBox("amountCheckedMembership", "", new { @class = "form-control text-right auto", @readonly = true })
+                                                    </div>
+                                                    <span class="help-block">
+                                                        Total Summary Payment
+                                                    </span>
+                                                    <div class="text-danger">
+                                                        @*@Html.ValidationMessage(m => m.TotalSumPayment)*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("Total Amount Transaction", new { @class = "control-label col-md-2 text-left" })
+                                                <div class="col-md-5">
+                                                    <div class="input-group input-medium">
+                                                        @Html.TextBox("amountMembersip", "", new { @class = "form-control text-right auto", @readonly = true })
+                                                    </div>
+                                                    <span class="help-block">
+                                                        Total Summary Payment
+                                                    </span>
+                                                    <div class="text-danger">
+                                                        @*@Html.ValidationMessage(m => m.TotalSumPayment)*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
+                                                <a href="@Url.Action("Index")" class="btn default">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                @*        Coding Project*@
+
+                <div class="tab-pane" id="portletProject">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-arrow-right font-green-sharp"></i>
+                                <span class="caption-subject font-green-sharp bold uppercase">Project</span>
+                                <span class="caption-helper">Closing data Project</span>
+                            </div>
+                            <div class="actions">
+
+                            </div>
+                        </div>
+
+                        <div class="portlet-body">
+                            <div class="row margin-bottom-20">
+                                @using (Html.BeginForm("ClosingProject", "DailyClosing", FormMethod.Post, new { @class = "" }))
+                                {
+                                    @Html.Hidden("projectId")
+                                    <div class="form-body">
+                                        <table class="table table-striped table-bordered table-hover" id="tableProject">
+                                            <thead>
+                                                <tr role="row" class="heading">
+                                                    <th width="1%">
+                                                        No
+                                                    </th>
+                                                    <th>
+                                                        membershipID
+                                                    </th>
+                                                    <th>
+                                                        Nama Member
+                                                    </th>
+                                                    <th>
+                                                        Sales
+                                                    </th>
+                                                    <th>
+                                                        User
+                                                    </th>
+                                                    <th>
+                                                        SubTotal
+                                                    </th>
+                                                    <th>
+                                                        Admin
+                                                    </th>
+                                                    <th>
+                                                        Discount
+                                                    </th>
+                                                    <th>
+                                                        Total
+                                                    </th>
+                                                    <th>
+                                                        <input type="checkbox" class="parent_all">
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <hr />
+                                        <div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("Total Amount Checked Transaction", new { @class = "control-label col-md-2 text-left" })
+                                                <div class="col-md-5">
+                                                    <div class="input-group input-medium">
+                                                        @Html.TextBox("amountCheckedProject", "", new { @class = "form-control text-right auto", @readonly = true })
+                                                    </div>
+                                                    <span class="help-block">
+                                                        Total Summary Payment
+                                                    </span>
+                                                    <div class="text-danger">
+                                                        @*@Html.ValidationMessage(m => m.TotalSumPayment)*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("Total Amount Transaction", new { @class = "control-label col-md-2 text-left" })
+                                                <div class="col-md-5">
+                                                    <div class="input-group input-medium">
+                                                        @Html.TextBox("amountProject", "", new { @class = "form-control text-right auto", @readonly = true })
+                                                    </div>
+                                                    <span class="help-block">
+                                                        Total Summary Payment
+                                                    </span>
+                                                    <div class="text-danger">
+                                                        @*@Html.ValidationMessage(m => m.TotalSumPayment)*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
+                                                <a href="@Url.Action("Index")" class="btn default">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                @*                Coding PT*@
+
+                <div class="tab-pane" id="portletPT">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-arrow-right font-green-sharp"></i>
+                                <span class="caption-subject font-green-sharp bold uppercase">Personal Trainer</span>
+                                <span class="caption-helper">Closing data personal trainer</span>
+                            </div>
+
+                            <div class="actions">
+
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row margin-bottom-20">
+                                @using (Html.BeginForm("ClosingPersonalTrainer", "DailyClosing", FormMethod.Post, new { @class = "" }))
+                                {
+                                    @Html.Hidden("ptId")
+                                    <div class="form-body">
+                                        <table class="table table-striped table-bordered table-hover" id="tablePT">
+                                            <thead>
+                                                <tr role="row" class="heading">
+                                                    <th width="1%">
+                                                        No
+                                                    </th>
+                                                    <th>
+                                                        PTID
+                                                    </th>
+                                                    <th>
+                                                        MemberID
+                                                    </th>
+                                                    <th>
+                                                        Member Name
+                                                    </th>
+                                                    <th>
+                                                        Personal Trainer
+                                                    </th>
+                                                    <th>
+                                                        Admin
+                                                    </th>
+                                                    <th>
+                                                        PT
+                                                    </th>
+                                                    <th>
+                                                        SubTotal
+                                                    </th>
+                                                    <th>
+                                                        Discount
+                                                    </th>
+                                                    <th>
+                                                        Total
+                                                    </th>
+                                                    <th>
+                                                        <input type="checkbox" class="parent_all">
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <hr />
+                                        <div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("Total Amount Checked Transaction", new { @class = "control-label col-md-2 text-left" })
+                                                <div class="col-md-5">
+                                                    <div class="input-group input-medium">
+                                                        @Html.TextBox("amountCheckedPersonalTrainer", "", new { @class = "form-control text-right auto", @readonly = true })
+                                                    </div>
+                                                    <span class="help-block">
+                                                        Total Summary Payment
+                                                    </span>
+                                                    <div class="text-danger">
+                                                        @*@Html.ValidationMessage(m => m.TotalSumPayment)*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("Total Amount Transaction", new { @class = "control-label col-md-2 text-left" })
+                                                <div class="col-md-5">
+                                                    <div class="input-group input-medium">
+                                                        @Html.TextBox("amountPersonalTrainer", "", new { @class = "form-control text-right auto", @readonly = true })
+                                                    </div>
+                                                    <span class="help-block">
+                                                        Total Summary Payment
+                                                    </span>
+                                                    <div class="text-danger">
+                                                        @*@Html.ValidationMessage(m => m.TotalSumPayment)*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
+                                                <a href="@Url.Action("Index")" class="btn default">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*                Coding POS Personal Trainer*@
+                <div class="tab-pane" id=portletPOS>
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-arrow-right font-green-sharp"></i>
+                                <span class="caption-subject font-green-sharp bold uppercase">POS</span>
+                                <span class="caption-helper">Closing data POS</span>
+                            </div>
+
+                            <div class="actions">
+
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row margin-bottom-20">
+                                @using (Html.BeginForm("ClosingPOS", "DailyClosing", FormMethod.Post, new { @class = "" }))
+                                {
+                                    @Html.Hidden("posId")
+                                    <div class="form-body">
+                                        <table class="table table-striped table-bordered table-hover" id="tablePOS">
+                                            <thead>
+                                                <tr role="row" class="heading">
+                                                    <th width="1%">
+                                                        No
+                                                    </th>
+                                                    <th>
+                                                        PTID
+                                                    </th>
+                                                    <th>
+                                                        MemberID
+                                                    </th>
+                                                    <th>
+                                                        Member Name
+                                                    </th>
+                                                    <th>
+                                                        Personal Trainer
+                                                    </th>
+                                                    <th>
+                                                        PT
+                                                    </th>
+                                                    <th>
+                                                        Admin
+                                                    </th>
+                                                    <th>
+                                                        SubTotal
+                                                    </th>
+                                                    <th>
+                                                        Discount
+                                                    </th>
+                                                    <th>
+                                                        Total
+                                                    </th>
+                                                    <th>
+                                                        <input type="checkbox" class="parent_all">
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <hr />
+                                        <div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("Total Amount Checked Transaction", new { @class = "control-label col-md-2 text-left" })
+                                                <div class="col-md-5">
+                                                    <div class="input-group input-medium">
+                                                        @Html.TextBox("amountCheckedPOS", "", new { @class = "form-control text-right auto", @readonly = true })
+                                                    </div>
+                                                    <span class="help-block">
+                                                        Total Summary Payment
+                                                    </span>
+                                                    <div class="text-danger">
+                                                        @*@Html.ValidationMessage(m => m.TotalSumPayment)*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("Total Amount Transaction", new { @class = "control-label col-md-2 text-left" })
+                                                <div class="col-md-5">
+                                                    <div class="input-group input-medium">
+                                                        @Html.TextBox("amountPOS", "", new { @class = "form-control text-right auto", @readonly = true })
+                                                    </div>
+                                                    <span class="help-block">
+                                                        Total Summary Payment
+                                                    </span>
+                                                    <div class="text-danger">
+                                                        @*@Html.ValidationMessage(m => m.TotalSumPayment)*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
+                                                <a href="@Url.Action("Index")" class="btn default">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*                Coding Collection*@
+                <div class="tab-pane" id="portletCollection">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-arrow-right font-green-sharp"></i>
+                                <span class="caption-subject font-green-sharp bold uppercase">Member Collection</span>
+                                <span class="caption-helper">Closing data Member Collection</span>
+                            </div>
+
+                            <div class="actions">
+
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row margin-bottom-20">
+                                @using (Html.BeginForm("ClosingCollection", "DailyClosing", FormMethod.Post, new { @class = "" }))
+                                {
+                                    @Html.Hidden("collectionId")
+                                    <div class="form-body">
+                                        <table class="table table-striped table-bordered table-hover" id="tableCollection">
+                                            <thead>
+                                                <tr role="row" class="heading">
+                                                    <th width="1%">
+                                                        No
+                                                    </th>
+                                                    <th>
+                                                        membershipID
+                                                    </th>
+                                                    <th>
+                                                        Nama Member
+                                                    </th>
+                                                    <th>
+                                                        Sales
+                                                    </th>
+                                                    <th>
+                                                        User
+                                                    </th>
+                                                    <th>
+                                                        SubTotal
+                                                    </th>
+                                                    <th>
+                                                        Admin
+                                                    </th>
+                                                    <th>
+                                                        Discount
+                                                    </th>
+                                                    <th>
+                                                        Total
+                                                    </th>
+                                                    <th>
+                                                        <input type="checkbox" class="parent_all">
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <hr />
+                                        <div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("Total Amount Checked Transaction", new { @class = "control-label col-md-2 text-left" })
+                                                <div class="col-md-5">
+                                                    <div class="input-group input-medium">
+                                                        @Html.TextBox("amountCheckedCollection", "", new { @class = "form-control text-right auto", @readonly = true })
+                                                    </div>
+                                                    <span class="help-block">
+                                                        Total Summary Payment
+                                                    </span>
+                                                    <div class="text-danger">
+                                                        @*@Html.ValidationMessage(m => m.TotalSumPayment)*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("Total Amount Transaction", new { @class = "control-label col-md-2 text-left" })
+                                                <div class="col-md-5">
+                                                    <div class="input-group input-medium">
+                                                        @Html.TextBox("amountCollection", "", new { @class = "form-control text-right auto", @readonly = true })
+                                                    </div>
+                                                    <span class="help-block">
+                                                        Total Summary Payment
+                                                    </span>
+                                                    <div class="text-danger">
+                                                        @*@Html.ValidationMessage(m => m.TotalSumPayment)*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
+                                                <a href="@Url.Action("Index")" class="btn default">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*                Coding Freeze*@
+                <div class="tab-pane " id="portletFreeze">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-arrow-right font-green-sharp"></i>
+                                <span class="caption-subject font-green-sharp bold uppercase">Member Freeze</span>
+                                <span class="caption-helper">Closing data Freeze</span>
+                            </div>
+                            <div class="actions">
+
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row margin-bottom-20">
+                                @using (Html.BeginForm("ClosingFreeze", "DailyClosing", FormMethod.Post, new { @class = "" }))
+                                {
+                                    @Html.Hidden("freezeId")
+                                    <div class="form-body">
+                                        <table class="table table-striped table-bordered table-hover" id="tableFreeze">
+                                            <thead>
+                                                <tr role="row" class="heading">
+                                                    <th width="1%">
+                                                        No
+                                                    </th>
+                                                    <th>
+                                                        membershipID
+                                                    </th>
+                                                    <th>
+                                                        Nama Member
+                                                    </th>
+                                                    <th>
+                                                        Sales
+                                                    </th>
+                                                    <th>
+                                                        User
+                                                    </th>
+                                                    <th>
+                                                        SubTotal
+                                                    </th>
+                                                    <th>
+                                                        Admin
+                                                    </th>
+                                                    <th>
+                                                        Discount
+                                                    </th>
+                                                    <th>
+                                                        Total
+                                                    </th>
+                                                    <th>
+                                                        <input type="checkbox" class="parent_all">
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <hr />
+                                        <div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("Total Amount Checked Transaction", new { @class = "control-label col-md-2 text-left" })
+                                                <div class="col-md-5">
+                                                    <div class="input-group input-medium">
+                                                        @Html.TextBox("amountCheckedFreeze", "", new { @class = "form-control text-right auto", @readonly = true })
+                                                    </div>
+                                                    <span class="help-block">
+                                                        Total Summary Payment
+                                                    </span>
+                                                    <div class="text-danger">
+                                                        @*@Html.ValidationMessage(m => m.TotalSumPayment)*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("Total Amount Transaction", new { @class = "control-label col-md-2 text-left" })
+                                                <div class="col-md-5">
+                                                    <div class="input-group input-medium">
+                                                        @Html.TextBox("amountFreeze", "", new { @class = "form-control text-right auto", @readonly = true })
+                                                    </div>
+                                                    <span class="help-block">
+                                                        Total Summary Payment
+                                                    </span>
+                                                    <div class="text-danger">
+                                                        @*@Html.ValidationMessage(m => m.TotalSumPayment)*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
+                                                <a href="@Url.Action("Index")" class="btn default">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                @*            Coding Transfer*@
+                <div class="tab-pane " id="portletTransfer">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-arrow-right font-green-sharp"></i>
+                                <span class="caption-subject font-green-sharp bold uppercase">Member Transfer</span>
+                                <span class="caption-helper">Closing data member Transfer</span>
+                            </div>
+                            <div class="actions">
+
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row margin-bottom-20">
+                                @using (Html.BeginForm("ClosingTransfer", "DailyClosing", FormMethod.Post, new { @class = "" }))
+                                {
+                                    @Html.Hidden("transferId")
+                                    <div class="form-body">
+                                        <table class="table table-striped table-bordered table-hover" id="tableTransfer">
+                                            <thead>
+                                                <tr role="row" class="heading">
+                                                    <th width="1%">
+                                                        No
+                                                    </th>
+                                                    <th>
+                                                        membershipID
+                                                    </th>
+                                                    <th>
+                                                        Nama Member
+                                                    </th>
+                                                    <th>
+                                                        Sales
+                                                    </th>
+                                                    <th>
+                                                        User
+                                                    </th>
+                                                    <th>
+                                                        SubTotal
+                                                    </th>
+                                                    <th>
+                                                        Admin
+                                                    </th>
+                                                    <th>
+                                                        Discount
+                                                    </th>
+                                                    <th>
+                                                        Total
+                                                    </th>
+                                                    <th>
+                                                        <input type="checkbox" class="parent_all">
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <hr />
+                                        <div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("Total Amount Checked Transaction", new { @class = "control-label col-md-2 text-left" })
+                                                <div class="col-md-5">
+                                                    <div class="input-group input-medium">
+                                                        @Html.TextBox("amountCheckedTransfer", "", new { @class = "form-control text-right auto", @readonly = true })
+                                                    </div>
+                                                    <span class="help-block">
+                                                        Total Summary Payment
+                                                    </span>
+                                                    <div class="text-danger">
+                                                        @*@Html.ValidationMessage(m => m.TotalSumPayment)*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                @Html.Label("Total Amount Transaction", new { @class = "control-label col-md-2 text-left" })
+                                                <div class="col-md-5">
+                                                    <div class="input-group input-medium">
+                                                        @Html.TextBox("amountTransfer", "", new { @class = "form-control text-right auto", @readonly = true })
+                                                    </div>
+                                                    <span class="help-block">
+                                                        Total Summary Payment
+                                                    </span>
+                                                    <div class="text-danger">
+                                                        @*@Html.ValidationMessage(m => m.TotalSumPayment)*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
+                                                <a href="@Url.Action("Index")" class="btn default">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END PAGE CONTENT-->
+@section Scripts {
+
+    @Scripts.Render("~/bundle/script/datatable")
+    <script src="~/assets/global/scripts/gridevent.js"></script>
+    <script>
+
+        $(function () {
+            var grid = new Datatable();
+
+            //list project array
+            var membershipId = [];
+            var trainerId = [];
+            var posId = [];
+            var freezeId = [];
+            var projectId = [];
+            var collectionId = [];
+            var transferId = [];
+
+            function arrayInput(listarray, value, tempdata) {
+                var index = listarray.indexOf(value);
+                if (index === -1) {
+                    listarray.push(value);
+                } else {
+                    listarray.splice(index, 1);
+                }
+                tempdata.val(listarray);
+            }
+
+
+            //table event on draw
+            $('#tableTransfer').on('draw.dt', function () {
+                Metronic.init();
+                $('.chkTransfer').on('click', function () {
+                    arrayInput(transferId, $(this).val(), $('#transferId'));
+                    $.get('@Url.Action("TransferAmount","DailyClosing")', {
+                        membership: $('#membershipid').val()
+                    }, function (data) {
+                        $('#amountCheckedTransfer').val(data.formatDecimal(2));
+                    });
+                });
+            });
+
+            $('#tableCollection').on('draw.dt', function () {
+                Metronic.init();
+                $('.chkCollection').on('click', function () {
+                    arrayInput(collectionId, $(this).val(), $('#collectionId'));
+                    $.get('@Url.Action("CollectionAmount","DailyClosing")', {
+                        membership: $('#membershipid').val()
+                    }, function (data) {
+                        $('#amountCheckedCollection').val(data.formatDecimal(2));
+                    });
+                });
+            });
+
+            $('#tableFreeze').on('draw.dt', function () {
+                Metronic.init();
+                $('.chkFreeze').on('click', function () {
+                    arrayInput(freezeId, $(this).val(), $('#freezeId'));
+                    $.get('@Url.Action("FreezeAmount","DailyClosing")', {
+                        membership: $('#membershipid').val()
+                    }, function (data) {
+                        $('#amountCheckedFreeze').val(data.formatDecimal(2));
+                    });
+
+                });
+            });
+
+            $('#tableMembership').on('draw.dt', function () {
+                Metronic.init();
+                $('.chkMembership').change(function () {
+                    arrayInput(membershipId, $(this).val(), $('#membershipid'));
+                    //                    alert($('#membershipid').val());
+                    $.get('@Url.Action("MembershipAmount","DailyClosing")', {
+                        membership: $('#membershipid').val()
+                    }, function (data) {
+                        $('#amountCheckedMembership').val(data.formatDecimal(2));
+                    });
+
+                });
+            });
+
+            $('#tablePOS').on('draw.dt', function () {
+                Metronic.init();
+                $('.chkPOS').on('click', function () {
+                    arrayInput(posId, $(this).val(), $('#posId'));
+                    $.get('@Url.Action("POSAmount","DailyClosing")', {
+                        membership: $('#membershipid').val()
+                    }, function (data) {
+                        $('#amountCheckedPOS').val(data.formatDecimal(2));
+                    });
+                });
+            });
+
+            $('#tablePT').on('draw.dt', function () {
+                Metronic.init();
+                $('.chkTrainer').on('click', function () {
+                    arrayInput(trainerId, $(this).val(), $('#ptId'));
+                    $.get('@Url.Action("TrainerAmount","DailyClosing")', {
+                        membership: $('#ptId').val()
+                    }, function (data) {
+                        console.log(data);
+                        $('#amountCheckedPersonalTrainer').val(data.formatDecimal(2));
+                    });
+                });
+            });
+
+            $('#tableProject').on('draw.dt', function () {
+                Metronic.init();
+                $('.chkProject').on('click', function () {
+                    arrayInput(projectId, $(this).val(), $('#projectId'));
+                    $.get('@Url.Action("ProjectAmount","DailyClosing")', {
+                        membership: $('#membershipid').val()
+                    }, function (data) {
+                        $('#amountCheckedMembership').val(data.formatDecimal(2));
+                    });
+                });
+            });
+
+            var tableColumn = [
+                {
+                    "name": "No",
+                    orderable: false
+                },
+                {
+                    "name": "trMembershipID",
+                    visible: false
+                },
+                {
+                    "name": "tPerson.PNama"
+                },
+                {
+                    "name": "tUserBackOffice.tPerson.PNama"
+                },
+                {
+                    "name": "tUserBackOffice1.tPerson.PNama"
+                },
+                {
+                    "name": "Subtotal",
+                    orderable: false
+                },
+                {
+                    "name": "Admin",
+                    orderable: false
+                },
+                {
+                    "name": "Disc",
+                    orderable: false
+                },
+                {
+                    "name": "Total",
+                    orderable: false
+                },
+                {
+                    "data": 1,
+                    "render":
+                        function (data) {
+                            var d = data;
+                            if (membershipId.indexOf(d) !== -1) {
+                                return '<input type="checkbox" checked value=' + d + ' class="checkboxes chkMembership" name="Membership"/>';
+                            } else {
+                                return '<input type="checkbox" value=' + d + ' class="checkboxes chkMembership" name="Membership"/>';
+                            }
+
+                        },
+                    "orderable": false,
+                    "width": "3%"
+                }
+            ];
+
+            function getTotalMembership(param) {
+                $('#amountMembersip').val(param.param);
+            }
+
+            gridEvent.setDefault(grid, '#tableMembership', '@Url.Action("MembershipResult")', tableColumn, null, getTotalMembership);
+
+
+            //project
+
+            tableColumn = [
+                {
+                    "name": "No",
+                    orderable: false
+                },
+                {
+                    "name": "trMembershipID",
+                    visible: false
+                },
+                {
+                    "name": "tPerson.PNama"
+                },
+                {
+                    "name": "tUserBackOffice.tPerson.PNama"
+                },
+                {
+                    "name": "tUserBackOffice1.tPerson.PNama"
+                },
+                {
+                    "name": "Subtotal",
+                    orderable: false
+                },
+                {
+                    "name": "Admin",
+                    orderable: false
+                },
+                {
+                    "name": "Disc",
+                    orderable: false
+                },
+                {
+                    "name": "Total",
+                    orderable:
+                        false
+                },
+                {
+                    "data": 1,
+                    "render":
+                        function (data) {
+                            var d = data;
+
+                            if (projectId.indexOf(d) !== -1) {
+                                return '<input type="checkbox" checked value=' + d + ' class="checkboxes chkProject" name="Membership"/>';
+                            } else {
+                                return '<input type="checkbox" value=' + d + ' class="checkboxes chkProject" name="Membership"/>';
+                            }
+                        },
+                    "orderable": false,
+                    "width": "3%"
+                }
+            ];
+
+            //project
+
+            function getTotalProject(param) {
+                $('#amountProject').val(param.param);
+            }
+
+            gridEvent.setDefault(grid, '#tableProject', '@Url.Action("ProjectResult")', tableColumn, null, getTotalProject);
+
+
+
+            //personal trainer column
+            tableColumn = [
+                {
+                    "name": "No",
+                    orderable: false
+                },
+                {
+                    "name": "trPersonalTrainerID",
+                    visible: false
+                },
+                {
+                    "name": "MemberID"
+                },
+                {
+                    "name": "tMember.tPerson.PNama"
+                },
+                {
+                    "name": "tUserBackOffice.tPerson.PNama"
+                },
+                {
+                    "name": "tUserBackOffice1.tPerson.PNama"
+                },
+                {
+                    "name": "tUserBackOffice2.tPerson.PNama"
+                },
+                {
+                    "name": "PTSubtotal",
+                    orderable: false
+                },
+                {
+                    "name": "PTDiskon",
+                    orderable: false
+                },
+                {
+                    "name": "PTTotal",
+                    orderable: false
+                },
+                {
+                    "data": 1,
+                    "render":
+                        function (data) {
+                            var d = data;
+
+                            if (trainerId.indexOf(d) !== -1) {
+                                return '<input type="checkbox" checked value=' + d + ' class="checkboxes chkTrainer" name="Membership"/>';
+                            } else {
+                                return '<input type="checkbox" value=' + d + ' class="checkboxes chkTrainer" name="Membership"/>';
+                            }
+                        },
+                    "orderable": false,
+                    "width": "3%"
+                }
+            ];
+            function getTotalPersonalTrainer(param) {
+                console.log(arguments.callee.name, param);
+                $('#amountPersonalTrainer').val(param.param);
+            }
+
+            gridEvent.setDefault(grid, '#tablePT', '@Url.Action("TrainerResult")', tableColumn, null, getTotalPersonalTrainer);
+
+            tableColumn = [
+                {
+                    "name": "No",
+                    orderable: false
+                },
+                {
+                    "name": "trPersonalTrainerID",
+                    visible: false
+                },
+                {
+                    "name": "MemberID"
+                },
+                {
+                    "name": "tMember.tPerson.PNama"
+                },
+                {
+                    "name": "tUserBackOffice.tPerson.PNama"
+                },
+                {
+                    "name": "tUserBackOffice1.tPerson.PNama"
+                },
+                {
+                    "name": "tUserBackOffice2.tPerson.PNama"
+                },
+                {
+                    "name": "PTSubtotal",
+                    orderable: false
+                },
+                {
+                    "name": "PTDiskon",
+                    orderable: false
+                },
+                {
+                    "name": "PTTotal",
+                    orderable: false
+                },
+                {
+                    "data": 1,
+                    "render":
+                        function (data) {
+                            var d = data;
+
+                            if (posId.indexOf(d) !== -1) {
+                                return '<input type="checkbox" checked value=' + d + ' class="checkboxes chkPOS" name="Membership"/>';
+                            } else {
+                                return '<input type="checkbox" value=' + d + ' class="checkboxes chkPOS" name="Membership"/>';
+                            }
+                        },
+                    "orderable": false,
+                    "width": "3%"
+                }
+            ];
+
+            function getTotalPOS(param) {
+                $('#amountPOS').val(param.param);
+            }
+
+            gridEvent.setDefault(grid, '#tablePOS', '@Url.Action("POSResult")', tableColumn, null, getTotalPOS);
+
+            //Collection Table
+            tableColumn = [
+                {
+                    "name": "No",
+                    orderable: false
+                },
+                {
+                    "name": "trMembershipID",
+                    visible: false
+                },
+                {
+                    "name": "tPerson.PNama"
+                },
+                {
+                    "name": "tUserBackOffice.tPerson.PNama"
+                },
+                {
+                    "name": "tUserBackOffice1.tPerson.PNama"
+                },
+                {
+                    "name": "Subtotal",
+                    orderable: false
+                },
+                {
+                    "name": "Admin",
+                    orderable: false
+                },
+                {
+                    "name": "Disc",
+                    orderable: false
+                },
+                {
+                    "name": "Total",
+                    orderable:
+                        false
+                },
+                {
+                    "data": 1,
+                    "render":
+                        function (data) {
+                            var d = data;
+                            if (collectionId.indexOf(d) !== -1) {
+                                return '<input type="checkbox" checked value=' + d + ' class="checkboxes chkCollection" name="Membership"/>';
+                            } else {
+                                return '<input type="checkbox" value=' + d + ' class="checkboxes chkCollection" name="Membership"/>';
+                            }
+                        },
+                    "orderable": false,
+                    "width": "3%"
+                }
+            ];
+            function getTotalCollection(param) {
+                $('#amountCollection').val(param.param);
+            }
+
+            gridEvent.setDefault(grid, '#tableCollection', '@Url.Action("CollectionResult")', tableColumn, null, getTotalCollection);
+
+
+
+            tableColumn = [
+                {
+                    "name": "No",
+                    orderable: false
+                },
+                {
+                    "name": "trMembershipID",
+                    visible: false
+                },
+                {
+                    "name": "tPerson.PNama"
+                },
+                {
+                    "name": "tUserBackOffice.tPerson.PNama"
+                },
+                {
+                    "name": "tUserBackOffice1.tPerson.PNama"
+                },
+                {
+                    "name": "Subtotal",
+                    orderable: false
+                },
+                {
+                    "name": "Admin",
+                    orderable: false
+                },
+                {
+                    "name": "Disc",
+                    orderable: false
+                },
+                {
+                    "name": "Total",
+                    orderable:
+                        false
+                },
+                {
+                    "data": 1,
+                    "render":
+                        function (data) {
+                            var d = data;
+                            if (freezeId.indexOf(d) !== -1) {
+                                return '<input type="checkbox" checked value=' + d + ' class="checkboxes chkFreeze" name="Membership"/>';
+                            } else {
+                                return '<input type="checkbox" value=' + d + ' class="checkboxes chkFreeze" name="Membership"/>';
+                            }
+                        },
+                    "orderable": false,
+                    "width": "3%"
+                }
+            ];
+            function getTotalFreeze(param) {
+                $('#amountFreeze').val(param.param);
+            }
+
+            gridEvent.setDefault(grid, '#tableFreeze', '@Url.Action("FreezeResult")', tableColumn, null, getTotalFreeze);
+
+
+
+            tableColumn = [
+                {
+                    "name": "No",
+                    orderable: false
+                },
+                {
+                    "name": "trMembershipID",
+                    visible: false
+                },
+                {
+                    "name": "tPerson.PNama"
+                },
+                {
+                    "name": "tUserBackOffice.tPerson.PNama"
+                },
+                {
+                    "name": "tUserBackOffice1.tPerson.PNama"
+                },
+                {
+                    "name": "Subtotal",
+                    orderable: false
+                },
+                {
+                    "name": "Admin",
+                    orderable: false
+                },
+                {
+                    "name": "Disc",
+                    orderable: false
+                },
+                {
+                    "name": "Total",
+                    orderable:
+                        false
+                },
+                {
+                    "data": 1,
+                    "render":
+                        function (data) {
+                            var d = data;
+                            if (transferId.indexOf(d) !== -1) {
+                                return '<input type="checkbox" checked value=' + d + ' class="checkboxes chkTransfer" name="Membership"/>';
+                            } else {
+                                return '<input type="checkbox" value=' + d + ' class="checkboxes chkTransfer" name="Membership"/>';
+                            }
+
+                        },
+                    "orderable": false,
+                    "width": "3%"
+                }
+            ];
+
+            function getTotalTransfer(param) {
+                $('#amountTransfer').val(param.param);
+            }
+
+            gridEvent.setDefault(grid, '#tableTransfer', '@Url.Action("TransferResult")', tableColumn, null, getTotalTransfer);
+
+            $('.parent_all').on('click', function (e) {
+                $(e.target).closest('table').find(".checkboxes").trigger("click");
+            });
+
+            $('.chkMembership').on('change', function () {
+                alert($('#membershipid').val());
+
+            });
+        });
+    </script>
+}

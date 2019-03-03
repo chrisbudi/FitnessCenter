@@ -1,0 +1,220 @@
+﻿@model ViewModel.Camera.ViewModelCamera
+
+@*<div class="modal-header">
+        <h4 class="modal-title">Image Capture</h4>
+    </div>*@
+
+<link href="~/Content/Avatar/jquery.Jcrop.css" rel="stylesheet" />
+<link href="~/Content/Avatar/site.avatar.css" rel="stylesheet" />
+
+<div class="modal-body">
+    @using (Html.BeginForm("CaptureImage", "Camera", FormMethod.Post, new { enctype = "multipart/form-data", id = "avatar-upload-form", @class = "form-horizontal" }))
+    {
+        @*<div class="form-body">
+                <h3 class="form-section"></h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3">
+                            <div class="right">
+                                <video id="video" width="400" height="350" autoplay style="border: 2px solid #646566;"></video>
+                                <div class="right">
+                                    <button id="btnCapture" class="btn btn-primary">Capture</button><br />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="col-md-6">
+                            <img id="Image" width="350" height="270" />
+                        </div>
+                        <div class="col-md-6">
+                            <div id="preview-pane">
+                                <div class="preview-container">
+                                    <img src="" class="jcrop-preview" alt="Preview" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <canvas id="canvas" width="350" height="270" style="border: 2px solid #646566; visibility: hidden;"></canvas>*@
+
+
+        <div id='inline_content' style='background: #fff;'>
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-plus"></i> Capture Images
+                    </div>
+                    <div class="tools">
+                        <a href="" class="collapse">
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-5">
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <div class="col-md-4">
+                                            @Html.HiddenFor(m => m.CameraObject)
+                                            @Html.HiddenFor(m => m.CameraSource)
+                                            <video id="video" width="350" height="270" autoplay style="border: 2px solid #646566;"></video>
+                                            <div class="right">
+                                                <button id="btnCapture" class="btn btn-primary">Capture</button><br />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div class="right">
+                                                <img id="Image" width="350" height="270" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div id="preview-pane">
+                                                <div class="preview-container">
+                                                    <img src="" class="jcrop-preview" />
+                                                </div>
+                                            </div>
+                                            <canvas id="canvas" width="350" height="270" style="border: 2px solid #646566; visibility: hidden;"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="modal-footer">
+    <button type="button" data-dismiss="modal" id="Cancel" class="btn btn-default">Cancel</button>
+    <button type="button" data-dismiss="modal" id="DismisPop" class="btn btn-default">Continue</button>
+</div>
+
+
+<script src="~/Scripts/jquery.Jcrop.js"></script>
+<script src="~/Scripts/site.avatar.js"></script>
+<script type="text/javascript">
+    var localMediaStream = null;
+    var clicked = false;
+    $("#imageToSave").attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==');
+    $(document).ready(StartCam);
+
+    function StartCam() {
+
+
+        // Elements for taking the snapshot
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        var video = document.getElementById('video');
+
+
+
+        //        video.play();
+        //        // Get access to the camera!
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            // Not adding `{ audio: true }` since we only want video now
+            //navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+            //    video.srcObj = stream;
+            //    //video.src = window.URL.createObjectURL(stream);
+            //    localMediaStream = stream;
+            //    video.play();
+            //});
+
+            navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+                //video.src = window.URL.createObjectURL(stream);
+                video.srcObject = stream;
+                localMediaStream = stream;
+            });
+        }
+
+        //        var canvas = $("#canvas"),
+        //            context = canvas[0].getContext("2d"),
+        //            video = $("#video")[0],
+        //            videoObj = { "video": true },
+        //            errHandler = function (error) {
+        //                console.log("Video capture error: ", error.code);
+        //            };
+        //
+        //        if (navigator.getUserMedia) { // Standard
+        //            navigator.getUserMedia(videoObj, function (stream) {
+        //                video.autoplay = true;
+        //                video.src = stream;
+        //                localMediaStream = stream;
+        //                video.play();
+        //            }, errHandler);
+        //        } else if (navigator.webkitGetUserMedia) { // WebKit-prefixed
+        //            navigator.webkitGetUserMedia(videoObj, function (stream) {
+        //                video.src = window.URL.createObjectURL(stream);
+        //                localMediaStream = stream;
+        //                video.play();
+        //            }, errHandler);
+        //        }
+        //        else if (navigator.mozGetUserMedia) { // Firefox-prefixed
+        //            navigator.mozGetUserMedia(videoObj, function (stream) {
+        //                video.src = window.URL.createObjectURL(stream);
+        //                localMediaStream = stream;
+        //                video.play();
+        //            }, errHandler);
+        //        }
+
+        $("#btnCapture").click(function (e) {
+
+
+            clicked = true;
+            e.preventDefault();
+
+
+            // Trigger photo take
+            //            document.getElementById("snap").addEventListener("click", function() {
+            //                context.drawImage(video, 0, 0, 640, 480);
+            //            });
+
+
+
+            $("#canvas").hide();
+            context.drawImage(video, 0, 0, 350, 270);
+            $('#Image').attr('src', canvas.toDataURL("image/jpeg"));
+            initAvatarCrop($("#Image"));
+            $('#preview-pane .preview-container img').attr('src', canvas.toDataURL("image/jpeg"));
+        });
+    }
+
+    function closeCamera() {
+        console.log("Detaching media stream");
+        video.autoplay = false;
+        video.pause();
+        //        $("video").each(function () {
+        //            this.pause();
+        ////            video.pause();
+        //            this.currentTime = 0;
+        //        });
+        localMediaStream.getVideoTracks()[0].stop();
+    }
+
+    $('#Cancel').click(function () {
+        closeCamera();
+    });
+
+    $("#DismisPop").click(function () {
+        if (clicked === false) {
+            if (confirm("Do you want to close ?")) {
+                closeCamera();
+            }
+        } else {
+            saveAvatar('#' + $('#CameraObject').val(), '#' + $('#CameraSource').val());
+            closeCamera();
+        }
+    });
+</script>   stmembership

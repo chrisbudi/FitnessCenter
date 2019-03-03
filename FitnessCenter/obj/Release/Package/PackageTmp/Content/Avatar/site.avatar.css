@@ -1,0 +1,31 @@
+﻿/* ------------------------------------- 
+    JCrop customization
+---------------------------------------- */
+
+#preview-pane {
+    position: absolute;
+    right: -220px;
+    z-index: 1;
+    display: block;
+}
+
+    #preview-pane .preview-container {
+        overflow: hidden;
+        width: 200px;  /* ToDo - size of the crop window*/
+        height: 200px; /* ToDo - size of the crop window*/
+    }
+
+.upload-progress {
+    border: 1px #bbb solid;
+    padding: 0;
+}
+
+.upload-percent-value {
+    padding-left: 10px;
+    position: absolute;
+}
+
+.upload-percent-bar {
+    background-color: #bbb;
+    height: 20px;
+}

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<DataObjects.Entities.tPerson>
+@{
+    ViewBag.Title = "Index";
+}
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>
+            Auth <small>User Admin</small>
+        </h1>
+    </div>
+</div>
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="#">Home</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="#">User Admin</a>
+        <i class="fa fa-circle"></i>
+    </li>
+</ul>
+
+
+<div class="portlet light">
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <a href="@Url.Action("Create", "UsersAdmin")" class="btn green">
+                            <i class="fa fa-plus"></i> Create New
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-20">
+            <div class="col-md-12">
+                <div class="table-toolbar">
+
+
+                    <table id="user" class="table table-bordered table-hover display" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Nama Lengkap</th>
+                                <th>Nomor Karyawan (NIK)</th>
+                                <th>Position</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        @foreach (var item in Model.ToList())
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PNama)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.UserName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tUserBackOffice.tPosisi.PNamaPosisi)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new {id = item.Id, area = "Auth"}) |
+                                    @Html.ActionLink("Details", "Details", new {id = item.Id, area = "Auth"}) |
+                                    @Html.ActionLink("Delete", "Delete", new {id = item.Id, area = "Auth"})
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            // initiate layout and plugins
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+            $('#user').DataTable();
+        });
+    </script>
+}

@@ -1,0 +1,94 @@
+﻿@model DataObjects.Entities.tLocFitnessCenter
+@{
+    ViewBag.Title = "Create Lokasi";
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Tambah Master <small>Lokasi</small></h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="portlet light">
+    <div class="portlet-body">
+        <!-- BEGIN FORM PORTLET-->
+        <div class="portlet box green ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-plus"></i> Tambah Lokasi
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @using (Html.BeginForm("CreateLoc", "LocFitnessCenter", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="form-body">
+                        @*                        <div class="form-group">*@
+                        @*                            @Html.LabelFor(l => l.LocationID, new { @class = "col-md-2 control-label" })*@
+                        @*                            <div class="col-md-5">*@
+                        @*                                @Html.TextBoxFor(l => l.LocationID, new { @class = "form-control input-medium", placeholder = "Lokasi" })*@
+                        @*                                @Html.ValidationMessageFor(l => l.LocationID)*@
+                        @*                            </div>*@
+                        @*                        </div>*@
+                        <div class="form-group">
+                            @Html.LabelFor(l => l.LAlamat, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(l => l.LAlamat, new { @class = "form-control input-medium", placeholder = "Alamat" })
+                                @Html.ValidationMessageFor(l => l.LAlamat)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(l => l.LTlp, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(l => l.LTlp, new { @class = "form-control input-medium", placeholder = "No. Telp" })
+                                @Html.ValidationMessageFor(l => l.LTlp)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(l => l.LFax, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(l => l.LFax, new { @class = "form-control input-medium", placeholder = "Fax" })
+                                @Html.ValidationMessageFor(l => l.LFax)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(l => l.LAuth, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(l => l.LAuth, new { @class = "form-control input-medium", placeholder = "Inisial" })
+                                @Html.ValidationMessageFor(l => l.LAuth)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-9">
+                                <button type="submit" class="btn btn-circle green bold"><i class="fa fa-check"></i> Simpan</button>
+                                <a href="@Url.Action("Index", "LocFitnessCenter")" class="btn btn-circle red bold"><i class="fa fa-times"></i> Batal</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    @Scripts.Render("~/bundle/script/jqueryval")
+    <script>
+        $(function () {
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+        });
+
+    </script>
+}

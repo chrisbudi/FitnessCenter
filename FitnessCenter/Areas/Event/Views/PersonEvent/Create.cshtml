@@ -1,0 +1,207 @@
+﻿@model FitnessCenter.Areas.Event.Models.PersonEventVm
+@{
+    ViewBag.Title = "Create Person Event";
+}
+
+
+<!-- BEGIN BREADCRUMBS -->
+<div class="breadcrumbs">
+    <h1>@ViewBag.Title</h1>
+    @Html.Partial("_pageBreadcrumbs")
+</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE BASE CONTENT -->
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Create", "PersonEvent", FormMethod.Post, new { @class = "form-horizontal form-row-seperated" }))
+            {
+            <div class="portlet">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-shopping-cart"></i>New Person Event
+                    </div>
+                    <div class="actions btn btn-set">
+                        <a class="btn btn-default" href="@Url.Action("Index")">
+                            <i class="fa fa-angle-left"></i> Back
+                        </a>
+                        <button type="reset" class="btn btn-secondary-outline reset">
+                            <i class="fa fa-reply"></i> Reset
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-check"></i> Save
+                        </button>
+                        <div class="btn-group">
+                            <a class="btn btn-success dropdown-toggle" href="javascript:;" data-toggle="dropdown">
+                                <i class="fa fa-share"></i> More
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <div class="dropdown-menu pull-right">
+                                <li>
+                                    <a href="javascript:;"> Duplicate </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;"> Delete </a>
+                                </li>
+                                <li class="dropdown-divider"> </li>
+                                <li>
+                                    <a href="javascript:;"> Print </a>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="tabbable-bordered">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab_role" data-toggle="tab"> Role&nbsp;Event </a>
+                            </li>
+                            <li>
+                                <a href="#tab_general" data-toggle="tab"> General </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_role">
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">
+                                            Role Event:
+                                            <span class="required"> * </span>
+                                        </label>
+                                        <div class="col-md-10">
+                                            <div class="form-control height-auto">
+                                                <div class="scroller" data-always-visible="1">
+                                                    <ul class="list-unstyled">
+                                                        @foreach (var tRoleEvent in Model.RoleEvents)
+                                                        {
+                                                            <li>
+                                                                <label>
+                                                                    <input type="radio" name="PersonEvent.EvRoleId" value="@tRoleEvent.EvRoleId" checked="@(tRoleEvent.EvRoleId == 1 ? "checked" : "")">@tRoleEvent.EvRoleName
+                                                                </label>
+                                                            </li>
+                                                        }
+
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="help-block"> select an role Event </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_general">
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">
+                                            Name:
+                                            <span class="required"> * </span>
+                                        </label>
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.PersonEvent.tPerson.PNama, new { @class = "form-control" })
+                                            <span class="text-danger">@Html.ValidationMessageFor(m => m.PersonEvent.tPerson.PNama)</span>
+                                            <span class="help-block">Person Name</span>
+                                            @*<input type="text" class="form-control" name="product[name]" placeholder="">*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">
+                                            Address:
+                                            <span class="required"> * </span>
+                                        </label>
+                                        <div class="col-md-10">
+                                            @Html.TextAreaFor(m => m.PersonEvent.tPerson.PAlamat, new { @class = "form-control" })
+                                            <span class="text-danger">@Html.ValidationMessageFor(m => m.PersonEvent.tPerson.PNama)</span>
+                                            <span class="help-block">Person Address</span>
+                                            @*<input type="text" class="form-control" name="product[name]" placeholder="">*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">
+                                            Gym:
+                                            <span class="required"> * </span>
+                                        </label>
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.PersonEvent.strPersonEvent.Gym, new { @class = "form-control" })
+                                            <span class="text-danger">@Html.ValidationMessageFor(m => m.PersonEvent.strPersonEvent.Gym)</span>
+                                            <span class="help-block">Gym Name</span>
+                                            @*<input type="text" class="form-control" name="product[name]" placeholder="">*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">
+                                            Participant No:
+                                            <span class="required"> * </span>
+                                        </label>
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.PersonEvent.strPersonEvent.NoPeserta, new { @class = "form-control" })
+                                            <span class="text-danger">@Html.ValidationMessageFor(m => m.PersonEvent.strPersonEvent.NoPeserta)</span>
+                                            <span class="help-block">Participant NO</span>
+                                            @*<input type="text" class="form-control" name="product[name]" placeholder="">*@
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">
+                                            Phone:
+                                            <span class="required"> * </span>
+                                        </label>
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.PersonEvent.tPerson.PHP1, new { @class = "form-control" })
+                                            <span class="text-danger">@Html.ValidationMessageFor(m => m.PersonEvent.tPerson.PHP1)</span>
+                                            <span class="help-block">Phone No</span>
+                                            @*<input type="text" class="form-control" name="product[name]" placeholder="">*@
+                                        </div>
+                                    </div>
+
+                                    @*                                    <div class="form-group">*@
+                                    @*                                        <label class="col-md-2 control-label">*@
+                                    @*                                            Event:*@
+                                    @*                                            <span class="required"> * </span>*@
+                                    @*                                        </label>*@
+                                    @*                                        <div class="col-md-5">*@
+                                    @*                                            @Html.TextBoxFor(m => m.PersonEventId, new {@class = "table-group-action-input form-control input-medium"})*@
+                                    @*                                            <span class="text-danger">@Html.ValidationMessageFor(m => m.tPerson.PHP1)</span>*@
+                                    @*                                            <span class="help-block">Choose Event</span>*@
+                                    @*                                            $1$<input type="text" class="form-control" name="product[name]" placeholder="">#1#*@
+                                    @*                                        </div>*@
+                                    @*                                    </div>*@
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">
+                                            Event:
+                                            <span class="required"> * </span>
+                                        </label>
+                                        <div class="col-md-5">
+                                            @Html.DropDownListFor(m => m.PersonEvent.EvId, new List<SelectListItem>(), new { @class = "form-control" })
+                                            <span class="text-danger">@Html.ValidationMessageFor(m => m.PersonEvent.EvId)</span>
+                                            <span class="help-block"> select an Event </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<!-- END PAGE BASE CONTENT -->
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    @Scripts.Render("~/bundle/script/forminput")
+    @Scripts.Render("~/bundle/script/jqueryval")
+    @Scripts.Render("~/Scripts/ComponentsSelect2.js")
+
+    <script>
+
+        $(function () {
+            //Metronic.init();// init metronic core components
+            //Layout.init(); // init current layout
+            ComponentsSelect2.init("#PersonEvent_EvId", "Event", "@Url.Action("SelectEvent", "Event")", "@Url.Action("SelectEventSingle", "Event")");
+
+        });
+
+    </script>
+}

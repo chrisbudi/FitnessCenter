@@ -1,0 +1,1202 @@
+﻿@model ViewModel.Membership.Registrasi.ViewModelMembershipCreate
+@{
+    ViewBag.Title = "Create Membership";
+    var i = 0;
+}
+
+<h3 class="page-title">
+    Create Member <small>Add new Member</small>
+</h3>
+
+@Html.Partial("_pageBreadcrumbs")
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet box blue" id="form_wizard_1">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-gift"></i> Create Member - <span class="step-title">
+                        Step 1 of 4
+                    </span>
+                </div>
+                <div class="tools hidden-xs">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                    <a href="#portlet-config" class="config">
+                    </a>
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @using (Html.BeginForm("CreateMembership", "FastMembership", FormMethod.Post, new { id = "submit_form", @class = "form-horizontal" }))
+                {
+
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <ul class="nav nav-pills nav-justified steps">
+                                <li>
+                                    <a href="#tab1" data-toggle="tab" class="step">
+                                        <span class="number">
+                                            1
+                                        </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Member Type
+                                        </span>
+                                    </a>
+                                </li>
+                                <li id="li2">
+                                    <a href="#tab2" data-toggle="tab" class="step">
+                                        <span class="number">
+                                            2
+                                        </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Person Info
+                                        </span>
+                                    </a>
+                                </li>
+                                <li id="li3">
+                                    <a href="#tab3" data-toggle="tab" class="step">
+                                        <span class="number">
+                                            3
+                                        </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Address Info
+                                        </span>
+                                    </a>
+                                </li>
+                                <li id="li4">
+                                    <a href="#tab5" data-toggle="tab" class="step">
+                                        <span class="number">
+                                            5
+                                        </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Payment Detail
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success">
+                                </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button>
+                                    You have some form errors. Please check below.
+                                </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button>
+                                    Your form validation is successful!
+                                </div>
+                                <div class="tab-pane active" id="tab1">
+                                    <h3 class="block">Member Payment Information</h3>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Sales Name:</label>
+                                        <input type="hidden" id="totalMonth" />
+                                        <div class="col-md-4">
+                                            @Html.TextBoxFor(m => m.Membership.PersonBOIDSales, new { @class = "form-control" })
+                                            <span class="help-block">
+                                                Input your member Type
+                                            </span>
+                                            <div class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.Membership.PersonBOIDSales)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="hdnMemberType" class="form-group">
+                                        <label class="control-label col-md-3">Member Type:</label>
+                                        <input type="hidden" id="totalMonth" />
+                                        <div class="col-md-4">
+                                            @Html.TextBoxFor(m => m.PaymentMember.MemberTypeID, new { @class = "form-control" })
+                                            @Html.HiddenFor(m => m.PaymentMember.tMemberType.prFix)
+                                            @Html.HiddenFor(m => m.PaymentMember.tMemberType.IsPaket)
+                                            @Html.HiddenFor(m => m.Membership.TotalMonth)
+                                            @Html.HiddenFor(m => m.Membership.CountMember)
+                                            <span class="help-block">
+                                                Input your member Type
+                                            </span>
+                                            <div class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.PaymentMember.MemberTypeID)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="hdnMemberCount" class="form-group">
+                                        <label class="control-label col-md-3">Member Count:</label>
+                                        <div class="col-md-3">
+                                            @Html.TextBoxFor(m => m.MemberCount, new { @class = "spinner-input form-control", maxlength = 3, @readonly = false })
+                                            <span id="MemberCountHelp" class="help-block">
+                                                Input value max 1
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div id="hdnPayment" class="form-group">
+                                        <label class="control-label col-md-3">Payment:</label>
+                                        <div class="col-md-3">
+                                            @Html.TextBoxFor(m => m.Membership.Subtotal, new { @class = "form-control autoMemberType text-right", @readonly = false })
+                                            <span class="help-block">
+                                                Total Payment this account
+                                            </span>
+                                            <div class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.Membership.Subtotal)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="hdnMemberAdmin" class="form-group">
+                                        <label class="control-label col-md-3">Member Admin:</label>
+                                        <div class="col-md-3">
+                                            @Html.TextBoxFor(m => m.Membership.Admin, new { @class = "form-control autoMemberType text-right" })
+                                            <span id="AdminMemberHelp" class="help-block">
+                                                Total Payment Admin
+                                            </span>
+                                            <div class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.Membership.Admin)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="hdnMemberProrate" class="form-group hidden">
+                                        <label class="control-label col-md-3">Member prorate:</label>
+                                        <div class="col-md-3">
+                                            @Html.TextBoxFor(m => m.Membership.Prorate, new { @class = "form-control autoMemberType text-right" })
+                                            <span class="help-block">
+                                                Total Payment Prorate
+                                            </span>
+                                        </div>
+                                        <div class="text-danger">
+                                            @Html.ValidationMessageFor(m => m.Membership.Prorate)
+                                        </div>
+                                    </div>
+                                    <div id="hdnDiscount" class="form-group">
+                                        <label class="control-label col-md-3">Discount:</label>
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                <div class="input-group-btn">
+                                                    <button type="button" class="btn green dropdown-toggle btnDiscType" data-toggle="dropdown">
+                                                        <span class="selectedDiscType">Nominal</span>
+                                                        <i class="fa fa-angle-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a href="javascript:;" class="discTypeDesc"> Percent </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:;" class="discTypeDesc"> Nominal </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <!-- /btn-group -->
+                                                @Html.HiddenFor(m => m.DiscType, new { id = "masterDiscType" })
+                                                @Html.TextBoxFor(m => m.DiscVal, new { @class = "form-control text-right discVal DiscMaster" })
+                                                @Html.HiddenFor(m => m.Membership.Disc)
+                                            </div>
+                                            <span id="DiscountMemberHelp" class="help-block">
+                                                Discount Total for this account (0)
+                                            </span>
+                                            @Html.HiddenFor(m => m.DiscNominal, new { @class = "discNominal", id = "discNominal" })
+                                            <div class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.DiscNominal)
+                                            </div>
+                                            <!-- /input-group -->
+                                        </div>
+
+                                    </div>
+
+                                    <div id="hdnTotalPayment" class="form-group">
+                                        <label class="control-label col-md-3">Member Total Payment:</label>
+                                        <div class="col-md-3">
+                                            @Html.TextBoxFor(m => m.Membership.Total, new { @class = "form-control autoMemberType text-right", @readonly = true, hidden = true })
+                                            <span class="help-block">
+                                                Total Amount Payment
+                                            </span>
+                                            <div class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.Membership.Total)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Personal Trainer Type</label>
+                                        <div class="col-md-3">
+                                            @Html.TextBox("PTType", "", new { @class = "form-control text-right", @readonly = true, hidden = true })
+                                            @Html.HiddenFor(m => m.PaketPTId)
+                                            <span class="help-block">
+                                                Personal Trainer Type
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab2">
+                                    <h3 class="block">Provide your Person Information</h3>
+                                    <div class="table-container">
+                                        <table class="table table-striped table-bordered table-hover" id="dtPerson">
+                                            <thead>
+                                                <tr role="row" class="heading">
+                                                    <th width="1%">No</th>
+                                                    <th width="20%">Name</th>
+                                                    <th width="10%">Identitas</th>
+                                                    <th width="10%">Agreement</th>
+                                                    <th width="8%">Gender</th>
+                                                    <th width="15%">Alamat</th>
+                                                    <th width="15%">Tgl Lahir</th>
+                                                    <th width="15%">Hand Phone</th>
+                                                    <th width="1%"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane active" id="tab3">
+                                    <h3 class="block">Provide your Address details</h3>
+
+                                    <div class="table-container">
+                                        <table class="table table-striped table-bordered table-hover" id="dtAddr">
+                                            <thead>
+                                                <tr role="row" class="heading">
+                                                    <th width="1%">No</th>
+                                                    <th width="10%">Name</th>
+                                                    <th width="20%">Propinsi</th>
+                                                    <th width="20%">Kota</th>
+                                                    <th width="20%">Kelurahan</th>
+                                                    <th width="20%">Kecamatan</th>
+                                                    <th width="1%"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab4">
+                                    <h3 class="block">Provide Membership Information</h3>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.MasterPayment.Total) <span class="required">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div class="col-md-4">
+                                            <div class="input-group input-medium text-right">
+                                                @Html.TextBoxFor(m => m.MasterPayment.Total, new { @class = "form-control text-right auto", @readonly = true })
+                                            </div>
+                                            <div class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.MasterPayment.Total)
+                                            </div>
+                                            <span class="help-block">
+                                                Total Payment must pay
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane active" id="tab5">
+                                    <h3 class="block">Provide your Payemnt Detail Information</h3>
+                                    <table class="table table-striped table-bordered table-hover" id="dtPayment">
+                                        <thead>
+                                            <tr>
+                                                <th width="1%">No</th>
+                                                <th width="10%">Name</th>
+                                                <th width="15%">start</th>
+                                                <th width="10%">Month</th>
+                                                <th width="10%">Sub Total</th>
+                                                <th width="10%">Admin</th>
+                                                <th width="10%">Disc</th>
+                                                <th width="10%">Total</th>
+                                                <th width="1%"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                            <div id="paymentPortled" class="portlet box blue">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="fa fa-dollar"></i>Payment List Detail
+                                                    </div>
+                                                    <div class="tools">
+                                                        <a href="javascript:;" class="collapse">
+                                                        </a>
+                                                        <a href="javascript:;" class="reload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="table-toolbar">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="btn-group">
+                                                                    <a class="btn blue buttons-page btnAddPaymentList" href="javascript:;">
+                                                                        Add New Payment <i class="m-icon-swapright m-icon-white"></i>
+                                                                    </a>
+                                                                    @Html.Hidden("activepaymentlist")
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <table class="table table-striped table-bordered table-hover" id="dtPaymentDetail">
+                                                        <thead>
+                                                            <tr>
+                                                                <th widht="1%"> id </th>
+                                                                <th widht="10%"> Payment Type </th>
+                                                                <th widht="20%"> Bank </th>
+                                                                <th widht="20%"> Edc Bank </th>
+                                                                <th widht="10%"> Trace/Appr </th>
+                                                                <th widht="10%"> Valid until </th>
+                                                                <th widht="18%"> Payment </th>
+                                                                <th widht="18%"> Paid </th>
+                                                                <th width="1%"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody></tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <!-- END EXAMPLE TABLE PORTLET-->
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        @Html.Label("Summary Payment", new { @class = "control-label col-md-2 text-left" })
+                                        <div class="col-md-4">
+                                            <div class="input-group input-medium">
+                                                @Html.TextBoxFor(m => m.TotalSumPayment, new { @class = "form-control text-right auto ", @readonly = true })
+                                            </div>
+                                            <span class="help-block">
+                                                Total Summary Payment
+                                            </span>
+                                            <div class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.TotalSumPayment)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.Label("Total Paid Amount", new { @class = "control-label col-md-2 text-left" })
+                                        <div class="col-md-4">
+                                            <div class="input-group input-medium">
+                                                @Html.TextBoxFor(m => m.TotalPaidAmount, new { @class = "form-control text-right auto", @readonly = true })
+                                            </div>
+                                            <span class="help-block">
+                                                Total Paid Amount
+                                            </span>
+                                            <div class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.TotalPaidAmount)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.Label("Payment Must Pay", new { @class = "control-label col-md-2 text-left" })
+                                        <div class="col-md-4">
+                                            <div class="input-group input-medium">
+                                                @Html.TextBoxFor(m => m.TotalPaymentMustPay, new { @class = "form-control text-right auto", @readonly = true, min = -500, max = 500, title = "Max sisa payment < 500 " })
+                                            </div>
+                                            <span class="help-block">
+                                                Total Payment must Paid
+                                            </span>
+                                            <div class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.TotalPaymentMustPay)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <a href="javascript:;" class="btn default button-previous">
+                                        <i class="m-icon-swapleft"></i> Back
+                                    </a>
+                                    <a href="javascript:;" class="btn blue button-next">
+                                        Continue <i class="m-icon-swapright m-icon-white"></i>
+                                    </a>
+                                    <button type="submit" formmethod="post" class="btn green button-submit">
+                                        Submit <i class="m-icon-swapright m-icon-white"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- END PAGE CONTENT-->
+<!-- END CONTENT -->
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<!-- END FOOTER -->
+<!-- END PAGE LEVEL SCRIPTS -->
+@section scripts
+{
+    @Scripts.Render("~/bundle/script/datatable")
+    @Scripts.Render("~/bundle/script/Wizard")
+
+    @Scripts.Render("~/bundle/script/jqueryval")
+    @Scripts.Render("~/bundle/script/types")
+
+    @*koding untuk specifies view*@
+    @Scripts.Render("~/Scripts/Registrasi/Mwizard.js")
+    @Scripts.Render("~/Scripts/Registrasi/MConfirmwizard.js")
+    @Scripts.Render("~/Scripts/select2FormControl.js")
+    @Scripts.Render("~/Scripts/trippleddlAdapters.js")
+
+    <script>
+        $(document).ready(function () {
+            MWizard.init($('#form_wizard_1'), $('#submit_form'));
+
+
+            $('input[name="MemberType.DiscountPct"]').keyup(function (e) {
+                if (/\D/g.test(this.value)) {
+                    // Filter non-digits from input value.
+                    this.value = this.value.replace(/\D/g, '');
+                }
+            });
+
+
+            $('.totalMonth').keyup(function (e) {
+                if (/\D/g.test(this.value)) {
+                    // Filter non-digits from input value.
+                    this.value = this.value.replace(/\D/g, '');
+                }
+            });
+
+
+            //#region Initialize Form
+            var changePerson = true;
+            //                var updatePersonPayment = true;
+
+            //Initialize Form
+            var select2 = select2Control;
+
+            var memberType = '#PaymentMember_MemberTypeID';
+            var spinn = $('#MemberCount');
+            //                var currentMemberId = "";
+
+            select2.init("#PaymentMember_MemberTypeID",
+                "Tipe Member",
+                "@Url.Action("GetMemberType", "MemberType", new {area = "Office"})",
+                "@Url.Action("GetMemberTypeById", "MemberType", new {area = "Office"})");
+
+            select2.init("#Membership_PersonBOIDSales",
+                "Sales Name",
+                "@Url.Action("GetListSalesName", "UserBackOffice", new {area = "Office"})",
+                "@Url.Action("GetListSalesNameById", "UserBackOffice", new {area = "Office"})");
+
+            //initialize Person Table
+            var dtPerson = $('#dtPerson')
+                .DataTable({
+                    "serverSide": false,
+                    "processing": true,
+                    "autoWidth": false,
+                    "filter": false,
+                    "lengthMenu": [100],
+                    "pageLength": 100,
+                    "columns": [
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        }
+                    ],
+                    "order": [[0, "asc"]]
+                });
+
+            //initialize Person Table
+            var dtAddr = $('#dtAddr')
+                .DataTable({
+                    "serverSide": false,
+                    "processing": true,
+                    "autoWidth": false,
+                    "filter": false,
+                    "lengthMenu": [100],
+                    "pageLength": 100,
+                    "columns": [
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        }
+                    ],
+                    "order": [[0, "asc"]]
+                });
+
+
+            //Initalize Payment Table
+            var dtPayment = $('#dtPayment')
+                .DataTable({
+                    "serverSide": false,
+                    "processing": true,
+                    "autoWidth": false,
+                    "deferRender": true,
+                    "filter": false,
+                    "lengthMenu": [5, 10, 25, 50, 75, 100],
+                    "pageLength": 10,
+                    "order": [[0, "asc"]]
+                });
+
+            //Initalize Payment Table
+            var dtPaymentDetail = $('#dtPaymentDetail')
+                .DataTable({
+                    "serverSide": false,
+                    "processing": true,
+                    "autoWidth": false,
+                    "deferRender": true,
+                    "filter": true,
+                    "lengthMenu": [5, 10, 25, 50, 75, 100],
+                    "pageLength": 10,
+                    "columns": [
+                        {
+                            "visible": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                          {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        }
+                    ],
+                    "order": [[0, "asc"]]
+                });
+
+
+            //#regionFunction
+            function reInitializeMaskEdit() {
+                $(".mask-date")
+                    .datepicker({
+                        format: 'dd/mm/yyyy',
+                        startDate: '+0d'
+                    })
+                    .inputmask("dd/mm/yyyy");
+            }
+
+
+            function setMask(lookUp) {
+                $(lookUp).inputmask('decimal',
+                {
+                    radixPoint: ',',
+                    groupSeparator: '.',
+                    autoGroup: true,
+                    digits: 2,
+                    digitsOptional: true,
+                    allowPlus: true,
+                    allowMinus:false
+                });
+            }
+
+            function getMaskVal(lookUp) {
+                var val = $(lookUp).inputmask('unmaskedvalue');
+                if (Globalize.locale() === undefined) {
+                    return parseFloat(val === "" ? "0" : val);
+                } else {
+                    return Globalize.parseNumber((val === "" ? "0" : val));
+                }
+            }
+
+            function resetSpinVal() {
+                spinn.val(1);
+                spinn.trigger("touchspin.updatesettings", { max: 1 });
+            }
+
+            function setOnChange() {
+                resetSpinVal();
+                select2.readonly(memberType, false);
+            }
+
+            //#endregion
+
+            function addGroupDetailPayment(paymentType, amount) {
+                var rowCount = dtPerson.rows().data().length;
+                var amountEach = (amount / rowCount).toFixed(2);
+
+                var options = {
+                    deferreds: [],
+                    memberIds: []
+                };
+                var counter = 0;
+                $('#dtPerson .MembershipsIndex').each(function () {
+                    var memberId = $(this).val();
+                    var membershipId = "Memberships[" + memberId + "]";
+                    options.memberIds.push(memberId);
+                    options.deferreds.push(
+                        $.ajax({
+                            url: '@Url.Action("AddDataPaymentDetail")',
+                            data: {
+                                amount: amountEach.formatDecimal(),
+                                paymentType: paymentType,
+                                memberId: memberId,
+                                membershipId: membershipId
+                            }
+                        })
+                    );
+                });
+                $.when.apply($, options.deferreds).then(function () {
+                    return options.deferreds.slice.apply(arguments, [0]).map(function (result) {
+                        if (options.deferreds.length > counter) {
+                            counter += 1;
+                            var row = typeof result === 'object' ? result[0].toString() : result;
+                            dtPaymentDetail.row.add($(row)).draw();
+                        }
+                    });
+                }).then(function () {
+                    options.memberIds.forEach(function (entry) {
+                        $('#activepaymentlist').val(entry);
+                        dtPaymentDetail.column(0).search(entry).draw();
+                        setMask(".autoDetail");
+                        reAmountDetail();
+                    });
+                });
+            };
+
+            function reAmountMasterDetail() {
+                //                    var admin = getMaskVal('#Membership_Admin');
+                //                    var prorate = getMaskVal('#MemberType_Prorate');
+                var discountNom = $('.discNominal').val();
+                var sum = 0;
+                $('.paymentamountdetail')
+                    .each(function () {
+                        sum += Globalize.parseNumber(getMaskVal(this).formatDecimal());
+                    });
+                var rowCount =  dtPerson.rows().data().length;
+                var payment = dtPayment.row('#' + $('#activepaymentlist').val()).nodes().to$();
+
+                var admin = Globalize.parseNumber(payment.find('.paymentAdmin').val());
+
+                //var subtotal = (100 * sum / (100 - discountPct));
+
+                //var discount = Globalize.parseNumber((discountPct * (subtotal) / 100).formatDecimal());
+
+
+                console.log(rowCount, "TotalMember");
+
+                var discount = discountNom / rowCount;
+                var subtotal = sum + discount;
+
+
+
+                payment.find('.paymentTotal').val(Globalize.parseNumber(sum.formatDecimal(2)));
+                payment.find('.paymentDisc').val(Globalize.parseNumber(discount.formatDecimal(2)));
+                payment.find('.paymentSubTotal').val(Globalize.parseNumber((subtotal - admin).formatDecimal(2)));
+            }
+
+            //#region function2
+            function reAmountDetail() {
+                if ($('#activepaymentlist').val() !== "") {
+                    reAmountMasterDetail();
+                }
+
+                var totalSummaryPaymentList = 0;
+                var totalOverPaymentDetail = 0;
+                var totalPaidAmount = 0;
+
+                for (var i = 0; i <= dtPaymentDetail.rows().data().length - 1; i++) {
+                    var currentRow = dtPaymentDetail.row(i);
+                    totalSummaryPaymentList += getMaskVal(currentRow.nodes().to$().find('.paymentamountdetail'));
+                    totalPaidAmount += getMaskVal(currentRow.nodes().to$().find('.paidAmountDetail'));
+                }
+
+                $('#TotalSumPayment').val(totalSummaryPaymentList);
+                var total = getMaskVal('#MasterPayment_Total');
+
+                $('#TotalPaidAmount').val(totalPaidAmount);
+
+                total -= totalSummaryPaymentList;
+                if (total < 0) {
+                    totalOverPaymentDetail = total; //* -1;
+                    total = totalOverPaymentDetail ;
+                }
+
+                if (totalOverPaymentDetail < 0) {
+                    totalOverPaymentDetail = totalOverPaymentDetail * -1;
+                }
+
+                $('#TotalPaymentMustPay').val(total);
+                $('#TotalSumPayment').val(totalSummaryPaymentList);
+                $('#totalOverPaymentDetail').val(totalOverPaymentDetail);
+
+                //                    $('#TotalPaymentMustPay').autoNumeric('set', total);
+                //                    $('#TotalSumPayment').autoNumeric('set', totalSummaryPaymentList);
+                //                    $('#totalOverPaymentDetail').autoNumeric('set', totalOverPaymentDetail);
+            }
+
+            function generatePayment() {
+                var admin = getMaskVal('#Membership_Admin');
+                var total = getMaskVal('#Membership_Total');
+
+                var totalSumPayment = 0;
+
+                dtPaymentDetail.clear().draw();
+                addGroupDetailPayment('Cash', total);
+
+                //                if (credit > 0)
+                //                    addGroupDetailPayment('Credit', credit);
+
+                $('.paymentAdmin').each(function () {
+                    $(this).val(admin);
+                });
+
+
+
+                $('#TotalSumPayment').val(totalSumPayment);
+                setMask(".auto");
+
+            }
+
+            $('.discTypeDesc').on('click', function () {
+                $('.selectedDiscType').text($(this).context.innerHTML.replace(' ', ''));
+                $('.discVal').val(0);
+                reAmountMemberType();
+            })
+
+
+            function reCalculateDisc() {
+                $('#masterDiscType').val($('.selectedDiscType').text().replace(' ', ''));
+                var discType = $('#masterDiscType').val();
+                var discVal = getMaskVal('.discVal');
+                var discNominal = $('#discNominal');
+                var admin = getMaskVal('#Membership_Admin');
+                var payment = getMaskVal('#Membership_Subtotal');
+                var countMember = $('#MemberCount').val();
+                var totalAdmin = admin * countMember;
+
+                var totalAmount = totalAdmin + payment;
+
+                if (discType == "Nominal") {
+                    // jika diskon nominal maka langsung nominal = val
+                    discNominal.val(discVal);
+                    console.log(discNominal.val(), discVal);
+                }
+                else if (discType == "Percent") {
+                    discNominal.val(totalAmount * discVal / 100);
+                }
+
+            }
+
+
+            function reAmount() {
+                var total = getMaskVal('#MasterPayment_Total');
+                //                var cash = getMaskVal('#MasterPayment_Cash');
+                //                var debit = getMaskVal('#MasterPayment_Debit');
+                //                var credit = getMaskVal('#MasterPayment_Credit');
+                var totalPayment = 0;
+                var remainPayment = 0;
+                var totalOverPayment = 0;
+
+                //                totalPayment = ((cash) + (debit) + (credit));
+                remainPayment = (total) - (totalPayment);
+
+                if (remainPayment < 0) {
+                    //                    totalOverPayment = remainPayment * -1;
+                    //                    remainPayment = 0;
+                }
+
+                //                    $('#MasterPayment_Discount').val(discount);
+                //                $('#MasterPayment_Total').val(total);
+                //                $('#MasterPayment_RemainPayment').val(remainPayment);
+                //                $('#MasterPayment_TotalPayment').val(totalPayment);
+                //                $('#MasterPayment_TotalOverPayment').val(totalOverPayment);
+
+
+
+            }
+
+
+            function reAmountMemberType() {
+
+                reCalculateDisc();
+                var payment = getMaskVal('#Membership_Subtotal');
+                var admin = getMaskVal('#Membership_Admin');
+                //                    var prorate = getMaskVal('#MemberType_Prorate');
+                var discountNom = parseFloat($('#discNominal').val());
+                var countMember = $('#MemberCount').val();
+                var totalAmount = 0;
+                var discount = 0;
+
+                var totalAdmin = admin * countMember;
+
+                totalAmount = (payment + totalAdmin);//+ prorate);
+
+                totalAmount = totalAmount - discountNom;
+
+                document.getElementById('DiscountMemberHelp').innerHTML = 'Discount Total for this account (' + discountNom.formatMoney(2, ',', '.') + ')';
+                document.getElementById('AdminMemberHelp').innerHTML = 'Total Admin fee for this Transaction (' + admin.formatMoney(2, ',', '.') + ' x ' + countMember + ' = ' + totalAdmin.formatMoney(2, ',', '.') + ')';
+
+                $('#MemberType_Discount').val(discount.toString());
+                $('#Membership_Disc').val(discount);
+
+
+                $('#Membership_Total').val(totalAmount.toString());
+                $('#MasterPayment_Total').val(totalAmount.toString());
+                $('#MasterPayment_RemainPayment').val(totalAmount.toString());
+            }
+
+            //            function managePayment() {
+            //                var paymentCount = $('#dtPayment tr').length; //dtPayment.rows().data().length;
+            //                var paymentEach = getMaskVal('#Total') / paymentCount;
+            //                for (var i = 0; i <= paymentCount - 1; i++) {
+            //                    $('.subTotal').val(paymentEach);
+            //                    $('.admin').val(paymentEach);
+            //                    $('.paymentDisc').val(paymentEach);
+            //                    $('.paymentTotal').val(paymentEach);
+            //                }
+            //            }
+
+            //#endregion
+
+            //Event Start
+            //Event untuk MemberType
+            $('#MemberCount').on('change', function () {
+                changePerson = true;
+                reAmountMemberType();
+            });
+
+            $('.autoMemberType, #DiscVal').on('change', function () {
+                reAmountMemberType();
+            });
+
+            $(memberType).on('change', function () {
+                var typeId = select2.select(memberType).id;
+                $.ajax({
+                    url: '@Url.Action("GetMemberSharedById", "MemberType", new {area = "Office"})',
+                    dataType: 'json',
+                    data: {
+                        id: typeId
+                    }
+                }).done(function (data) {
+                    if (data.ShareMin === null) {
+                        document.getElementById("MemberCountHelp").innerHTML = 'Input value max ' + data.Share;
+                        spinn.trigger("touchspin.updatesettings", { max: data.Share, min: 1 });
+                    } else {
+                        document.getElementById("MemberCountHelp").innerHTML = 'Input value min ' + data.ShareMin + ' and max ' + data.Share;
+                        spinn.trigger("touchspin.updatesettings", { max: data.Share, min: data.ShareMin });
+                    }
+
+                    $('#PaymentMember_tMemberType_IsPaket').val(data.IsPaket);
+                    $('#Membership_Subtotal').val(data.Biaya);
+                    $('#Membership_Admin').val(data.Admin);
+                    $('#PTType').val(data.tPaketPT.PPTNama);
+                    if (data.IsPaket !== true) {
+                        $('#hdnMemberProrate').addClass("hidden");
+                    }
+
+                    var totalAmount = data.Biaya + data.Admin + data.Prorate;
+                    $('#PaketPTId').val(data.tPaketPersonalTrainerID);
+
+                    $('#PaymentMember_tMemberType_prFix').val(data.prFix);
+
+                    $('#Membership_TotalMonth').val(data.JmlBulan);
+                    $('#Membership_Total').val(totalAmount);
+                    $('#MasterPayment_Total').val(totalAmount);
+                    reAmount();
+                });
+            });
+
+            //event Person Page
+            $("a[data-toggle='tab']").on('shown.bs.tab', function () {
+                if ($("#li2").hasClass("active")) {
+                    if (changePerson) {
+                        //Clearing row detail
+                        dtAddr.clear().draw();
+                        dtPaymentDetail.clear().draw();
+                        dtPayment.clear().draw();
+                        dtPerson.clear().draw();
+                        var totalPerson = $("#MemberCount").val();
+                        for (let i = 0; i <= totalPerson - 1; i++) {
+                            $.ajax({
+                                url: '@Url.Action("AddDataPerson")',
+                                type: 'POST',
+                                data: {
+                                    seq: i
+                                }
+                            }).success(function (result) {
+                                dtPerson.row.add($(result)).draw();
+                                $("form").removeData("validator");
+                                $("form").removeData("unobtrusiveValidation");
+                                $.validator.unobtrusive.parse("form");
+                            });
+                        }
+                        changePerson = false;
+                    }
+                }
+                var deferreds = [];
+                var counter = 0;
+
+                if ($("#li3").hasClass("active")) {
+                    if (changePerson || dtAddr.rows().data().length !== dtPerson.rows().data().length) {
+                        $('#dtPerson .MembershipsIndex').each(function () {
+                            const memberId = $(this).val();
+                            var membershipId = "Memberships[" + memberId + "]";
+                            var personName = $(this).closest('tr').find('.personnama').val();
+                            deferreds.push(
+                                $.ajax({
+                                    url: '@Url.Action("AddDataPersonAddress")',
+                                    type: 'POST',
+                                    data: {
+                                        memberId: memberId,
+                                        membershipId: membershipId,
+                                        personnama: personName
+                                    }
+                                }));
+                        });
+
+                        $.when.apply($, deferreds).then(function () {
+                            return deferreds.slice.apply(arguments, [0]).map(function (result) {
+                                if (deferreds.length > counter) {
+                                    counter += 1;
+                                    var row = typeof result === 'object' ? result[0].toString() : result;
+                                    dtAddr.row.add($(row.replace('_id_', (dtAddr.rows().data().length + 1)))).draw();
+                                }
+                            });
+                        }).fail(function (error) {
+                            console.log(error);
+                        }).always(function () {
+                            // Or use always if you want to do the same thing
+                            // whether the call succeeds or fails
+                        });
+                    }
+                }
+                if ($("#li4").hasClass("active")) {
+                    dtPayment.clear().draw();
+                    deferreds = [];
+                    counter = 0;
+                    $('#dtPerson .MembershipsIndex').each(function () {
+                        var memberId = $(this).val();
+                        var membershipId = "Memberships[" + memberId + "]";
+                        var personName = $(this).closest('tr').find('.personnama').val();
+                        deferreds.push(
+                            $.ajax({
+                                url: '@Url.Action("AddDataPersonPayment")',
+                                type: 'POST',
+                                data: {
+                                    memberId: memberId,
+                                    membershipId: membershipId,
+                                    personnama: personName
+                                }
+                            }));
+                    });
+
+                    // Can't pass a literal array, so use apply.
+                    $.when.apply($, deferreds).then(function () {
+                        return deferreds.slice.apply(arguments, [0]).map(function (result) {
+                            if (deferreds.length > counter) {
+                                counter += 1;
+                                var row = typeof result === 'object' ? result[0].toString() : result;
+
+                                dtPayment.row.add($(row.replace('_id_', (dtPayment.rows().data().length + 1)))).draw();
+                                if (dtPayment.rows().data().length === dtPerson.rows().data().length) {
+                                    generatePayment();
+                                    reInitializeMaskEdit();
+                                    ComponentsPickers.init();
+                                    $("form").removeData("validator");
+                                    $("form").removeData("unobtrusiveValidation");
+                                    $.validator.unobtrusive.parse("form");
+                                    $('.paymentMSTglMulai').val(moment().format('DD/MM/YYYY'));
+                                }
+                            }
+                        });
+                    }).fail(function (error) {
+                        console.log(error);
+                    }).always(function () {
+                        // Or use always if you want to do the same thing
+                        // whether the call succeeds or fails
+                    });
+                }
+            });
+
+            $('#dtPerson tbody').on('click', '.btnCancel', function () {
+                var row = $(this).parents('tr');
+
+                row.find('.personnama').val("");
+                row.find('.PIdentitas').val("");
+                row.find('.personAlamat').val("");
+                row.find('.personhp1').val("");
+
+                row.find('.thn').val(null);
+                row.find('.tgl').val(null);
+                row.find('.bln').val(null);
+
+            });
+
+
+            //Event Payment
+            $('#dtPaymentDetail tbody').on('click', '.delPaymentList', function () {
+                //$(this).closest('tr').remove();
+                //untuk remove data detail
+                dtPaymentDetail.row($(this).parents('tr')).remove().draw();
+                reAmountDetail();
+
+            });
+
+            $('#dtPayment').on('click', '.btnPaymentList', function () {
+                var rowId = $(this).closest('tr').find('.MembershipsIndex').val();
+                $('#activepaymentlist').val(rowId);
+                setMask(".autoDetail");
+
+                $('#paymentPortled').show();
+                reInitializeMaskEdit();
+
+                dtPaymentDetail.column(0).search(rowId).draw();
+                reAmountDetail();
+                Metronic.init();
+
+            });
+
+            //event add Payment Detail
+            $('.btnAddPaymentList').on('click', function (ev) {
+                //var rowCount = dtPaymentDetail.rows().data().length;
+                var agId = $('#activepaymentlist').val();
+
+                var memberId = agId;
+                var membershipId = "Memberships[" + agId + "]";
+
+                $.ajax({
+                    url: '@Url.Action("AddDataPaymentDetail")',
+                    data: {
+                        amount: 0,
+                        paymentType: 'Cash',
+                        memberId: memberId,
+                        membershipId: membershipId
+                    }
+                }).done(function (template) {
+                    dtPaymentDetail.row.add($(template)).draw();
+                    setMask(".autoDetail");
+                    reInitializeMaskEdit();
+
+                    Metronic.init();
+                });
+
+            });
+
+            //Other Event
+            $('.auto').on('change', function () {
+                reAmount();
+                this.setSelectionRange(0, this.value.length);
+            });
+
+            $(document).on('change', '.autoDetail', function () {
+                reAmountDetail();
+            });
+
+            $(document).on('change', '.paymentamountdetail', function () {
+                $(this).closest('tr').find('.paidAmountDetail').val(getMaskVal(this));
+                reAmountDetail();
+            });
+
+            $(document).on('change', '.paidAmountDetail', function () {
+//                $(this).closest('tr').find('.paidAmountDetail').val(getMaskVal(this));
+                reAmountDetail();
+            });
+
+            $(document).on('change', '.paymentDetailType', function () {
+                var payType = $(this).find('option:selected').text();
+                console.log(payType);
+                if (payType !== 'Cash') {
+                    $(this).closest('tr').find('.paymentDetailBank').removeClass('disabled');
+                    $(this).closest('tr').find('.paidAmountDetail').removeClass('disabled');
+                    $(this).closest('tr').find('.paymentDetailBank').prop("disabled", false);
+                    $(this).closest('tr').find('.paidAmountDetail').prop('readonly', true);
+
+                } else {
+                    if (!$(this).closest('tr').find('.paymentDetailBank').hasClass('disabled')) {
+                        $(this).closest('tr').find('.paymentDetailBank').addClass('disabled');
+                        $(this).closest('tr').find('.paidAmountDetail').addClass('disabled');
+                    }
+
+                    $(this).closest('tr').find('.paidAmountDetail').prop("readonly", false);
+                    $(this).closest('tr').find('.paymentDetailBank').prop("disabled", true);
+                    $(this).closest('tr').find('.paymentDetailBank').val("");
+                }
+            });
+
+            $(window).load(function () {
+                spinn.TouchSpin({
+                    min: 1,
+                    max: 10,
+                    mousewheel: true,
+                    stepinterval: 50,
+                    maxboostedstep: 10000000
+                });
+                setOnChange();
+
+                setMask(".autoMemberType");
+                setMask(".auto");
+                setMask('.DiscMaster');
+                $('#paymentPortled').hide();
+            });
+
+            $(document).on('invalid-form.validate', 'form', function () {
+                var button = $(this).find('input[type="submit"]');
+                setTimeout(function () {
+                    button.removeAttr('disabled');
+                }, 1);
+            });
+
+            $(document).on('submit', 'form', function () {
+                var button = $(this).find('input[type="submit"]');
+                setTimeout(function () {
+                    button.attr('disabled', 'disabled');
+                }, 0);
+            });
+        });
+    </script>
+}

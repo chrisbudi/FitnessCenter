@@ -1,0 +1,268 @@
+﻿@model DataObjects.Entities.tMemberType
+@{
+    ViewBag.Title = "CreateMemberType";
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Tambah Master <small>Tipe Member</small></h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="portlet light">
+    <div class="portlet-body">
+        <!-- BEGIN FORM PORTLET-->
+        <div class="portlet box green ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-plus"></i> Tambah Tipe Member
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @using (Html.BeginForm("CreateMemberType", "MemberType", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="form-body">
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.MemberType, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(m => m.MemberType, new { @class = "form-control input-medium", placeholder = "Tipe Member" })
+                                @Html.ValidationMessageFor(m => m.MemberType)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.prFix, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(m => m.prFix, new { @class = "form-control input-medium" })
+                                @Html.ValidationMessageFor(m => m.prFix)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Biaya, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(m => m.Biaya, new { @class = "form-control input-medium auto text-right", placeholder = "Biaya" })
+                                @Html.ValidationMessageFor(m => m.Biaya)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Admin, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(m => m.Admin, new { @class = "form-control input-medium auto text-right", placeholder = "Fee Admin" })
+                                @Html.ValidationMessageFor(m => m.Admin)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Prorate, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(m => m.Prorate, new { @class = "form-control input-medium auto text-right", placeholder = "Fee Prorate" })
+                                @Html.ValidationMessageFor(m => m.Prorate)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.JmlBulan, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(m => m.JmlBulan, new { @class = "form-control input-medium", placeholder = "Jumlah Bulan" })
+                                @Html.ValidationMessageFor(m => m.JmlBulan)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.IsPaket, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.CheckBoxFor(m => m.IsPaket, new { @class = "make-switch switch-large", @checked = "checked" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ShareMin, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        @Html.CheckBox("activesharemin", false)
+                                    </span>
+                                    @Html.TextBoxFor(m => m.ShareMin, new { @class = "form-control share input-medium readonly", @readonly = true, placeholder = "Share" })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Share)
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Share, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(m => m.Share, new { @class = "form-control share input-medium", placeholder = "Share" })
+                                @Html.ValidationMessageFor(m => m.Share)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Periode, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(m => m.Periode, new { @class = "form-control input-medium", placeholder = "Periode" })
+                                @Html.ValidationMessageFor(m => m.Periode)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LocationID, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(m => m.LocationID, new { @class = "form-control input-large" })
+                                @Html.ValidationMessageFor(m => m.LocationID)
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.tPaketPersonalTrainerID, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(m => m.tPaketPersonalTrainerID, new { @class = "form-control input-large" })
+                                @Html.ValidationMessageFor(m => m.tPaketPersonalTrainerID)
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-9">
+                                <button type="submit" class="btn btn-circle green bold submitBtn"><i class="fa fa-check"></i> Simpan</button>
+                                <a href="@Url.Action("Index", "MemberType")" class="btn btn-circle red bold"><i class="fa fa-times"></i> Batal</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    @Scripts.Render("~/bundle/script/jqueryval")
+    @*    @Scripts.Render("~/formcomponent/script")*@
+    @Scripts.Render("~/Scripts/select2FormControl.js")
+    <script>
+
+        $(function () {
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+            //QuickSidebar.init(); // init quick sidebar
+            ComponentsPickers.init();
+
+            function setMask(lookUp) {
+                $(lookUp)
+                    .inputmask('decimal',
+                    {
+                        radixPoint: ',',
+                        groupSeparator: '.',
+                        autoGroup: true,
+                        digits: 2,
+                        digitsOptional: true
+                    });
+            }
+
+            $('.share').keyup(function (e) {
+                if (/\D/g.test(this.value)) {
+                    // Filter non-digits from input value.
+                    this.value = this.value.replace(/\D/g, '');
+                }
+            });
+
+
+//            $('.auto').autoNumeric('init', { aSep: '.', aDec: ',' });
+            select2Control.init("#LocationID", "Lokasi", "@Url.Action("GetLocationSource", "LocFitnessCenter")", "@Url.Action("GetLocationByID", "LocFitnessCenter")");
+
+            select2Control.init("#tPaketPersonalTrainerID", "Paket Personal Trainer", "@Url.Action("GetPaketPTList", "PaketPT")", "@Url.Action("GetPaketPTID", "PaketPT")");
+
+            $('#MemberType').on('change', function () {
+                $('#prFix').val($(this).val().charAt(0));
+            });
+
+            $('#activesharemin').on('change', function () {
+                $("#ShareMin").prop('readonly', !this.checked);
+            });
+
+            $('#ShareMin').on('change', function () {
+                //                alert($(this).val());
+                $("#Share").val($(this).val());
+
+            });
+
+            $("#Share").on('change', function () {
+                if ($(this).val() < $('#ShareMin').val()) {
+                    $(this).val($('#ShareMin').val());
+                }
+            });
+
+            $(window).load(function () {
+                setMask(".auto");
+            });
+
+            $(document).on('invalid-form.validate', 'form', function () {
+                console.log("member invalid");
+                var button = $(this).find('input[type="submit"]');
+                setTimeout(function () {
+                    button.removeAttr('disabled');
+                }, 1);
+            });
+
+            $(document).on('submit', 'form', function () {
+                console.log("member valid");
+                var button = $(this).find('input[type="submit"]');
+                setTimeout(function () {
+                    button.attr('disabled', 'disabled');
+                }, 0);
+            });
+            //The url we will send our get request to
+            @*var lokasiUrl = '@Url.Action("GetLocationSource", "LocFitnessCenter")';
+            var pageSize = 20;
+
+            $('#LocationID').select2(
+            {
+                placeholder: 'Lokasi',
+                //Does the user have to enter any data before sending the ajax request
+                minimumInputLength: 0,
+                allowClear: true,
+                ajax: {
+                    //How long the user has to pause their typing before sending the next request
+                    quietMillis: 150,
+                    //The url of the json service
+                    url: lokasiUrl,
+                    dataType: 'jsonp',
+                    //Our search term and what page we are on
+                    data: function (term, page) {
+                        return {
+                            pageSize: pageSize,
+                            pageNum: page,
+                            searchTerm: term
+                        };
+                    },
+                    results: function (data, page) {
+                        //Used to determine whether or not there are more results available,
+                        //and if requests for more data should be sent in the infinite scrolling
+                        var more = (page * pageSize) < data.Total;
+                        return { results: data.Results, more: more };
+                    }
+                }
+            });
+            @if (Model != null)
+            {
+                if (Model.LocationID != null)
+                {
+                    @:$('#LocationID').select2("data", { id: "@Model.tLocFitnessCenter.LocationID", text: "@Model.tLocFitnessCenter.LocationID" });
+                                                                                            }
+            }*@
+        });
+
+    </script>
+}

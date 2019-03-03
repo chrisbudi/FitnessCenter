@@ -1,0 +1,117 @@
+﻿@model PagedList.IPagedList<DataObjects.Entities.trEventScore>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "";
+    ViewBag.Title = "Penjurian";
+}
+
+@Styles.Render("~/Scripts/Assets/bootstrap-star-rating-master/css/star-rating.css")
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light portlet-fit bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-layers font-green"></i>
+                    <span class="caption-subject font-green bold uppercase">Penjurian</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="mt-element-card mt-card-round mt-element-overlay">
+                    <div class="row">
+                        @for (int i = 0; i < 5; i++)
+                        {
+                            int no = Model[i].trEventStep.trPersonEvent.strPersonEvent.NoPeserta;
+                            string nama = Model[i].trEventStep.trPersonEvent.tPerson.PNama;
+                            int? min = Model[i].tEventScore.MinScore;
+                            int? max = Model[i].tEventScore.MaxScore;
+                            <div class="@(i == 0 ?
+                                              "col-lg-2 col-lg-offset-1 col-md-4 col-sm-6 col-xs-12" :
+                                              "col-lg-2 col-md-4 col-sm-6 col-xs-12")">
+                                <div class="mt-card-item">
+                                    <div class="mt-card-avatar mt-overlay-1">
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <h1>@no</h1>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <div class="mt-overlay">
+                                            <ul class="mt-info"></ul>
+                                        </div>
+                                    </div>
+                                    <div class="mt-card-content">
+                                        <h4 class="mt-card-name">@nama</h4>
+                                        <input id="input-21d" value="0" type="number" class="rating" min=@min max=@max step=1 data-size="sm">
+                                    </div>
+                                </div>
+                            </div>
+                            if (Model.Count < 5 && i < Model.Count)
+                            {
+                                break;
+                            }
+                        }
+                    </div>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.TwitterBootstrapPager)
+                    <div class="row">
+                        @for (int i = 5; i < Model.Count; i++)
+                        {
+                            int no = Model[i].trEventStep.trPersonEvent.strPersonEvent.NoPeserta;
+                            string nama = Model[i].trEventStep.trPersonEvent.tPerson.PNama;
+                            int? min = Model[i].tEventScore.MinScore;
+                            int? max = Model[i].tEventScore.MaxScore;
+
+                            <div class="@(i == 5 ?
+                                              "col-lg-2 col-lg-offset-1 col-md-4 col-sm-6 col-xs-12" :
+                                              "col-lg-2 col-md-4 col-sm-6 col-xs-12")">
+                                <div class="mt-card-item">
+                                    <div class="mt-card-avatar mt-overlay-1">
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <h1>@no</h1>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <div class="mt-overlay">
+                                            <ul class="mt-info"></ul>
+                                        </div>
+                                    </div>
+                                    <div class="mt-card-content">
+                                        <h4 class="mt-card-name">@nama</h4>
+                                        <input id="input-21d" value="0" type="number" class="rating" min=@min max=@max step=1 data-size="sm">
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@*@Html.PagedListPager(Model, page => Url.Action("Index",*@
+@*    new { page })*@
+
+
+@section Scripts {
+    @Scripts.Render("~/bundle/script/dragdrop")
+    @Scripts.Render("~/bundle/script/dashboard")
+
+    @Scripts.Render("~/Scripts/Assets/bootstrap-star-rating-master/js/star-rating.js")
+    <script>
+        $(function () {
+            //Metronic.init();// init metronic core componets
+            ////Layout.init(); // init layout
+
+            //rating class
+            var $input = $('input.rating');
+            if ($input.length) {
+                $input.removeClass('rating-loading').addClass('rating-loading').rating();
+            }
+        });
+    </script>
+}

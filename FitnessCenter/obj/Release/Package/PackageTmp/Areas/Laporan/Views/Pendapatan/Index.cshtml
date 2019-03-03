@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = "Laporan Sales";
+}
+
+<!-- BEGIN PAGE HEADER-->
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>
+            Laporan <small>Pendapatan</small>
+        </h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+
+
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="portlet light">
+        <div class="portlet-body">
+            <div class="container">
+                <div class="row">
+                    <span class="help-block">
+                        <b>Pilih Tipe report</b>
+                    </span>
+                    <div class="form-group">
+                        <select class="form-control input-small reportType">
+                            <option selected value="sum">Summary</option>
+                            <option value="detail">Details</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <span class="help-block">
+                        <b>Pilih Tgl. Transaksi</b>
+                    </span>
+                    <div class="input-group input-large date-picker input-daterange" data-date-format="dd/mm/yyyy">
+                        <input id="start" type="text" class="form-control input-small change-data" name="from" placeholder="Tgl. Awal">
+                        <span class="input-group-addon">
+                            s/d
+                        </span>
+                        @*<input id="end" type="text" class="form-control input-small change-data" name="s/d" placeholder="Tgl. Akhir">*@
+                        @Html.TextBox("end", null, new { @class = "form-control input-small change-data", name = "s/d", placeholder = "Tgl. Akhir", Value = DateTime.Now.ToString("dd/MM/yyyy") })
+                        <span class="input-group-btn">
+                            <a href="@Url.Action("IndexVal", "pendapatan", new { })" id="printReport" class="btn blue bold modal-link-report disabled"><i class="fa  fa-refresh"></i></a>
+                        </span>
+                        <span class="input-group-btn">
+                            <button id="btnHidden" class="hidden"></button>
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    @Html.Partial("Report/ReportView")
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/select2FormControl.js")
+
+    <script>
+
+        $(function () {
+            //Metronic.init();
+            //Layout.init();
+            ComponentsPickers.init();
+
+            //init report
+            pageReporting.init('@Url.Action("ReportPage", "Reporting", new {area = ""})', $('#printStiker'), '');
+
+            $('#btnHidden').on('click', function () {
+                var startDate = $('#start').val();
+                var endDate = $('#end').val();
+                var reportType = $('.reportType').val();
+
+                var url = "@Html.Raw(Url.Action("IndexVal", "Pendapatan", new {startDate = "_startDate_", endDate= "_endDate_", reportType = "_reportType_"}))";
+                var currentUrl = url;
+
+                currentUrl = currentUrl.replace('_startDate_', startDate);
+                currentUrl = currentUrl.replace('_endDate_', endDate);
+                currentUrl = currentUrl.replace('_reportType_', reportType);
+                $("#printReport").prop("href", currentUrl);
+            });
+
+            //            //onchange tanggal
+            //            $('.change-data').on('change', function() {
+            //                $('.modal-link-report').removeClass('disabled');
+            //                $('#btnHidden').trigger('click');
+            //            });
+
+
+            $('.change-data').on('change', function () {
+                $('.modal-link-report').removeClass('disabled');
+                $('#btnHidden').trigger('click');
+            });
+        });
+    </script>
+}

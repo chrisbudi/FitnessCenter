@@ -1,0 +1,10 @@
+C:\[+]Project\FitnessCenter\FitnessCenter\Encription\bin\Debug\Encription.dll
+C:\[+]Project\FitnessCenter\FitnessCenter\Encription\bin\Debug\Encription.pdb
+C:\[+]Project\FitnessCenter\FitnessCenter\Encription\obj\Debug\Encription.csprojResolveAssemblyReference.cache
+C:\[+]Project\FitnessCenter\FitnessCenter\Encription\obj\Debug\Encription.dll
+C:\[+]Project\FitnessCenter\FitnessCenter\Encription\obj\Debug\Encription.pdb
+D:\dev\prj\fitness\FitnessCenter\Encription\bin\Debug\Encription.dll
+D:\dev\prj\fitness\FitnessCenter\Encription\bin\Debug\Encription.pdb
+D:\dev\prj\fitness\FitnessCenter\Encription\obj\Debug\Encription.csprojResolveAssemblyReference.cache
+D:\dev\prj\fitness\FitnessCenter\Encription\obj\Debug\Encription.dll
+D:\dev\prj\fitness\FitnessCenter\Encription\obj\Debug\Encription.pdb

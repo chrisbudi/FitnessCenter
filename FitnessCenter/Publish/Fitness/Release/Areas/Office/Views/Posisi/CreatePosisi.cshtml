@@ -1,0 +1,67 @@
+﻿@model DataObjects.Entities.tPosisi
+@{
+    ViewBag.Title = "Create Posisi";
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Master <small>Posisi</small></h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="portlet light">
+    <div class="portlet-body">
+        <!-- BEGIN FORM PORTLET-->
+        <div class="portlet box green ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-plus"></i> Tambah Posisi
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @using (Html.BeginForm("CreatePosisi", "Posisi", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="form-body">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PNamaPosisi, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(m => m.PNamaPosisi, new { @class = "form-control input-medium", placeholder = "Nama Posisi" })
+                                @Html.ValidationMessageFor(m => m.PNamaPosisi)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-9">
+                                <button type="submit" class="btn btn-circle green bold"><i class="fa fa-check"></i> Simpan</button>
+                                <a href="@Url.Action("Index", "Posisi")" class="btn btn-circle red bold"><i class="fa fa-times"></i> Batal</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    @Scripts.Render("~/bundle/script/jqueryval")
+    <script>
+
+        $(function () {
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+        });
+
+    </script>
+}

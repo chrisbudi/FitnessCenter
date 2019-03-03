@@ -1,0 +1,55 @@
+﻿@using Services.Infrastructure
+@model FitnessCenter.Areas.Office.Models.EditorMemberCard
+
+<tr>
+    @using (Html.BeginCollectionItem("MemberCard"))
+    {
+        <td>
+            @Html.DisplayFor(m => m.PersonId)
+        </td>
+        <td>
+            @Model.Seq
+        </td>
+        <td>
+            @Model.MemberId
+            @Html.HiddenFor(m => m.MemberId, new { @class = "memberid" })
+            @Html.HiddenFor(m => m.PersonId, new { @class = "personid" })
+            @Html.HiddenFor(m => m.MembershipID, new { @class = "membershipid" })
+        </td>
+        <td>
+            @Model.MemberName
+            @Html.HiddenFor(m => m.MemberName)
+            @Html.HiddenFor(m => m.MemberType)
+        </td>
+        <td>
+            @Model.Alamat
+            @Html.HiddenFor(m => m.Alamat)
+        </td>
+        <td>
+            @Model.Kota
+            @Html.HiddenFor(m => m.Kota)
+        </td>
+        <td>
+            @if (Model.Gender == "M")
+            {
+                @:Male
+            }
+            else
+            {
+                @:Female
+            }
+            @Html.HiddenFor(m => m.Gender)
+        </td>
+        <td>
+            @Model.TglLahir.ToString("dd-MM-yyyy")
+            @Html.HiddenFor(m => m.TglLahir)
+        </td>
+        <td>
+            <a href="javascript:;" class="fa-stack fa-lg delCardMember"><i class="fa fa-close fa-2x font-red"></i></a>
+        </td>
+        @*        <td>*@
+        @*                <input type='checkbox' class='check_all' name='CheckAll[" + d + "]' values=" + d + ">*@
+        @*        </td>*@
+
+    }
+</tr>

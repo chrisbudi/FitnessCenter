@@ -1,0 +1,1248 @@
+﻿@model ViewModel.Registrasi.Membership.ViewModelMembershipCreate
+
+@{
+    ViewBag.Title = "Create Membership";
+    var i = 0;
+}
+<h3 class="page-title">
+    Create Member <small>Add new Member</small>
+</h3>
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet box blue" id="form_wizard_1">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-gift"></i> Create Member - <span class="step-title">
+                        Step 1 of 6
+                    </span>
+                </div>
+                <div class="tools hidden-xs">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                    <a href="#portlet-config" class="config">
+                    </a>
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @using (Html.BeginForm("CreateMembership", "Membership", FormMethod.Post, new { id = "submit_form", @class = "form-horizontal" }))
+                {
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <ul class="nav nav-pills nav-justified steps">
+                                <li>
+                                    <a href="#tab1" data-toggle="tab" class="step">
+                                        <span class="number">
+                                            1
+                                        </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Person Info
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab2" data-toggle="tab" class="step">
+                                        <span class="number">
+                                            2
+                                        </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Membership
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab3" data-toggle="tab" class="step">
+                                        <span class="number">
+                                            3
+                                        </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Payment
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab4" data-toggle="tab" class="step">
+                                        <span class="number">
+                                            4
+                                        </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Confirm
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab5" data-toggle="tab" class="step">
+                                        <span class="number">
+                                            5
+                                        </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Condition
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab6" data-toggle="tab" class="step">
+                                        <span class="number">
+                                            6
+                                        </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Statement
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success">
+                                </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button>
+                                    You have some form errors. Please check below.
+                                </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button>
+                                    Your form validation is successful!
+                                </div>
+
+                                <div class="tab-pane active" id="tab1">
+                                    <h3 class="block">Provide your Person Information</h3>
+
+                                    <table class="table table-striped table-bordered table-hover" id="dtPerson">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    MemberId
+                                                </th>
+                                                <th>
+                                                    Name
+                                                </th>
+                                                <th>
+                                                    Gender
+                                                </th>
+                                                <th>
+                                                    Identitas
+                                                </th>
+                                                <th>
+                                                    Tgl Lahir
+                                                </th>
+                                                <th>
+                                                    Hand Phone
+                                                </th>
+                                                <th>
+                                                    Pin BB
+                                                </th>
+                                                <th>
+
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.Persons)
+                                            {
+                                                Html.RenderPartial("Editor/PersonEntityEditor", item);
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane" id="tab2">
+                                    <h3 class="block">Provide Membership Information</h3>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.Label("Start Date") <span class="required">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div class="col-md-4">
+                                            <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date-start-date="01-01-1900" data-date-end-date="-17y">
+                                                @Html.TextBoxFor(m => m.MasterPayment.MSTglMulai, new { @class = "form-control", @readonly = "readonly", size = "18", type = "text", placeholder = "Tanggal" })
+                                                <span class="input-group-btn">
+                                                    <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                                </span>
+                                            </div>
+                                            @*@Html.TextBox("MSTglMulai", "", new {@class = "form-control"})*@
+                                            <span class="help-block">
+                                                Provide Start Date Info
+                                            </span>
+                                            @Html.ValidationMessageFor(m => m.MasterPayment.MSTglMulai)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.MasterPayment.Total) <span class="required">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div class="col-md-4">
+                                            <div class="input-group input-medium text-right">
+                                                @Html.TextBoxFor(m => m.MasterPayment.Total, new { @class = "form-control text-right auto", @readonly = true })
+                                            </div>
+                                            <span class="help-block">
+                                                Total Payment must pay
+                                            </span>
+                                            @Html.ValidationMessageFor(m => m.MasterPayment.Total)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.MasterPayment.Cash) <span class="required">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div class="col-md-4">
+                                            <div class="input-group input-medium">
+                                                @Html.TextBoxFor(m => m.MasterPayment.Cash, new { @class = "form-control text-right auto" })
+                                            </div>
+                                            <span class="help-block">
+                                                Total Payment Cash must pay
+                                            </span>
+                                            @Html.ValidationMessageFor(m => m.MasterPayment.Cash)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.MasterPayment.Debit) <span class="required">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div class="col-md-4">
+                                            <div class="input-group input-medium">
+                                                @Html.TextBoxFor(m => m.MasterPayment.Debit, new { @class = "form-control text-right auto" })
+                                            </div>
+                                            <span class="help-block">
+                                                Total Payment Debit must pay
+                                            </span>
+                                            @Html.ValidationMessageFor(m => m.MasterPayment.Debit)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.MasterPayment.Credit) <span class="required">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div class="col-md-4">
+                                            <div class="input-group input-medium">
+                                                @Html.TextBoxFor(m => m.MasterPayment.Credit, new { @class = "form-control text-right auto" })
+                                            </div>
+                                            <span class="help-block">
+                                                Provide your Credit Info
+                                            </span>
+                                            @Html.ValidationMessageFor(m => m.MasterPayment.Credit)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.MasterPayment.TotalPayment) <span class="required">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div class="col-md-4">
+                                            <div class="input-group input-medium">
+                                                @Html.TextBoxFor(m => m.MasterPayment.TotalPayment, new { @class = "disabled form-control text-right auto", @readonly = true })
+                                            </div>
+                                            <span class="help-block">
+                                                Provide your Summary Payment Info
+                                            </span>
+                                            @Html.ValidationMessageFor(m => m.MasterPayment.TotalPayment)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.MasterPayment.RemainPayment) <span class="required">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div class="col-md-4">
+                                            <div class="input-group input-medium">
+                                                @Html.TextBoxFor(m => m.MasterPayment.RemainPayment, new { @class = "disabled form-control text-right auto", @readonly = true })
+                                            </div>
+                                            <span class="help-block">
+                                                Provide your Summary Payment Info
+                                            </span>
+                                            @Html.ValidationMessageFor(m => m.MasterPayment.RemainPayment)
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.MasterPayment.TotalOverPayment)
+                                        </label>
+                                        <div class="col-md-4">
+                                            <div class="input-group input-medium">
+                                                @Html.TextBoxFor(m => m.MasterPayment.TotalOverPayment, new { @class = "form-control text-right auto", @readonly = true })
+                                            </div>
+                                            <span class="help-block">
+                                                Total Over Payment
+                                            </span>
+                                            @Html.ValidationMessageFor(m => m.MasterPayment.TotalOverPayment)
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane active" id="tab3">
+                                    <h3 class="block">Provide your Payemnt Information</h3>
+
+                                    <table class="table table-striped table-bordered table-hover" id="dtPayment">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Agreement ID
+                                                </th>
+                                                <th>
+                                                    Name
+                                                </th>
+                                                <th>
+                                                    Total Month
+                                                </th>
+                                                <th>
+                                                    Total Payment
+                                                </th>
+                                                <th>
+                                                    Note
+                                                </th>
+                                                <th>
+
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.Payments)
+                                            {
+                                                Html.RenderPartial("Editor/PaymentEntityEditor", item);
+                                            }
+                                        </tbody>
+                                    </table>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                            <div id="paymentPortled" class="portlet box blue">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="fa fa-dollar"></i>Payment List
+                                                    </div>
+                                                    <div class="tools">
+                                                        <a href="javascript:;" class="collapse">
+                                                        </a>
+                                                        <a href="javascript:;" class="reload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="table-toolbar">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="btn-group">
+                                                                    <a class="btn blue buttons-page btnAddPaymentList" href="javascript:;">
+                                                                        Add New Payment <i class="m-icon-swapright m-icon-white"></i>
+                                                                    </a>
+                                                                    @Html.Hidden("activepaymentlist")
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <table class="table table-striped table-bordered table-hover table-full-width" id="dtPaymentList">
+                                                        <thead>
+                                                            <tr>
+                                                                <th width="10%">
+                                                                    Member ID
+                                                                </th>
+                                                                <th width="10%">
+                                                                    Payment Type
+                                                                </th>
+                                                                <th width="10%">
+                                                                    Bank
+                                                                </th>
+                                                                <th width="15%">
+                                                                    No Kartu
+                                                                </th>
+                                                                <th width="15%">
+                                                                    Pemegang
+                                                                </th>
+                                                                <th width="20%">
+                                                                    Valid until
+                                                                </th>
+                                                                <th width="30%">
+                                                                    Payment Amount
+                                                                </th>
+                                                                <th width="3%">
+                                                                    <i class="fa fa-cogs fa-lg"></i>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody></tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <!-- END EXAMPLE TABLE PORTLET-->
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        @Html.Label("Summary Payment", new { @class = "control-label col-md-2 text-left" })
+                                        <div class="col-md-4">
+                                            <div class="input-group input-medium">
+                                                @Html.TextBoxFor(m => m.TotalSumPayment, new { @class = "form-control text-right auto", @readonly = true })
+                                            </div>
+                                            <span class="help-block">
+                                                Total Summary Payment
+                                            </span>
+                                            @Html.ValidationMessageFor(m => m.TotalSumPayment)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.Label("Payment Must Pay", new { @class = "control-label col-md-2 text-left" })
+                                        <div class="col-md-4">
+                                            <div class="input-group input-medium">
+                                                @Html.TextBoxFor(m => m.TotalPaymentMustPay, new { @class = "form-control text-right auto", @readonly = true, min = 0, max = 0, title = "Max sisa payment 0 " })
+                                            </div>
+                                            <span class="help-block">
+                                                Total Payment must Paid
+                                            </span>
+                                            @Html.ValidationMessageFor(m => m.TotalPaymentMustPay)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.Label("Kelebihan Bayar", new { @class = "control-label col-md-2 text-left" })
+                                        <div class="col-md-4">
+                                            <div class="input-group input-medium">
+                                                @Html.TextBoxFor(m => m.totalOverPaymentDetail, new { @class = "form-control text-right auto", @readonly = true, min = 0, title = "Max sisa payment 0 " })
+                                            </div>
+                                            <span class="help-block">
+                                                Summary Over Payment
+                                            </span>
+                                            @Html.ValidationMessageFor(m => m.totalOverPaymentDetail)
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane" id="tab4">
+                                    <h3 class="block">Confirm your account</h3>
+                                    <div class="portlet light" id="MConfirm">
+                                        <div class="portlet-title tabbable-line">
+                                            <div class="caption">
+                                                <i class="icon-pin font-yellow-crusta"></i>
+                                                <span class="caption-subject bold font-yellow-crusta uppercase">
+                                                    Tabs
+                                                </span>
+                                                <span class="caption-helper">more samples...</span>
+                                            </div>
+                                            <div class="form-body">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active">
+                                                        <a href="#portlet_tab1" data-toggle="tab">
+                                                            1
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_tab2" data-toggle="tab">
+                                                            2
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_tab3" data-toggle="tab">
+                                                            3
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_tab4" data-toggle="tab">
+                                                            4
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_tab5" data-toggle="tab">
+                                                            5
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_tab6" data-toggle="tab">
+                                                            6
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_tab7" data-toggle="tab">
+                                                            7
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="portlet_tab1">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 1</h4>
+                                                            <p>
+                                                                Dengan menandatangani Perjanjian Anggota ini (selanjutnya disebut "Perjanjian"), Anda (selanjutnya disebut "Anda" atau “Anggota") menyatakan bahwa Anda telah menerima dan menyetujui Perjanjian ini dengan CV. Flash Fitness dan telah membaca, memahami serta menyetujui seluruh syarat dan ketentuan dalam Perjanjian ini. Seluruh hak dan kewajiban akan berlaku sejak tanggal penandatangan Perjanjian ini. Anda juga menyatakan bahwa Anda telah membeli jenis keanggotaan dengan jangka waktu minimum yang tertera dalam "Data Keanggotaan" di atas. Jika Anda belum berhak menyetujui Perjanjian ini (yakni, Anda belum berusia 18 tahun), maka Perjanjian ini harus juga disetujui oleh orang tua atau wakil sah Anda atas nama Anda, dan orang tua atau wakil tersebut dengan ini menyetujui bahwa ia berhak menyetujui Perjanjian ini dan dengan ini selamanya menjamin pelaksanaan kewajiban Anda berdasarkan Perjanjian ini.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_tab2">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 2</h4>
+                                                            <p>
+                                                                Semua biaya yang tertera pada bagian Rincian Biaya dalam perjanjian anggota ini adalah non-refundable (tidak dapat dikembalikan).
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_tab3">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 3</h4>
+                                                            <p>
+                                                                Pembayaran bulanan akan didebet dari kartu kredit/rekening bank 5 (lima) hari kerja sebelum tanggal jatuh tempo penagihan.
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_tab4">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 4</h4>
+                                                            <p>
+                                                                Keanggotaan tidak boleh dialihkan dengan alasan apapun.
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_tab5">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 5</h4>
+                                                            <p>
+                                                                Jika ini merupakan Keanggotaan Pembayaran Bulanan seperti yang dicantumkan dalam bagian Data Keanggotaan, Anda tidak boleh membatalkan pembayaran auto- debet Anda sebelum jangka waktu minimum 6 atau 12 bulan sesuai perjanjian terpenuhi. Namun, anggota yang ingin mengahiri Keanggotaan Pembayaran Bulanannya sebelum menyelesaikan jangka waktu 6 atau 12 bulan sesuai perjanjian tersebut boleh melakukannya atas persetujuan Flash Fitness Service Department dengan membayar biaya sebesar Rp.100.000. Biaya ini tidak dapat dialihkan dari biaya manapun yang telah dibayarkan sebelumnya.
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_tab6">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 6</h4>
+                                                            <p>
+                                                                Keanggotaan keluarga/penambahkan keanggotaan dapat berupa suami/isteri atau setiap anak yang berusia 13-21 tahun, dibuktikan dengan alamat tempat tinggal yang sama. Dibutuhkan bukti Identifikasi keluarga dan tanggal kelahiran yang sah untuk memperoleh Keanggotaan Keluarga/penambahan Keanggotaan. Anggota keluarga yang mencapai usia 22 tahun akan dianggap sebagai anggota biasa dan oleh karena itu ia akan dikenakan pembayaran bulanan yang berlaku pada tanggal pendaftaran awal untuk jenis keanggotaan yang sama. Keanggotaan keluarga tidak dapat dialihkan.
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_tab7">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 7</h4>
+                                                            <p>
+                                                                Dengan menandatangani perjanjian ini, Anda mengakui bahwa Anda telah menerima salinan Perjanjian ini, dan menyetujui bahwa anda sudah diberikan waktu yang cukup untuk mempelajari perjanjian ini, ketentuan dan persyaratan, dan pernyataan penolakan tanggung jawab, dan hak dan kewajiban anda sesuai yang tertulis dan anda menyetujui bahwa sebelum menandatangani perjanjian ini, anda sudah bertanya dengan jelas kepada Customer service staff Flash Fitness semua pertanyaan dan masalah yang anda miliki dan anda telah menerima jawaban yang memuaskan.
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions" style="background: none">
+                                                    <div class="row">
+                                                        <div class="col-md-offset-3 col-md-9">
+                                                            <a href="javascript:;" class="btn default button-port-previous">
+                                                                <i class="m-icon-swapleft"></i> Back
+                                                            </a>
+                                                            <a href="javascript:;" class="btn blue button-port-next">
+                                                                Continue <i class="m-icon-swapright m-icon-white"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab5">
+                                    <h3 class="block">Term & Condition</h3>
+                                    <div class="portlet light" id="termCodition">
+                                        <div class="portlet-title tabbable-line">
+                                            <div class="caption">
+                                                <i class="icon-pin font-yellow-crusta"></i>
+                                                <span class="caption-subject bold font-yellow-crusta uppercase">
+                                                    Tabs
+                                                </span>
+                                                <span class="caption-helper">more samples...</span>
+                                            </div>
+                                            <div class="form-body">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active">
+                                                        <a href="#portlet_term_tab1" data-toggle="tab">
+                                                            1
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_term_tab2" data-toggle="tab">
+                                                            2
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_term_tab3" data-toggle="tab">
+                                                            3
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_term_tab4" data-toggle="tab">
+                                                            4
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_term_tab5" data-toggle="tab">
+                                                            5
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_term_tab6" data-toggle="tab">
+                                                            6
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_term_tab7" data-toggle="tab">
+                                                            7
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_term_tab8" data-toggle="tab">
+                                                            8
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_term_tab9" data-toggle="tab">
+                                                            9
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_term_tab10" data-toggle="tab">
+                                                            10
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_term_tab11" data-toggle="tab">
+                                                            11
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_term_tab12" data-toggle="tab">
+                                                            12
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_term_tab13" data-toggle="tab">
+                                                            13
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_term_tab14" data-toggle="tab">
+                                                            14
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="portlet_term_tab1">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 1</h4>
+                                                            <p>
+                                                                Anggota harus memiliki kewenangan untuk mengikat diri pada perjanjian ini. Jika Anggota tidak mempunyai kewenangan penuh maka Anggota harus menyatakan dan menjamin bahwa persetujuan dari wali yang sah menurut hukum telah diperoleh sebelum menandatangani perjanjian ini. Anggota menyatakan bahwa dia telah menerima copy dari perjanjian ini. Perjanjian ini juga berfungsi sebagai dasar untuk menggunakan fasilitas-fasilitas clubsampai Anggota menerima Anggota tetap.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_term_tab2">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 2</h4>
+                                                            <p>
+                                                                Anggota diijinkan untuk membekukan keanggotaan ( Freeze membership ) apabila tidak bisa datang ke club untuk jangka waktu lebih dari satu bulan ( 30 hari ) dengan biaya pembekuan sebesar Rp, 25.000 per bulan. Maksimal pembekuan 12 bulan maksimal 3 kali dalam setahun.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_term_tab3">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 3</h4>
+                                                            <p>
+                                                                Membership tidak dapat dipindah tangankan dari satu orang ke orang lainnya dalam periode yang sama dengan alasan apapun.
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_term_tab4">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 4</h4>
+                                                            <p>
+                                                                Anggota berhak mentransfer satu kali saja ke kerabat atau rekannya dengan alasan kehamilan, atau pindah ke luar kota dengan menunjukkan dokumen pendukung. Setelah dipindah tangankan, Anggota lama tidak boleh menggunakan fasilitas Flash Fitness lagi ataupun menerima membership yang sama.Biaya untuk sekali transfer membership adalah Rp. 100.000
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_term_tab5">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 5</h4>
+                                                            <p>
+                                                                Untuk melindungi kepentingan bisnisnya dan demi keselamatan dan kepentingan anggota lain Flash Fitness berhak mengakhiri keanggotaan dari anggota yang telah melanggar syarat dan ketentuan dalam perjanjian ini dan peraturan dan ketentuan yang berlaku didalam club.
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_term_tab6">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 6</h4>
+                                                            <p>
+                                                                Seorang anggota harus memperlihatkan kartu keanggotaannya dan kartu identitasnya setiap kali datang ke Flash Fitness. Jika kartu anggota tersebut hilang atau dicuri, maka Anggota tersebut harus segera menghubungi club untuk mendapatkan kartu pengganti. Anggota tersebut bertanggung jawab terhadap biaya pengganti kartu sebesar Rp. 30.000.
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_term_tab7">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 7</h4>
+                                                            <p>
+                                                                Semua uang yang sudah dibayarkan tidak dapat dikembalikan untuk alasan apapun.
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_term_tab8">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 8</h4>
+                                                            <p>
+                                                                Jika ini merupakan keanggotaan bulanan sesuai yang tertera dalam data keanggotaan, Anda tidak boleh membatalkan Autopay sebelum jangka waktu yang disepakati sesuai perjanjian secara aktif terpenuhi. Jika Anda ingin mengakhiri keanggotaan sebelum jangka waktu sesuai perjanjian selesai, Anda diperkenankan mengakhiri keanggotaan dengan membayar biaya Rp.100.000 untuk keanggotaan 1 tahun dan 1,5 tahun, Rp. 500.000 untuk keanggotaan 2 tahun ( biaya ini tidak dapat dialihkan dari biaya manapun yang telah dibayarkan sebelumnya) dan mengisi Cancellation Request Form (CRF) paling lambat 7 hari kerja sebelum tanggal Autopay berikutnya yang mungkin berbeda mengacu pada hari libur Bank. Keterlambatan pemberitahuan untuk pemberhentian keanggotaan, Autopay berikutnya sesuai jadwal yang telah ditetapkan. Anda memiliki 60 hari menggunakan fasilitas setelah pengurangan autopay sesuai jadwal.
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_term_tab9">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 9</h4>
+                                                            <p>
+                                                                Tamu yang dibawa untuk coba geratis haruslah :<br />
+                                                                1. Penduduk kota Surabaya.<br />
+                                                                2. Usia diatas 8 tahun, orang tua harus mendampingi anak anak berusia antara 13-17 tahun.<br />
+                                                                3. Mengisi formulir yang diperlukan.
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_term_tab10">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 10</h4>
+                                                            <p>
+                                                                Mereka yang bukan anggota tidak diperkenankan untuk memasuki area Gym.
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_term_tab11">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 11</h4>
+                                                            <p>
+                                                                Kelas pribadi dan personal trainer dikenakan biaya tambahan sesuai paket dan promosi yang berlaku pada saat itu.
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_term_tab12">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 12</h4>
+                                                            <p>
+                                                                Camera photo atau alat perekam berupa video termasuk telphon genggam dilarang digunakan untuk memotret atau merekam didalam lokasi Flash Fitness khususnya diruang ganti dan latihan.
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_term_tab13">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 13</h4>
+                                                            <p>
+                                                                Anggota diharuskan melakukan aktivitas di area gym dengan bersepatu dan berpakaian oilah raga sopan.
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_term_tab14">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 14</h4>
+                                                            <p>
+                                                                Satu set handuk terdiri dari handuk besar dan kecil tanpa biaya tersedia di area greeter Anda wajib memberikan kartu anggota kepada staff greeter untuk memperoleh sebuah handuk kecil untuk latihan dan sebuah handuk besar untuk mandi.Untuk setiap handuk yang rusak, terkena noda yang tidak bisa hilang seperti darah atau semir rambut, dikenakan biaya pengganti sebagai berikut; Rp, 75.000 untuk handuk besar dan Rp 45.000 untuk handuk kecil.
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions" style="background: none">
+                                                    <div class="row">
+                                                        <div class="col-md-offset-3 col-md-9">
+                                                            <a href="javascript:;" class="btn default button-term-previous">
+                                                                <i class="m-icon-swapleft"></i> Back
+                                                            </a>
+                                                            <a href="javascript:;" class="btn blue button-term-next">
+                                                                Continue <i class="m-icon-swapright m-icon-white"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab6">
+                                    <h3 class="block">Confirm your Statement</h3>
+                                    <div class="portlet light" id="MStateConfirm">
+                                        <div class="portlet-title tabbable-line">
+                                            <div class="caption">
+                                                <i class="icon-pin font-yellow-crusta"></i>
+                                                <span class="caption-subject bold font-yellow-crusta uppercase">
+                                                    Tabs
+                                                </span>
+                                                <span class="caption-helper">more samples...</span>
+                                            </div>
+                                            <div class="form-body">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active">
+                                                        <a href="#portlet_state_tab1" data-toggle="tab">
+                                                            1
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_state_tab2" data-toggle="tab">
+                                                            2
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#portlet_state_tab3" data-toggle="tab">
+                                                            3
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="portlet_state_tab1">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 1</h4>
+                                                            <p>
+                                                                Selama latihan, setiap anggota berhak menggunakan locker harian untuk menyimpan barang-barangnya. Locker harian adalah locker yang cukup besar dan harus dikosongkan setelah selesai latihan. Setiap gembok yang masih terpasang pada locker harian akan dibongkar pada akhir jam kerja setiap hari. Isi locker akan disimpan selama tidak lebih daripada 14 hari dan setelah itu isi locker tersebut akan disumbangkan kepada lembaga sosial. Tidak diberikan ganti rugi atas gembok dan isi locker tersebut. Locker sepatu juga tersedia dan dapat disewa secara permanent. Harap menghubungi Operation Flash Fitness untuk keterangan lebih lengkap. Semua locker harus dikunci dengan gembok atas beban anggota demi keamanan. Flash Fitness sangat menyarankan agar anggota menggunakan gembok pakai kunci dan bukan kunci kombinasi. Flash Fitness sangat menyarankan agar anggota tidak membawa barang-barang berharga ke pusat kebugaran. Flash Fitness tidak bertanggung jawab atas barang-barang yang hilang atau dicuri dari locker harian dan / atau locker sepatu.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_state_tab2">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 2</h4>
+                                                            <p>
+                                                                Anggota setuju bahwa Flash Fitness tidak bertanggung jawab atas segala jenis kecelakaan, termasuk, namun tidak terbatas pada kecelakaan pribadi, kecelakaan tubuh, kecelakaan mental, kerugian ekonomi, atau kerugian lain atas anggota, atau keluarganya sebagai akibat dari tindakan seseorang yang menggunakan fasilitas ataupun tindakan dari pegawai atau agen Flash Fitness. Anggota setuju bertanggung jawab sepenuhnya atas semua tanggung jawab dan kerugian yang timbul sebagai akibat dari setiap kecelakaan, termasuk, namun tidak terbatas pada, kecelakaan tubuh atau kecelakaan mental, kerugian ekonomi, atau setiap kerugian bagi anggota lain disebabkan oleh tindakan kesengajaan atau kelalaian anggota sendiri. Jika ada tuntutan yang diajukan oleh siapapun juga berdasarkan setiap kecelakaan, kerugian, atau kerusakan yang diuraikan di sini, yang melibatkan anggota atau tamunya , anggota setuju (i) membela atas segala tuntutan tersebut dan membayar Flash Fitness atas segala pengeluaran termasuk biaya hukum bertalian dengan tuntutan tersebut dan (ii) melindungi Flash Fitness dari segala tanggung jawab kepada anggota dan suami/isterinya, anak dalam kandungan, keluarga, atau siapa saja, sebagai akibat dari tuntutan tersebut.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="portlet_state_tab3">
+                                                        <div class="scroller" style="height: 200px;">
+                                                            <h4>No 3</h4>
+                                                            <p>
+                                                                Flash Fitness tidak bertanggung jawab atas setiap barang yang hilang atau dicuri di kompleknya dengan alasan apapun juga. Anggota sendiri yang bertanggung jawab penuh untuk menjaga keamanaan barang-barangnya di komplek ini.
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions" style="background: none">
+                                                    <div class="row">
+                                                        <div class="col-md-offset-3 col-md-9">
+                                                            <a href="javascript:;" class="btn default button-State-previous">
+                                                                <i class="m-icon-swapleft"></i> Back
+                                                            </a>
+                                                            <a href="javascript:;" class="btn blue button-State-next">
+                                                                Continue <i class="m-icon-swapright m-icon-white"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <a href="javascript:;" class="btn default button-previous">
+                                        <i class="m-icon-swapleft"></i> Back
+                                    </a>
+                                    <a href="javascript:;" class="btn blue button-next">
+                                        Continue <i class="m-icon-swapright m-icon-white"></i>
+                                    </a>
+                                    <button type="submit" formmethod="post" class="btn green button-submit">
+                                        Submit <i class="m-icon-swapright m-icon-white"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="modal fade" id="mPaymentDetail" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-full">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                        <h4 class="modal-title bold"><i class="fa fa-user-md"></i> Manage Payment Detail</h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">
+                                                    @Html.Label("Summary Total Payment")
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <div class="input-group input-medium">
+                                                        @Html.TextBox("TotalPaymentListMustPay", 0, new { @class = "form-control text-right auto", @readonly = true })
+                                                    </div>
+                                                    <span class="help-block">
+                                                        Total Payment Must Paid
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">
+                                                    @Html.Label("Sumamry Payment ")
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <div class="input-group input-medium">
+                                                        @Html.TextBox("SummaryPaymentList", 0, new { @class = "form-control text-right auto", @readonly = true })
+                                                    </div>
+                                                    <span class="help-block">
+                                                        Total Payment Must Paid
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <a class="btn blue buttons-page btnAddPaymentList" href="javascript:$('#mPaymentDetail .modal-body').load('#mPaymentDetail',function(e){$('#mPaymentDetail').modal('show');});">
+                                                Add New Payment <i class="m-icon-swapright m-icon-white"></i>
+                                            </a>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>*@
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- END PAGE CONTENT-->
+<!-- END CONTENT -->
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<!-- END FOOTER -->
+<!-- END PAGE LEVEL SCRIPTS -->
+@section scripts
+{
+    @Scripts.Render("~/formcomponent/script")
+    @Scripts.Render("~/Wizard/Script")
+    @*koding untuk spesifik view*@
+    @Scripts.Render("~/Scripts/Registrasi/Mwizard.js")
+    @Scripts.Render("~/Scripts/Registrasi/MConfirmwizard.js")
+    @Scripts.Render("~/Scripts/select2FormControl.js")
+    @Scripts.Render("~/jqueryval/script")
+    @*    @Scripts.Render("~/Scripts/jquery.validate.js")*@
+    @*    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.js")*@
+    @*    @Scripts.Render("~/Scripts/jquery.validate.globalize.js")*@
+
+
+
+    <script src="@Url.Content("~/Scripts/trippleddlAdapters.js")" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            // initiate layout and plugins
+            Metronic.init(); // init metronic core components
+            Layout.init(); // init current layout
+            MWizard.init();
+
+            MConfirmWizard.init('MConfirm', 'button-port-next', 'button-port-previous');
+            MConfirmWizard.init('termCodition', 'button-term-next', 'button-term-previous');
+            MConfirmWizard.init('MStateConfirm', 'button-State-next', 'button-State-previous');
+
+            $('.auto').autoNumeric('init', { aSep: '.', aDec: ',' });
+
+            //initialize main dataTable
+            var dtPerson = $('#dtPerson').DataTable({
+                "serverSide": false,
+                "processing": true,
+                "filter": false,
+                "lengthMenu": [5, 10, 25, 50, 75, 100],
+                "pageLength": 10,
+                "columns": [
+                    {
+                        "orderable": false
+
+                    },
+                    {
+                        "orderable": false
+
+                    },
+                    {
+                        "orderable": false
+
+                    },
+                    {
+                        "orderable": false
+                    },
+                    {
+                        "orderable": false
+                    },
+                    {
+                        "orderable": false
+                    },
+                    {
+                        "orderable": false
+                    },
+                    {
+                        "orderable": false
+                    }
+                ],
+                "order": [[1, "asc"]]
+            });
+
+            var dtPayment = $('#dtPayment').DataTable({
+                "serverSide": false,
+                "processing": true,
+                "deferRender": true,
+                "filter": true,
+                "lengthMenu": [5, 10, 25, 50, 75, 100],
+                "pageLength": 10,
+                "columns": [
+                    {
+                        "orderable": false,
+                        "width": "80%"
+                    },
+                    {
+                        "orderable": false,
+                        "width": "80%"
+                    },
+                    {
+                        "orderable": false,
+                        "width": "80%"
+                    },
+                    {
+                        "orderable": false,
+                        "width": "80%"
+                    },
+                    {
+                        "orderable": false,
+                        "width": "80%"
+                    },
+                    {
+                        "orderable": false,
+                        "width": "120%"
+                    }
+                ],
+                "order": [[1, "asc"]]
+            });
+
+            var currentMemberId = "";
+
+            function getAutoNumberVal(lookUp) {
+                return parseFloat($(lookUp).autoNumeric('get') === "" ? "0" : $(lookUp).autoNumeric('get'));
+            }
+
+            function managePayment() {
+                var paymentCount = $('#dtPayment tr').length; //dtPayment.rows().data().length;
+                var paymentEach = getAutoNumberVal('#Total') / paymentCount;
+                for (var i = 0; i <= paymentCount - 1; i++)
+                    $('.totalPayment').autoNumeric('set', paymentEach);
+            }
+
+            function removePayment() {
+                if (currentMemberId !== "")
+                    $("#dtPayment tr:contains('" + currentMemberId + "')").each(function () {
+                        dtPayment.row(this).remove().draw();
+                    });
+                managePayment();
+            }
+
+            $(window).load(function () {
+                $('#paymentPortled').hide();
+            });
+
+
+            function addDetailPayment(paymentType, amount) {
+                var rowCount = $('#dtPerson tr').length -1 ;
+                var amountEach = decimal.parseVariable((amount / rowCount).toFixed(2));
+                $('#dtPerson .agreementid').each(function () {
+                    $.ajax({
+                        url: '@Url.Action("AddDataPaymentDetail", "Membership")',
+                        data: {
+                            aggreementid: $(this).val(),
+                            amount: amountEach,
+                            paymentType: paymentType
+                        }
+                    }).done(function (template) {
+                        $('.dataTables_empty').hide();
+                        $('#dtPaymentList > tbody').append(template);
+                    });
+                });
+            }
+
+            function reAmountDetail() {
+                var totalSummaryPaymentList = 0;
+                var totalOverPaymentDetail = 0;
+
+                $('.autoDetail').autoNumeric('init', { aSep: '.', aDec: ',' });
+
+                $('.paymentamountdetail').each(function () {
+                    totalSummaryPaymentList += getAutoNumberVal(this);
+                });
+
+
+                $('#TotalSumPayment').autoNumeric('set', totalSummaryPaymentList);
+
+                var total = getAutoNumberVal('#MasterPayment_Total');
+
+                total -= totalSummaryPaymentList;
+                if (total < 0) {
+                    totalOverPaymentDetail = total * -1;
+                    total = 0;
+                }
+
+                $('#TotalPaymentMustPay').autoNumeric('set', total);
+                $('#TotalSumPayment').autoNumeric('set', totalSummaryPaymentList);
+                $('#totalOverPaymentDetail').autoNumeric('set', totalOverPaymentDetail);
+            }
+
+
+            function reAmount() {
+                var discount = 0;
+                var total = getAutoNumberVal('#MasterPayment_Total');
+                var cash = getAutoNumberVal('#MasterPayment_Cash');
+                var debit = getAutoNumberVal('#MasterPayment_Debit');
+                var credit = getAutoNumberVal('#MasterPayment_Credit');
+                var totalPayment = 0;
+                var remainPayment = 0;
+                var totalOverPayment = 0;
+
+                totalPayment = ((cash) + (debit) + (credit));
+                remainPayment = (total) - (totalPayment);
+
+                if (remainPayment < 0) {
+                    totalOverPayment = remainPayment * -1;
+                    remainPayment = 0;
+
+                }
+                if (remainPayment === 0) {
+                    $('#dtPaymentList tbody tr').remove();
+                    //dtPaymentList.empty();
+                    if (cash > 0)
+                        addDetailPayment('Cash', cash);
+                    if (debit > 0)
+                        addDetailPayment('Debit', debit);
+                    if (credit > 0)
+                        addDetailPayment('Credit', credit);
+                    //rowPaymentLength = dtPaymentList.rows().data().length;
+                }
+
+                $('#MasterPayment_Discount').autoNumeric('set', discount);
+                $('#MasterPayment_Total').autoNumeric('set', total);
+                $('#MasterPayment_RemainPayment').autoNumeric('set', remainPayment);
+                $('#MasterPayment_TotalPayment').autoNumeric('set', totalPayment);
+                $('#MasterPayment_TotalOverPayment').autoNumeric('set', totalOverPayment);
+
+                if (remainPayment === 0) {
+                    var totalSumPayment = 0;
+
+                    $('.paymentpaymentamount').each(function () {
+                        $(this).autoNumeric('set', total / dtPayment.rows().data().length);
+                        //alert(getAutoNumberVal(this));
+                        totalSumPayment += getAutoNumberVal(this);
+                    });
+                    $('#TotalSumPayment').autoNumeric('set', totalSumPayment);
+                    //$('#TotalPaymentMustPay').autoNumeric('set', total);
+                }
+            };
+
+            $('.personpnama').on('change', function () {
+                var rowId = $(this).closest('tr').find('.agreementid').val();
+                $('#dtPayment tr > td:contains(' + rowId + ') + td:first').closest('tr').find('.paymentPNama').val($(this).val());
+            });
+
+            $('.auto').on('change', function () {
+                reAmount();
+            });
+
+            $(document).on('change', '.autoDetail', function () {
+                reAmountDetail();
+            });
+
+            $('#dtPaymentList tbody').on('click', '.delPaymentList', function () {
+                $(this).closest('tr').remove();
+                reAmountDetail();
+            });
+
+            $('.button-submit').on('click', function () {
+                //dtPaymentList.row().search('').draw();
+                var row = $('#dtPaymentList tbody').find('tr');
+                row.show();
+            });
+
+            $('.button-next').on('click', function () {
+                //dtPaymentList.row().search('').draw();
+                var row = $('#dtPaymentList tbody').find('tr');
+                row.show();
+            });
+
+            $('.btnAddPaymentList').on('click', function (ev) {
+                //var rowCount = dtPaymentList.rows().data().length;
+                var agId = $('#activepaymentlist').val();
+
+                $.ajax({
+                    url: '@Url.Action("AddDataPaymentDetail", "Membership")',
+                    data: {
+                        aggreementid: agId,
+                        amount: 0
+                    }
+                }).done(function (template) {
+                    $('.dataTables_empty').hide();
+                    $('#dtPaymentList > tbody').append(template);
+                    $('.autoDetail').autoNumeric('init', { aSep: '.', aDec: ',' });
+
+                });
+
+            });
+
+            $('.cancelclass').on('click', function () {
+
+            });
+
+            $('#dtPayment tbody').on('click', '.btnPaymentList', function () {
+                var rowId = $(this).closest('tr').find('.paymentagreementid').val().trim();
+                $('#activepaymentlist').val(rowId);
+                $('#paymentPortled').show();
+                var row = $('#dtPaymentList tbody').find('tr');
+                row.hide();
+                row.filter(function (i, v) {
+                    var $t = $(this);
+                    if ($t.is(":contains('" + rowId + "')")) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }).show();
+                reAmountDetail();
+            });
+
+            $('#dtPerson tbody').on('click', '.btnCancel', function () {
+                var rowId = $(this).closest('tr').find('.agreementid').val();
+                var rows = $('#dtPayment tr > td:contains(' + rowId + ') + td:first').closest('tr');
+                rows.remove();
+
+                $(this).closest('tr').remove();
+            });
+
+
+        });
+    </script>
+}

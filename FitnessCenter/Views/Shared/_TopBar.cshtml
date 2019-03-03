@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ViewModel.Menu.Topbar>
+
+@if (Model != null)
+{
+    foreach (var item in Model.ToList())
+    {
+        if (item.IsActive)
+        {
+            <li class="classic-menu-dropdown active btn-circle">
+                <a href="@Url.RouteUrl(item.Area, new {controller = item.Controller, action = item.Action})">
+                    <i class="@item.IconClass"></i> @item.Module <span class="selected">
+                    </span>
+                </a>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="@Url.RouteUrl(item.Area, new {controller = item.Controller, action = item.Action})">@item.Module</a>
+            </li>
+        }
+    }
+}

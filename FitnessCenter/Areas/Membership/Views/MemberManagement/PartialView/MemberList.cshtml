@@ -1,0 +1,49 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<DataObjects.Entities.trMembership>
+<div class="row">
+    @foreach (var member in Model)
+    {
+        <div class="col-md-4">
+
+            <div class="tile-container">
+                <div class="tile-thumbnail">
+                    <a data-memberno="@member.tMember.MemberNO" class="memberno" href="javascript:;">
+                        @if (member.tMember.MFotoUrl == null)
+                        {
+                            <img src="~/assets/pages/img/avatars/PersonImage.png" />
+                        }
+                        else
+                        {
+                            <img src="@member.tMember.MFotoUrl" />
+                        }
+                    </a>
+                </div>
+                <div class="tile-title">
+                    <h3>
+                        <a href="javascript:;">@member.tMember.tMemberType.MemberType</a>
+                    </h3>
+
+                    <a href="@Url.Action("MemberEdit", "MemberManagement")/@member.tMember.MemberID" />
+                    <i class="icon-plus font-green-meadow"></i>
+
+                    <div class="tile-desc">
+                        <p  style="font-size:11px">
+                            Activity:
+                            <a href="javascript:;" >@member.tMember.tPerson.PNama - @member.tMember.tPerson.PIdentitas</a> -
+                            <br />
+                            <span class="font-grey-salt">@member.tMember.tPerson.PAlamat</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
+
+
+<div class="search-pagination pagination-rounded">
+    @*        @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+</div>

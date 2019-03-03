@@ -1,0 +1,52 @@
+﻿@using Services.Infrastructure
+@model DataObjects.Entities.trPersonalTrainer
+@{
+}
+
+<tr role="row">
+    @using (Html.BeginCollectionItem("PersonalTrainers"))
+    {
+        <td>
+            @Html.DisplayFor(m => m.seq)
+            @Html.HiddenFor(m => m.seq, new { @class = "seq" })
+            @Html.HiddenFor(m => m.trMembership.MemberID, new { @class = "pmemberId" })
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.trMembership.tMember.MemberNO, new { @class = "form-control pmemberno" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.trMembership.tMember.MemberNO)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.trMembership.tMember.tPerson.PNama, new { @class = "form-control pnama disabled", @readonly = true })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.trMembership.tMember.tPerson.PNama)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.trMembership.tMember.tMemberType.MemberType, new { @class = "form-control pmembertype disabled", @readonly = true })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.trMembership.tMember.tMemberType.MemberType)
+            </div>
+
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.trMembership.tMember.tPerson.PAlamat, new { @class = "form-control palamat disabled", @readonly = true })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.trMembership.tMember.tPerson.PAlamat)
+            </div>
+
+        </td>
+        <td>
+            @Html.TextBox("usia", "", new { @class = "form-control pusia disabled", @readonly = true })
+        </td>
+        <td>
+            @Html.TextBox("Sisa", "", new { @class = "form-control psisa disabled", @readonly = true })
+        </td>
+        <td>
+            <a href="javascript:;" class="fa-stack fa-lg btnCancel">
+                <i class="fa fa-close fa-2x font-black"></i>
+            </a>
+        </td>
+    }
+</tr>

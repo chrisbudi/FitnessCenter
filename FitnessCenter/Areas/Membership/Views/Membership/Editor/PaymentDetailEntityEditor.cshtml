@@ -1,0 +1,63 @@
+﻿@using Services.Infrastructure
+@using DataAccessService.Master
+@model ViewModel.Registrasi.Membership.ViewModelMembershipPaymentDetail
+
+<tr>
+    @using (Html.BeginCollectionItem("PaymentDetails"))
+    {
+        <td>
+            @Model.AgreementId
+        </td>
+        <td>
+            @Html.HiddenFor(m => m.AgreementId, new { @class = "agreementid" })
+
+            @Html.DropDownListFor(m => m.PaymentType, new SelectList(new DataServicePaymentType().LoadAllPaymentType()),
+                new { @class = "form-control" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.PaymentType)
+            </div>
+        </td>
+        <td>
+            @Html.DropDownListFor(m => m.Bank, new SelectList(new DataServiceBank().LoadAllBank(), "BankID", "NamaBank"),
+                new { @class = "form-control" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.Bank)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.Pemegang, new { @class = "form-control" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.Pemegang)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.NoKartu, new { @class = "form-control" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.NoKartu)
+            </div>
+        </td>
+        <td>
+            <div>
+                <div class="input-group date date-picker" data-date-format="dd/mm/yyyy" data-date-start-date="+0d">
+                    @Html.TextBoxFor(m => m.ValidUntil, new { id = "Expired Date", @class = "form-control col-md-3", size = "18", type = "text", placeholder = "Expired Date", @readonly = "readonly", Value = DateTime.Now.ToString("dd/MM/yyyy") })
+                    <span class="input-group-btn">
+                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                    </span>
+                </div>
+                <div class="text-danger">
+                    @Html.ValidationMessageFor(m => m.ValidUntil)
+                </div>
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.PaymentAmount, new { @class = "form-control autoDetail paymentamountdetail text-right" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.PaymentAmount)
+            </div>
+        </td>
+        <td>
+            <a href="javascript:;" class="fa-stack fa-lg delPaymentList"><i class="fa fa-close fa-2x font-red"></i></a>
+        </td>
+
+    }
+</tr>

@@ -1,0 +1,113 @@
+﻿@model DataObjects.Entities.tRoleEvent
+@{
+    ViewBag.Title = "Create Role Event";
+}
+
+
+<!-- BEGIN BREADCRUMBS -->
+<div class="breadcrumbs">
+    <h1>@ViewBag.Title</h1>
+    @Html.Partial("_pageBreadcrumbs")
+</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE BASE CONTENT -->
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Edit", "RoleEvent", FormMethod.Post, new { @class = "form-horizontal form-row-seperated" }))
+        {
+            <div class="portlet">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-shopping-cart"></i>Role Event - @Model.EvRoleName
+                    </div>
+                    <div class="actions btn btn-set">
+                        <a name="back" class="btn btn-default" href="@Url.Action("Index")">
+                            <i class="fa fa-angle-left"></i> Back
+                        </a>
+                        <button type="reset" class="btn btn-default">
+                            <i class="fa fa-reply"></i> Reset
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-check"></i> Save
+                        </button>
+                        <div class="btn-group">
+                            <a class="btn btn-success dropdown-toggle" href="javascript:;" data-toggle="dropdown">
+                                <i class="fa fa-share"></i> More
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <div class="dropdown-menu pull-right">
+                                <li>
+                                    <a href="javascript:;"> Duplicate </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;"> Delete </a>
+                                </li>
+                                <li class="dropdown-divider"> </li>
+                                <li>
+                                    <a href="javascript:;"> Print </a>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="tabbable-bordered">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab_general" data-toggle="tab"> General </a>
+                            </li>
+                            <li>
+                                <a href="#tab_meta" data-toggle="tab"> Meta </a>
+                            </li>
+                            <li>
+                                <a href="#tab_images" data-toggle="tab"> Images </a>
+                            </li>
+                            <li>
+                                <a href="#tab_reviews" data-toggle="tab">
+                                    Reviews
+                                    <span class="badge badge-success"> 3 </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#tab_history" data-toggle="tab"> History </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_general">
+                                <div class="form-body">
+                                    @Html.HiddenFor(m=> m.EvRoleId)
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">
+                                            Name:
+                                            <span class="required"> * </span>
+                                        </label>
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.EvRoleName, new {@class = "form-control"})
+                                            <span class="text-danger">@Html.ValidationMessageFor(m => m.EvRoleName)</span>
+                                            <span class="help-block">Event role name</span>
+                                            @*<input type="text" class="form-control" name="product[name]" placeholder="">*@
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<!-- END PAGE BASE CONTENT -->
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    @Scripts.Render("~/bundle/script/jqueryval")
+    <script>
+
+        $(function () {
+            //Metronic.init();// init metronic core components
+            //Layout.init(); // init current layout
+        });
+
+    </script>
+}

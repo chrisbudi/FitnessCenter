@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="fitnessDBModelStoreContainer" CdmEntityContainer="fitnessDBEntities">
+    <FunctionImportMapping FunctionName="fitnessDBModel.Store.GET_FORMROLEAUTH" FunctionImportName="GET_FORMROLEAUTH">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="fitnessDBModel.GET_FORMROLEAUTH_Result">
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ControlCreate" ColumnName="ControlCreate" />
+          <ScalarProperty Name="ControlRead" ColumnName="ControlRead" />
+          <ScalarProperty Name="ControlUpdate" ColumnName="ControlUpdate" />
+          <ScalarProperty Name="ControlDelete" ColumnName="ControlDelete" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="fitnessDBModel.Store.GetLastPersonId" FunctionImportName="GetLastPersonId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="fitnessDBModel.GetLastPersonId_Result">
+          <ScalarProperty Name="personId" ColumnName="personId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetLastBackOfficeId" FunctionName="fitnessDBModel.Store.GetLastBackOfficeId" />
+    <FunctionImportMapping FunctionImportName="GetLastMemberId" FunctionName="fitnessDBModel.Store.GetLastMemberId" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="fitnessDBModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="fitnessDBModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="fitnessDBModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="fitnessDBModel.Store.sp_helpdiagramdefinition" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="fitnessDBModel.Store.sp_helpdiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="fitnessDBModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="fitnessDBModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="testprocedure" FunctionName="fitnessDBModel.Store.testprocedure">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="fitnessDBModel.testprocedure_Result">
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="MMulai" ColumnName="MMulai" />
+          <ScalarProperty Name="MFoto" ColumnName="MFoto" />
+          <ScalarProperty Name="MFotoKTP" ColumnName="MFotoKTP" />
+          <ScalarProperty Name="MFotoCCDebit" ColumnName="MFotoCCDebit" />
+          <ScalarProperty Name="MFotoSignature" ColumnName="MFotoSignature" />
+          <ScalarProperty Name="MRFID" ColumnName="MRFID" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

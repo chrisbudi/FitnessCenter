@@ -1,0 +1,77 @@
+﻿@model DataObjects.Entities.tSalesAction
+@{
+    ViewBag.Title = "Create Sales Action";
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Master <small>Sales Action</small></h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="portlet light">
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN FORM PORTLET-->
+                <div class="portlet box green ">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-plus"></i> Tambah Sales Action
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        @using (Html.BeginForm("CreateSA", "SalesAction", FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            <div class="form-body">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.ActionName, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(m => m.ActionName, new { @class = "form-control input-medium", placeholder = "Action Name" })
+                                        @Html.ValidationMessageFor(m => m.ActionName)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Note, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(m => m.Note, new { @class = "form-control input-medium", placeholder = "Note" })
+                                        @Html.ValidationMessageFor(m => m.Note)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-2 col-md-9">
+                                        <button type="submit" class="btn btn-circle green bold"><i class="fa fa-check"></i> Simpan</button>
+                                        <a href="@Url.Action("Index", "SalesAction")" class="btn btn-circle red bold"><i class="fa fa-times"></i> Batal</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- END PAGE CONTENT-->
+        @section Scripts {
+            @Scripts.Render("~/bundle/script/jqueryval")
+            <script>
+
+                $(function () {
+                    //Metronic.init(); // init metronic core components
+                    //Layout.init(); // init current layout
+                });
+
+            </script>
+        }

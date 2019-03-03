@@ -1,0 +1,343 @@
+﻿@model Fit.Membership.Model.strAktivitasSale
+@{
+
+    ViewBag.Title = "Index";
+}
+
+<!-- BEGIN PAGE HEADER-->
+<h3 class="page-title">
+    Pendaftaran Member
+</h3>
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="index.html">Home</a>
+            @Html.Hidden("myId", "0", new { @class = "myId form-control" })
+        </li>
+    </ul>
+    <div class="page-toolbar">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-fit-height grey-salt dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
+                Actions <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="#">Action</a>
+                </li>
+                <li>
+                    <a href="#">Another action</a>
+                </li>
+                <li>
+                    <a href="#">Something else here</a>
+                </li>
+                <li class="divider">
+                </li>
+                <li>
+                    <a href="#">Separated link</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="row margin-bottom-20">
+    <div class="col-md-12">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <a href="@Url.Action("CreateCM", "CalonMember")" class="btn green">
+                            Add New <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="btn-group pull-right">
+                        <button class="btn dropdown-toggle" data-toggle="dropdown">
+                            Tools <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="#">
+                                    Print
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Save as PDF
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Export to Excel
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered table-hover" id="TableCM">
+            <thead>
+                <tr>
+                    <th>
+                        No
+                    </th>
+                    <th>
+                        Nama
+                    </th>
+                    <th>
+                        Gender
+                    </th>
+                    <th>
+                        Alamat
+                    </th>
+                    <th>
+                        Telepon
+                    </th>
+                    <th>
+                        HP
+                    </th>
+                    <th>
+                        <i class="fa fa-cogs fa-lg"></i>
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="modal fade" id="mStatus" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title bold"><span id="modalHead"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="table-toolbar">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="btn-group">
+                                    <a href="@Url.Action("CreateAct", "CalonMember")" class="btn green addAct">
+                                        <i class="fa fa-plus"></i> Add New
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-bordered table-hover" id="dtStatus">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Date
+                                </th>
+                                <th>
+                                    Sales Action
+                                </th>
+                                <th>
+                                    Sales Status
+                                </th>
+                                <th>
+                                    Note
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+
+
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+</div>
+<!-- END PAGE CONTENT-->
+@section Scripts {
+
+
+    <script>
+
+        var loadDDL = null;
+
+        $(function () {
+            Metronic.init(); // init metronic core components
+            Layout.init(); // init current layout
+
+            // begin first table
+            var tableCM = $('#TableCM').DataTable({
+                "serverSide": true,
+                "processing": true,
+                "ajax": "@Url.Action("CPTResult", "CalonSewaPt",new { area = "Registrasi"})",
+                "deferRender": true,
+                "columns": [
+                    {
+                        "orderable": false,
+                        "width": "3%"
+                    },
+                    {
+                        "orderable": true
+                    },
+                    null,
+                    {
+                        "orderable": false
+                    },
+                    {
+                        "orderable": false
+                    },
+                    {
+                        "orderable": false,
+                        "data": 6,
+                        //"render": function (data) {
+                        //    var personId = data.split("-")[0].trim();
+                        //    var membershipid = data.split("-")[1].trim();
+                        //    return '<input type="hidden" id="person-' + personId + '-transaction" value="' + membershipid + '" />';
+                        //}
+                    },
+                    {
+
+                        "targets": -1,
+                        "data": 6,
+                        "render": function (data) {
+                            //$('.myId').val(data);
+                            return '<a data-toggle="modal" href="#mStatus" class="btnMembership"><i class="fa fa-edit fa-2x font-blue-soft"></i></a>';
+                        },
+                        "orderable": false,
+                        "className": "td.center",
+                        "width": "3%"
+                    }
+                ]
+            });
+
+
+            var tableStatus = $('#dtStatus').DataTable({
+                "serverSide": true,
+                "processing": true,
+                "ajax": {
+                    url: "@Url.Action("ActResult", "CalonMember", new {area = "Registrasi"})",
+                    data: function (data) {
+                        data.idDecimal = $('#myId').val() === "" ? 0 : $('#myId').val();
+                    }
+                },
+                "deferRender": true,
+                "filter": true,
+                "lengthMenu": [5, 10, 25, 50, 75, 100],
+                "pageLength": 25,
+                "columns": [
+                    {
+                        "orderable": false,
+                        "width": "80%"
+                    },
+                    {
+                        "orderable": false,
+                        "width": "80%"
+                    },
+                    {
+                        "orderable": false,
+                        "width": "80%"
+                    },
+                    {
+                        "orderable": false,
+                        "width": "120%"
+                    }
+                ],
+                "order": [[1, "asc"]]
+            });
+
+
+            $(window).load(function () {
+                var myId = $('.myId');
+                myId.val('');
+                tableStatus.ajax.reload();
+            });
+
+            $('#TableCM tbody').on('click', '.btnMembership', function () {
+                var myId = $('.myId');
+                var reloadDt = $(".reload");
+
+                //$(this).parents('tr').toggleClass("active");
+                //$('.addHarga').toggleClass('hidden');
+
+                //// if checked get data view by id
+                //if ($(this).is(':checked')) {
+                //    //$('#barang tbody tr:not(.active) input[type=checkbox]').prop("disabled", true);
+                var data = (tableCM.row($(this).parents('tr')).data());
+                myId.val(data[6]);
+                var modalHead = "(" + data[6] + ") - " + data[7];
+                $('#modalHead').html(modalHead);
+                $(".addAct").attr('href', "@Url.Action("CreateAct", "CalonMember", new {area = "Registrasi"})" + "/" + myId.val()),
+
+                //    reloadDt.trigger("click");
+
+                //    // reload datatables
+                //    tableStatus.ajax.reload();
+                //} else {
+                //    //$('#TableCM tbody').prop("disabled", false);
+                //    //myId.val('');
+                //    reloadDt.trigger("click");
+                //    tableStatus.ajax.reload();
+                //}
+
+                reloadDt.trigger("click");
+
+                // reload datatables
+                tableStatus.ajax.reload();
+
+                return true;
+            });
+
+            //$('.postSales').on('click', function() {
+            //    var personId = this.id.split('-')[1];
+
+            //    var action = $('#Combo-' + personId + '-Action').val();
+            //    var status = $('#Combo-' + personId + '-Status').val();
+            //    $.ajax({
+            //        url: this.href,
+            //        type: 'DELETE',
+            //        data: {
+            //            id: personId,
+            //            action: action,
+            //            status: status
+            //        },
+            //        success: function (result) {
+            //            // update some DOM element with the result returned by the
+            //            // server. So supposing that you have some <div id="someContainer">
+            //            // that will contain the part of the DOM you want updated:
+            //            $('#someContainer').html(result);
+            //        }
+            //    });
+            //    return false;
+            //});
+
+            //function divFunction() {
+            //    var personId = this.id.split('-')[1];
+
+            //    var action = $('#Combo-' + personId + '-Action').val();
+            //    var status = $('#Combo-' + personId + '-Status').val();
+            //    $.ajax({
+            //        url: this.href,
+            //        type: 'DELETE',
+            //        data: {
+            //            id: personId,
+            //            action: action,
+            //            status: status
+            //        },
+            //        success: function (result) {
+            //            // update some DOM element with the result returned by the
+            //            // server. So supposing that you have some <div id="someContainer">
+            //            // that will contain the part of the DOM you want updated:
+            //            $('#someContainer').html(result);
+            //        }
+            //    });
+            //    return false;
+            //}
+
+
+        });
+    </script>
+}
+

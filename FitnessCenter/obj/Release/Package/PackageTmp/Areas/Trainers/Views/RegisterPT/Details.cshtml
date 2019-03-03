@@ -1,0 +1,130 @@
+﻿@model DataObjects.Entities.trPersonalTrainer
+@{
+    ViewBag.Title = "Details Personal Trainer";
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Register <small>PT (Personal Trainer)</small></h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="portlet light">
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet-body form">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-body help-block">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.MemberID, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-5">
+                                    <p class="form-control-static bold">
+                                        : @Html.DisplayFor(m => m.MemberID) - @Html.DisplayFor(m => m.tMember.tPerson.PNama)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.LocationID, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-5">
+                                    <p class="form-control-static bold">
+                                        : @Html.DisplayFor(m => m.tLocFitnessCenter.LAlamat)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.PersonBOIDSales, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-5">
+                                    <p class="form-control-static bold">
+                                        : @Html.DisplayFor(m => m.PersonBOIDSales) - @Html.DisplayFor(m => m.tUserBackOffice_PersonBOIDSales.tPerson.PNama)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.PersonBOIDPT, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-5">
+                                    <p class="form-control-static bold">
+                                        : @Html.DisplayFor(m => m.PersonBOIDPT) - @Html.DisplayFor(m => m.tUserBackOffice_PersonBOIDPT.tPerson.PNama)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.tPaketPTID, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-5">
+                                    <p class="form-control-static bold">
+                                        : @Html.DisplayFor(m => m.tPaketPT.PPTNama)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.SisaJam, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-5">
+                                    <p class="form-control-static bold">
+                                        : @Html.DisplayFor(m => m.SisaJam)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.PTSubtotal, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-5">
+                                    <p class="form-control-static bold">
+                                        : @Html.DisplayFor(m => m.PTSubtotal)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.PTDiskon, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-5">
+                                    <p class="form-control-static bold">
+                                        : @Html.DisplayFor(m => m.PTDiskon)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.PTTotal, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-5">
+                                    <p class="form-control-static bold">
+                                        : @Html.DisplayFor(m => m.PTTotal)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <a href="@Url.Action("Index", "RegisterPT")" class="btn btn-circle green bold"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- END  FORM PORTLET-->
+        </div>
+    </div>
+</div>
+        <!-- END PAGE CONTENT-->
+        @section Scripts {
+
+            <script>
+
+                $(function () {
+                    //Metronic.init(); // init metronic core components
+                    //Layout.init(); // init current layout
+
+                    if (!jQuery().colorpicker) {
+                        return;
+                    }
+
+                    $('.colorpicker-background').colorpicker({
+                        format: 'hex'
+                    });
+                });
+
+            </script>
+        }

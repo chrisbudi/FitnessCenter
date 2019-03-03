@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C2295650-5AD8-4DD0-B578-463CBC5A9680}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccessService</RootNamespace>
+    <AssemblyName>DataAccessService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\FitnessCenter\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Activity\DataServiceCheckInOut.cs" />
+    <Compile Include="Activity\DataServiceCheckInOutBO.cs" />
+    <Compile Include="Activity\DbDataAccessActivity.cs" />
+    <Compile Include="Event\ServicePersonEvent.cs" />
+    <Compile Include="Event\ServiceEvent.cs" />
+    <Compile Include="Event\ServiceRoleEvent.cs" />
+    <Compile Include="Identity\DataServiceIdentity.cs" />
+    <Compile Include="Identity\DataServicePersonID.cs" />
+    <Compile Include="Identity\DataServiceSignIn.cs" />
+    <Compile Include="Identity\DbDataAccessIdentity.cs" />
+    <Compile Include="Identity\DataServiceFormAuth.cs" />
+    <Compile Include="Identity\DataServiceFormRole.cs" />
+    <Compile Include="Identity\DataServiceForms.cs" />
+    <Compile Include="Identity\DataServiceGroup.cs" />
+    <Compile Include="Identity\DataServiceRoles.cs" />
+    <Compile Include="DBStoreProcedure.cs" />
+    <Compile Include="PT\IServiceActionParam.cs" />
+    <Compile Include="PT\ServicePaymentWith.cs" />
+    <Compile Include="Instruktur\DataServicePlanKelas.cs" />
+    <Compile Include="Master\DataServiceActionPT.cs" />
+    <Compile Include="Master\DataServiceBank.cs" />
+    <Compile Include="Master\DataServicePaymentType.cs" />
+    <Compile Include="Master\DataServiceKelas.cs" />
+    <Compile Include="Master\DataServiceLocFitnessCenter.cs" />
+    <Compile Include="Master\DataServiceMember.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Master\DataServiceMemberState.cs" />
+    <Compile Include="Master\DataServiceMemberType.cs" />
+    <Compile Include="Master\DataServicePaketPT.cs" />
+    <Compile Include="Master\DataServicePerson.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Master\DataServicePosisi.cs" />
+    <Compile Include="Master\DataServiceRuangKelas.cs" />
+    <Compile Include="Master\DataServiceSalesAction.cs" />
+    <Compile Include="Master\DataServiceStatusMember.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Master\DataServiceTypeStatusCinCoutBO.cs" />
+    <Compile Include="Master\DataServiceUserBackOffice.cs" />
+    <Compile Include="Master\DbDataAccessMaster.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Master\ServiceBackOfficeMaster.cs" />
+    <Compile Include="Master\ServiceLocation.cs" />
+    <Compile Include="Master\ServiceCardStatus.cs" />
+    <Compile Include="Master\ServiceMemberMaster.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PT\DataServicePlanAktifitasPT.cs" />
+    <Compile Include="PT\DataServiceClaimPT.cs" />
+    <Compile Include="PT\DataServiceRegisterPT.cs" />
+    <Compile Include="Instruktur\DbDataAccesInstructor.cs" />
+    <Compile Include="PT\DbDataAccessPT.cs" />
+    <Compile Include="Registrasi\IServicePaymentWith.cs" />
+    <Compile Include="Registrasi\ServicePaymentWith.cs" />
+    <Compile Include="Registrasi\ServicePaymentMember.cs" />
+    <Compile Include="Registrasi\ServiceMemberMaster.cs" />
+    <Compile Include="Registrasi\DataServiceAktivitasSales.cs" />
+    <Compile Include="Registrasi\DataServicePaymentWith.cs" />
+    <Compile Include="Registrasi\DataServicePaymentMember.cs" />
+    <Compile Include="Registrasi\DataServiceMembership.cs" />
+    <Compile Include="Registrasi\DbDataAccessRegistrasi.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data Objects\Data Objects.csproj">
+      <Project>{00ca8443-07ed-4263-8e2d-79b02bd800c5}</Project>
+      <Name>Data Objects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EntityScheme\Data Scheme.csproj">
+      <Project>{ca4299cf-0036-4d18-846a-45945c8f4e0c}</Project>
+      <Name>Data Scheme</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ResourceData.Data\DataAccessResource.csproj">
+      <Project>{34dcd8f6-2b3b-40f5-813c-d219e7947454}</Project>
+      <Name>DataAccessResource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Services.csproj">
+      <Project>{70F690E6-6146-4471-9CF3-DAD3FB74E822}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IdentityModel\IdentityModel.csproj">
+      <Project>{74db2f1b-d1df-4a4a-a8ea-d2ecdf52a17d}</Project>
+      <Name>IdentityModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModel\ViewModel.csproj">
+      <Project>{6d7b7247-f04f-482b-a834-45aba167a38b}</Project>
+      <Name>ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

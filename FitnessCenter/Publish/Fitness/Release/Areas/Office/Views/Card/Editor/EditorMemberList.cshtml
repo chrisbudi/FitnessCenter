@@ -1,0 +1,58 @@
+﻿@using Services.Infrastructure
+@model List<FitnessCenter.Areas.Office.Models.EditorMemberCard>
+
+@for (var i = 0; i < Model.Count; i++)
+{
+    <tr>
+        @using (Html.BeginCollectionItem("MemberCard"))
+        {
+            <td>
+                @Html.DisplayFor(m => m[i].PersonId)
+            </td>
+            <td>
+                @Model[i].Seq
+            </td>
+            <td>
+                @Model[i].MemberId
+                @Html.HiddenFor(m => m[i].MemberId, new { @class = "memberid" })
+                @Html.HiddenFor(m => m[i].PersonId, new { @class = "personid" })
+            </td>
+            <td>
+                @Model[i].MemberName
+                @Html.HiddenFor(m => m[i].MemberName)
+                @Html.HiddenFor(m => m[i].MemberType)
+            </td>
+            <td>
+                @Model[i].Alamat
+                @Html.HiddenFor(m => m[i].Alamat)
+            </td>
+            <td>
+                @Model[i].Kota
+                @Html.HiddenFor(m => m[i].Kota)
+            </td>
+            <td>
+                @if (Model[i].Gender == "M")
+                {
+                    @:Male
+            }
+                else
+                {
+                    @:Female
+            }
+                @Html.HiddenFor(m => m[i].Gender)
+            </td>
+            <td>
+                @Model[i].TglLahir.ToString("dd-MM-yyyy")
+                @Html.HiddenFor(m => m[i].TglLahir)
+            </td>
+            <td>
+                <a href="javascript:;" class="fa-stack fa-lg delCardMember"><i class="fa fa-close fa-2x font-red"></i></a>
+            </td>
+            @*        <td>*@
+            @*                <input type='checkbox' class='check_all' name='CheckAll[" + d + "]' values=" + d + ">*@
+            @*        </td>*@
+
+        }
+    </tr>
+
+}

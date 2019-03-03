@@ -1,0 +1,70 @@
+﻿@using Services.Infrastructure
+@model DataObjects.Entities.trMembership
+@{
+    ViewData["dateTemp"] = Model.tMember.tPerson.PTglLahir;
+    ViewBag.InGrid = true;
+}
+
+<tr role="row">
+    @using (Html.BeginCollectionItem("Memberships"))
+    {
+        <td>
+            @Html.DisplayFor(m => m.seq)
+            @Html.HiddenFor(m => m.seq, new { @class = "seq" })
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.tMember.tPerson.PNama, new { @class = "form-control personnama" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.tMember.tPerson.PNama)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.tMember.tPerson.PIdentitas, new { @class = "form-control PIdentitas", data_val = false })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.tMember.tPerson.PIdentitas)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.AgreementID, new { @class = "form-control PIdentitas" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.AgreementID)
+            </div>
+        </td>
+        <td>
+            <div class="radio-list">
+                <label>
+                    @Html.RadioButtonFor(m => m.tMember.tPerson.PGender, 'M', new { @class = "persongender", data_val = true })
+                    Male
+                </label>
+                <label>
+                    @Html.RadioButtonFor(m => m.tMember.tPerson.PGender, 'F', new { @class = "persongender" })
+                    Female
+                </label>
+            </div>
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.tMember.tPerson.PGender)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.tMember.tPerson.PAlamat, new { @class = "form-control personAlamat" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.tMember.tPerson.PAlamat)
+            </div>
+        </td>
+        <td>
+            @Html.EditorFor(m => m.tMember.tPerson.PTglLahir)
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.tMember.tPerson.PHP1, new { @class = "form-control personhp1" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.tMember.tPerson.PHP1)
+            </div>
+        </td>
+        <td>
+            <a href="javascript:;" class="fa-stack fa-lg btnCancel">
+                <i class="fa fa-close fa-2x font-black"></i>
+            </a>
+            @*            }*@
+        </td>
+    }
+</tr>

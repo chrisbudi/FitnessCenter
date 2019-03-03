@@ -1,0 +1,15 @@
+﻿@model IEnumerable<DataObjects.Entities.tActionPT>
+@{
+    string active = "class=\"active\"";
+}
+
+@foreach (var m in Model.ToList().OrderBy(m => m.ActionPTName))
+{
+
+    <li @Html.Raw(active)>
+        <a href="#">
+            @m.ActionPTKet
+        </a>
+    </li>
+    active = "";
+}

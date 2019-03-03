@@ -1,0 +1,240 @@
+﻿@using Services.Helpers;
+@model DataObjects.Entities.trPersonalTrainer
+@{
+    ViewBag.Title = "Register PT";
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Register <small>PT (Personal Trainer)</small></h1>
+    </div>
+</div>
+
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="#">Home</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="#">Register PT</a>
+        <i class="fa fa-circle"></i>
+    </li>
+</ul>
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="portlet light">
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet-body form">
+                    @using (Html.BeginForm("Regist", "RegisterPT", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        <div class="form-body">
+                            <div class="col-md-12">
+                                <h3 class="block">Registration Information</h3>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.MemberID, new { @class = "col-md-3 control-label" })
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(m => m.MemberID, new { @class = "form-control", @readonly = true })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.LocationID, new { @class = "col-md-3 control-label" })
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(m => m.LocationID, new { @class = "form-control", @readonly = true })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Personal Trainer:</label>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(m => m.BOID, "", new { @class = "form-control input-large" })
+                                        <span class="help-block">
+                                            Input your Personal Trainer
+                                        </span>
+                                        @Html.ValidationMessageFor(m => m.BOID)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Paket PT:</label>
+                                    <div class="col-md-5">
+                                        @*<input type="text" readonly class="form-control" name="Activity.AMMulai" id="Activity_AMMulai" value="@Model.Activity.AMMulai.Value.ToString("dd-MM-yyyy hh:mm:ss")"/>*@
+                                        @Html.TextBoxFor(m => m.tPaketPTID, new { @class = "form-control" })
+                                        <span class="help-block">
+                                            Input your paket PT
+                                        </span>
+                                        @Html.ValidationMessageFor(m => m.tPaketPT.tPaketPTID)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Sisa Jam:</label>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(m => m.SisaJam, new { @class = "form-control text-right", @readonly = true })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Subtotal:</label>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(m => m.PTSubtotal, new { @class = "form-control auto text-right", @readonly = true })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Diskon:</label>
+                                    <div class="col-md-5">
+                                        @Html.TextBox("DiscountPct", "0.00", new { @class = "form-control auto text-right", maxlength = 5 })
+                                        @Html.HiddenFor(m => m.PTDiskon)
+                                        <span id="DiscountMemberHelp" class="help-block">
+                                            Discount Total for this account 
+                                            @Html.Hidden("DiscountNominal")
+
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Total:</label>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(m => m.PTTotal, new { @class = "form-control auto text-right", @readonly = true, hidden = true })
+                                        <span class="help-block">
+                                            Total Amount Payment
+                                        </span>
+                                        @Html.ValidationMessageFor(m => m.PTTotal)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-2 col-md-9">
+                                    <button type="submit" formmethod="post" class="btn btn-circle green bold"><i class="fa fa-check"></i> Register Now</button>
+                                    <a href="@Url.Action("Index", "RegisterPT")" class="btn btn-circle red bold"><i class="fa fa-times"></i> Batal</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- END FORM PORTLET-->
+        </div>
+    </div>
+</div>
+
+<!-- END PAGE CONTENT-->
+@section Scripts {
+@Scripts.Render("~/assets/global/plugins/jquery-validation/js/jquery.validate.min.js")
+@Scripts.Render("~/assets/global/plugins/jquery-validation/js/additional-methods.min.js")
+@Scripts.Render("~/assets/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js")
+@Scripts.Render("~/formcomponent/script")
+@Scripts.Render("~/assets/admin/pages/scripts/components-form-tools.js")
+@Scripts.Render("~/assets/global/plugins/fuelux/js/spinner.min.js")
+@Scripts.Render("~/Scripts/Registrasi/CMwizard.js")
+@Scripts.Render("~/Scripts/select2FormControl.js")
+@Scripts.Render("~/bundle/script/jqueryval")
+
+<script src="@Url.Content("~/Scripts/trippleddlAdapters.js")" type="text/javascript"></script>
+    <script>
+        jQuery(document).ready(function () {
+            Metronic.init(); // init metronic core components
+            Layout.init(); // init current layout
+            Demo.init(); // init demo features
+            FormWizard.init();
+
+            $('.auto').autoNumeric('init', { aSep: '.', aDec: ',' });
+            var select2 = select2Control;
+            var paketPT = '#tPaketPTID';
+
+            function getAutoNumberVal(lookUp) {
+                return parseFloat($(lookUp).autoNumeric('get') === "" ? "0" : $(lookUp).autoNumeric('get'));
+            }
+
+            $(paketPT).on('change', function () {
+                var paketId = select2.select(paketPT).id;
+                $.ajax({
+                    url: '/Master/PaketPT/GetPaketPTSharedById',
+                    dataType: 'json',
+                    data: {
+                        id: paketId
+                    }
+                }).done(function (data) {
+                    //alert(data.PPTHarga);
+                    $('#PTSubtotal').autoNumeric('set', data.PPTHarga);
+                    $('#SisaJam').val(data.PPTJam);
+
+                    var totalAmount = data.PPTHarga;
+                    $('#PTTotal').autoNumeric('set', (totalAmount));
+                });
+            });
+
+            function reAmount() {
+                var subtotal = getAutoNumberVal('#PTSubtotal');
+                var total = getAutoNumberVal('#PTTotal');
+                var sisaJam = $('#SisaJam').val();
+                var diskon = getAutoNumberVal('#DiscountPct');
+                var totalAmount = 0;
+                var discount = 0;
+
+                totalAmount = subtotal;
+                discount = totalAmount * diskon / 100;
+
+
+                totalAmount = totalAmount - discount;
+
+                document.getElementById('DiscountMemberHelp').innerHTML = 'Discount Total for this account (' + discount + ')';
+                $('#PTTotal').autoNumeric('set', totalAmount);
+                $('#PTDiskon').val(discount);
+            }
+
+
+
+            select2.init(paketPT, "Paket PT", "/Master/PaketPT/GetPaketPT", "/Master/PaketPT/GetPaketPTById");
+
+
+
+            $('.auto').on('change', function () {
+                reAmount();
+            });
+
+            var boidUrl = '@Url.Action("GetPT", "UserBackOffice", new { area = "Office" })';
+            var pageSize = 20;
+            $('#BOID').select2(
+            {
+                placeholder: 'Nama Personal Trainer',
+                //Does the user have to enter any data before sending the ajax request
+                minimumInputLength: 0,
+                allowClear: true,
+                ajax: {
+                    //How long the user has to pause their typing before sending the next request
+                    quietMillis: 150,
+                    //The url of the json service
+                    url: boidUrl,
+                    dataType: 'jsonp',
+                    //Our search term and what page we are on
+                    data: function (term, page) {
+                        return {
+                            pageSize: pageSize,
+                            pageNum: page,
+                            searchTerm: term
+                        };
+                    },
+                    results: function (data, page) {
+                        //Used to determine whether or not there are more results available,
+                        //and if requests for more data should be sent in the infinite scrolling
+                        var more = (page * pageSize) < data.Total;
+                        return { results: data.Results, more: more };
+                    }
+                }
+            });
+            @if (Model != null)
+            {
+                if (Model.tUserBackOffice != null)
+                {
+                    @:$('#BOID').select2("data", { id: "@Model.tUserBackOffice.BOID", text: "@Model.tUserBackOffice.tPerson.PNama" });
+                }
+            }
+        });
+    </script>
+}

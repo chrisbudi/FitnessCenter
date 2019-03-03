@@ -1,0 +1,452 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Prototype</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    @Styles.Render("~/mandatory/css")
+    @Styles.Render("~/Content/css")
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    @Styles.Render("~/level/css")
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" />
+    <link href="~/Assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="~/Assets/global/plugins/datatables/extensions/ColVis/css/dataTables.colVis.css" rel="stylesheet" />
+    <link href="~/Assets/global/plugins/select2/select2.css" rel="stylesheet" />
+    <!-- END PAGE LEVEL STYLES -->
+    <!-- BEGIN THEME STYLES -->
+    @Styles.Render("~/theme/css")
+    <!-- END THEME STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" />
+</head>
+<body class="page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
+    <!-- BEGIN HEADER -->
+    <div class="page-header navbar navbar-fixed-top">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <a href="#">
+                <img src="~/assets/admin/layout4/img/logo.png" alt="logo" class="logo-default" />
+            </a>
+            <div class="menu-toggler sidebar-toggler">
+            </div>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN HORIZANTAL MENU -->
+        <div class="hor-menu hor-menu-light hidden-sm hidden-xs">
+            <ul class="nav navbar-nav">
+                <li class="classic-menu-dropdown active btn-circle">
+                    <a href="@Url.Action("Index", "Home")">
+                        <i class="fa fa-home"></i> Home <span class="selected">
+                        </span>
+                    </a>
+                </li>
+                @*                validation module*@
+
+
+            </ul>
+        </div>
+        <!-- END HORIZANTAL MENU -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+        </a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN TOP NAVIGATION MENU -->
+        <div class="top-menu">
+            <ul class="nav navbar-nav pull-right">
+                <!-- BEGIN NOTIFICATION DROPDOWN -->
+                <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                        <i class="icon-bell"></i>
+                        <span class="badge badge-default">
+                            7
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <p>
+                                You have 14 new notifications
+                            </p>
+                        </li>
+                        <li>
+                            <ul class="dropdown-menu-list scroller" style="height: 250px;">
+                                <li>
+                                    <a href="#">
+                                        <span class="label label-sm label-icon label-success">
+                                            <i class="fa fa-plus"></i>
+                                        </span>
+                                        New user registered. <span class="time">
+                                            Just now
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="label label-sm label-icon label-danger">
+                                            <i class="fa fa-bolt"></i>
+                                        </span>
+                                        Server #12 overloaded. <span class="time">
+                                            15 mins
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="label label-sm label-icon label-warning">
+                                            <i class="fa fa-bell-o"></i>
+                                        </span>
+                                        Server #2 not responding. <span class="time">
+                                            22 mins
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="external">
+                            <a href="#">
+                                See all notifications <i class="m-icon-swapright"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- END NOTIFICATION DROPDOWN -->
+                <!-- BEGIN INBOX DROPDOWN -->
+                <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                        <i class="icon-envelope-open"></i>
+                        <span class="badge badge-default">
+                            4
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <p>
+                                You have 12 new messages
+                            </p>
+                        </li>
+                        <li>
+                            <ul class="dropdown-menu-list scroller" style="height: 250px;">
+                                <li>
+                                    <a href="inbox.html?a=view">
+                                        <span class="photo">
+                                            <img src="~/assets/admin/layout4/img/avatar2.jpg" alt="" />
+                                        </span>
+                                        <span class="subject">
+                                            <span class="from">
+                                                Lisa Wong
+                                            </span>
+                                            <span class="time">
+                                                Just Now
+                                            </span>
+                                        </span>
+                                        <span class="message">
+                                            Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="inbox.html?a=view">
+                                        <span class="photo">
+                                            <img src="~/assets/admin/layout4/img/avatar3.jpg" alt="" />
+                                        </span>
+                                        <span class="subject">
+                                            <span class="from">
+                                                Richard Doe
+                                            </span>
+                                            <span class="time">
+                                                16 mins
+                                            </span>
+                                        </span>
+                                        <span class="message">
+                                            Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh...
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="external">
+                            <a href="inbox.html">
+                                See all messages <i class="m-icon-swapright"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- END INBOX DROPDOWN -->
+                @Html.Partial("_LoginPartial")
+                <!-- BEGIN USER LOGIN DROPDOWN -->
+            </ul>
+        </div>
+        <!-- END TOP NAVIGATION MENU -->
+    </div>
+    <!-- END HEADER -->
+    <div class="clearfix">
+    </div>
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <!-- BEGIN SIDEBAR -->
+        <div class="page-sidebar-wrapper">
+            <div class="page-sidebar navbar-collapse collapse">
+                <!-- BEGIN SIDEBAR MENU1 -->
+                <ul id="sidebar" class="page-sidebar-menu hidden-sm hidden-xs" data-auto-scroll="true" data-slide-speed="200">
+                    
+                </ul>
+                <!-- END SIDEBAR MENU1 -->
+                <!-- BEGIN RESPONSIVE MENU FOR HORIZONTAL & SIDEBAR MENU -->
+                <ul class="page-sidebar-menu visible-sm visible-xs" data-slide-speed="200" data-auto-scroll="true">
+                    <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+                    <!-- DOC: This is mobile version of the horizontal menu. The desktop version is defined(duplicated) in the header above -->
+                    <li class="sidebar-search-wrapper">
+                        <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                        <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
+                        <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
+                        <form class="sidebar-search sidebar-search-bordered" action="extra_search.html" method="POST">
+                            <a href="javascript:;" class="remove">
+                                <i class="icon-close"></i>
+                            </a>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <button class="btn submit"><i class="icon-magnifier"></i></button>
+                                </span>
+                            </div>
+                        </form>
+                        <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                    </li>
+                    <li class="start active open">
+                        <a href="javascript:;">
+                            <i class="fa fa-hospital-o"></i>
+                            <span class="title">
+                                Office
+                            </span>
+                            <span class="arrow">
+                            </span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="@Url.RouteUrl("Master_default", new {controller = "Member", action = "Index"})">
+                                    <i class="fa fa-chevron-right"></i>
+                                    Member
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.RouteUrl("Master_default", new {controller = "MemberType", action = "Index"})">
+                                    <i class="fa fa-chevron-right"></i>
+                                    Member Type
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.RouteUrl("Master_default", new {controller = "StatusMember", action = "Index"})">
+                                    <i class="fa fa-chevron-right"></i>
+                                    Status Member
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.RouteUrl("Master_default", new {controller = "LocFitnessCenter", action = "Index"})">
+                                    <i class="fa fa-chevron-right"></i>
+                                    Lokasi
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.RouteUrl("Master_default", new {controller = "Posisi", action = "Index"})">
+                                    <i class="fa fa-chevron-right"></i>
+                                    Posisi
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.RouteUrl("Master_default", new {controller = "MemberState", action = "Index"})">
+                                    <i class="fa fa-chevron-right"></i>
+                                    Member State
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.RouteUrl("Master_default", new {controller = "SalesAction", action = "Index"})">
+                                    <i class="fa fa-chevron-right"></i>
+                                    Sales Action
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.RouteUrl("Master_default", new {controller = "UserBackOffice", action = "Index"})">
+                                    <i class="fa fa-chevron-right"></i>
+                                    User Back Office
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.RouteUrl("Master_default", new {controller = "ActionPt", action = "Index"})">
+                                    <i class="fa fa-chevron-right"></i>
+                                    Action PT
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.RouteUrl("Master_default", new {controller = "PaketPT", action = "Index"})">
+                                    <i class="fa fa-chevron-right"></i>
+                                    Paket PT
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.RouteUrl("Master_default", new {controller = "Kelas", action = "Index"})">
+                                    <i class="fa fa-chevron-right"></i>
+                                    Kelas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.RouteUrl("Master_default", new {controller = "Bank", action = "Index"})">
+                                    <i class="fa fa-chevron-right"></i>
+                                    Bank
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.RouteUrl("Master_default", new {controller = "JenisKartu", action = "Index"})">
+                                    <i class="fa fa-chevron-right"></i>
+                                    Jenis Kartu
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span class="title">
+                                Registrasi
+                            </span>
+                            <span class="arrow">
+                            </span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="@Url.RouteUrl("Registrasi_default", new {controller = "CalonMember", action = "Index"})">
+                                    <i class="fa fa-chevron-right"></i>
+                                    Registrasi CM
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.RouteUrl("Registrasi_default", new {controller = "Membership", action = "Index"})">
+                                    <i class="fa fa-chevron-right"></i>
+                                    Registrasi Member
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">
+                            <i class="fa fa-bell"></i>
+                            <span class="title">
+                                Aktifitas
+                            </span>
+                            <span class="arrow">
+                            </span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="@Url.RouteUrl("Activity_default", new {controller = "CheckInOut", action = "Index"})">
+                                    <i class="fa fa-chevron-right"></i>
+                                    Check In / Out
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- END RESPONSIVE MENU FOR HORIZONTAL & SIDEBAR MENU -->
+            </div>
+        </div>
+        <!-- END SIDEBAR -->
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                @RenderBody()
+            </div>
+        </div>
+        <!-- END CONTENT -->
+    </div>
+    <!-- END CONTAINER -->
+    <!-- BEGIN FOOTER -->
+    <div class="page-footer">
+        <div class="page-footer-inner">
+            2014 &copy; Metronic by keenthemes.
+        </div>
+        <div class="scroll-to-top">
+            <i class="icon-arrow-up"></i>
+        </div>
+    </div>
+    <!-- END FOOTER -->
+    <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <!-- BEGIN CORE PLUGINS -->
+    @Scripts.Render("~/jquery/script")
+    @Scripts.Render("~/bootstrap/script")
+    @Scripts.Render("~/core/script")
+    @Scripts.Render("~/level/script")
+    @Scripts.Render("~/init/script")
+
+    @RenderSection("scripts", false)
+
+    @*<input type="button" id="texttest" />*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var menuLoaded = false;
+            var controller = '';
+            var action = '';
+            var area = '';
+            var url = '';
+
+            function loadSidebar() {
+                $.ajax({
+                    url: "@Url.RouteUrl("default", new {Controller = "Menu", Action = "SideBar"})",
+                    data: {
+                        controller: controller,
+                        action: action,
+                        url: url,
+                        area: area
+                    },
+                    type: "POST",
+                    success: function (response, status, xhr) {
+                        var nvContainer = $("#sidebar");
+                        nvContainer.html(response);
+                        menuLoaded = true;
+                    },
+                    error: function (xmlHttpRequest, textStatus, errorThrown) {
+                        var nvContainer = $("#sidebar");
+                        nvContainer.html(errorThrown);
+                    }
+                });
+            };
+
+
+            function loadTopBar(activeMenu) {
+                $.ajax({
+                    url: "@Url.RouteUrl("default", new {Controller = "Menu", Action = "TopBar"})",
+                    data: {
+                        menu: activeMenu,
+                        controller: controller
+                    },
+                    type: "GET",
+                    success: function (response, status, xhr) {
+                        var nvContainer = $("#topbar");
+                        nvContainer.html(response);
+                        menuLoaded = true;
+                        var top = $('#topbar .active').text();
+                    },
+                    error: function (xmlHttpRequest, textStatus, errorThrown) {
+                        var nvContainer = $(".navcontainer");
+                        nvContainer.html(errorThrown);
+                    }
+                });
+            }
+
+            $(window).load(function () {
+                controller = '@ViewContext.RouteData.Values["controller"]';
+                action = '@ViewContext.RouteData.Values["action"]';
+                url = '@Request.Url.PathAndQuery';
+
+                loadTopBar(controller);
+                loadSidebar();
+
+            });
+        });
+    </script>
+</body>
+</html>

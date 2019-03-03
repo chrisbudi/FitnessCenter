@@ -1,0 +1,5 @@
+C:\[+]Project\Fitness\FitnessCenter\FitnessCenter\ResourceData.Data\bin\Debug\ResourceData.Data.dll
+C:\[+]Project\Fitness\FitnessCenter\FitnessCenter\ResourceData.Data\bin\Debug\ResourceData.Data.pdb
+C:\[+]Project\Fitness\FitnessCenter\FitnessCenter\ResourceData.Data\obj\Debug\ResourceData.Data.csprojResolveAssemblyReference.cache
+C:\[+]Project\Fitness\FitnessCenter\FitnessCenter\ResourceData.Data\obj\Debug\ResourceData.Data.dll
+C:\[+]Project\Fitness\FitnessCenter\FitnessCenter\ResourceData.Data\obj\Debug\ResourceData.Data.pdb

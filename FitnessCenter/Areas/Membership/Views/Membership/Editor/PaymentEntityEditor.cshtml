@@ -1,0 +1,38 @@
+﻿@using Services.Infrastructure
+@model ViewModel.Registrasi.Membership.ViewModelMembershipPayment
+
+<tr>
+    @using (Html.BeginCollectionItem("Payments"))
+    {
+        <td style="width: 20%" title="MemberID">
+            @Model.AgreementID
+            @Html.HiddenFor(m => m.AgreementID, new { @class = "paymentagreementid" })
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.PNama, new { @class = "form-control paymentPNama", @readonly = true })
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.TotalMonth, new { @class = "form-control text-right totalMonth" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.TotalMonth)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.Totalpayment, new { @class = "form-control text-right auto paymentpaymentamount", @readonly = true })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.Totalpayment)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.Note, new { @class = "form-control" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.Note)
+            </div>
+        </td>
+        <td style="width: 3%">
+            <a href="javascript:;" class="btnPaymentList">
+                <i class="fa fa-edit fa-2x font-blue-soft"></i>
+            </a>
+        </td>
+    }
+</tr>

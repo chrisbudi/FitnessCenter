@@ -1,0 +1,160 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessCenter", "FitnessCenter\FitnessCenter.csproj", "{48E6274C-7BFB-49BC-8EDF-DAF5C70DA9E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6C5AC1D2-6195-41B7-AC71-D068B8CBCB0C}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. DataLayer", "4. DataLayer", "{454F3FE4-BFC3-4BF7-A3D9-08A42F2AEB6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data Objects", "Data Objects\Data Objects.csproj", "{00CA8443-07ED-4263-8E2D-79B02BD800C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Presentation", "1. Presentation", "{45F138F8-79A4-47E4-8D89-BF54A2CDC695}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Service Layer", "3. Service Layer", "{29FE9F3B-BCC8-4755-B02D-334DB933BF78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Business Layer", "2. Business Layer", "{1267769E-699F-431F-9248-2E5BA0D66506}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{DF17BB3E-0A05-4D59-8402-30D928CDBA6A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C8137B8D-0523-4F22-9C72-BCB46115287A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption", "Encription\Encryption.csproj", "{A603B80A-2EF3-4C6F-8F60-64C42018C909}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log", "Log\Log.csproj", "{B941FE42-D113-46FF-B6E5-15BACC16B4CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transaction", "Transaction\Transaction.csproj", "{C3C692B9-A196-4F83-9A0F-D85FECF70C59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sql Server", "Sql Server", "{CF83DC96-ACEF-4D49-9346-36B795637C09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data Scheme", "EntityScheme\Data Scheme.csproj", "{CA4299CF-0036-4D18-846A-45945C8F4E0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{6D7B7247-F04F-482B-A834-45ABA167A38B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Service\Services.csproj", "{70F690E6-6146-4471-9CF3-DAD3FB74E822}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityModel", "IdentityModel\IdentityModel.csproj", "{74DB2F1B-D1DF-4A4A-A8EA-D2ECDF52A17D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessService", "DataAccessService\DataAccessService.csproj", "{C2295650-5AD8-4DD0-B578-463CBC5A9680}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessResource", "ResourceData.Data\DataAccessResource.csproj", "{34DCD8F6-2B3B-40F5-813C-D219E7947454}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data Validator", "Data Validator\Data Validator.csproj", "{7F2DB691-F6AA-4704-A065-0E1FE0F0A8CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48E6274C-7BFB-49BC-8EDF-DAF5C70DA9E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48E6274C-7BFB-49BC-8EDF-DAF5C70DA9E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48E6274C-7BFB-49BC-8EDF-DAF5C70DA9E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48E6274C-7BFB-49BC-8EDF-DAF5C70DA9E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00CA8443-07ED-4263-8E2D-79B02BD800C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00CA8443-07ED-4263-8E2D-79B02BD800C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00CA8443-07ED-4263-8E2D-79B02BD800C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00CA8443-07ED-4263-8E2D-79B02BD800C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A603B80A-2EF3-4C6F-8F60-64C42018C909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A603B80A-2EF3-4C6F-8F60-64C42018C909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A603B80A-2EF3-4C6F-8F60-64C42018C909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A603B80A-2EF3-4C6F-8F60-64C42018C909}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B941FE42-D113-46FF-B6E5-15BACC16B4CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B941FE42-D113-46FF-B6E5-15BACC16B4CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B941FE42-D113-46FF-B6E5-15BACC16B4CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B941FE42-D113-46FF-B6E5-15BACC16B4CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3C692B9-A196-4F83-9A0F-D85FECF70C59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3C692B9-A196-4F83-9A0F-D85FECF70C59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3C692B9-A196-4F83-9A0F-D85FECF70C59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3C692B9-A196-4F83-9A0F-D85FECF70C59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA4299CF-0036-4D18-846A-45945C8F4E0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA4299CF-0036-4D18-846A-45945C8F4E0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA4299CF-0036-4D18-846A-45945C8F4E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA4299CF-0036-4D18-846A-45945C8F4E0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D7B7247-F04F-482B-A834-45ABA167A38B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D7B7247-F04F-482B-A834-45ABA167A38B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D7B7247-F04F-482B-A834-45ABA167A38B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D7B7247-F04F-482B-A834-45ABA167A38B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70F690E6-6146-4471-9CF3-DAD3FB74E822}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70F690E6-6146-4471-9CF3-DAD3FB74E822}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70F690E6-6146-4471-9CF3-DAD3FB74E822}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70F690E6-6146-4471-9CF3-DAD3FB74E822}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74DB2F1B-D1DF-4A4A-A8EA-D2ECDF52A17D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74DB2F1B-D1DF-4A4A-A8EA-D2ECDF52A17D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74DB2F1B-D1DF-4A4A-A8EA-D2ECDF52A17D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74DB2F1B-D1DF-4A4A-A8EA-D2ECDF52A17D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2295650-5AD8-4DD0-B578-463CBC5A9680}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2295650-5AD8-4DD0-B578-463CBC5A9680}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2295650-5AD8-4DD0-B578-463CBC5A9680}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2295650-5AD8-4DD0-B578-463CBC5A9680}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34DCD8F6-2B3B-40F5-813C-D219E7947454}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34DCD8F6-2B3B-40F5-813C-D219E7947454}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34DCD8F6-2B3B-40F5-813C-D219E7947454}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34DCD8F6-2B3B-40F5-813C-D219E7947454}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F2DB691-F6AA-4704-A065-0E1FE0F0A8CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F2DB691-F6AA-4704-A065-0E1FE0F0A8CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F2DB691-F6AA-4704-A065-0E1FE0F0A8CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F2DB691-F6AA-4704-A065-0E1FE0F0A8CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{48E6274C-7BFB-49BC-8EDF-DAF5C70DA9E7} = {45F138F8-79A4-47E4-8D89-BF54A2CDC695}
+		{00CA8443-07ED-4263-8E2D-79B02BD800C5} = {454F3FE4-BFC3-4BF7-A3D9-08A42F2AEB6B}
+		{A603B80A-2EF3-4C6F-8F60-64C42018C909} = {DF17BB3E-0A05-4D59-8402-30D928CDBA6A}
+		{B941FE42-D113-46FF-B6E5-15BACC16B4CF} = {DF17BB3E-0A05-4D59-8402-30D928CDBA6A}
+		{C3C692B9-A196-4F83-9A0F-D85FECF70C59} = {DF17BB3E-0A05-4D59-8402-30D928CDBA6A}
+		{CF83DC96-ACEF-4D49-9346-36B795637C09} = {C8137B8D-0523-4F22-9C72-BCB46115287A}
+		{CA4299CF-0036-4D18-846A-45945C8F4E0C} = {454F3FE4-BFC3-4BF7-A3D9-08A42F2AEB6B}
+		{6D7B7247-F04F-482B-A834-45ABA167A38B} = {1267769E-699F-431F-9248-2E5BA0D66506}
+		{70F690E6-6146-4471-9CF3-DAD3FB74E822} = {29FE9F3B-BCC8-4755-B02D-334DB933BF78}
+		{74DB2F1B-D1DF-4A4A-A8EA-D2ECDF52A17D} = {454F3FE4-BFC3-4BF7-A3D9-08A42F2AEB6B}
+		{C2295650-5AD8-4DD0-B578-463CBC5A9680} = {1267769E-699F-431F-9248-2E5BA0D66506}
+		{34DCD8F6-2B3B-40F5-813C-D219E7947454} = {1267769E-699F-431F-9248-2E5BA0D66506}
+		{7F2DB691-F6AA-4704-A065-0E1FE0F0A8CC} = {29FE9F3B-BCC8-4755-B02D-334DB933BF78}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://cloudsapp.visualstudio.com/
+		SccProjectUniqueName0 = Service\\Services.csproj
+		SccProjectTopLevelParentUniqueName0 = FitnessCenter.sln
+		SccProjectName0 = Service
+		SccAuxPath0 = https://cloudsapp.visualstudio.com
+		SccLocalPath0 = Service
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = IdentityModel\\IdentityModel.csproj
+		SccProjectTopLevelParentUniqueName1 = FitnessCenter.sln
+		SccProjectName1 = IdentityModel
+		SccAuxPath1 = https://cloudsapp.visualstudio.com
+		SccLocalPath1 = IdentityModel
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName2 = ViewModel\\ViewModel.csproj
+		SccProjectTopLevelParentUniqueName2 = FitnessCenter.sln
+		SccProjectName2 = ViewModel
+		SccAuxPath2 = https://cloudsapp.visualstudio.com
+		SccLocalPath2 = ViewModel
+		SccProvider2 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName3 = DataAccessService\\DataAccessService.csproj
+		SccProjectTopLevelParentUniqueName3 = FitnessCenter.sln
+		SccProjectName3 = DataAccessService
+		SccAuxPath3 = https://cloudsapp.visualstudio.com
+		SccLocalPath3 = DataAccessService
+		SccProvider3 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName4 = FitnessCenter\\FitnessCenter.csproj
+		SccProjectTopLevelParentUniqueName4 = FitnessCenter.sln
+		SccProjectName4 = FitnessCenter
+		SccAuxPath4 = https://cloudsapp.visualstudio.com
+		SccLocalPath4 = FitnessCenter
+		SccProvider4 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+EndGlobal

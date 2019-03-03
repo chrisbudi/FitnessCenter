@@ -1,0 +1,371 @@
+﻿
+@{
+    ViewBag.Title = "Pasien";
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="index.html">Home</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="#">Form Stuff</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="#">Form Controls</a>
+        </li>
+    </ul>
+    <div class="page-toolbar">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-fit-height grey-salt dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
+                Actions <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="#">Action</a>
+                </li>
+                <li>
+                    <a href="#">Another action</a>
+                </li>
+                <li>
+                    <a href="#">Something else here</a>
+                </li>
+                <li class="divider">
+                </li>
+                <li>
+                    <a href="#">Separated link</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN FORM PORTLET-->
+        <div class="portlet box yellow ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-pencil"></i> Edit Pasien
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" role="form">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label bold">BIODATA PASIEN</label>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">No. RM</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="No. Rekam Medis" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Nama</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Nama Pasien">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Tempat Lahir</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="Tempat Lahir">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Tanggal Lahir</label>
+                            <div class="col-md-3">
+                                <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date-start-date="+0d">
+                                    <input type="text" class="form-control" readonly>
+                                    <span class="input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                                <!-- /input-group -->
+                                <span class="help-block">
+                                    Select date
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Jenis Kelamin</label>
+                            <div class="col-md-3">
+                                <select class="form-control">
+                                    <option>Laki-laki</option>
+                                    <option>Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Agama</label>
+                            <div class="col-md-3">
+                                <select class="form-control">
+                                    <option>Islam</option>
+                                    <option>Kristen</option>
+                                    <option>Katholik</option>
+                                    <option>Hindu</option>
+                                    <option>Budha</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Alamat</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" placeholder="Alasan Pasien">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Kota</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="Kota">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">No. Telp</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="No. Telp">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Kode Pos</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="Kode Pos">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Warga Negara</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="Warga Negara">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Identitas</label>
+                            <div class="col-md-3">
+                                <select class="form-control">
+                                    <option>KTP</option>
+                                    <option>SIM</option>
+                                    <option>Paspor</option>
+                                    <option>Lain-lain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">No. Identitas</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="No. Identitas">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Status</label>
+                            <div class="col-md-3">
+                                <select class="form-control">
+                                    <option>Menikah</option>
+                                    <option>Belum Menikah</option>
+                                    <option>Janda / Duda</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Pendidikan Terakhir</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="Pendidikan Terakhir">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Alergi</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="Alergi">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Catatan Khusus</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="Catatan Khusus">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Golongan Darah</label>
+                            <div class="col-md-3">
+                                <select class="form-control">
+                                    <option>A</option>
+                                    <option>B</option>
+                                    <option>AB</option>
+                                    <option>O</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Rhesus</label>
+                            <div class="col-md-3">
+                                <select class="form-control">
+                                    <option>Negatif</option>
+                                    <option>Positif</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Tanggal Daftar</label>
+                            <div class="col-md-3">
+                                <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date-start-date="+0d">
+                                    <input type="text" class="form-control" readonly>
+                                    <span class="input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                                <!-- /input-group -->
+                                <span class="help-block">
+                                    Select date
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Jenis Pasien</label>
+                            <div class="col-md-3">
+                                <select class="form-control">
+                                    <option>Umum</option>
+                                    <option>Rekanan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Rekanan</label>
+                            <div class="col-md-5">
+                                <select class="form-control input-large select2me" data-placeholder="Select...">
+                                    <option value=""></option>
+                                    <option value="AL">Alabama</option>
+                                    <option value="WY">Wyoming</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-md-3 control-label bold">INFO KELUARGA PASIEN</label>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Nama Keluarga</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Nama Keluarga">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Ayah</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="Ayah">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Ibu</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="Ibu">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Nama Pasangan</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Nama Pasangan">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Nama Penanggung</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Nama Penanggung">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Telp. Penanggung</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="Telp. Penanggung">
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-md-3 control-label bold">INFO PEKERJAAN PASIEN</label>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Pekerjaan</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="Pekerjaan">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Alamat</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="Alamat Pekerjaan">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">No. Telp</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="No. Telp">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Status Paket BHP</label>
+                            <div class="col-md-9">
+                                <input type="checkbox" checked class="make-switch switch-large" data-label-icon="fa fa-fullscreen" data-on-text="<i class='fa fa-check'></i>" data-off-color="danger" data-off-text="<i class='fa fa-times'></i>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-9">
+                                <button type="submit" class="btn btn-circle green bold"><i class="fa fa-check"></i> Simpan</button>
+                                <button type="button" class="btn btn-circle red bold"><i class="fa fa-times"></i> Batal</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- END  FORM PORTLET-->
+        <!-- BEGIN FORM PORTLET-->
+        <div class="portlet box blue ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-align-left"></i> Detail Pasien
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" role="form">
+                    <div class="form-body">
+
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- END  FORM PORTLET-->
+    </div>
+</div>
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    <script>
+        $(function() {
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+            ComponentsPickers.init();
+            ComponentsDropdowns.init();
+        });
+    </script>
+}

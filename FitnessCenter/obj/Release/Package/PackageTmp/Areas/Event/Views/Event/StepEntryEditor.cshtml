@@ -1,0 +1,29 @@
+﻿@using Services.Infrastructure
+@model DataObjects.Entities.tEventStep
+<tr>
+    @using (Html.BeginCollectionItem("tEventSteps"))
+    {
+        <td>
+            _id_
+        </td>
+        <td class="text-center">
+            <a href="javascript:;" class="btn btn-default btnScore" data-id="_id_">Add Score</a>
+        </td>
+        <td>
+            @Html.EditorFor(m => m.Step, new {htmlAttributes = new {@class = "form-control Step"}})
+            <span class="text-danger">@Html.ValidationMessageFor(model => model.Step)</span>
+        </td>
+
+        <td>
+            @Html.EditorFor(model => model.PersonCount, new { htmlAttributes = new { @class = "form-control Step" }})
+            <span class="text-danger">@Html.ValidationMessageFor(model => model.PersonCount)</span>
+        </td>
+        <td>
+            @Html.TextAreaFor(model => model.StepDetail, new {@class = "form-control"})
+            <span class="text-danger">@Html.ValidationMessageFor(model => model.Step)</span>
+        </td>
+        <td class="text-center">
+            <a href="javascript:;" class="btn btn-default deleteStepDetailRow">Delete</a>
+        </td>
+    }
+</tr>

@@ -1,0 +1,437 @@
+﻿@model ViewModel.Membership.FreezeCancel.MemberManagementModel
+
+@{
+    ViewBag.Title = "Freeze And Cancel Membership";
+}
+
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>
+            Membership <small>Management</small>
+        </h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+
+<div class="portlet light">
+    <div class="portlet-body">
+        <div class=" portlet-tabs">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    @if (Model.Membership.tStatusMember.STKet == "Freeze")
+                    {
+                        <a aria-expanded="true" href="#portletFreeze" data-toggle="tab">
+                            Freeze
+                        </a>
+                    }
+                    else
+                    {
+                        <a aria-expanded="false" href="#portletCancel" data-toggle="tab">
+                            Cancel
+                        </a>
+                    }
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="portletFreeze">
+                    @using (Html.BeginForm("FreezeAndCancelEdit", "MemberManagement", FormMethod.Post, new { @class = "form-horizontal form-row-seperated" }))
+                    {
+
+                        @Html.HiddenFor(m => m.StatusAction, new { Value = "Freeze" })
+                        @Html.HiddenFor(m => m.Membership.AgreementID)
+                        @Html.HiddenFor(m => m.Membership.trMembershipID)
+                        @Html.HiddenFor(m => m.Membership.tMember.tPerson.PersonID)
+
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Member ID:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.MemberID, new { @class = "form-control", @readonly = true })
+                                </div>
+                                <span class="text-danger">
+                                    @Html.ValidationMessageFor(m => m.Membership.MemberID)
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Date Time Now:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.DateTimeNow, new { @class = "form-control", @readonly = true })
+                                </div>
+                                <span class="text-danger">
+                                    @Html.ValidationMessageFor(m => m.DateTimeNow)
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Nama:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.tMember.tPerson.PNama, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Member Name
+                                    </span>
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PNama)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Identitas:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.tMember.tPerson.PIdentitas, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Member Identitas
+                                    </span>
+
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PIdentitas)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Alamat:
+                                </label>
+                                <div class="col-md-6">
+                                    @Html.TextAreaFor(m => m.Membership.tMember.tPerson.PAlamat, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Member Address
+                                    </span>
+
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PAlamat)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    HP:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.tMember.tPerson.PHP1, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Member Hand Phone
+                                    </span>
+
+
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PHP1)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Phone:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.tMember.tPerson.PTelp, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Member Phone
+                                    </span>
+
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PTelp)
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Email:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.tMember.tPerson.PEmail, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Member Email
+                                    </span>
+
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PEmail)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="line"></div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Alasan:<span class="required">
+                                        *
+                                    </span>
+                                </label>
+                                <div class="col-md-6">
+                                    @Html.TextAreaFor(m => m.Note, new { @class = "form-control" })
+                                    <span class="help-block">
+                                        Alasan Freeze
+                                    </span>
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Note)
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Month:<span class="required">
+                                        *
+                                    </span>
+                                </label>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(m => m.Membership.TotalMonth, new { @class = "form-control", maxlength = 3, @readonly = true })
+                                    <span id="MemberHelp" class="help-block">
+                                        Max total month 10
+                                    </span>
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.TotalMonth)
+                                    </span>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Date Freeze:
+                                </label>
+                                <div class="col-md-10">
+                                    <div class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+                                        @Html.TextBoxFor(m => m.StartDate, new { @readonly = true, @class = "form-control disabled" })
+
+                                        <span class="input-group-addon">
+                                            to
+                                        </span>
+                                        @Html.TextBoxFor(m => m.EndDate, new { @readonly = true, @class = "form-control disabled" })
+
+                                    </div>
+                                    <span class="help-block">
+                                        availability daterange.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Price:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.FreezePrice, new { @class = "disabled text-right form-control auto", @readonly = true })
+                                </div>
+                                <span class="text-danger">
+                                    @Html.ValidationMessageFor(m => m.FreezePrice)
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
+                                    <a href="@Url.Action("Index")" class="btn default">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="tab-pane" id="portletCancel">
+                    @using (Html.BeginForm("FreezeAndCancelProcess", "FreezeCancel", FormMethod.Post, new { @class = "form-horizontal form-row-seperated" }))
+                    {
+                        @Html.HiddenFor(m => m.StatusAction, new { Value = "Cancel" })
+                        @Html.HiddenFor(m => m.Membership.AgreementID)
+                        @Html.HiddenFor(m => m.Membership.trMembershipID)
+                        @Html.HiddenFor(m => m.Membership.tMember.PersonID)
+
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Member ID:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.MemberID, new { @class = "form-control", @readonly = true })
+                                </div>
+                                <span class="text-danger">
+                                    @Html.ValidationMessageFor(m => m.Membership.MemberID)
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Date Time Now:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.DateTimeNow, new { @class = "form-control", @readonly = true })
+                                </div>
+                                <span class="text-danger">
+                                    @Html.ValidationMessageFor(m => m.DateTimeNow)
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Nama:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.tMember.tPerson.PNama, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Member Name
+                                    </span>
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PNama)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Identitas:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.tMember.tPerson.PIdentitas, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Member Identitas
+                                    </span>
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PIdentitas)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Alamat:
+                                </label>
+                                <div class="col-md-6">
+                                    @Html.TextAreaFor(m => m.Membership.tMember.tPerson.PAlamat, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Member Address
+                                    </span>
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PAlamat)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    HP:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.tMember.tPerson.PHP1, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Member Hand Phone
+                                    </span>
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PHP1)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Phone:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.tMember.tPerson.PTelp, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Member Phone
+                                    </span>
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PTelp)
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Email:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.tMember.tPerson.PEmail, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Member Email
+                                    </span>
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PEmail)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="line"></div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Alasan:<span class="required">
+                                        *
+                                    </span>
+                                </label>
+                                <div class="col-md-6">
+                                    @Html.TextAreaFor(m => m.Note, new { @class = "form-control" })
+                                    <span class="help-block">
+                                        Alasan Cancel
+                                    </span>
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Note)
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Price:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.TransferPrice, new { @class = "disabled form-control text-right auto", @readonly = true })
+                                </div>
+                                <span class="text-danger">
+                                    @Html.ValidationMessageFor(m => m.TransferPrice)
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
+                                    <a href="@Url.Action("Index")" class="btn default">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundle/script/jqueryval")
+    <script>
+
+        $(function () {
+
+
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+
+            var spinn = $('.spinner-input');
+
+            $(window).load(function () {
+                //                spinn.TouchSpin({
+                //                    min: 1,
+                //                    max: 10,
+                //                    mousewheel: true,
+                //                    stepinterval: 50,
+                //                    maxboostedstep: 10000000
+                //                });
+            });
+
+            $(spinn).on('change', function () {
+                var dat = new Date();
+                var totalMonth = $('#TotalMonth').val();
+                $('#EndDate').val(dat.addDays(totalMonth * 30).format("dd/mm/yyyy"));
+            });
+
+        });
+    </script>
+}

@@ -1,0 +1,325 @@
+﻿@model ViewModel.Master.EditVmBackOffice
+@{
+    ViewBag.Title = "Register";
+}
+
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Master <small>User Back Office</small></h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="portlet light">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs font-green-sharp"></i>
+                <span class="caption-subject font-green-sharp bold uppercase">User </span>
+                <span class="caption-helper">Back Office</span>
+            </div>
+        </div>
+        <div class="portlet-body form">
+            @using (Html.BeginForm("EditUser", "UserBackOffice", FormMethod.Post, new { @class = "form-horizontal", role = "form", area = "Office" }))
+            {
+                @Html.HiddenFor(m => m.Person.Id)
+                @Html.HiddenFor(m => m.Person.PersonID)
+                @Html.HiddenFor(m => m.UserBackOffice.BOIDNO)
+                @Html.HiddenFor(m => m.UserBackOffice.PersonBOID)
+
+                <div class="form-body">
+                    <h4>User Info</h4>
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Person.PNama, new { @class = "col-md-3 control-label" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Person.PNama, new { @class = "form-control", placeholder = "Nama User" })
+                                    @Html.ValidationMessageFor(m => m.Person.PNama)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.UserBackOffice.tPosisi.PNamaPosisi, new {@class = "col-md-3 control-label"})
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.UserBackOffice.PosisiID, "", new {@class = "form-control input-large"})
+                                    @Html.ValidationMessageFor(m => m.UserBackOffice.PosisiID)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Background</label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.UserBackOffice.Background, "", new { @class = "form-control input-large colorpicker-background" })
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.UserBackOffice.Background)
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.UserBackOffice.BMulai, new { @class = "col-md-3 control-label" })
+                                <div class="col-md-4">
+                                    <div class="input-group date date-picker" data-date-format="dd/mm/yyyy" data-date-start-date="+0d">
+                                        @Html.TextBoxFor(m => m.UserBackOffice.BMulai, new { @class = "form-control", size = "18", type = "text", placeholder = "Back Office Date", @readonly = "readonly", Value = DateTime.Now.ToString("dd/MM/yyyy") })
+                                        <span class="input-group-btn">
+                                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.UserBackOffice.BMulai)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.UserBackOffice.StatusBOID, new { @class = "col-md-3 control-label" })
+                                <div class="col-md-4">
+                                    @Html.CheckBoxFor(m => m.UserBackOffice.StatusBOID, new { @class = "make-switch switch-large", @checked = "checked" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">
+                                    Select Location User
+                                </label>
+                                <div class="col-md-4">
+                                    @foreach (var item in (SelectList)ViewBag.LocationList)
+                                    {
+                                        <div>
+                                            <input type="checkbox" name="SelectedLocation" value="@item.Text" class="checkbox-inline" />
+                                            @Html.Label(item.Text, new { @class = "control-label" })
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Person.PIdentitas, new { @class = "col-md-3 control-label" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Person.PIdentitas, new { @class = "form-control input-large" })
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Person.PIdentitas)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Person.PGender, new { @class = "col-md-3 control-label" })
+                                <div class="col-md-4">
+                                    <div class="radio-list">
+                                        <label>
+                                            @Html.RadioButtonFor(m => m.Person.PGender, "M", new { data_title = "Male", @checked = "checked" })
+                                            Male
+                                        </label>
+                                        <label>
+                                            @Html.RadioButtonFor(m => m.Person.PGender, "F", new { data_title = "Female" })
+                                            Female
+                                        </label>
+                                    </div>
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Person.PGender)
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="form-section">Alamat</h4>
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Person.PPropinsi, new { @class = "col-md-3 control-label" })
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(m => m.Person.PPropinsi, new { @class = "form-control", placeholder = "Propinsi" })
+                                    @Html.ValidationMessageFor(m => m.Person.PPropinsi)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Person.PKelurahan, new { @class = "col-md-3 control-label" })
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(m => m.Person.PKelurahan, new { @class = "form-control", placeholder = "Kelurahan" })
+                                    @Html.ValidationMessageFor(m => m.Person.PKelurahan)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Person.PKota, new { @class = "col-md-3 control-label" })
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(m => m.Person.PKota, new { @class = "form-control", placeholder = "Kota" })
+                                    @Html.ValidationMessageFor(m => m.Person.PKota)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Person.PKecamatan, new { @class = "col-md-3 control-label" })
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(m => m.Person.PKecamatan, new { @class = "form-control", placeholder = "Kecamatan" })
+                                    @Html.ValidationMessageFor(m => m.Person.PKecamatan)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Person.PAlamat, new { @class = "col-md-3 control-label" })
+                                <div class="col-md-9">
+                                    @Html.TextAreaFor(m => m.Person.PAlamat, new { @class = "form-control", placeholder = "Alamat", style = "-moz-resize: none;-ms-resize: none;-o-resize: none;resize: none;" })
+                                    @Html.ValidationMessageFor(m => m.Person.PAlamat)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="form-section">Contact</h4>
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Person.PHP1, new { @class = "col-md-3 control-label" })
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(m => m.Person.PHP1, new { @class = "form-control", placeholder = "No. HP 1" })
+                                    @Html.ValidationMessageFor(m => m.Person.PHP1)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Person.PPinBB, new { @class = "col-md-3 control-label" })
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(m => m.Person.PPinBB, new { @class = "form-control", placeholder = "Pin BBM" })
+                                    @Html.ValidationMessageFor(m => m.Person.PPinBB)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Person.PEmail, new { @class = "col-md-3 control-label" })
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(m => m.Person.PEmail, new { @class = "form-control", placeholder = "Email" })
+                                    @Html.ValidationMessageFor(m => m.Person.PEmail)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Person.PHP2, new { @class = "col-md-3 control-label" })
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(m => m.Person.PHP2, new { @class = "form-control", placeholder = "No. HP 2" })
+                                    @Html.ValidationMessageFor(m => m.Person.PHP2)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Person.PTelp, new { @class = "col-md-3 control-label" })
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(m => m.Person.PTelp, new { @class = "form-control", placeholder = "No. Telp" })
+                                    @Html.ValidationMessageFor(m => m.Person.PTelp)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="form-section">Foto</h3>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.UserBackOffice.BFotoSignature, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(m => m.UserBackOffice.BFotoSignature, new { @class = "form-control", placeholder = "TTD" })
+                                @Html.ValidationMessageFor(m => m.UserBackOffice.BFotoSignature)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.UserBackOffice.BFotoKTP, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(m => m.UserBackOffice.BFotoKTP, new { @class = "form-control", placeholder = "KTP" })
+                                @Html.ValidationMessageFor(m => m.UserBackOffice.BFotoKTP)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-9">
+                            <button type="submit" class="btn btn-circle green bold"><i class="fa fa-check"></i> Simpan</button>
+                            <a href="@Url.Action("Index", "UserBackOffice")" class="btn btn-circle red bold"><i class="fa fa-times"></i> Batal</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundle/script/jqueryval")
+
+    <script>
+        $(function () {
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+            ComponentsPickers.init();
+            $('.colorpicker-background').colorpicker({
+                format: 'hex'
+            });
+
+            var locationUrl = '@Url.Action("GetLocationSource", "LocFitnessCenter", new { area = "Office" })';
+            var posisiUrl = '@Url.Action("GetPosisi", "Posisi", new {area = "Office" })';
+            var pageSize = 20;
+            $('#Location').select2(
+            {
+                placeholder: 'Select Location',
+                //Does the user have to enter any data before sending the ajax request
+                minimumInputLength: 0,
+                allowClear: true,
+                ajax: {
+                    //How long the user has to pause their typing before sending the next request
+                    quietMillis: 150,
+                    //The url of the json service
+                    url: locationUrl,
+                    dataType: 'jsonp',
+                    //Our search term and what page we are on
+                    data: function (term, page) {
+                        return {
+                            pageSize: pageSize,
+                            pageNum: page,
+                            searchTerm: term
+                        };
+                    },
+                    results: function (data, page) {
+                        //Used to determine whether or not there are more results available,
+                        //and if requests for more data should be sent in the infinite scrolling
+                        var more = (page * pageSize) < data.Total;
+                        return { results: data.Results, more: more };
+                    }
+                }
+            });
+            $('#UserBackOffice_PosisiID').select2(
+            {
+                placeholder: 'Nama Posisi',
+                //Does the user have to enter any data before sending the ajax request
+                minimumInputLength: 0,
+                allowClear: true,
+                ajax: {
+                    //How long the user has to pause their typing before sending the next request
+                    quietMillis: 150,
+                    //The url of the json service
+                    url: posisiUrl,
+                    dataType: 'jsonp',
+                    //Our search term and what page we are on
+                    data: function (term, page) {
+                        return {
+                            pageSize: pageSize,
+                            pageNum: page,
+                            searchTerm: term
+                        };
+                    },
+                    results: function (data, page) {
+                        //Used to determine whether or not there are more results available,
+                        //and if requests for more data should be sent in the infinite scrolling
+                        var more = (page * pageSize) < data.Total;
+                        return { results: data.Results, more: more };
+                    }
+                }
+            });
+            @if (Model != null)
+            {
+                if (Model.UserBackOffice.tPosisi != null)
+                {
+                    @:$('#UserBackOffice_PosisiID').select2("data", { id: "@Model.UserBackOffice.tPosisi.PosisiID", text: "@Model.UserBackOffice.tPosisi.PNamaPosisi" });
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+            }
+        });
+    </script>
+}

@@ -1,0 +1,60 @@
+﻿@using Services.Infrastructure
+@model DataObjects.Entities.trPersonalTrainer
+
+@{
+    string membershipId = ViewBag.membershipId;
+    string memberid = ViewBag.memberId;
+}
+
+<tr id="@memberid" role="row">
+    @using (Html.BeginCollectionItem(membershipId, true, memberid, "PersonalTrainers"))
+    {
+        <td title="MemberID">
+            _id_
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.trMembership.tMember.tPerson.PNama, new { @class = "form-control paymentPNama", @readonly = true })
+        </td>
+        <td>
+            @Html.EditorFor(m => m.SisaJam, new { htmlAttributes = new { @class = "form-control text-right paymenttotalMonth" } })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.SisaJam)
+            </div>
+        </td>
+        <td>
+            @Html.EditorFor(m => m.Masa, new { htmlAttributes = new { @class = "form-control text-right Masa" } })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.Masa)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.trMembership.Note, new { @class = "form-control Note" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.trMembership.Note)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.trMembership.Subtotal, new { @class = "form-control text-right auto paymentSubTotal", @readonly = true })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.trMembership.Subtotal)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.trMembership.Disc, new { @class = "form-control text-right auto paymentDisc", @readonly = true })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.trMembership.Disc)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.trMembership.Total, new { @class = "form-control text-right auto paymentTotal", @readonly = true })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.trMembership.Total)
+            </div>
+        </td>
+        <td>
+            <a href="javascript:;" class="btnPaymentList">
+                <i class="fa fa-edit fa-2x font-blue-soft"></i>
+            </a>
+        </td>
+    }
+</tr>

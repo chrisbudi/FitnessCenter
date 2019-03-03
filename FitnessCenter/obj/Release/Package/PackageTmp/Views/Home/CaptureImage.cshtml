@@ -1,0 +1,132 @@
+﻿@{
+    Layout = null;
+}
+
+<h2>Upload an image</h2>
+@using (Html.BeginForm("CaptureImage", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "avatar-upload-form", @class = "form-horizontal" }))
+{
+    <div class="form-body">
+        <h3 class="form-section"></h3>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <div class="right">
+                        <video id="video" width="400" height="350" autoplay style="border: 2px solid #646566;"></video>
+                        <div class="right">
+                            <button id="btnCapture" class="btn btn-primary">Capture</button><br />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="col-md-6">
+                    <img id="Image" width="350" height="270" />
+                </div>
+                <div class="col-md-6">
+                    <div id="preview-pane">
+                        <div class="preview-container">
+                            <img src="" class="jcrop-preview" alt="Preview" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-actions">
+        @*//memulai kodig untuk croping*@
+        <input type="button" class="btn default" id="closePOP" value="Close" />
+    </div>
+    <canvas id="canvas" width="350" height="270" style="border: 2px solid #646566; visibility: hidden;"></canvas>
+}
+<link href="~/Content/Avatar/jquery.Jcrop.css" rel="stylesheet" />
+<link href="~/Content/Avatar/site.avatar.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.Jcrop.js"></script>
+<script src="~/Scripts/site.avatar.js"></script>
+
+<script type="text/javascript">
+    var localMediaStream = null;
+    var clicked = false;
+    $("#imageToSave").attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==');
+    $(document).ready(function () {
+        StartCam();
+    });
+
+    function convertCanvasToImage(img, canvas) {
+
+    }
+
+    function StartCam() {
+        var canvas = $("#canvas"),
+            context = canvas[0].getContext("2d"),
+            video = $("#video")[0],
+            videoObj = { "video": true },
+            errHandler = function (error) {
+                console.log("Video capture error: ", error.code);
+            };
+
+        if (navigator.getUserMedia) { // Standard
+            navigator.getUserMedia(videoObj, function (stream) {
+                video.src = stream;
+                localMediaStream = stream;
+                video.play();
+            }, errHandler);
+        } else if (navigator.webkitGetUserMedia) { // WebKit-prefixed
+            navigator.webkitGetUserMedia(videoObj, function (stream) {
+                video.src = window.webkitURL.createObjectURL(stream);
+                localMediaStream = stream;
+                video.play();
+            }, errHandler);
+        }
+        else if (navigator.mozGetUserMedia) { // Firefox-prefixed
+            navigator.mozGetUserMedia(videoObj, function (stream) {
+                video.src = window.URL.createObjectURL(stream);
+                localMediaStream = stream;
+                video.play();
+            }, errHandler);
+        }
+
+        $("#btnCapture").click(function (e) {
+            clicked = true;
+            e.preventDefault();
+            $("#canvas").hide();
+            context.drawImage(video, 0, 0, 350, 270);
+            $('#Image').attr('src', canvas[0].toDataURL("image/jpeg"));
+            initAvatarCrop($("#Image"));
+            $('#preview-pane .preview-container img').attr('src', canvas[0].toDataURL("image/jpeg"));
+        });
+    }
+
+    function closeCamera() {
+
+        console.log("Detaching media stream");
+        video.pause();
+        localMediaStream.stop();
+    }
+
+    function SetImage(image) {
+        $('#empImage').attr('src', image);
+    }
+
+    //$("#closePOP").click(function () {
+    //    //closeCamera();
+    //    parent.$.colorbox.close(); return false;
+    //});
+
+    $("#closePOP").click(function () {
+        if (clicked == false) {
+            if (confirm("Do you want to close ?")) {
+                closeCamera();
+                $.colorbox.close();
+            }
+        } else {
+            saveAvatar($("#imgCapture").attr("name"));
+            closeCamera();
+            $.colorbox.close();
+        }
+
+    });
+
+</script>

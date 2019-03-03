@@ -1,0 +1,71 @@
+﻿@using Services.Infrastructure
+@model DataObjects.Entities.trMembership
+
+@{
+    string membershipId = ViewBag.membershipId;
+    string memberid = ViewBag.memberId;
+}
+
+<tr id="@memberid" role="row">
+    @using (Html.BeginCollectionItem(membershipId, true, memberid,"Memberships"))
+    {
+        <td title="MemberID">
+            _id_
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.tMember.tPerson.PNama, new { @class = "form-control paymentPNama", @readonly = true })
+        </td>
+        <td>
+           <div class="input-group date date-picker" data-date-format="dd/mm/yyyy" >@* data-date-start-date="+0d"*@
+                @Html.TextBoxFor(m => m.MSTglMulai, new { @class = "form-control paymentMSTglMulai mask-date" })
+                <span class="input-group-btn">
+                    <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.MSTglMulai)
+            </div>
+        </td>
+        <td>
+            @Html.EditorFor(m => m.TotalMonth, new { htmlAttributes = new { @class = "form-control text-right paymenttotalMonth" } })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.TotalMonth)
+            </div>
+        </td>
+        @*<td>
+            @Html.TextBoxFor(m => m.Note, new { @class = "form-control Note" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.Note)
+            </div>
+        </td>*@
+        <td>
+            @Html.TextBoxFor(m => m.Subtotal, new {@class = "form-control text-right auto paymentSubTotal", @readonly = true})
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.Subtotal)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.Admin, new { @class = "form-control text-right auto paymentAdmin", @readonly = true })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.Subtotal)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.Disc, new { @class = "form-control text-right auto paymentDisc", @readonly = true })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.Disc)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.Total, new { @class = "form-control text-right auto paymentTotal", @readonly = true })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.Total)
+            </div>
+        </td>
+        <td>
+            <a href="javascript:;" class="btnPaymentList">
+                <i class="fa fa-edit fa-2x font-blue-soft"></i>
+            </a>
+        </td>
+    }
+</tr>

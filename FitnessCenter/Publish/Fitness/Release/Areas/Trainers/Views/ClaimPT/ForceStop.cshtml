@@ -1,0 +1,86 @@
+﻿@using Services.Helpers;
+@model DataObjects.Entities.strKlaimPT
+@{
+    ViewBag.Title = "Force Stop Claim PT";
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Force Stop Claim <small>PT (Personal Trainer)</small></h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="portlet light">
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet-body form">
+                    @using (Html.BeginForm("ForceStop", "ClaimPT", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        <div class="form-body">
+                            @Html.HiddenFor(m => m.trPersonalTrainerID)
+                            @Html.HiddenFor(m => m.Void)
+                            @Html.HiddenFor(m => m.AktifitasMemberID)
+                            @Html.HiddenFor(m => m.AkhirClaim)
+                            <div class="col-md-12">
+                                <h3 class="block">Start Claim PT Information</h3>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label("Member", new { @class = "col-md-3 control-label" })
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(m => m.verifikasiMember, new { @class = "form-control", @readonly = true })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.AwalClaim, new { @class = "col-md-3 control-label" })
+                                    <div class="col-md-5">
+                                        @*<input type="text" readonly class="form-control" name="Activity.AMMulai" id="Activity_AMMulai" value="@Model.Activity.AMMulai.Value.ToString("dd-MM-yyyy hh:mm:ss")"/>*@
+                                        @Html.TextBoxFor(m => m.AwalClaim, new { @class = "form-control", @readonly = true, @Value = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss") })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.verifikasiMember, new { @class = "col-md-3 control-label" })
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(m => m.verifikasiMember, new { @class = "form-control", @readonly = true })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.verifikasiPT, new { @class = "col-md-3 control-label" })
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(m => m.verifikasiPT, new { @class = "form-control", @readonly = true })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-2 col-md-9">
+                                    <button type="submit" formmethod="post" class="btn btn-circle green bold"><i class="fa fa-check"></i> Start Claim PT</button>
+                                    <a href="@Url.Action("Index", "ClaimPT")" class="btn btn-circle red bold"><i class="fa fa-times"></i> Batal</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- END FORM PORTLET-->
+        </div>
+    </div>
+</div>
+
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    <script>
+        $(function () {
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+
+        });
+    </script>
+}

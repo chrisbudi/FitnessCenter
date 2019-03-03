@@ -1,0 +1,151 @@
+﻿@model IdentityModel.Model.LoginViewModel
+
+@{
+    Layout = null;
+    ViewBag.Title = "Log in";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Fitness Center | Login</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    @Styles.Render("~/bundle/style/mandatory")
+    @Styles.Render("~/bundle/style/loginsoft")
+    @Styles.Render("~/bundle/style/theme")
+
+    <!-- END THEME STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" />
+</head>
+@if (!Request.IsAuthenticated)
+{
+    <body class="login">
+        <!-- BEGIN LOGO -->
+        <div class="logo">
+            <a href="#">
+                <img src="../../assets/admin/layout4/img/logo-big.png" alt="" />
+            </a>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+        <div class="menu-toggler sidebar-toggler">
+        </div>
+        <!-- END SIDEBAR TOGGLER BUTTON -->
+        <!-- BEGIN LOGIN -->
+        <div class="content">
+            <h3 class="form-title">Login to your account</h3>
+            <section id="loginForm">
+                <!-- BEGIN LOGIN FORM -->
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", id="login", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                        <label class="control-label visible-ie8 visible-ie9">Username</label>
+                        <div class="input-icon">
+                            <i class="fa fa-user"></i>
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control placeholder-no-fix", type = "text", autocomplete = "off", placeholder = "Username" })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label visible-ie8 visible-ie9">Password</label>
+                        <div class="input-icon">
+                            <i class="fa fa-lock"></i>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control placeholder-no-fix password", type = "password", autocomplete = "off", placeholder = "Password" })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-actions">
+                        @*                        <label class="checkbox">*@
+                        @*                            @Html.CheckBoxFor(m => m.RememberMe, new { name = "remember", value = "1", disabled = "disabled" })*@
+                        @*                            @Html.LabelFor(m => m.RememberMe)*@
+                        @*                        </label>*@
+                        <button type="submit" class="btn green pull-right" value="Log in">
+                            Login <i class="m-icon-swapright m-icon-white"></i>
+                        </button>
+                    </div>
+                    @*<div class="login-options">
+                            <h4>Or login with</h4>
+                            <ul class="social-icons">
+                                <li>
+                                    <a class="facebook" data-original-title="facebook" href="#">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="twitter" data-original-title="Twitter" href="#">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="googleplus" data-original-title="Google Plus" href="#">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="linkedin" data-original-title="Linkedin" href="#">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>*@
+                    @*<p>
+                            @Html.ActionLink("Register a new user?", "Register")
+                        </p>
+                        <p>
+                            @Html.ActionLink("Forget your password?", "ForgotPassword")
+                        </p>*@
+                }
+                <!-- END LOGIN FORM -->
+            </section>
+        </div>
+        <!-- END LOGIN -->
+        <!-- BEGIN COPYRIGHT -->
+        <div class="copyright">
+            @DateTime.Now.Year &copy; Fitness Center
+        </div>
+        <!-- END COPYRIGHT -->
+
+        @Scripts.Render("~/bundle/script/core")
+        @Scripts.Render("~/bundle/script/init")
+        @Scripts.Render("~/bundle/script/login")
+
+        <script>
+            jQuery(document).ready(function () {
+                //Metronic.init(); // init metronic core components
+                //Layout.init();
+                Login.init();
+                Demo.init();
+
+                $('.password').keypress(function (e) {
+                    if (e.which == 13) {
+                        $('form#login').submit();
+                        return false;    //<---- Add this line
+                    }
+                });
+
+                $.backstretch([
+                    "../../assets/admin/pages/media/bg/1.jpg",
+                    "../../assets/admin/pages/media/bg/2.jpg",
+                    "../../assets/admin/pages/media/bg/3.jpg",
+                    "../../assets/admin/pages/media/bg/4.jpg"
+                ], {
+                        fade: 750, //Speed of Fade
+                        duration: 4000 //Time of image display
+                    });
+
+            });
+        </script>
+
+        <!-- END JAVASCRIPTS -->
+    </body>
+    <!-- END BODY -->
+}
+else
+{
+    <h2>Maaf anda tidak memiliki hak akses di form ini</h2>
+}
+</html>

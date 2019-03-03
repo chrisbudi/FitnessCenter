@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Master Page";
+}
+<!-- BEGIN PAGE HEADER-->
+<h3 class="page-title">
+    Master Data <small>master data Fitness Center...</small>
+</h3>
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="index.html">Home</a>
+        </li>
+    </ul>
+    <div class="page-toolbar">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-fit-height grey-salt dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
+                Actions <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="#">Action</a>
+                </li>
+                <li>
+                    <a href="#">Another action</a>
+                </li>
+                <li>
+                    <a href="#">Something else here</a>
+                </li>
+                <li class="divider">
+                </li>
+                <li>
+                    <a href="#">Separated link</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="row margin-bottom-20">
+    <div class="col-md-12">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <a href="@Url.Action("Create", "Office")" class="btn green">
+                            Add New <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="btn-group pull-right">
+                        <button class="btn dropdown-toggle" data-toggle="dropdown">
+                            Tools <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="#">
+                                    Print
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Save as PDF
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Export to Excel
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered table-hover" id="diagnosaList">
+            <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Kode Diagnosa
+                    </th>
+                    <th>
+                        Nama Diagnosa
+                    </th>
+                    <th>
+                        Nama DTD
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    <script>
+        $(function () {
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+
+            var table = $('#diagnosaList');
+            table.dataTable({
+                "serverSide": true,
+                "ajax": "@Url.Action("DiagnosaSource","Diagnosa")",
+                "processing": true
+            });
+
+        });
+    </script>
+}

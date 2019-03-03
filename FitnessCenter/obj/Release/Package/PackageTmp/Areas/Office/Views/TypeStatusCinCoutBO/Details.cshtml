@@ -1,0 +1,57 @@
+﻿@model DataObjects.Entities.tTypeStatusCinCout
+@{
+    ViewBag.Title = "Details Tipe Status Check In / Out Back Office";
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Master <small>Tipe Status Check In / Out Back Office</small></h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="portlet light">
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet-body form">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-body help-block">
+                            <div class="form-group">
+                                @Html.LabelFor(s => s.NameStatusInOut, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-5">
+                                    <p class="form-control-static bold">
+                                        : @Html.DisplayFor(s => s.NameStatusInOut)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <a href="@Url.Action("Index", "TypeStatusCinCoutBO")" class="btn btn-circle green bold"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- END  FORM PORTLET-->
+        </div>
+    </div>
+</div>
+        <!-- END PAGE CONTENT-->
+        @section Scripts {
+            <script>
+
+                $(function () {
+                    //Metronic.init(); // init metronic core components
+                    //Layout.init(); // init current layout
+                });
+
+            </script>
+        }

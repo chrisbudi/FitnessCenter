@@ -1,0 +1,228 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<DataObjects.Entities.trMembership>
+
+@section styleLevel{
+    <link href="~/assets/pages/css/search.css" rel="stylesheet" type="text/css" />
+
+}
+
+@{
+    ViewBag.Title = "Management Member";
+}
+
+<div class="note note-info" hidden>
+    <h4 class="block">Member Info</h4>
+    <p> @ViewBag.Note </p>
+</div>
+
+<!-- BEGIN PAGE HEADER-->
+
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>
+            Management <small>Member</small>
+        </h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+
+<!-- BEGIN PAGE BASE CONTENT -->
+<div class="search-page search-content-3">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="search-filter bordered">
+                <div class="search-label uppercase">Search By</div>
+                <div class="input-icon right">
+                    <i class="icon-magnifier"></i>
+                    <input type="text" class="form-control" placeholder="Filter by keywords">
+                </div>
+
+                <button class="btn green bold uppercase btn-block">Update Search Results</button>
+                <div class="search-filter-divider bg-grey-steel"></div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <button class="btn grey bold uppercase btn-block">Reset Search</button>
+                    </div>
+                    <div class="col-xs-6">
+                        <button class="btn blue bold btn-block">In </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="memberList" class="col-lg-8">
+            @Html.Partial("PartialView/MemberList", Model)
+        </div>
+    </div>
+</div>
+<!-- END PAGE BASE CONTENT -->
+@section Scripts {
+
+    @Scripts.Render("~/bundle/script/datatable")
+    @Scripts.Render("~/bundle/script/jqueryAjax")
+
+    @*---------Reporting----------*@
+    @Html.Partial("Report/ReportView")
+
+
+    <script type="text/javascript">
+        var requestUrl = '@Url.Action("Index")';
+        var memberprocessurl = '@Url.Action("MemberProcess")';
+
+        window.addEventListener("popstate",
+            function(e) {
+                $.ajax({
+                    url: location.href,
+                    success: function(result) {
+                        $('#ProductList').html(result);
+                    }
+                });
+            });
+
+        function ChangeUrl(page, url) {
+            if (typeof (history.pushState) != "undefined") {
+                var obj = { Page: page, Url: url };
+                history.pushState(null, obj.Page, obj.Url);
+            } else {
+                alert("Browser does not support HTML5.");
+            }
+        }
+
+        function search() {
+            $.ajax({
+                url: requestUrl + "?searchString=" + $('#SearchString').val(),
+                success: function(result) {
+                    console.log(result);
+                    showNote(result);
+                }
+            });
+        }
+
+        function CheckIn() {
+            console.log('check in');
+        }
+
+        function showNote(note) {
+            if (note !== '') {
+                console.log("showing note");
+            } else {
+                console.log("not showing note");
+            }
+        }
+
+        $(function() {
+            $("#btnSearch").click(function() {
+                search();
+            });
+
+            $("#SearchString").keypress(function(e) {
+                if (e.keyCode === 13) {
+                    CheckIn();
+                }
+            });
+
+            $('body').on('click', '#memberList .pagination a', function(event) {
+                event.preventDefault();
+
+                var searchString = $('#SearchString').val();
+                if (searchString == undefined || searchString == '') {
+                    searchString = '';
+                } else {
+                    searchString = '&searchString=' + searchString;
+                }
+                var url = $(this).attr('href') + searchString;
+                console.log('url', url);
+                $.ajax({
+                    url: url,
+                    success: function(result) {
+                        ChangeUrl('index', url);
+                        console.log('result')
+                        $('#memberList').html(result);
+                    }
+                });
+            });
+
+            $('body').on('click', '#memberList .table a', function(event) {
+
+                event.preventDefault();
+                var searchString = $('#SearchString').val();
+                if (searchString == undefined || searchString == '') {
+                    searchString = '';
+                } else {
+                    searchString = '&searchString=' + searchString;
+                }
+
+                var columnToSort = $(this).text();
+                var currentSortOption = getUrlVars()['sortOption'];
+
+
+                console.log('currentsortoption', currentSortOption);
+                var sort;
+                switch (currentSortOption) {
+                case "name_acs":
+                    sort = 'sortOption=name_desc';
+                    break;
+                case "name_desc":
+                    sort = 'sortOption=name_acs';
+                    break;
+                case "price_acs":
+                    sort = 'sortOption=price_desc';
+                    break;
+                case "price_desc":
+                    sort = 'sortOption=price_acs';
+                    break;
+                case "qty_acs":
+                    sort = 'sortOption=qty_desc';
+                    break;
+                case "qty_desc":
+                    sort = 'sortOption=qty_acs';
+                    break;
+                default:
+                    sort = '';
+                    break;
+                }
+
+
+                switch (columnToSort) {
+                case 'Name':
+                    if (currentSortOption != 'name_acs' && currentSortOption != 'name_desc') {
+                        sort = 'sortOption=name_acs';
+                    }
+                    break;
+                case 'Price':
+                    if (currentSortOption != 'price_acs' && currentSortOption != 'price_desc') {
+                        sort = 'sortOption=price_acs';
+                    }
+                    break;
+                case 'Qty':
+                    if (currentSortOption != 'qty_acs' && currentSortOption != 'qty_decs') {
+                        sort = 'sortOption=qty_acs';
+                    }
+                    break;
+                default:
+                    sort = '';
+                    break;
+
+                }
+
+                if (sort != '' & searchString != '') {
+                    sort = '&' + sort;
+                }
+
+                var url = requestUrl + '?' + searchString + sort;
+                console.log('url',url)
+                $.ajax({
+                    url: url,
+                    success: function(result) {
+                        ChangeUrl('index', url);
+
+                        $('#memberList').html(result);
+                    }
+                });
+            });
+        });
+
+
+    </script>
+}

@@ -1,0 +1,1049 @@
+﻿@model ViewModel.Membership.FreezeCancel.MemberManagementModel
+
+@{
+    ViewBag.Title = "Manage Membership";
+}
+
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>
+            Manage <small>Membership</small>
+        </h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+
+<div class="portlet light">
+
+
+    <div class="portlet-body">
+
+        <div class="portlet-tabs">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a aria-expanded="true" href="#portletMember" data-toggle="tab">
+                        Member
+                    </a>
+                </li>
+                <li>
+                    <a aria-expanded="true" href="#portletFreeze" data-toggle="tab">
+                        Freeze
+                    </a>
+                </li>
+                <li>
+                    <a aria-expanded="false" href="#portletTransfer" data-toggle="tab">
+                        Transfer
+                    </a>
+                </li>
+                <li>
+                    <a aria-expanded="false" href="#portletUpgrade" data-toggle="tab">
+                        Upgrade
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="portletMember">
+                    <form class="form-horizontal form-row-seperated">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Member ID:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.MemberID, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Member ID Information
+                                    </span>
+                                </div>
+
+                                <span class="text-danger">
+                                    @Html.ValidationMessageFor(m => m.Membership.MemberID)
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Member Type:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.tMember.tMemberType.MemberType, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Type Member Information
+                                    </span>
+                                </div>
+
+                                <span class="text-danger">
+                                    @Html.ValidationMessageFor(m => m.Membership.tMember.tMemberType.MemberType)
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Membership Total Month:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.TotalMonth, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Total Month membership
+                                    </span>
+                                </div>
+
+                                <span class="text-danger">
+                                    @Html.ValidationMessageFor(m => m.Membership.TotalMonth)
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Start Date:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Date Information
+                                    </span>
+                                </div>
+                                <span class="text-danger">
+                                    @Html.ValidationMessageFor(m => m.DateTimeNow)
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    End Date:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.EndDate, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        End Date Information
+                                    </span>
+                                </div>
+                                <span class="text-danger">
+                                    @Html.ValidationMessageFor(m => m.DateTimeNow)
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Nama:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.tMember.tPerson.PNama, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Name Member Information
+                                    </span>
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PNama)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Identitas:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.tMember.tPerson.PIdentitas, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Identity Member Information
+                                    </span>
+
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PIdentitas)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Alamat:
+                                </label>
+                                <div class="col-md-6">
+                                    @Html.TextAreaFor(m => m.Membership.tMember.tPerson.PAlamat, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Member Address Information
+                                    </span>
+
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PAlamat)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    HP:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.tMember.tPerson.PHP1, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Member Hand Phone Information
+                                    </span>
+
+
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PHP1)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Phone:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.tMember.tPerson.PTelp, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Member Phone(Home) Information
+                                    </span>
+
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PTelp)
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">
+                                    Email:
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(m => m.Membership.tMember.tPerson.PEmail, new { @class = "form-control", @readonly = true })
+                                    <span class="help-block">
+                                        Member Email Information
+                                    </span>
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(m => m.Membership.tMember.tPerson.PEmail)
+                                    </span>
+                                </div>
+                            </div>
+                            @*                <div class="line"></div>*@
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane" id="portletFreeze">
+
+                    @if (!Model.AvaliableMenu.Contains("Freeze"))
+                    {
+                        <div class="note note-danger">
+                            <p>This Account is not valid for Freeze Membership End Date : @Model.Membership.MSTglSelesai.ToString("dd-MM-yyyy")</p>
+                        </div>
+                    }
+
+                    @using (Html.BeginForm("FreezeMember", "MemberManagement", FormMethod.Post, new { @class = "form-horizontal form-row-seperated" }))
+                    {
+
+                        @Html.HiddenFor(m => m.Membership.trMembershipID)
+                        @Html.HiddenFor(m => m.Membership.MemberID)
+                        @Html.HiddenFor(m => m.Membership.PersonBOIDSales)
+                        @Html.HiddenFor(m => m.StatusAction, new { Value = "Freeze" })
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">
+                                Alasan:<span class="required">
+                                    *
+                                </span>
+                            </label>
+                            <div class="col-md-6">
+                                @Html.TextAreaFor(m => m.Note, new { @class = "form-control" })
+                                <span class="help-block">
+                                    Alasan Freeze
+                                </span>
+                                <span class="text-danger">
+                                    @Html.ValidationMessageFor(m => m.Note)
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">
+                                Month:<span class="required">
+                                    *
+                                </span>
+                            </label>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.TotalMonthFreeze, new { @class = "form-control", maxlength = 3, @readonly = false })
+                                <span id="MemberHelp" class="help-block">
+                                    Max total month 10
+                                </span>
+                                <span class="text-danger">
+                                    @Html.ValidationMessageFor(m => m.TotalMonthFreeze)
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">
+                                Date Freeze:
+                            </label>
+                            <div class="col-md-10">
+                                <div class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+                                    @Html.TextBoxFor(m => m.StartDate, new { @readonly = true, @class = "form-control disabled" })
+                                    <span class="input-group-addon">
+                                        to
+                                    </span>
+                                    @Html.TextBoxFor(m => m.EndDate, new { @readonly = true, @class = "form-control disabled" })
+                                </div>
+                                <span class="help-block">
+                                    availability daterange.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">
+                                Price:
+                            </label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(m => m.FreezePrice, new { @class = "disabled text-right form-control autoFreeze", @readonly = true })
+                            </div>
+                            <span class="text-danger">
+                                @Html.ValidationMessageFor(m => m.FreezePrice)
+                            </span>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">
+                                Total Price:
+                            </label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(m => m.TotalFreezePrice, new { @class = "disabled text-right form-control autoFreeze", @readonly = true })
+                            </div>
+                            <span class="text-danger">
+                                @Html.ValidationMessageFor(m => m.TotalFreezePrice)
+                            </span>
+
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
+                                    <a href="@Url.Action("Index")" class="btn default">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="tab-pane" id="portletTransfer">
+                    @if (!Model.AvaliableMenu.Contains("Transfer"))
+                    {
+                        <div class="note note-danger">
+                            <p>
+                                @{
+                                    var diffMonth = ((DateTime.Now.Year - Model.Membership.MSTglMulai.Year) * 12)
+                                    + DateTime.Now.Month - Model.Membership.MSTglMulai.Month;
+                                }
+
+                                Transfer diff Month must > 6 month This Account : @diffMonth
+                                @*                                Must in different month first to Upgrade your membership*@
+                            </p>
+                        </div>
+                                    }
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="portlet box blue" id="form_wizard_Transfer">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="fa fa-gift"></i> Transfer Member - <span class="step-title">
+                                            Step 1 of 4
+                                        </span>
+                                    </div>
+                                    <div class="tools hidden-xs">
+                                        <a href="javascript:;" class="collapse">
+                                        </a>
+                                        <a href="#portlet-config" class="config">
+                                        </a>
+                                        <a href="javascript:;" class="reload">
+                                        </a>
+                                        <a href="javascript:;" class="remove">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="portlet-body form">
+                                    @using (Html.BeginForm("TransferMember", "MemberManagement", FormMethod.Post, new { id = "formTransfer", @class = "form-horizontal" }))
+                                    {
+                                        @Html.HiddenFor(m => m.Membership.trMembershipID)
+                                        @Html.HiddenFor(m => m.Membership.MemberID)
+                                        @Html.HiddenFor(m => m.Membership.PersonBOIDSales)
+                                        @Html.HiddenFor(m => m.Membership.tMember.MemberTypeID)
+                                        @Html.HiddenFor(m => m.Membership.tMember.tPerson.PersonID)
+                                        @Html.HiddenFor(m => m.StatusAction, new { Value = "Transfer" })
+                                        <div class="form-wizard">
+                                            <div class="form-body">
+                                                <ul class="nav nav-pills nav-justified steps">
+                                                    <li>
+                                                        <a href="#tabTransfer1" data-toggle="tab" class="step">
+                                                            <span class="number">
+                                                                1
+                                                            </span>
+                                                            <span class="desc">
+                                                                <i class="fa fa-check"></i> Transfer information
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li id="li2">
+                                                        <a href="#tabTransfer2" data-toggle="tab" class="step">
+                                                            <span class="number">
+                                                                2
+                                                            </span>
+                                                            <span class="desc">
+                                                                <i class="fa fa-check"></i> Member Info
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li id="li3">
+                                                        <a href="#tabTransfer3" data-toggle="tab" class="step">
+                                                            <span class="number">
+                                                                3
+                                                            </span>
+                                                            <span class="desc">
+                                                                <i class="fa fa-check"></i> Address
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li id="li4">
+                                                        <a href="#tabTransfer4" data-toggle="tab" class="step">
+                                                            <span class="number">
+                                                                4
+                                                            </span>
+                                                            <span class="desc">
+                                                                <i class="fa fa-check"></i> Contact
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div id="bar" class="progress progress-striped" role="progressbar">
+                                                    <div class="progress-bar progress-bar-success">
+                                                    </div>
+                                                </div>
+                                                <div class="tab-content">
+                                                    <div class="alert alert-danger display-none">
+                                                        <button class="close" data-dismiss="alert"></button>
+                                                        You have some form errors. Please check below.
+                                                    </div>
+                                                    <div class="alert alert-success display-none">
+                                                        <button class="close" data-dismiss="alert"></button>
+                                                        Your form validation is successful!
+                                                    </div>
+                                                    <div class="tab-pane active" id="tabTransfer1">
+                                                        <div class="form-group">
+                                                            <label class="col-md-2 control-label">
+                                                                Alasan:<span class="required">
+                                                                    *
+                                                                </span>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                @Html.TextAreaFor(m => m.Note, new { @class = "form-control" })
+                                                                <span class="help-block">
+                                                                    Alasan Transfer
+                                                                </span>
+                                                                <span class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.Note)
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-2 control-label">
+                                                                Price:
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                @Html.TextBoxFor(m => m.TransferPrice, new { @class = "disabled form-control text-right auto", @readonly = true })
+                                                            </div>
+                                                            <span class="text-danger">
+                                                                @Html.ValidationMessageFor(m => m.TransferPrice)
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="tabTransfer2">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">
+                                                                MemberNo <span class="required">
+                                                                    *
+                                                                </span>
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                @Html.TextBoxFor(m => m.Membership.tMember.MemberNO, new
+                                                           {
+                                                               @class = "form-control",
+                                                               data_url = Url.Action("Membershiplist", "FastMembership"),
+                                                               data_urllookup = Url.Action("MembershipListByMemberNo", "FastMembership"),
+                                                               data_urlsingle = Url.Action("GetMemberNo", "MemberRenewal")
+                                                           })
+                                                                <span class="help-block">
+                                                                    Choose expired membership
+                                                                </span>
+                                                                <span class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.Membership.tMember.MemberNO)
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">
+                                                                Nama <span class="required">
+                                                                    *
+                                                                </span>
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                @Html.TextBoxFor(m => m.Person.PNama, new { @class = "form-control" })
+                                                                <span class="help-block">
+                                                                    Provide your Name Info
+                                                                </span>
+                                                                <span class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.Person.PNama)
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">
+                                                                Gender <span class="required">
+                                                                    *
+                                                                </span>
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                <div class="radio-list">
+                                                                    <label>
+                                                                        @Html.RadioButtonFor(m => m.Person.PGender, "M", new { data_title = "Male", @checked = "checked" })
+                                                                        Male
+                                                                    </label>
+                                                                    <label>
+                                                                        @Html.RadioButtonFor(m => m.Person.PGender, "F", new { data_title = "Female" })
+                                                                        Female
+                                                                    </label>
+                                                                </div>
+                                                                <span class="help-block">
+                                                                    Provide your Gender Info
+                                                                </span>
+                                                                <span class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.Person.PGender)
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">
+                                                                Identity
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                @Html.TextBoxFor(m => m.Person.PIdentitas, new { @class = "form-control" })
+                                                                <span class="help-block">
+                                                                    Provide your Identity Info
+                                                                </span>
+                                                                <span class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.Person.PIdentitas)
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">
+                                                                Tanggal Lahir <span class="required">
+                                                                    *
+                                                                </span>
+                                                            </label>
+                                                            <div>
+                                                                <div class="PTglLahir">
+                                                                    @Html.EditorFor(m => m.Person.PTglLahir)
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="tab-pane" id="tabTransfer3">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">
+                                                                Propinsi
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                @Html.TextBoxFor(m => m.Person.PPropinsi, new { @class = "form-control" })
+                                                                <span class="help-block">
+                                                                    Provide your Province
+                                                                </span>
+                                                                <span class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.Person.PPropinsi)
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">
+                                                                Kota
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                @Html.TextBoxFor(m => m.Person.PKota, new { @class = "form-control" })
+                                                                <span class="help-block">
+                                                                    Provide your City
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">
+                                                                Kelurahan
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                @Html.TextBoxFor(m => m.Person.PKelurahan, new { @class = "form-control" })
+                                                                <span class="help-block">
+                                                                    Provide your Kelurahan
+                                                                </span>
+
+                                                                <span class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.Person.PKelurahan)
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">
+                                                                Kecamatan
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                @Html.TextBoxFor(m => m.Person.PKecamatan, new { @class = "form-control" })
+                                                                <span class="help-block">
+                                                                    Provide your Kecamatan
+                                                                </span>
+
+                                                                <span class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.Person.PKecamatan)
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">
+                                                                Alamat
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                @Html.TextAreaFor(m => m.Person.PAlamat, new { @class = "form-control" })
+                                                                <span class="help-block">
+                                                                    Provide your Address
+                                                                </span>
+
+                                                                <span class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.Person.PAlamat)
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="tabTransfer4">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">
+                                                                HandPhone 1 <span class="required">
+                                                                    *
+                                                                </span>
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                @Html.TextBoxFor(m => m.Person.PHP1, new { @class = "form-control" })
+                                                                <span class="help-block">
+                                                                    Provide First Phone Information
+                                                                </span>
+
+                                                                <span class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.Person.PHP1)
+                                                                </span>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">
+                                                                HandPhone 2
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                @Html.TextBoxFor(m => m.Person.PHP2, new { @class = "form-control" })
+                                                                <span class="help-block">
+                                                                    Provide your second phone information
+                                                                </span>
+
+                                                                <span class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.Person.PHP2)
+                                                                </span>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">
+                                                                Pin BB
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                @Html.TextBoxFor(m => m.Person.PPinBB, new { @class = "form-control" })
+                                                                <span class="help-block">
+                                                                    Provide your Black Berry Pin Information
+                                                                </span>
+
+                                                                <span class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.Person.PPinBB)
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">
+                                                                Email
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                @Html.TextBoxFor(m => m.Person.PEmail, new { @class = "form-control" })
+                                                                <span class="help-block">
+                                                                    Provide your Email
+                                                                </span>
+
+                                                                <span class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.Person.PEmail)
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-actions">
+                                                <div class="row">
+                                                    <div class="col-md-offset-2 col-md-9">
+                                                        <div class="row">
+                                                            <div class="col-md-offset-3 col-md-9">
+                                                                <a href="javascript:;" class="btn default button-previous">
+                                                                    <i class="m-icon-swapleft"></i> Back
+                                                                </a>
+                                                                <a href="javascript:;" class="btn blue button-next">
+                                                                    Continue <i class="m-icon-swapright m-icon-white"></i>
+                                                                </a>
+                                                                <button type="submit" formmethod="post" class="btn green button-submit">
+                                                                    Submit <i class="m-icon-swapright m-icon-white"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="portletUpgrade">
+                    @if (!Model.AvaliableMenu.Contains("Upgrade"))
+            {
+                        <div class="note note-danger">
+                            <p>
+                                This Account is not valid for Upgrade Membership Start Date : @Model.Membership.MSTglMulai.ToString("dd-MM-yyyy") <br />
+                                Must in different month first to Upgrade your membership
+                            </p>
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="portlet box blue" id="form_wizard_1">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="fa fa-gift"></i> Upgrade Member - <span class="step-title">
+                                            Step 1 of 2
+                                        </span>
+                                    </div>
+                                    <div class="tools hidden-xs">
+                                        <a href="javascript:;" class="collapse">
+                                        </a>
+                                        <a href="#portlet-config" class="config">
+                                        </a>
+                                        <a href="javascript:;" class="reload">
+                                        </a>
+                                        <a href="javascript:;" class="remove">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="portlet-body form">
+                                    @using (Html.BeginForm("UpgradeMember", "MemberManagement", FormMethod.Post, new { id = "formUpgrade", @class = "form-horizontal" }))
+                                    {
+
+                                        @Html.HiddenFor(m => m.Membership.trMembershipID)
+                                        @Html.HiddenFor(m => m.Membership.MemberID)
+                                        @Html.HiddenFor(m => m.Membership.PersonBOIDSales)
+                                        @Html.HiddenFor(m => m.Membership.tMember.MemberTypeID)
+                                        @Html.HiddenFor(m => m.Membership.tMember.tPerson.PersonID)
+                                        @Html.HiddenFor(m => m.StatusAction, new { Value = "Upgrade" })
+
+                                        <div class="form-wizard">
+                                            <div class="form-body">
+                                                <ul class="nav nav-pills nav-justified steps">
+                                                    <li>
+                                                        <a href="#tabUpgrade1" data-toggle="tab" class="step">
+                                                            <span class="number">
+                                                                1
+                                                            </span>
+                                                            <span class="desc">
+                                                                <i class="fa fa-check"></i> Member Type
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li id="liupgrade2">
+                                                        <a href="#tabUpgrade2" data-toggle="tab" class="step">
+                                                            <span class="number">
+                                                                2
+                                                            </span>
+                                                            <span class="desc">
+                                                                <i class="fa fa-check"></i> Payment Information
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div id="bar" class="progress progress-striped" role="progressbar">
+                                                    <div class="progress-bar progress-bar-success">
+                                                    </div>
+                                                </div>
+                                                <div class="tab-content">
+                                                    <div class="alert alert-danger display-none">
+                                                        <button class="close" data-dismiss="alert"></button>
+                                                        You have some form errors. Please check below.
+                                                    </div>
+                                                    <div class="alert alert-success display-none">
+                                                        <button class="close" data-dismiss="alert"></button>
+                                                        Your form validation is successful!
+                                                    </div>
+                                                    <div class="tab-pane active" id="tabUpgrade1">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Current Member Type:</label>
+                                                            <div class="col-md-4">
+                                                                @Html.TextBoxFor(m => m.CurrentMemberType, new { @class = "form-control", @readonly = false })
+
+                                                                <span class="help-block">
+                                                                    Current Membership Type
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">New Member Type:</label>
+                                                            <div class="col-md-4">
+                                                                @Html.TextBoxFor(m => m.MemberType.MemberType, new { @class = "form-control" })
+                                                                @Html.HiddenFor(m => m.MemberType.MemberTypeDef)
+
+                                                                <span class="help-block">
+                                                                    Input your member Type
+                                                                </span>
+                                                                <div class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.MemberType.MemberType)
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">New Membership Sub Total Payment</label>
+                                                            <div class="col-md-3">
+                                                                @Html.TextBoxFor(m => m.MemberType.Payment, new { @class = "form-control autoMemberType text-right", @readonly = true, hidden = true })
+                                                                <span class="help-block">
+                                                                    Total Amount Must Pay
+                                                                </span>
+                                                                <div class="text-danger">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Discount:</label>
+                                                            <div class="col-md-3">
+                                                                @Html.TextBoxFor(m => m.MemberType.DiscountPct, new { @class = "form-control text-right", maxlength = 2 })
+                                                                <span id="DiscountMemberHelp" class="help-block">
+                                                                    Discount Total for this account (0)
+                                                                    @Html.HiddenFor(m => m.MemberType.Discount)
+                                                                    @Html.Hidden("DiscountNominal")
+                                                                </span>
+                                                            </div>
+                                                            <div class="text-danger">
+                                                                @Html.ValidationMessageFor(m => m.MemberType.Discount)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Total Month:</label>
+                                                            <div class="col-md-3">
+                                                                @Html.TextBoxFor(m => m.MasterPayment.TotalMonth, new { @class = "form-control autoMemberType text-right", @readonly = true, hidden = true })
+                                                                <span class="help-block">
+                                                                    Total Amount Payment
+                                                                </span>
+                                                                <div class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.MasterPayment.TotalMonth)
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Member Total Payment:</label>
+                                                            <div class="col-md-3">
+                                                                @Html.TextBoxFor(m => m.MemberType.TotalAmount, new { @class = "form-control autoMemberType text-right", @readonly = true, hidden = true })
+                                                                <span class="help-block">
+                                                                    Total Month
+                                                                </span>
+                                                                <div class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.MemberType.TotalAmount)
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Current Membership Value :</label>
+                                                            <div class="col-md-3">
+                                                                @Html.TextBoxFor(m => m.Membership.Total, new { @class = "form-control autoMemberType text-right", @readonly = true, hidden = true })
+                                                                <span class="help-block">
+                                                                    Current Membership Value
+                                                                </span>
+                                                                <div class="text-danger">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Total new membership value :</label>
+                                                            <div class="col-md-3">
+                                                                @Html.TextBoxFor(m => m.TotalNewMemberMustPay, new { @class = "form-control autoMemberType text-right", @readonly = true, hidden = true })
+                                                                <span class="help-block">
+                                                                    Current Membership Value
+                                                                </span>
+                                                                <div class="text-danger">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="tabUpgrade2">
+                                                        <div class="row">
+                                                            <div class="col-md-12 col-sm-12">
+                                                                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                                                <div id="paymentPortled" class="portlet box blue">
+                                                                    <div class="portlet-title">
+                                                                        <div class="caption">
+                                                                            <i class="fa fa-dollar"></i>Payment List Detail
+                                                                        </div>
+                                                                        <div class="tools">
+                                                                            <a href="javascript:;" class="collapse">
+                                                                            </a>
+                                                                            <a href="javascript:;" class="reload">
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="portlet-body">
+                                                                        <div class="table-toolbar">
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="btn-group">
+                                                                                        <a class="btn blue buttons-page btnAddPaymentList" data-url="@Url.Action("AddDataPaymentDetail", "FastMembership", new {area = "Membership"})" href="javascript:;">
+                                                                                            Add New Payment <i class="m-icon-swapright m-icon-white"></i>
+                                                                                        </a>
+                                                                                        @Html.Hidden("activepaymentlist")
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <table class="table table-striped table-bordered table-hover table-full-width" id="dtPaymentDetail">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th widht="1%"> id </th>
+                                                                                    <th widht="10%"> Payment Type </th>
+                                                                                    <th widht="8%"> Bank </th>
+                                                                                    <th widht="8%"> Edc Bank </th>
+                                                                                    <th widht="1%"> I </th>
+                                                                                    <th widht="5%"> Trace Code </th>
+                                                                                    <th widht="5%"> Appr Code </th>
+                                                                                    <th widht="5%"> Card No </th>
+                                                                                    <th widht="10%"> Valid until </th>
+                                                                                    <th widht="15%"> Payment </th>
+                                                                                    <th widht="15%"> MBR </th>
+                                                                                    <th widht="15%"> Paid </th>
+                                                                                    <th width="1%"></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody></tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- END EXAMPLE TABLE PORTLET-->
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="form-group">
+                                                            @Html.Label("Summary Payment", new { @class = "control-label col-md-2 text-left" })
+                                                            <div class="col-md-4">
+                                                                <div class="input-group input-medium">
+                                                                    @Html.TextBoxFor(m => m.TotalSumPayment, new { @class = "form-control text-right auto", @readonly = true })
+                                                                </div>
+                                                                <span class="help-block">
+                                                                    Total Summary Payment
+                                                                </span>
+                                                                <div class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.TotalSumPayment)
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            @Html.Label("Payment Must Pay", new { @class = "control-label col-md-2 text-left" })
+                                                            <div class="col-md-4">
+                                                                <div class="input-group input-medium">
+                                                                    @Html.TextBoxFor(m => m.TotalPaymentMustPay, new { @class = "form-control text-right auto", @readonly = true, min = 0, max = 0, title = "Max sisa payment 0 " })
+                                                                </div>
+                                                                <span class="help-block">
+                                                                    Total Payment must Paid
+                                                                </span>
+                                                                <div class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.TotalPaymentMustPay)
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.Label("Kelebihan Bayar", new { @class = "control-label col-md-2 text-left" })
+                                                            <div class="col-md-4">
+                                                                <div class="input-group input-medium">
+                                                                    @Html.TextBoxFor(m => m.TotalOverPaymentDetail, new { @class = "form-control text-right auto", @readonly = true, min = 0, title = "Max payment Must 0 " })
+                                                                </div>
+                                                                <span class="help-block">
+                                                                    Summary Over Payment
+                                                                </span>
+                                                                <div class="text-danger">
+                                                                    @Html.ValidationMessageFor(m => m.TotalOverPaymentDetail)
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="form-actions">
+                                                <div class="row">
+                                                    <div class="col-md-offset-2 col-md-9">
+                                                        <div class="row">
+                                                            <div class="col-md-offset-3 col-md-9">
+                                                                <a href="javascript:;" class="btn default button-previous">
+                                                                    <i class="m-icon-swapleft"></i> Back
+                                                                </a>
+                                                                <a href="javascript:;" class="btn blue button-next">
+                                                                    Continue <i class="m-icon-swapright m-icon-white"></i>
+                                                                </a>
+                                                                <button type="submit" formmethod="post" class="btn green button-submit">
+                                                                    Submit <i class="m-icon-swapright m-icon-white"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    @Scripts.Render("~/bundle/script/datatable")
+    @Scripts.Render("~/bundle/script/Wizard")
+
+    @Scripts.Render("~/bundle/script/jqueryval")
+    @Scripts.Render("~/bundle/script/types")
+
+    @*koding untuk spesifik view*@
+    @Scripts.Render("~/Scripts/Registrasi/Mwizard.js")
+    @Scripts.Render("~/Scripts/Registrasi/MConfirmwizard.js")
+    @Scripts.Render("~/Scripts/select2FormControl.js")
+    @Scripts.Render("~/Scripts/trippleddlAdapters.js")
+    @Scripts.Render("~/Scripts/Area/Membership/MemberProcess.js")
+    <script>
+        memberprocess.run();
+    </script>
+}

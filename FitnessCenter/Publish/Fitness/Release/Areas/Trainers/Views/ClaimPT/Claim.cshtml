@@ -1,0 +1,220 @@
+﻿@model ViewModel.Trainer.Claim.ClaimModel
+@{
+    ViewBag.Title = "Claim Personal Trainer";
+}
+
+@section styles{
+    <link href="~/Assets/admin/pages/css/todo.css" rel="stylesheet" type="text/css" />
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Start Claim <small>PT (Personal Trainer)</small></h1>
+    </div>
+</div>
+
+<!-- BEGIN BREADCRUMBS -->
+<div class="breadcrumbs">
+    <h1>@ViewBag.Title</h1>
+    @Html.Partial("_pageBreadcrumbs")
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Claim", "ClaimPT", FormMethod.Post, new { @class = "form-horizontal form-row-seperated" }))
+        {
+            @Html.Hidden("memberId")
+            @Html.HiddenFor(m => m.Claim.trPersonalTrainerID)
+            <div class="portlet light">
+                <div class="portlet">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-shopping-cart"></i>@ViewBag.Title
+                        </div>
+                        <div class="actions btn btn-set">
+                            <a class="btn btn-default" href="@Url.Action("Index")">
+                                <i class="fa fa-angle-left"></i> Back
+                            </a>
+                            <button type="reset" class="btn btn-secondary-outline reset">
+                                <i class="fa fa-reply"></i> Reset
+                            </button>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa fa-check"></i> Save
+                            </button>
+                            <div class="btn-group">
+                                <a class="btn btn-success dropdown-toggle" href="javascript:;" data-toggle="dropdown">
+                                    <i class="fa fa-share"></i> More
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="portlet-body">
+                        <div class="tabbable-bordered">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#tab_general" data-toggle="tab"> Claim </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_general">
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">
+                                                Date
+                                                <span class="required"> * </span>:
+                                            </label>
+                                            <div class="col-md-10">
+                                                <div class="input-group input-large">
+                                                    @Html.TextBoxFor(m => m.StartTime, new { @class = "form-control disabled", @readonly = true })
+                                                    <span class="input-group-addon"> to </span>
+                                                    @Html.TextBoxFor(m => m.EndTime, new { @class = "form-control disabled", @readonly = true })
+                                                </div>
+                                                <span class="help-block"> time range. </span>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-md-2 control-label">
+                                                Nama Member :
+                                            </label>
+                                            <div class="col-md-10">
+                                                <div class="input-group input-large">
+                                                    @Html.TextBoxFor(m => m.Claim.verifikasiMember, new { @class = "form-control disabled", @readonly = true })
+                                                    @Html.TextBoxFor(m => m.Claim.trPersonalTrainer.trMembership.MemberID, new { @class = "form-control disabled", @readonly = true })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-md-2 control-label">
+                                                PT :
+                                            </label>
+                                            <div class="col-md-10">
+                                                <div class="input-group input-large">
+                                                    @Html.TextBoxFor(m => m.Claim.verifikasiPT, new { @class = "form-control disabled ListPT" })
+                                                </div>
+                                                @*@Html.HiddenFor(m => m.PTID)*@
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div id="tab_images_uploader_filelist" class="col-md-6 col-sm-12">
+                                                Claim History
+                                            </div>
+                                        </div>
+                                        <table class="table table-bordered table-hover" id="datatable_member">
+                                            <thead>
+                                                <tr role="row" class="heading">
+                                                    <th width="1%"> No </th>
+                                                    <th width="15%"> Member&nbsp;No </th>
+                                                    <th width="10%"> Claim </th>
+                                                    <th width="10%"> Date </th>
+                                                    <th width="10%"> Start </th>
+                                                    <th width="10%"> END </th>
+                                                    <th width="10%"> PT </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    @Scripts.Render("~/Scripts/select2FormControl.js")
+    @Scripts.Render("~/bundle/script/datatable")
+    <script>
+        $(function () {
+            var memberId = [];
+
+              select2Control.init('.ListPT',
+                "Personal Trainer",
+                "/Office/UserBackOffice/GetPT",
+                "/Office/UserBackOffice/GetUserBoByPersonId");
+
+            function arrayInput(listarray, value, tempdata) {
+                var index = listarray.indexOf(value);
+                if (index === -1) {
+                    listarray.push(value);
+                } else {
+                    listarray.splice(index, 1);
+                }
+                tempdata.val(listarray);
+            }
+
+            $('#datatable_member').DataTable({
+                "serverSide": true,
+                "autoWidth": false,
+                filter: false,
+                "lengthMenu": [100],
+                "pageLength": 100,
+                "ajax": {
+                    data: {
+                        id: '@ViewContext.RouteData.Values["id"]'
+                    },
+                    url: "@Url.Action("MemberClaimHistory")"
+                },
+                initComplete: function () {
+                                        Metronic.init();
+                },
+                "columns": [
+                    {
+                        "orderable": false,
+                    },
+                    {
+                        "orderable": false,
+                    },
+                    {
+                        "orderable": false,
+                    },
+                    {
+                        "orderable": false,
+                    },
+                    {
+                        "orderable": false,
+                    },
+                    {
+                        "orderable": false,
+                    },
+                    {
+                        "data": 6,
+                        "render":
+                            function (data) {
+                                var d = data;
+                                console.log(data);
+                                var disabled = "";
+                                if (data === 0) {
+                                    disabled = "disabled";
+                                    //                                    return '@Html.CheckBox("chkMember", false, new {@class = "checkboxes disabled chkMember", disabled = true})'; //'<input type="checkbox" value=' + d + ' ' + readonly + ' class="checkboxes ' + disabled + ' chkMember" name="Membership"/>';
+                                }
+                                return '<input type="checkbox" value=' + d + ' ' + disabled + ' class="checkboxes ' + disabled + ' chkMember" name="Membership"/>';
+
+                            },
+                        "orderable": false,
+                        "width": "3%"
+                    },
+                ],
+                "order": [[0, "asc"]]
+            });
+
+            $(document).on('change', '.chkMember', function () {
+                arrayInput(memberId, $(this).val(), $('#memberId'));
+                //                console.log($(this).val());
+                //                console.log($('#memberId').val());
+            });
+
+        });
+    </script>
+}

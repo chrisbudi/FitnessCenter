@@ -1,0 +1,35 @@
+﻿@using Services.Infrastructure
+@model DataObjects.Entities.StrActionKlaimParam
+<tr>
+    @using (Html.BeginCollectionItem("ClaimParam"))
+    {
+        <td>
+            @ViewBag.seq
+        </td>
+        <td>
+            @Html.DisplayFor(m => m.StrActionKlaim.tActionPT.ActionPTName)
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.NamaParam, new { @class = "form-control paramname" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.NamaParam)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.Satuan, new { @class = "form-control paramunit" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.Satuan)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.Value, new { @class = "form-control paramvalue" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.Value)
+            </div>
+        </td>
+        <td>
+            <a href="javascript:;" class="fa-stack fa-lg delCardMember"><i class="fa fa-close fa-2x font-red"></i></a>
+        </td>
+
+    }
+</tr>

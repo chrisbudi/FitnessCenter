@@ -1,0 +1,291 @@
+﻿@model DataObjects.Entities.strKlaimPT
+@{
+    ViewBag.Title = "Claim Personal Trainer";
+}
+
+@section styles{
+    <link href="~/Assets/admin/pages/css/todo.css" rel="stylesheet" type="text/css" />
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Start Claim <small>PT (Personal Trainer)</small></h1>
+    </div>
+</div>
+
+<!-- BEGIN BREADCRUMBS -->
+<div class="breadcrumbs">
+    <h1>@ViewBag.Title</h1>
+    @Html.Partial("_pageBreadcrumbs")
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Claim", "ClaimPT", FormMethod.Post, new { @class = "form-horizontal form-row-seperated" }))
+        {
+            <div class="portlet light">
+                <div class="portlet">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-shopping-cart"></i>@ViewBag.Title
+                        </div>
+                        <div class="actions btn btn-set">
+                            <a class="btn btn-default" href="@Url.Action("Index")">
+                                <i class="fa fa-angle-left"></i> Back
+                            </a>
+                            <button type="reset" class="btn btn-secondary-outline reset">
+                                <i class="fa fa-reply"></i> Reset
+                            </button>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa fa-check"></i> Save
+                            </button>
+                            <div class="btn-group">
+                                <a class="btn btn-success dropdown-toggle" href="javascript:;" data-toggle="dropdown">
+                                    <i class="fa fa-share"></i> More
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <div class="dropdown-menu pull-right">
+                                    <li>
+                                        <a href="javascript:;"> Duplicate </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;"> Delete </a>
+                                    </li>
+                                    <li class="dropdown-divider"> </li>
+                                    <li>
+                                        <a href="javascript:;"> Print </a>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="portlet-body">
+                        <div class="tabbable-bordered">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#tab_general" data-toggle="tab"> Claim </a>
+                                </li>
+                                <li>
+                                    <a href="#tab_Program" data-toggle="tab"> Program </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_general">
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">
+                                                Date:
+                                                <span class="required"> * </span>
+                                            </label>
+                                            <div class="col-md-10">
+                                                <div class="input-group input-large">
+                                                    @Html.TextBoxFor(m => m.AwalClaim, new { @class = "form-control disabled", @readonly = true })
+                                                    <span class="input-group-addon"> to </span>
+                                                    @Html.TextBoxFor(m => m.AkhirClaim, new { @class = "form-control disabled", @readonly = true })
+                                                </div>
+                                                <span class="help-block"> time range. </span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div id="tab_images_uploader_filelist" class="col-md-6 col-sm-12"> </div>
+                                        </div>
+                                        <table class="table table-bordered table-hover" id="datatable_member">
+                                            <thead>
+                                                <tr role="row" class="heading">
+                                                    <th width="1%"> No </th>
+                                                    <th width="15%"> Member&nbsp;No </th>
+                                                    <th width="20%"> Name </th>
+                                                    <th width="10%"> Type </th>
+                                                    <th width="15%"> Address </th>
+                                                    <th width="15%"> age </th>
+                                                    <th width="10%"> rest&nbsp;Month </th>
+                                                    <th width="1%"> Claim </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div id="tab_Program" class="tab-pane">
+                                    <div class="todo-sidebar">
+                                        <div class="portlet-title">
+                                            <div class="caption" data-toggle="collapse" data-target=".todo-project-list-content">
+                                                <span class="caption-subject font-green-sharp bold uppercase">Action type </span>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body todo-project-list-content">
+                                            <div class="todo-project-list">
+                                                <ul id="actionType" class="nav nav-pills nav-stacked">
+                                                    <li class="active">
+                                                        <a href="#">
+                                                            New
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            Monthly
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            Platinum
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="#">
+                                                            Diamond
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="#">
+                                                            Family
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="todo-content">
+                                        <!-- END PAGE HEADER-->
+                                        <!-- BEGIN PAGE CONTENT-->
+                                        <div class="col-md-12">
+                                            <div class="portlet light">
+                                                <div class="portlet-body">
+                                                    <div class="row margin-bottom-20">
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="pull-left">
+                                                                    <i class="icon-basket font-green-sharp"></i>
+                                                                    <span class="caption-subject font-green-sharp bold uppercase">Member Listing</span>
+                                                                </div>
+                                                                <div class="pull-right">
+                                                                    <a class="btn btn-circle btn-default" id="printList" href="#">
+                                                                        <i class="fa fa-plus"></i>
+                                                                        <span class="hidden-480">
+                                                                            Add Personal Trainer Action
+                                                                        </span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <br />
+                                                            <div style="max-height: 800px; min-height: 799px;"
+                                                                 data-handle-color="#dae3e7">
+                                                                <table class="table table-striped table-bordered table-hover" id="datatables_program">
+                                                                    <thead>
+                                                                        <tr role="row" class="heading">
+                                                                            <th width="3%"> No </th>
+                                                                            <th width="40%"> Parameter </th>
+                                                                            <th width="20%"> Unit </th>
+                                                                            <th width="20%"> Value </th>
+                                                                            <th width="3%"> </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody></tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    <script>
+        $(function () {
+
+            const dtmember = $('#datatable_member')
+                .DataTable({
+                    "serverSide": true,
+                    "autoWidth": false,
+                    "filter": false,
+                    "lengthMenu": [100],
+                    "pageLength": 100,
+                    "ajax": {
+                        data:function() {
+
+                        },
+                        url:"@Url.Action("MemberClaimResult")"
+                    },
+                    "columns": [
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+                        {
+                            "orderable": false,
+                        },
+
+                    ],
+                    "order": [[0, "asc"]]
+                });
+
+
+            var dtProgram = $('#datatable_program')
+               .DataTable({
+                   "serverSide": false,
+                   "processing": true,
+                   "autoWidth": false,
+                   "filter": false,
+                   "lengthMenu": [100],
+                   "pageLength": 100,
+                   "columns": [
+                       {
+                           "orderable": false,
+                       },
+                       {
+                           "orderable": false,
+                       },
+                       {
+                           "orderable": false,
+                       },
+                       {
+                           "orderable": false,
+                       }
+                   ],
+                   "order": [[0, "asc"]]
+               });
+
+
+            $('#actionType li').on('click', function () {
+                $('#actionType li').removeClass('active');
+                $(this).addClass('active');
+            });
+
+
+        });
+    </script>
+}

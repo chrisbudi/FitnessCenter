@@ -1,0 +1,51 @@
+﻿@using Services.Infrastructure
+@model DataObjects.Entities.trMembership
+
+@{
+    string membershipId = ViewBag.membershipId;
+    string memberid = ViewBag.memberId;
+}
+<tr role="row">
+    @using (Html.BeginCollectionItem(membershipId, true, memberid, "Memberships"))
+    {
+        <td title="MemberID">
+            _id_
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.tMember.MemberNO, new {@class = "form-control personAddressMemberNO", @readonly = true})
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.tMember.tPerson.PNama, new { @class = "form-control personAddressNama", @readonly = true })
+        </td>
+        <td>
+
+            @Html.TextBoxFor(m => m.tMember.tPerson.PPropinsi, new { @class = "form-control personPropinsi" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.tMember.tPerson.PPropinsi)
+            </div>
+        </td>
+        <td>
+            @Html.EditorFor(m => m.tMember.tPerson.PKota, new { htmlAttributes = new { @class = "form-control personKota" } })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.tMember.tPerson.PKota)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.tMember.tPerson.PKelurahan, new { @class = "form-control personKelurahan" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.tMember.tPerson.PKelurahan)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.tMember.tPerson.PKecamatan, new { @class = "form-control personKecamatan" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.tMember.tPerson.PKecamatan)
+            </div>
+        </td>
+        <td>
+            <a href="javascript:;" class="fa-stack fa-lg btnCancel">
+                <i class="fa fa-close fa-2x font-black"></i>
+            </a>
+        </td>
+    }
+</tr>

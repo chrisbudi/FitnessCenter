@@ -1,0 +1,348 @@
+﻿@using Services.Helpers;
+@model DataObjects.Entities.trPlanAktifitasPT
+@{
+
+    ViewBag.Title = "Personal trainer Plan";
+}
+
+@section styles
+{
+    @Styles.Render("/assets/global/plugins/fullcalendar/fullcalendar.min.css")
+    <style>
+        tr {
+            height: 3em;
+        }
+    </style>
+
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>
+            Pendaftaran <small>PT (Personal Trainer)</small>
+        </h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="portlet light">
+    <div class="portlet-body">
+        <div class="row margin-bottom-20">
+            <div class="col-md-12">
+                <div class="portlet box green-meadow calendar">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-gift"></i>Calendar
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div id="calendar" class="has-toolbar">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END CALENDAR PORTLET-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END PAGE CONTENT-->
+@*Edit Plan*@
+<div id="calModal" class="modal fade" data-backdrop="static" data-keyboard="true">
+    @using (Html.BeginForm("Edit", "PlanPT", FormMethod.Post, new { @class = "" }))
+    {
+        @Html.HiddenFor(m => m.PlanAktifitasPTID)
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Ubah Jadwal Aktifitas PT</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Waktu Sesi Latihan</label>
+                    @Html.TextBoxFor(m => m.WaktuMulai, new { @class = "form-control", value = "" })
+                </div>
+
+                <div class="form-group">
+                    <label>Member</label>
+                    @Html.TextBoxFor(m => m.MemberID, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>PT</label>
+                    @Html.TextBoxFor(m => m.PersonBOIDPT, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Note</label>
+                    @Html.TextAreaFor(m => m.Note, new { @class = "form-control" })
+                </div>
+                <span class="field-validation-error">
+                    <span id="notification-error"></span>
+                </span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnRemoveEvent" data-dismiss="modal" class="left btn red">Remove Event</button>
+                <button type="button" id="btnPopupCancel" data-dismiss="modal" class="btn">Cancel</button>
+                <button type="button" id="btnPopupSave" data-dismiss="modal" class="btn btn-primary">Save event</button>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+
+    @Scripts.Render("/assets/global/plugins/moment.min.js")
+    @Scripts.Render("/assets/global/plugins/fullcalendar/fullcalendar.min.js")
+
+    <script>
+        select2Control.init("#MemberID", "Member Name", "@Url.Action("GetMember", "Member", new {area = "Office"})",
+            "@Url.Action("GetMemberByid", "Member", new {area = "Office"})");
+        select2Control.init("#BOID", "PT Name", "@Url.Action("GetPT", "UserBackOffice", new {area = "Office"})",
+            "@Url.Action("GetUserBoById", "UserBackOffice", new {area = "Office"})");
+        select2Control.init("#ActionPTID", "Action PT", "@Url.Action("GetActionPT", "ActionPt", new {area = "Office"})",
+            "@Url.Action("GetActionPTById", "ActionPt", new {area = "Office"})");
+
+        var loadDDL = null;
+
+        jQuery(document).ready(function() {
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+            Demo.init(); // init demo features
+
+            function clearPopupFormValues() {
+                $('#MemberID').select2("val", "");
+                $('#BOID').select2("val", "");
+                $('#ActionPTID').select2("val", "");
+                $('#Waktu').val('');
+                $('#Note').val('');
+                $('#PlanAktifitasPTID').val('');
+            }
+
+            function updateDropEvent(planKelasId, startDate) {
+                var dataRow = {
+                    'id': planKelasId,
+                    'newEventStart': startDate
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("UpdateEvent")',
+                    dataType: "json",
+                    contentType: "application/json",
+                    data: JSON.stringify(dataRow)
+                });
+            }
+
+            function updateEvent(dRow) {
+                alert(dRow);
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("PlanManage")',
+                    dataType: "json",
+                    contentType: "application/json",
+                    data: JSON.stringify(dRow),
+                    success: function(response) {
+                        if (response === true) {
+                            $('#calendar').fullCalendar('refetchEvents');
+                        } else {
+                            alert('Error, could not save event!');
+                        }
+                    }
+                });
+            }
+
+            $('#btnPopupSave').on('click', function() {
+                var dataRow = {
+                    'MemberID': $('#MemberID').select2("val"),
+                    'BOID': $('#BOID').select2("val"),
+                    'ActionPTID': $('#ActionPTID').select2("val"),
+                    'Waktu': $('#Waktu').val(),
+                    'Note': $('#Note').val(),
+                    'PlanAktifitasPTID': $('#PlanAktifitasPTID').val(),
+                    'state': ''
+                };
+                if (dataRow.PlanAktifitasPTID === "") {
+                    dataRow.state = 'Add';
+                    $.ajax({
+                        type: 'POST',
+                        url: "@Url.Action("PlanManage")",
+                        data: dataRow,
+                        success: function(response) {
+                            if (response === true) {
+                                $('#calendar').fullCalendar('refetchEvents');
+                            } else {
+                                alert('Error, could not save event!');
+                            }
+                        }
+                    });
+                } else {
+                    dataRow.state = 'Update';
+                    updateEvent(dataRow);
+                }
+
+            });
+
+            $('#btnRemoveEvent').on('click', function() {
+                var dataRow = {
+                    'id': $('#PlanAktifitasPTID').val()
+                };
+                clearPopupFormValues();
+                $.ajax({
+                    type: 'POST',
+                    url: "@Url.Action("RemoveEvent")",
+                    data: dataRow,
+                    success: function(response) {
+                        if (response === true) {
+                            $('#calendar').fullCalendar('refetchEvents');
+                        } else {
+                            alert('Error, could not save event!');
+                        }
+                    }
+                });
+            });
+
+            if (Metronic.isRTL()) {
+                if ($('#calendar').parents(".portlet").width() <= 720) {
+                    $('#calendar').addClass("mobile");
+                    h = {
+                        right: 'title, prev, next',
+                        center: '',
+                        left: 'agendaWeek, today'
+                    };
+                } else {
+                    $('#calendar').removeClass("mobile");
+                    h = {
+                        right: 'title',
+                        center: '',
+                        left: 'agendaWeek, today, prev,next'
+                    };
+                }
+            } else {
+                if ($('#calendar').parents(".portlet").width() <= 720) {
+                    $('#calendar').addClass("mobile");
+                    h = {
+                        left: 'title, prev, next',
+                        center: '',
+                        right: 'today,agendaWeek,agendaDay'
+                    };
+                } else {
+                    $('#calendar').removeClass("mobile");
+                    h = {
+                        left: 'title',
+                        center: '',
+                        right: 'prev,next,today,agendaWeek'
+                    };
+                }
+            }
+
+            $('#calendar').fullCalendar('destroy'); // destroy the calendar
+
+            $('#calendar').fullCalendar({ //re-initialize the calendar
+                header: {
+                    left: '',
+                    center: '',
+                    right: ''
+                },
+                views: {
+                    settimana: {
+                        type: 'agendaWeek',
+                        duration: { days: 7 },
+                        title: 'Plan Personal Trainer',
+                        columnFormat: 'dddd', // Format the day to only show like 'Monday'
+                    }
+                },
+                defaultView: 'settimana',
+                // change default view with available options from https://arshaw.com/fullcalendar/docs/views/Available_Views/
+                slotMinutes: 15,
+                editable: true,
+                droppable: true,
+                events:
+                    function(start, end, timezone, callback) {
+                        $.getJSON("@Url.Action("GetEvents", "PlanPT")", {
+                            start: start.format(),
+                            end: end.format()
+                        }, function(locationsArray) {
+                            var result = $(locationsArray).map(function() {
+                                return {
+                                    id: this.id,
+                                    title: this.title,
+                                    start: this.start,
+                                    end: this.end,
+                                    allDay: this.editable,
+                                    description: this.description,
+                                    backgroundColor: this.background,
+                                    boid: this.boid,
+                                    memberid: this.memberid,
+                                    actionptid: this.actionptid,
+                                    note: this.note
+                                };
+                            }).toArray();
+                            callback(result);
+                        });
+                    },
+                eventClick: function(event, jsEvent, view) {
+                    clearPopupFormValues();
+                    $('#modalTitle').html(event.title);
+                    $('#modalBody').html(event.description);
+
+                    $('#MemberID').select2("val", event.memberid);
+                    $('#BOID').select2("val", event.boid);
+                    $('#ActionPTID').select2("val", event.actionptid);
+                    $('#Waktu').val(event.start.format());
+                    $('#Note').val(event.note);
+                    $('#PlanAktifitasPTID').val(event.id);
+
+                    $('#calModal').modal();
+                },
+                dayClick: function(date, jsEvent, view) {
+                    clearPopupFormValues();
+                    $('#modalTitle').html(view.name);
+                    $('#modalBody').html();
+                    $('#Waktu').val(date.format());
+                    $('#calModal').modal();
+                },
+                eventDurationEditable: false,
+                minTime: '06:00:00',
+                maxTime: '22:00:00',
+                firstDay: 1,
+                timeFormat: {
+                    agenda: 'H:mm'
+                },
+                dragOpacity: {
+                    agenda: .5
+                },
+                eventDrop: function(event, delta, revertFunc, jsEvent, ui, view) {
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '@Url.Action("ExistingEvent")',
+                        dataType: "json",
+                        contentType: "application/json",
+                        data: {
+                            'time': event.start.format(),
+                            'backgroundColor': event.backgroundColor
+                        } //JSON.stringify(dataRow)
+                    }).done(function(data) {
+                        if (data === false)
+                            revertFunc();
+                        else {
+                            if (confirm("Confirm move?")) {
+                                updateDropEvent(event.id, event.start);
+                            } else {
+                                revertFunc();
+                            }
+                        }
+
+                    });
+
+                },
+                axisFormat: 'HH:mm',
+            });
+        });
+    </script>
+}
+

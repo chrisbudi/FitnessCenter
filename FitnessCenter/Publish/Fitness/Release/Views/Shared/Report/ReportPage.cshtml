@@ -1,0 +1,36 @@
+﻿@model FitnessCenter.Models.Crystal_Report.ReportModel
+
+
+<div class="modal-header">
+    <h4 class="modal-title">@Model.Title</h4>
+</div>
+<div class="modal-body">
+    @Html.Hidden("iframeUrl", Model.Url)
+    <iframe id="iframeReport" height="500" width="100%"></iframe>
+</div>
+
+<div class="modal-footer">
+    <button type="button" onclick="sendRequestReport(this)" data-url="@Model.Url" data-Format="excel" class="btn btn-default green">Export To Excel</button>
+    <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
+</div>
+
+<script>
+
+    $("#iframeReport").attr("src", $("#iframeUrl").val());
+    $("#iframeReport").one('load', function () {
+
+    });
+
+
+
+    function sendRequestReport(report) {
+        var reportUrl = report.getAttribute("data-url");
+        var reportFormat = report.getAttribute("data-format");
+
+        if (reportUrl.indexOf('?') >= 1) {
+            window.open(reportUrl + '&format=' + reportFormat, '_blank');
+        } else {
+            window.open(reportUrl + '?format=' + reportFormat, '_blank');
+        }
+    }
+</script>

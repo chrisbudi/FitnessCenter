@@ -1,0 +1,31 @@
+﻿@using Services.Infrastructure
+@model DataObjects.Entities.tEventScore
+
+@{
+    string Header = "tEventSteps[" + (ViewBag.index ?? Model.EvStepId) + "].tEventScores";
+}
+
+<tr>
+    @using (Html.BeginCollectionItem(Header))
+    {
+        <td style="display:none;">
+            _id_
+        </td>
+        <td></td>
+        <td>
+            @Html.EditorFor(m => m.EvScoreName, new { htmlAttributes = new { @class = "form-control EvScoreName" } })
+            <span class="text-danger">@Html.ValidationMessageFor(model => model.EvScoreName)</span>
+        </td>
+        <td>
+            @Html.EditorFor(m => m.MinScore, new { htmlAttributes = new { @class = "form-control MinScore" } })
+            <span class="text-danger">@Html.ValidationMessageFor(model => model.MinScore)</span>
+        </td>
+        <td>
+            @Html.EditorFor(m => m.MaxScore, new { htmlAttributes = new { @class = "form-control MaxScore" } })
+            <span class="text-danger">@Html.ValidationMessageFor(model => model.MaxScore)</span>
+        </td>
+        <td>
+            <a href="javascript:;" class="btn btn-default deleteScoreDetailRow">Delete</a>
+        </td>
+    }
+</tr>

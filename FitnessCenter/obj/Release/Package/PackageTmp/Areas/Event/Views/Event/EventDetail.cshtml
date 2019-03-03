@@ -1,0 +1,62 @@
+﻿@using Services.Infrastructure
+@model DataObjects.Entities.tEventStep
+
+
+<tr>
+    @using (Html.BeginCollectionItem("tEventSteps", Model.EvStepId))
+    {
+        <td>
+            @Model.EvStepId
+        </td>
+        <td class="text-center">
+            <a href="javascript:;" class="btn btn-default btnScore" data-id="@Model.EvStepId">Add Score</a>
+        </td>
+        <td>
+            @Html.EditorFor(m => Model.Step, new { htmlAttributes = new { @class = "form-control Step" } })
+            <span class="text-danger">@Html.ValidationMessageFor(model => Model.Step)</span>
+        </td>
+        <td>
+            @Html.EditorFor(model => model.PersonCount, new { htmlAttributes = new { @class = "form-control Step" } })
+            <span class="text-danger">@Html.ValidationMessageFor(model => model.PersonCount)</span>
+        </td>
+        <td>
+            @Html.TextAreaFor(model => Model.StepDetail, new { @class = "form-control" })
+            <span class="text-danger">@Html.ValidationMessageFor(model => Model.StepDetail)</span>
+        </td>
+        <td class="text-center">
+            <a href="javascript:;" class="btn btn-default deleteStepDetailRow">Delete</a>
+        </td>
+    }
+</tr>
+<tr>
+    <td>
+        @Model.EvStepId
+    </td>
+    <td colspan="5">
+        <table class="table table-bordered table-hover datatable_eventScore" id="datatable_eventScore__id_">
+            <thead>
+                <tr role="row" class="heading">
+                    <th width="5%" style="display: none;"> HeaderID </th>
+                    <th width="5%"> </th>
+                    <th width="25%"> Score&nbsp;Name </th>
+                    <th width="25%"> Min&nbsp;Score </th>
+                    <th width="25%"> Max&nbsp;Score </th>
+                    <th width="10%"> </th>
+                </tr>
+            </thead>
+            <tbody>
+            @if (Model != null)
+            {
+                foreach (var score in Model.tEventScores)
+                {
+                    Html.RenderPartial("ScoreEntryEditor", score);
+                }
+            }
+            </tbody>
+        </table>
+    </td>
+    <td class="hidden"></td>
+    <td class="hidden"></td>
+    <td class="hidden"></td>
+    <td class="hidden"></td>
+</tr>

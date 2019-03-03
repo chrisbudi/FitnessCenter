@@ -1,0 +1,103 @@
+﻿@using Services.Class
+@using Services.Helpers
+@model ViewModel.Master.StatusMemberPriceViewModel
+@{
+    ViewBag.Title = "Create Status Member";
+}
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Master <small>Status Member</small></h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="portlet light">
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN FORM PORTLET-->
+                <div class="portlet box green ">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-plus"></i> Tambah Status Member
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        @using (Html.BeginForm("CreateStatus", "StatusAction", FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            <div class="form-body">
+                                <div class="form-group">
+                                    @Html.LabelFor(s => s.StatusMember.STKet, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-5">
+                                        @*                                        @Html.DropDownListFor(m => m.STKet,)*@
+                                        @Html.DropDownListFor(m => m.StatusMember.STKet, new SelectList(StatusAction.ToList()), new { @class = "form-control" })
+                                        @*                                        @Html.TextBoxFor(s => s.STKet, new { @class = "form-control input-medium", placeholder = "Status Member" })*@
+                                        @Html.ValidationMessageFor(s => s.StatusMember.STKet)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Price, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(m => m.Price, new { @class = "form-control input-medium auto text-right", placeholder = "Price" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Period</label>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(m => m.Period, new { @class = "form-control input-medium text-right", @readonly = true, placeholder = "Period", value = DateTime.Now.ToString("yyyyMM") })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-2 col-md-9">
+                                        <button type="submit" class="btn btn-circle green bold"><i class="fa fa-check"></i> Simpan</button>
+                                        <a href="@Url.Action("Index", "StatusAction")" class="btn btn-circle red bold"><i class="fa fa-times"></i> Batal</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    @Scripts.Render("~/bundle/script/jqueryval")
+    <script>
+
+        $(function () {
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+
+            function setMask(lookUp) {
+                $(lookUp)
+                    .inputmask('decimal',
+                    {
+                        radixPoint: ',',
+                        groupSeparator: '.',
+                        autoGroup: true,
+                        digits: 2,
+                        digitsOptional: true
+                    });
+            }
+
+            setMask(".auto");
+            //$('.auto').autoNumeric('init', { aSep: '.', aDec: ',' });
+
+
+        });
+
+    </script>
+}

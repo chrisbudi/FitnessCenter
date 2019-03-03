@@ -1,0 +1,123 @@
+﻿@using DataAccessService.Master
+@using Services.Infrastructure
+@model DataObjects.Entities.trPaymentWith
+
+@{
+    //    string membershipId = ViewBag.membershipId;
+
+    string memberid = ViewBag.memberId;
+
+    @functions {
+        object getHtmlReadOnlyAttributes(bool ReadOnly, string CssClass)
+        {
+            if (ReadOnly)
+            {
+                return new { @class = CssClass, @readonly = "readonly" };
+            }
+            return new { @class = CssClass };
+        }
+    }
+
+    @functions {
+        object getHtmlDisabledAttributes(bool ReadOnly, string CssClass)
+        {
+            if (ReadOnly)
+            {
+                return new { @class = CssClass, @disabled = "disabled" };
+            }
+            return new { @class = CssClass };
+        }
+    }
+}
+<tr id="@memberid" role="row">
+    @using (Html.BeginCollectionItem("PaymentsWith"))
+    {
+        <td>
+            @memberid
+        </td>
+        <td>
+            @Html.DropDownListFor(m => m.PaymentTypeID, new SelectList(new DataServicePaymentType().LoadAllData(), "PaymentTypeID", "NamaType", Model.PaymentTypeID),
+                new { @class = "form-control paymentDetailType" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.PaymentTypeID)
+            </div>
+        </td>
+        <td>
+            @Html.DropDownListFor(m => m.BankID, new SelectList(new DataServiceBank().LoadAllBank(), "BankID", "NamaBank", ""),
+                Model.tPaymentType.NamaType.ToLower() != "cash" ?
+                    getHtmlDisabledAttributes(false, "form-control paymentDetailBank") :
+                    getHtmlDisabledAttributes(true, "form-control disabled paymentDetailBank"))
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.BankID)
+            </div>
+        </td>
+        <td>
+            @Html.DropDownListFor(m => m.BankID, new SelectList(new DataServiceBank().LoadAllBank(), "BankID", "NamaBank", ""),
+            Model.tPaymentType.NamaType.ToLower() != "cash" ?
+            getHtmlDisabledAttributes(false, "form-control paymentDetailBank") :
+            getHtmlDisabledAttributes(true, "form-control disabled paymentDetailBank"))
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.BankID)
+            </div>
+        </td>
+        <td style="width: 10px">
+            @Html.CheckBoxFor(m => m.I, new { @class = "form-control checkbox" })
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.TraceCode, new { @class = "form-control" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.TraceCode)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.ApprCode, new { @class = "form-control" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.ApprCode)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.NoKartu, new { @class = "form-control" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.NoKartu)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.ValidUntil, new
+       {
+           id = "Expired Date",
+           @class = "form-control mask-date",
+           data_inputmask = "'alias': 'date'",
+           size = "18",
+           placeholder = "Exp Date",
+           Value = DateTime.Now.ToString("dd/MM/yyyy"),
+       })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.ValidUntil)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.payAmount, new { @class = "form-control autoDetail paymentamountdetail text-right" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.payAmount)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.MBRAmount, new { @class = "form-control autoDetail mbramount text-right" })
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.MBRAmount)
+            </div>
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.paidAmount,
+           Model.tPaymentType.NamaType.ToLower() != "cash" ?
+           getHtmlReadOnlyAttributes(true, "form-control paidAmountDetail autoDetail disabled") :
+           getHtmlReadOnlyAttributes(false, "form-control paidAmountDetail autoDetail"))
+            <div class="text-danger">
+                @Html.ValidationMessageFor(m => m.paidAmount)
+            </div>
+        </td>
+        <td>
+            <a href="javascript:;" class="fa-stack fa-lg delPaymentList"><i class="fa fa-close fa-2x font-red"></i></a>
+        </td>
+    }
+</tr>

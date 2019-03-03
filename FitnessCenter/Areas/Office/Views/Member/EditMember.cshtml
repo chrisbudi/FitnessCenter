@@ -1,0 +1,267 @@
+﻿@using Services.Helpers
+@using DataAccessService.Master
+@model DataObjects.Entities.tMember
+
+@{
+    ViewBag.Title = "Edit Member";
+    ViewData["tPerson.PTglLahir"] = Model.tPerson.PTglLahir;
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Master <small>Member</small></h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="portlet light">
+    <div class="portlet-body">
+        <!-- BEGIN FORM PORTLET-->
+        <div class="portlet box green ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-plus"></i> Edit Member
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @using (Html.BeginForm("EditMember", "Member", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.HiddenFor(m => m.PersonID)
+                    @Html.HiddenFor(m => m.tPerson.PersonID)
+                    @Html.HiddenFor(m => m.tPerson.Id)
+                    @Html.HiddenFor(m => m.tMemberType.prFix)
+                    @Html.HiddenFor(m => m.tMemberType.Periode)
+                    @Html.HiddenFor(m => m.tMemberType.LocationID)
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="form-section">Informasi Member</h3>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.tPerson.PNama, new { @class = "col-md-3 control-label" })
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(m => m.tPerson.PNama, new { @class = "form-control", placeholder = "Nama Pasien" })
+                                            @Html.ValidationMessageFor(m => m.tPerson.PNama)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Tanggal Lahir</label>
+                                        @Html.EditorFor(m => m.tPerson.PTglLahir)
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Umur</label>
+                                        <div class="col-md-8">
+                                            @Html.TextBox("UMUR", null, new { @class = "form-control", placeholder = "Umur", @disabled = "disabled" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.tPerson.PGender, new { @class = "col-md-3 control-label" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownListFor(m => m.tPerson.PGender,
+                                                     new SelectList(new DataServicePerson().ListGenders(), "id", "text"), "- Pilih Kelamin -"
+                                                     , new { @class = "form-control input-large" })
+                                            @Html.ValidationMessageFor(m => m.tPerson.PGender)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.MemberID, new { @class = "col-md-3 control-label" })
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(m => m.MemberID, new { @class = "form-control", placeholder = "No. MemberID", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.tPerson.PIdentitas, new { @class = "col-md-3 control-label" })
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(m => m.tPerson.PIdentitas, new { @class = "form-control", placeholder = "No. Identitas" })
+                                        </div>
+                                        <div class="text-danger">
+                                            @Html.ValidationMessageFor(m => m.tPerson.PIdentitas)
+                                        </div>
+                                    </div>
+                                    @Html.HiddenFor(m => m.MemberTypeID)
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.tMemberType.MemberType, new { @class = "col-md-3 control-label" })
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(m => m.tMemberType.MemberType, new { @class = "form-control input-large", @readonly = true })
+                                            @Html.ValidationMessageFor(m => m.tMemberType.MemberType)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-center">
+                                        <div class="midtext">
+                                            <div class="col-md-12">
+                                                <a class="btn btn-default" id="personImageCapture">Capture Image</a>
+                                            </div>
+                                            @Html.Hidden("fotoSource")
+                                            @if (Model != null)
+                                            {
+                                                if (Model.MFoto == null)
+                                                {
+                                                    <img id="MFoto" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" />
+                                                }
+                                                else
+                                                {
+                                                    <img src="@Model.MFotoUrl" />
+                                                }
+                                            }
+                                            else
+                                            {
+                                                @Request.Params["memId"]
+                                                <img id="MFoto" src="@Url.Action("LoadFotoMember", "Member", new {area = "Office", id = TempData["id"]})" />
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <h3 class="form-section">Informasi Alamat</h3>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.tPerson.PAlamat, new { @class = "col-md-3 control-label" })
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(m => m.tPerson.PAlamat, new { @class = "form-control", placeholder = "Alamat Pasien" })
+                                            @Html.ValidationMessageFor(m => m.tPerson.PAlamat)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.tPerson.PKota, new { @class = "col-md-3 control-label" })
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(m => m.tPerson.PKota, new { @class = "form-control", placeholder = "Kota" })
+                                            @Html.ValidationMessageFor(m => m.tPerson.PKota)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.tPerson.PKecamatan, new { @class = "col-md-3 control-label" })
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(m => m.tPerson.PKecamatan, new { @class = "form-control", placeholder = "Kecamatan" })
+                                            @Html.ValidationMessageFor(m => m.tPerson.PKecamatan)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.tPerson.PPropinsi, new { @class = "col-md-3 control-label" })
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(m => m.tPerson.PPropinsi, new { @class = "form-control", placeholder = "Provinsi" })
+                                            @Html.ValidationMessageFor(m => m.tPerson.PPropinsi)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.tPerson.PKelurahan, new { @class = "col-md-3 control-label" })
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(m => m.tPerson.PKelurahan, new { @class = "form-control", placeholder = "Kelurahan" })
+                                            @Html.ValidationMessageFor(m => m.tPerson.PKelurahan)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h3 class="form-section">Informasi Contact</h3>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.tPerson.PHP1, new { @class = "col-md-3 control-label" })
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(m => m.tPerson.PHP1, new { @class = "form-control", placeholder = "Handhone 1" })
+                                            @Html.ValidationMessageFor(m => m.tPerson.PHP1)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.tPerson.PHP2, new { @class = "col-md-3 control-label" })
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(m => m.tPerson.PHP2, new { @class = "form-control", placeholder = "Handphone 2" })
+                                            @Html.ValidationMessageFor(m => m.tPerson.PHP2)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.tPerson.PTelp, new { @class = "col-md-3 control-label" })
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(m => m.tPerson.PTelp, new { @class = "form-control", placeholder = "Telp" })
+                                            @Html.ValidationMessageFor(m => m.tPerson.PTelp)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.tPerson.PEmail, new { @class = "col-md-3 control-label" })
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(m => m.tPerson.PEmail, new { @class = "form-control", placeholder = "Email" })
+                                            @Html.ValidationMessageFor(m => m.tPerson.PEmail)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.tPerson.PPinBB, new { @class = "col-md-3 control-label" })
+                                        <div class="col-md-8">
+                                            @Html.TextBoxFor(m => m.tPerson.PPinBB, new { @class = "form-control", placeholder = "Pin BB1" })
+                                            @Html.ValidationMessageFor(m => m.tPerson.PPinBB)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <!--/row-->
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-9">
+                                <button type="submit" class="btn btn-circle green bold"><i class="fa fa-check"></i>Simpan</button>
+                                <a href="@Url.Action("PrintAggreement", "Member", new {area = "Office", id = ViewContext.RouteData.Values["id"]})" id="btnPrintAgreement" class="btn btn-circle blue bold modal-link-report"><i class="fa fa-print"></i>Cetak Agreeement</a>
+                                <a href="@Url.Action("PrintOr", "Member", new { area = "Office", id = ViewContext.RouteData.Values["id"] })" id="btnPrintQR" class="btn btn-circle blue bold modal-link-report"><i class="fa fa-print"></i>Cetak Qr</a>
+                                <a href="@Url.Action("In", "InOutMember", new {area = "Activity", id=Model.MemberID})" class="btn btn-circle yellow bold"><i class="fa fa-times"></i> Cek In</a>
+                                <a href="@Url.Action("Index", "Member", new {area = "Office"})" class="btn btn-circle red bold"><i class="fa fa-times"></i> Batal</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END PAGE CONTENT-->
+@section Scripts {
+
+    @Scripts.Render("~/bundle/script/jqueryval")
+    @Scripts.Render("~/Scripts/personScript.js")
+
+
+    <script src="@Url.Content("~/Scripts/trippleddlAdapters.js")" type="text/javascript"></script>
+
+    @*1---------Reporting---------*@
+    @Html.Partial("Report/ReportView")
+
+
+    @*1---------Camera---------*@
+    @Html.Partial("Camera/CameraView")
+
+
+    <script>
+
+        $(function () {
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+            ComponentsPickers.init();
+
+            pageCamera.init('#personImageCapture', 'MFoto', 'fotoSource');
+
+            pageReporting.init('@Url.Action("ReportPage", "Reporting", new { area = "" })', $('#btnPrintAgreement'), '');
+            pageReporting.init('@Url.Action("ReportPage", "Reporting", new { area = "" })', $('#btnPrintQR'), '');
+
+
+            //$('#tPerson_PTglLahir').on('change', function () {
+            $(window).load(function () {
+                $('#UMUR').val(PersonScript.getAge("@ViewData["tPerson.PTglLahir"]"));
+            });
+
+            if ('@TempData["Message"]' !== "") {
+                $('#info').modal('show');
+            }
+
+        });
+    </script>
+}

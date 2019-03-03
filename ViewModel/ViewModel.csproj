@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6D7B7247-F04F-482B-A834-45ABA167A38B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ViewModel</RootNamespace>
+    <AssemblyName>ViewModel</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\FitnessCenter\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Crystal.Reports.Essentials.13.0.2000.0\lib\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\CrystalDecisions.ReportSource.1.0.0\lib\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\CrystalDecisions.Shared.1.0.0\lib\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Crystal.Reports.Essentials.13.0.2000.0\lib\CrystalDecisions.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Accounting\ViewModelDailyClosing.cs" />
+    <Compile Include="Activity\MemberActivity.cs" />
+    <Compile Include="Camera\ViewModelCamera.cs" />
+    <Compile Include="Identity\FormAuth.cs" />
+    <Compile Include="Identity\FormAuthEdit.cs" />
+    <Compile Include="Identity\FormRole.cs" />
+    <Compile Include="Identity\User.cs" />
+    <Compile Include="Identity\ViewModelDashboard.cs" />
+    <Compile Include="Instructor\Plan\PlanIndex.cs" />
+    <Compile Include="Master\CardMember.cs" />
+    <Compile Include="Master\CardPrint.cs" />
+    <Compile Include="Master\MemberViewModel.cs" />
+    <Compile Include="Master\Report\Member\Member.cs" />
+    <Compile Include="Master\StatusMemberPriceViewModel.cs" />
+    <Compile Include="Master\VMBackOffice.cs" />
+    <Compile Include="Membership\FreezeCancel\MembershipViewModelFreezeCancel.cs" />
+    <Compile Include="Membership\Registrasi\PrintoutQR.cs" />
+    <Compile Include="Membership\Registrasi\PrintoutMembership.cs" />
+    <Compile Include="Membership\FreezeCancel\PrintoutCancel.cs" />
+    <Compile Include="Membership\FreezeCancel\PrintoutFreeze.cs" />
+    <Compile Include="Membership\Registrasi\ViewModelCollection.cs" />
+    <Compile Include="Menu\Sidebar.cs" />
+    <Compile Include="Menu\Topbar.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Membership\CalonMember\ViewModelCalonMember.cs" />
+    <Compile Include="Membership\Activity\ViewModelCreateActv.cs" />
+    <Compile Include="Membership\Registrasi\ViewModelMembershipPayment.cs" />
+    <Compile Include="Membership\Registrasi\ViewModelMembershipPaymentDetail.cs" />
+    <Compile Include="Membership\CalonMember\ViewModelCalonMemberMemberType.cs" />
+    <Compile Include="Membership\Registrasi\ViewModelMembershipPerson.cs" />
+    <Compile Include="Membership\Registrasi\MembershipViewModel.cs" />
+    <Compile Include="Membership\Registrasi\ViewModelMembershipCreate.cs" />
+    <Compile Include="Membership\Registrasi\ViewModelMembershipSumPayment.cs" />
+    <Compile Include="ReportingModel\ReportViewModel.cs" />
+    <Compile Include="ReportingModel\ReportingSales\SalesViewModel.cs" />
+    <Compile Include="Report\PrintoutMember.cs" />
+    <Compile Include="Report\PrintQr.cs" />
+    <Compile Include="Trainer\Claim\ClaimMemberPT.cs" />
+    <Compile Include="Trainer\Claim\StartClaimModel.cs" />
+    <Compile Include="Trainer\RegisterPT\ViewModelPTCreate.cs" />
+    <Compile Include="Trainer\RegisterPT\ViewModelPaymentDetail.cs" />
+    <Compile Include="Trainer\PlanPT\ViewModelEventCalendar.cs" />
+    <Compile Include="Trainer\RegisterPT\ViewModelPrintRegisterPersonalTrainer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data Objects\Data Objects.csproj">
+      <Project>{00ca8443-07ed-4263-8e2d-79b02bd800c5}</Project>
+      <Name>Data Objects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IdentityModel\IdentityModel.csproj">
+      <Project>{74db2f1b-d1df-4a4a-a8ea-d2ecdf52a17d}</Project>
+      <Name>IdentityModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Services.csproj">
+      <Project>{70f690e6-6146-4471-9cf3-dad3fb74e822}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <Compile Include="Report\LaporanSales.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

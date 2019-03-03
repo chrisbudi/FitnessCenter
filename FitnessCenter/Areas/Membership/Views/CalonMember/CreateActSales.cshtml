@@ -1,0 +1,272 @@
+﻿@using DataAccessService.Master
+@model ViewModel.Registrasi.Activity.ViewModelCreateActv
+@{
+    ViewBag.Title = "Create Aktivits Sales";
+}
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>
+            Add <small>Sales Action</small>
+        </h1>
+    </div>
+</div>
+
+
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="index.html">Home</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="#">Register Calon Member</a>
+        <i class="fa fa-circle"></i>
+    </li>
+</ul>
+
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN FORM PORTLET-->
+        <div class="portlet box green ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-plus"></i> Tambah Posisi
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @using (Html.BeginForm("CreateAct", "CalonMember", FormMethod.Post, new {@class = "form-horizontal"}))
+                {
+                    <div class="form-body">
+                        @Html.HiddenFor(m => m.Act.trMembersipID)
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Act.SalesActionID, new {@class = "col-md-2 control-label"})
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(m => m.Act.SalesActionID, new {@class = "form-control input-medium", placeholder = "Aktivitas Sales"})
+                                @Html.ValidationMessageFor(m => m.Act.SalesActionID)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.MemberStatus, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.DropDownListFor(m => m.MemberStatus, new SelectList(new DataServiceStatusMember().LoadAllStatusRegister()),
+                                    new {@class = "form-control input-medium"})
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Member Type:</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(m => m.MemberType, new {@class = "form-control input-medium", @readonly = true})
+                                @Html.ValidationMessageFor(m => m.MemberType)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Member Count:</label>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.CountMember, new {@class = "spinner-input form-control", maxlength = 3, @readonly = true})
+                                @Html.ValidationMessageFor(m => m.CountMember)
+                                <span id="countMemberHelp" class="help-block">
+                                    Input value max 1
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Payment:</label>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.Payment, new {@class = "form-control auto text-right", @readonly = true})
+                                <span class="help-block">
+                                    Total Payment this account
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Member Admin:</label>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.Admin, new {@class = "form-control auto text-right"})
+                                <span id="countMemberHelp" class="help-block">
+                                    Total Payment Admin
+                                </span>
+                            </div>
+                        </div>
+
+                        <div id="hdnMemberProrate" class="form-group hidden">
+                            <label class="control-label col-md-2">Member prorate:</label>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.Prorate, new {@class = "form-control auto text-right"})
+                                <span class="help-block">
+                                    Total Payment Prorate
+                                </span>
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Prorate)
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Discount:</label>
+                            <div class="col-md-3">
+                                @Html.TextBox("DiscountPct", "0.00", new {@class = "form-control auto text-right", maxlength = 5})
+                                @Html.HiddenFor(m => m.Discount)
+                                <span id="DiscountMemberHelp" class="help-block">
+                                    Discount Total for this account (0)
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Member Total Payment:</label>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.TotalAmount, new {@class = "form-control auto text-right", @readonly = true, hidden = true})
+                                <span class="help-block">
+                                    Total Amount Payment
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Act.Note, new {@class = "col-md-2 control-label"})
+                            <div class="col-md-5">
+                                @Html.TextAreaFor(m => m.Act.Note, new {@class = "form-control input-medium"})
+                                @Html.ValidationMessageFor(m => m.Act.Note)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-9">
+                                <button type="submit" class="btn btn-circle green bold"><i class="fa fa-check"></i> Simpan</button>
+                                <a href="@Url.Action("Index", "CalonMember")" class="btn btn-circle red bold"><i class="fa fa-times"></i> Batal</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    @Scripts.Render("~/jqueryval/script")
+    @Scripts.Render("~/Scripts/select2FormControl.js")
+
+    @Scripts.Render("~/formcomponent/script")
+
+    @Scripts.Render("~/assets/admin/pages/scripts/components-form-tools.js")
+    @Scripts.Render("~/assets/global/plugins/fuelux/js/spinner.min.js")
+    <script>
+
+        $(function() {
+            Metronic.init(); // init metronic core components
+            Layout.init(); // init current layout
+            var select2 = select2Control;
+            var memberStatus = "#MemberStatus";
+            var memberType = '#MemberType';
+            var salesAction = "#Act_SalesActionID";
+            var prorate = $('.prorate');
+
+            select2.init(memberType, "Tipe Member", "/Master/MemberType/GetMemberType", "/Master/MemberType/GetMemberTypeById");
+            select2.init(salesAction, "Sales Action", "/Sales/GetSalesAction", "/Sales/GetSalesActionById");
+            var spinn = $('#CountMember');
+            $('.auto').autoNumeric('init', { aSep: '.', aDec: ','});
+
+            function resetSpinVal() {
+                spinn.val(1);
+                spinn.trigger("touchspin.updatesettings", { max: 1 });
+            }
+
+            function setOnChange() {
+                resetSpinVal();
+                if ($(memberStatus).val() != null)
+                    if ($(memberStatus).val() === "Closed") {
+                        select2.readonly(memberType, false);
+                    } else {
+                        select2.clear(memberType);
+                        select2.readonly(memberType, true);
+                    }
+            }
+
+            function getAutoNumberVal(lookUp) {
+                return parseFloat($(lookUp).autoNumeric('get') === "" ? "0" : $(lookUp).autoNumeric('get'));
+            }
+
+            function reAmount() {
+                var payment = getAutoNumberVal('#Payment');
+                var admin = getAutoNumberVal('#Admin');
+                var prorate = getAutoNumberVal('#Prorate');
+                var discountPct = getAutoNumberVal('#DiscountPct');
+                var totalAmount = 0;
+                var discount = 0;
+
+                totalAmount = (payment + admin + prorate);
+                discount = totalAmount * discountPct / 100;
+
+
+                totalAmount = totalAmount - discount;
+
+                document.getElementById('DiscountMemberHelp').innerHTML = 'Discount Total for this account (' + discount + ')';
+                $('#TotalAmount').autoNumeric('set', totalAmount);
+                $('#Discount').val(discount);
+            }
+
+
+            $(memberStatus).on('change', function() {
+                setOnChange();
+            });
+
+            $(memberType).on('change', function() {
+                var typeId = select2.select(memberType).id;
+                $.ajax({
+                    url: '/Master/MemberType/GetMemberSharedById',
+                    dataType: 'json',
+                    data: {
+                        id: typeId
+                    }
+                }).done(function(data) {
+                    spinn.trigger("touchspin.updatesettings", { max: data.Share });
+                    document.getElementById("countMemberHelp").innerHTML = 'Input value max ' + data.Share;
+
+                    $('#Payment').autoNumeric('set', data.Biaya);
+                    $('#Admin').autoNumeric('set', data.Admin);
+
+                    if (data.IsPaket !== true) {
+                        $('#hdnMemberProrate').addClass("hidden");
+                        $('#Prorate').autoNumeric('set', 0);
+                    } else {
+
+                        $('#hdnMemberProrate').removeClass("hidden");
+                        $('#Prorate').autoNumeric('set', data.Prorate);
+                    }
+
+                    var totalAmount = data.Biaya + data.Admin + data.Prorate;
+                    $('#TotalAmount').autoNumeric('set', (totalAmount));
+                });
+            });
+
+            $(window).load(function() {
+                spinn.TouchSpin({
+                    min: 1,
+                    max: 10,
+                    mousewheel: true,
+                    stepinterval: 50,
+                    maxboostedstep: 10000000
+                });
+                setOnChange();
+                prorate.hide();
+            });
+
+            $('.auto').on('change', function() {
+                reAmount();
+            });
+        });
+
+    </script>
+}

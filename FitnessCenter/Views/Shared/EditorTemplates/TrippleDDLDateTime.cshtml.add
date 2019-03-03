@@ -1,0 +1,44 @@
+﻿@{
+    var now = DateTime.Now;
+    var years = Enumerable.Range(0, 150).Select(x => new SelectListItem { Value = (now.Year - x).ToString(), Text = (now.Year - x).ToString() });
+    var months = Enumerable.Range(1, 12).Select(x => new SelectListItem { Value = x.ToString("00"), Text = x.ToString() });
+    var days = Enumerable.Range(1, 31).Select(x => new SelectListItem { Value = x.ToString("00"), Text = x.ToString() });
+
+    var result = ViewData.ModelState[ViewData.TemplateInfo.HtmlFieldPrefix];
+
+    if (result != null && result.Value != null)
+    {
+        var values = result.Value.RawValue as string[];
+        days = new SelectList(days, "Value", "Text", values[0]);
+        months = new SelectList(months, "Value", "Text", values[1]);
+        years = new SelectList(years, "Value", "Text", values[2]);
+
+        result.Value = null;
+    }
+    else if (ViewData[ViewData.TemplateInfo.HtmlFieldPrefix] != null || ViewData["dateTemp"] != null)
+    {
+        var dateFromModel = (DateTime?)ViewData[ViewData.TemplateInfo.HtmlFieldPrefix] ?? (DateTime?)ViewData["dateTemp"];
+
+        days = new SelectList(days, "Value", "Text", dateFromModel.Value.Day.ToString("00"));
+        months = new SelectList(months, "Value", "Text", dateFromModel.Value.Month.ToString("00"));
+        years = new SelectList(years, "Value", "Text", dateFromModel.Value.Year);
+    }
+}
+
+<div class="trippleddldatetime">
+    <div class="col-md-4">
+        @Html.DropDownList("", days, "Tanggal", new { @class = "form-control" })
+    </div>
+    <div class="col-md-4">
+        @Html.DropDownList("", months, "Bulan", new { @class = "form-control" })
+    </div>
+    <div class="col-md-4">
+        @Html.DropDownList("", years, "Tahun", new { @class = "form-control" })
+    </div>
+    <div class="col-md-12">
+        <div>
+            @Html.ValidationMessage("", new { @class = "font-red" })
+        </div>
+    </div>
+
+</div>

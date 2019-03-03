@@ -1,0 +1,305 @@
+﻿@model DataObjects.Entities.tEvent
+@{
+    ViewBag.Title = "Create Person Event";
+}
+@section styles{
+    <link href="~/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+}
+
+<!-- BEGIN BREADCRUMBS -->
+<div class="breadcrumbs">
+    <h1>@ViewBag.Title</h1>
+    @Html.Partial("_pageBreadcrumbs")
+</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE BASE CONTENT -->
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Create", "Event", FormMethod.Post, new { @class = "form-horizontal form-row-seperated" }))
+            {
+            <div class="portlet">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-shopping-cart"></i>New Person Event
+                    </div>
+                    <div class="actions btn btn-set">
+                        <a class="btn btn-default" href="@Url.Action("Index")">
+                            <i class="fa fa-angle-left"></i> Back
+                        </a>
+                        <button type="reset" class="btn btn-secondary-outline reset">
+                            <i class="fa fa-reply"></i> Reset
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-check"></i> Save
+                        </button>
+                        <div class="btn-group">
+                            <a class="btn btn-success dropdown-toggle" href="javascript:;" data-toggle="dropdown">
+                                <i class="fa fa-share"></i> More
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <div class="dropdown-menu pull-right">
+                                <li>
+                                    <a href="javascript:;"> Duplicate </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;"> Delete </a>
+                                </li>
+                                <li class="dropdown-divider"> </li>
+                                <li>
+                                    <a href="javascript:;"> Print </a>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="tabbable-bordered">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab_general" data-toggle="tab"> General </a>
+                            </li>
+                            <li>
+                                <a href="#tab_Step" data-toggle="tab"> Step_Score </a>
+                            </li>
+                            @*                            <li>*@
+                            @*                                <a href="#tab_Score" data-toggle="tab"> Score </a>*@
+                            @*                            </li>*@
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_general">
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">
+                                            Name:
+                                            <span class="required"> * </span>
+                                        </label>
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.EvName, new { @class = "form-control" })
+                                            <span class="text-danger">@Html.ValidationMessageFor(m => m.EvName)</span>
+                                            <span class="help-block">Event Name</span>
+                                            @*<input type="text" class="form-control" name="product[name]" placeholder="">*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">
+                                            Date:
+                                            <span class="required"> * </span>
+                                        </label>
+                                        <div class="col-md-10">
+
+                                            <div class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+                                                @*<input type="text" class="form-control" name="product[available_from]">*@
+                                                @Html.TextBoxFor(m => m.EvStartDate, new { @class = "form-control" })
+                                                <span class="input-group-addon"> to </span>
+                                                @Html.TextBoxFor(m => m.EvEndDate, new { @class = "form-control" })
+                                                @*                                                <input type="text" class="form-control" name="product[available_to]">*@
+                                            </div>
+                                            <span class="help-block"> availability daterange. </span>
+
+                                            @*<input type="text" class="form-control" name="product[name]" placeholder="">*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">
+                                            participant:
+                                            <span class="required"> * </span>
+                                        </label>
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(m => m.JumlahPesertaAwal, new { htmlAttributes = new { @class = "form-control" } })
+                                            <span class="text-danger">@Html.ValidationMessageFor(m => m.JumlahPesertaAwal)</span>
+                                            <span class="help-block">Total participant</span>
+                                            @*<input type="text" class="form-control" name="product[name]" placeholder="">*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">
+                                            Steps:
+                                            <span class="required"> * </span>
+                                        </label>
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.JumlahStep, new { @class = "form-control" })
+                                            <span class="text-danger">@Html.ValidationMessageFor(m => m.JumlahStep)</span>
+                                            <span class="help-block">Total Steps</span>
+                                            @*<input type="text" class="form-control" name="product[name]" placeholder="">*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab_Step" class="tab-pane">
+                                <div id="tab_images_uploader_container" class="text-align-reverse margin-bottom-10">
+                                    <a id="tab_images_uploader_pickfiles" href="javascript:;" class="btn btn-info btnStep">
+                                        <i class="fa fa-plus"></i> Add New Row
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <div id="tab_images_uploader_filelist" class="col-md-6 col-sm-12"> </div>
+                                </div>
+                                <table class="table table-bordered table-hover" id="datatable_eventStep">
+                                    <thead>
+                                        <tr role="row" class="heading">
+                                            <th width="5%"> ID </th>
+                                            <th width="3%"> </th>
+                                            <th width="15%"> Step </th>
+                                            <th width="15%"> Person&nbsp;Count </th>
+                                            <th width="50%"> Step&nbsp;Detail </th>
+                                            <th width="3%"> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+
+                            </div>
+                            @*                            <div id="tab_Score" class="tab-pane">*@
+                            @*                                <div class="alert alert-success margin-bottom-10">*@
+                            @*                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>*@
+                            @*                                    <i class="fa fa-warning fa-lg"></i> Image type and information need to be specified.*@
+                            @*                                </div>*@
+                            @*                                <div id="tab_images_uploader_container" class="text-align-reverse margin-bottom-1   0">*@
+                            @*                                    <a id="tab_images_uploader_pickfiles" href="javascript:;" class="btn btn-info btnStep">*@
+                            @*                                        <i class="fa fa-plus"></i> Add New Row*@
+                            @*                                    </a>*@
+                            @*                                </div>*@
+                            @*                                <table class="table table-bordered table-hover" id="datatable_eventScore">*@
+                            @*                                    <thead>*@
+                            @*                                        <tr role="row" class="heading">*@
+                            @*                                            <th width="5%"> HeaderID </th>*@
+                            @*                                            <th width="5%"> </th>*@
+                            @*                                            <th width="25%"> Score&nbsp;Name </th>*@
+                            @*                                            <th width="25%"> Min&nbsp;Score </th>*@
+                            @*                                            <th width="25%"> Max&nbsp;Score </th>*@
+                            @*                                            <th width="10%"> </th>*@
+                            @*                                        </tr>*@
+                            @*                                    </thead>*@
+                            @*                                    <tbody></tbody>*@
+                            @*                                </table>*@
+                            @*                            </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<!-- END PAGE BASE CONTENT -->
+<!-- END PAGE CONTENT-->
+@section Scripts {
+
+    @Scripts.Render("~/bundle/script/forminput")
+    @Scripts.Render("~/bundle/script/jqueryval")
+    @Scripts.Render("~/Scripts/ComponentsSelect2.js")
+    <script src="~/assets/global/scripts/gridevent.js"></script>
+
+    <script>
+
+        $(function () {
+            //Metronic.init();// init metronic core components
+            //Layout.init(); // init current layout
+            var count = 0;
+
+            //init datepickers
+            $('.date-picker').datepicker({
+                rtl: App.isRTL(),
+                format: 'dd/mm/yyyy',
+                autoclose: true
+            });
+
+            var stepDetail = $('#datatable_eventStep').DataTable({
+                "serverSide": false,
+                "processing": true,
+                "searching": false,
+                "ordering": false,
+                "deferRender": true,
+                "filter": true,
+                "lengthMenu": [5, 10, 25, 50, 75, 100],
+                "pageLength": 10,
+                "createdRow": function (row, data, dataIndex) {
+                    $(row).attr('id', data[0]);
+                    //alert($(row).find('input[name="tEventSteps.Index"]').val());
+                    currentRow = stepDetail.row(row);
+                    format(currentRow, data[0], $(row).find('input[name="tEventSteps.Index"]').val());
+                },
+                "columns": [
+                     {
+                         "name": "id",
+                         visible: false
+                     },
+                     {
+                         "name": "No",
+                         orderable: false
+                     },
+                     {
+                         "name": "PersonCount",
+                         orderable: false
+                     },
+                     {
+                         "name": "Step",
+                         orderable: false
+                     },
+                     {
+                         "name": "StepDetail",
+                         orderable: false
+                     },
+                     {
+
+                     }
+                ],
+                "order": [[0, "asc"]]
+            });
+
+            function addNewScore(id, index) {
+                $.ajax({
+                    url: '@Url.Action("ScoreEntryRow")',
+                    data: {
+                        index: index,
+                    }
+                }).done(function (template) {
+                    $('#datatable_eventScore_' + id).append(template);
+                });
+            }
+
+            function format(row, id, index) {
+                $.get('@Url.Action("ScoreEntryTable")', function (result) {
+                    result = result.replace('_id_', id);
+                    row.child(result).show();
+
+                    addNewScore(id, index);
+                });
+            }
+
+
+            $('.btnStep').on('click', function () {
+                $.ajax({
+                    url: '@Url.Action("StepEntryRow")',
+                    data: {
+
+                    }
+                }).done(function (template) {
+                    count += 1;
+                    template = template.replace('_id_', count).replace('"_id_"', '"' + count + '"');
+                    stepDetail.row.add($(template)).draw();
+                });
+            });
+
+            $(document).on('click', '.btnScore', function () {
+                //alert($(this).parent().parent().find('input[name="tEventSteps.Index"]').val());
+                addNewScore($(this).data("id"), $(this).parent().parent().find('input[name="tEventSteps.Index"]').val());
+            });
+
+            $(document).on('click', '.deleteStepDetailRow', function () {
+                stepDetail.row($(this).parents('tr')).remove().draw();
+            });
+
+            $(document).on('click', '.deleteScoreDetailRow', function () {
+                scoreDetail.row($(this).parents('tr')).remove().draw();
+            });
+
+            $(document).on('click', '.addScoreDetailRow', function () {
+                $('.hiddenScore').removeClass('hidden');
+            });
+
+        });
+
+    </script>
+}

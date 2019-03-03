@@ -1,0 +1,694 @@
+﻿@using DataAccessService.Master
+@model ViewModel.Registrasi.CalonMember.ViewModelCalonMember
+@{
+    ViewBag.Title = "Calon";
+}
+
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Create CM <small>Add new CM</small></h1>
+    </div>
+</div>
+
+
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="index.html">Home</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="#">Register Calon Member </a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="#">Create Calon Member</a>
+        <i class="fa fa-circle"></i>
+    </li>
+</ul>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet box blue" id="form_wizard_1">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-gift"></i> Create CM - <span class="step-title">
+                        Step 1 of 4
+                    </span>
+                </div>
+                <div class="tools hidden-xs">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                    <a href="#portlet-config" data-toggle="modal" class="config">
+                    </a>
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @using (Html.BeginForm("CreateCm", "CalonMember", FormMethod.Post, new { id = "submit_form", @class = "form-horizontal" }))
+                {
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <ul class="nav nav-pills nav-justified steps">
+                                <li>
+                                    <a href="#tab1" data-toggle="tab" class="step">
+                                        <span class="number">
+                                            1
+                                        </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Person Info
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab2" data-toggle="tab" class="step">
+                                        <span class="number">
+                                            2
+                                        </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Address
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab3" data-toggle="tab" class="step active">
+                                        <span class="number">
+                                            3
+                                        </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Contact
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab4" data-toggle="tab" class="step">
+                                        <span class="number">
+                                            4
+                                        </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Confirm
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success">
+                                </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button>
+                                    You have some form errors. Please check below.
+                                </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button>
+                                    Your form validation is successful!
+                                </div>
+                                <div class="tab-pane active" id="tab1">
+                                    <h3 class="block">Provide your Person Information</h3>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.Person.PNama) <span class="required">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div class="col-md-4">
+                                            @Html.TextBoxFor(m => m.Person.PNama, new { @class = "form-control" })
+                                            <span class="help-block">
+                                                Provide your Name Info
+                                            </span>
+                                            <span class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.Person.PNama)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.Person.PGender) <span class="required">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div class="col-md-4">
+                                            <div class="radio-list">
+                                                <label>
+                                                    @Html.RadioButtonFor(m => m.Person.PGender, "M", new { data_title = "Male", @checked = "checked" })
+                                                    Male
+                                                </label>
+                                                <label>
+                                                    @Html.RadioButtonFor(m => m.Person.PGender, "F", new { data_title = "Female" })
+                                                    Female
+                                                </label>
+                                            </div>
+                                            <span class="help-block">
+                                                Provide your Gender Info
+                                            </span>
+                                            <span class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.Person.PGender)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.Person.PIdentitas) <span class="required">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div class="col-md-4">
+                                            @Html.TextBoxFor(m => m.Person.PIdentitas, new { @class = "form-control" })
+                                            <span class="help-block">
+                                                Provide your Identity Info
+                                            </span>
+                                            <span class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.Person.PIdentitas)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.Person.PTglLahir) <span class="required">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div>
+                                            @Html.EditorFor(m => m.Person.PTglLahir)
+                                        </div>
+                                    </div>
+                                </div>
+                                @*                                koding untuk tab 2*@
+                                <div class="tab-pane" id="tab2">
+                                    <h3 class="block">Provide your Address details</h3>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.Person.PPropinsi)
+                                        </label>
+                                        <div class="col-md-4">
+                                            @Html.TextBoxFor(m => m.Person.PPropinsi, new { @class = "form-control" })
+                                            <span class="help-block">
+                                                Provide your Province
+                                            </span>
+                                            <span class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.Person.PPropinsi)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.Person.PKota)
+                                        </label>
+                                        <div class="col-md-4">
+                                            @Html.TextBoxFor(m => m.Person.PKota, new { @class = "form-control" })
+                                            <span class="help-block">
+                                                Provide your City
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.Person.PKelurahan)
+                                        </label>
+                                        <div class="col-md-4">
+                                            @Html.TextBoxFor(m => m.Person.PKelurahan, new { @class = "form-control" })
+                                            <span class="help-block">
+                                                Provide your Kelurahan
+                                            </span>
+
+                                            <span class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.Person.PKelurahan)
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.Person.PKecamatan)
+                                        </label>
+                                        <div class="col-md-4">
+                                            @Html.TextBoxFor(m => m.Person.PKecamatan, new { @class = "form-control" })
+                                            <span class="help-block">
+                                                Provide your Kecamatan
+                                            </span>
+
+                                            <span class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.Person.PKecamatan)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.Person.PAlamat)
+                                        </label>
+                                        <div class="col-md-4">
+                                            @Html.TextAreaFor(m => m.Person.PAlamat, new { @class = "form-control" })
+                                            <span class="help-block">
+                                                Provide your Address
+                                            </span>
+
+                                            <span class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.Person.PAlamat)
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*koding untuk tab 3*@
+                                <div class="tab-pane" id="tab3">
+                                    <h3 class="block">Provide your Contact details</h3>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.Person.PHP1) <span class="required">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div class="col-md-4">
+                                            @Html.TextBoxFor(m => m.Person.PHP1, new { @class = "form-control" })
+                                            <span class="help-block">
+                                                Provide First Phone Information
+                                            </span>
+
+                                            <span class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.Person.PHP1)
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.Person.PHP2)
+                                        </label>
+                                        <div class="col-md-4">
+                                            @Html.TextBoxFor(m => m.Person.PHP2, new { @class = "form-control" })
+                                            <span class="help-block">
+                                                Provide your second phone information
+                                            </span>
+
+                                            <span class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.Person.PHP2)
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.Person.PPinBB)
+                                        </label>
+                                        <div class="col-md-4">
+                                            @Html.TextBoxFor(m => m.Person.PPinBB, new { @class = "form-control" })
+                                            <span class="help-block">
+                                                Provide your Black Berry Pin Information
+                                            </span>
+
+                                            <span class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.Person.PPinBB)
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            @Html.LabelFor(m => m.Person.PEmail)
+                                        </label>
+                                        <div class="col-md-4">
+                                            @Html.TextBoxFor(m => m.Person.PEmail, new { @class = "form-control" })
+                                            <span class="help-block">
+                                                Provide your Email
+                                            </span>
+
+                                            <span class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.Person.PEmail)
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab4">
+                                    <h3 class="block">Confirm your account</h3>
+                                    <h4 class="form-section">Account</h4>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Nama:</label>
+                                        <div class="col-md-4">
+                                            <p class="form-control-static" data-display="Person.PNama">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Gender:</label>
+                                        <div class="col-md-4">
+                                            <p class="form-control-static" data-display="Person.PGender">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Identitas:</label>
+                                        <div class="col-md-4">
+                                            <p class="form-control-static" data-display="Person.PIdentitas">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Tgl Lahir:</label>
+                                        <div class="col-md-4">
+                                            <p class="form-control-static" data-display="Person.PTglLahir">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <h4 class="form-section">Address</h4>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Provinsi:</label>
+                                        <div class="col-md-4">
+                                            <p class="form-control-static" data-display="Person.PPropinsi">
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Kota:</label>
+                                        <div class="col-md-4">
+                                            <p class="form-control-static" data-display="Person.PKota">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Kelurahan:</label>
+                                        <div class="col-md-4">
+                                            <p class="form-control-static" data-display="Person.PKelurahan">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Kecamatan:</label>
+                                        <div class="col-md-4">
+                                            <p class="form-control-static" data-display="Person.PKecamatan">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Alamat:</label>
+                                        <div class="col-md-4">
+                                            <p class="form-control-static" data-display="Person.PAlamat">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <h4 class="form-section">Contact</h4>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">HP 1:</label>
+                                        <div class="col-md-4">
+                                            <p class="form-control-static" data-display="Person.PHP1">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">HP 2:</label>
+                                        <div class="col-md-4">
+                                            <p class="form-control-static" data-display="Person.PHP2">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Pin BB:</label>
+                                        <div class="col-md-4">
+                                            <p class="form-control-static" data-display="Person.PPinBB">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Telp:</label>
+                                        <div class="col-md-4">
+                                            <p class="form-control-static" data-display="Person.Telp">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Email:</label>
+                                        <div class="col-md-4">
+                                            <p class="form-control-static" data-display="Person.PEmail">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <h4 class="form-section">Status</h4>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Member Status:</label>
+                                        <div class="col-md-4">
+                                            @Html.DropDownListFor(m => m.MemberType.MemberStatus, new SelectList(new DataServiceStatusMember().LoadAllStatusRegister()),
+                                        new { @class = "form-control" })
+                                            @*@Html.TextBoxFor(m => m.MemberType.MemberStatus, new { @class = "form-control" })*@
+                                            <span class="help-block">
+                                                Input your member status
+                                            </span>
+                                            @Html.ValidationMessageFor(m => m.MemberType.MemberStatus)
+                                        </div>
+                                    </div>
+                                    <div id="hdnMemberType" class="form-group">
+                                        <label class="control-label col-md-3">Member Type:</label>
+                                        <div class="col-md-4">
+                                            @Html.TextBoxFor(m => m.MemberType.MemberType, new { @class = "form-control", @readonly = true })
+                                            <span class="help-block">
+                                                Input your member Type
+                                            </span>
+                                            @Html.ValidationMessageFor(m => m.MemberType.MemberType)
+                                        </div>
+                                    </div>
+                                    <div id="hdnMemberCount" class="form-group">
+                                        <label class="control-label col-md-3">Member Count:</label>
+                                        <div class="col-md-3">
+                                            @Html.TextBoxFor(m => m.MemberType.CountMember, new { @class = "spinner-input form-control", maxlength = 3, @readonly = true })
+                                            <span id="countMemberHelp" class="help-block">
+                                                Input value max 1
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div id="hdnPayment" class="form-group">
+                                        <label class="control-label col-md-3">Payment:</label>
+                                        <div class="col-md-3">
+                                            @Html.TextBoxFor(m => m.MemberType.Payment, new { @class = "form-control auto text-right", @readonly = true })
+                                            <span class="help-block">
+                                                Total Payment this account
+                                            </span>
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.MemberType.Payment)
+                                    </div>
+
+                                    <div id="hdnMemberAdmin" class="form-group">
+                                        <label class="control-label col-md-3">Member Admin:</label>
+                                        <div class="col-md-3">
+                                            @Html.TextBoxFor(m => m.MemberType.Admin, new { @class = "form-control auto text-right" })
+                                            <span id="countMemberHelp" class="help-block">
+                                                Total Payment Admin
+                                            </span>
+                                            @Html.ValidationMessageFor(m => m.MemberType.Admin)
+                                        </div>
+                                    </div>
+
+                                    <div id="hdnMemberProrate" class="form-group hidden">
+                                        <label class="control-label col-md-3">Member prorate:</label>
+                                        <div class="col-md-3">
+                                            @Html.TextBoxFor(m => m.MemberType.Prorate, new { @class = "form-control auto text-right" })
+                                            <span class="help-block">
+                                                Total Payment Prorate
+                                            </span>
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.MemberType.Prorate)
+                                    </div>
+
+                                    <div id="hdnDiscount" class="form-group">
+                                        <label class="control-label col-md-3">Discount:</label>
+                                        <div class="col-md-3">
+                                            @Html.TextBox("DiscountPct", "0.00", new { @class = "form-control auto text-right", maxlength = 5 })
+                                            <span id="DiscountMemberHelp" class="help-block">
+                                                Discount Total for this account (0)
+                                                @Html.HiddenFor(m => m.MemberType.Discount)
+                                                @Html.Hidden("DiscountNominal")
+
+                                            </span>
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.MemberType.Discount)
+                                    </div>
+                                    <div id="hdnTotalPayment" class="form-group">
+                                        <label class="control-label col-md-3">Member Total Payment:</label>
+                                        <div class="col-md-3">
+                                            @Html.TextBoxFor(m => m.MemberType.TotalAmount, new { @class = "form-control auto text-right", @readonly = true, hidden = true })
+                                            <span class="help-block">
+                                                Total Amount Payment
+                                            </span>
+                                            @Html.ValidationMessageFor(m => m.MemberType.TotalAmount)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <a href="javascript:;" class="btn default button-previous">
+                                        <i class="m-icon-swapleft"></i> Back
+                                    </a>
+                                    <a href="javascript:;" class="btn blue button-next">
+                                        Continue <i class="m-icon-swapright m-icon-white"></i>
+                                    </a>
+                                    <button type="submit" formaction="CreateCm" formmethod="post" class="btn green button-submit">
+                                        Submit <i class="m-icon-swapright m-icon-white"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END PAGE CONTENT-->
+<!-- END CONTENT -->
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<!-- END FOOTER -->
+<!-- END PAGE LEVEL SCRIPTS -->
+@section scripts
+{
+    @Scripts.Render("~/assets/global/plugins/jquery-validation/js/jquery.validate.min.js")
+    @Scripts.Render("~/assets/global/plugins/jquery-validation/js/additional-methods.min.js")
+    @Scripts.Render("~/assets/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js")
+    @Scripts.Render("~/formcomponent/script")
+    @Scripts.Render("~/assets/admin/pages/scripts/components-form-tools.js")
+    @Scripts.Render("~/assets/global/plugins/fuelux/js/spinner.min.js")
+    @Scripts.Render("~/Scripts/Registrasi/CMwizard.js")
+    @Scripts.Render("~/Scripts/select2FormControl.js")
+    @Scripts.Render("~/jqueryval/script")
+
+    <script src="@Url.Content("~/Scripts/trippleddlAdapters.js")" type="text/javascript"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            Metronic.init(); // init metronic core components
+            Layout.init(); // init current layout
+            Demo.init(); // init demo features
+            FormWizard.init();
+
+
+            $('.auto').autoNumeric('init', { aSep: '.', aDec: ','});
+
+            function getAutoNumberVal(lookUp) {
+                return parseFloat($(lookUp).autoNumeric('get') === "" ? "0" : $(lookUp).autoNumeric('get'));
+            }
+
+
+            var select2 = select2Control;
+            var memberType = '#MemberType_MemberType';
+            var spinn = $('#MemberType_CountMember');
+
+
+            //select2.init('#MemberType_MemberStatus', "Member Status", "/General/Sales/GetSalesStatus", "/General/Sales/GetSalesStatusById");
+            select2.init(memberType, "Tipe Member", "/Master/MemberType/GetMemberType", "/Master/MemberType/GetMemberTypeById");
+
+
+            function resetSpinVal() {
+                spinn.val(1);
+                spinn.trigger("touchspin.updatesettings", { max: 1 });
+            }
+
+            function setVisible(status) {
+                if (status === false) {
+                    $('#hdnMemberType').addClass("hidden");
+                    $('#hdnMemberCount').addClass("hidden");
+                    $('#hdnPayment').addClass("hidden");
+                    $('#hdnMemberAdmin').addClass("hidden");
+                    $('#hdnDiscount').addClass("hidden");
+                    $('#hdnTotalPayment').addClass("hidden");
+
+
+                } else {
+                    $('#hdnMemberType').removeClass("hidden");
+                    $('#hdnMemberCount').removeClass("hidden");
+                    $('#hdnPayment').removeClass("hidden");
+                    $('#hdnMemberAdmin').removeClass("hidden");
+                    $('#hdnDiscount').removeClass("hidden");
+                    $('#hdnTotalPayment').removeClass("hidden");
+
+                }
+            }
+
+            function setOnChange() {
+                resetSpinVal();
+                if ($('#MemberType_MemberStatus').val() !== null)
+                    if ($('#MemberType_MemberStatus').val() === "Closed") {
+                        select2.readonly(memberType, false);
+                        setVisible(true);
+                    } else {
+                        select2.clear(memberType);
+                        select2.readonly(memberType, true);
+                        setVisible(false);
+                    }
+            }
+
+            $('#MemberType_MemberStatus').on('change', function () {
+                setOnChange();
+            });
+
+            $(memberType).on('change', function () {
+                var typeId = select2.select(memberType).id;
+                $.ajax({
+                    url: '/Master/MemberType/GetMemberSharedById',
+                    dataType: 'json',
+                    data: {
+                        id: typeId
+                    }
+                }).done(function (data) {
+                    spinn.trigger("touchspin.updatesettings", { max: data.Share });
+                    document.getElementById("countMemberHelp").innerHTML = 'Input value max ' + data.Share;
+
+                    $('#MemberType_Payment').autoNumeric('set', data.Biaya);
+                    $('#MemberType_Admin').autoNumeric('set', data.Admin);
+
+                    if (data.IsPaket !== true) {
+                        $('#hdnMemberProrate').addClass("hidden");
+                        $('#MemberType_Prorate').autoNumeric('set', 0);
+                    } else {
+                        $('#hdnMemberProrate').removeClass("hidden");
+                        $('#MemberType_Prorate').autoNumeric('set', data.Prorate);
+                    }
+
+                    var totalAmount = data.Biaya + data.Admin + data.Prorate;
+                    $('#MemberType_TotalAmount').autoNumeric('set', (totalAmount));
+                });
+            });
+
+            function reAmount() {
+                var payment = getAutoNumberVal('#MemberType_Payment');
+                var admin = getAutoNumberVal('#MemberType_Admin');
+                var prorate = getAutoNumberVal('#MemberType_Prorate');
+                var discountPct = getAutoNumberVal('#DiscountPct');
+                var totalAmount = 0;
+                var discount = 0;
+
+                totalAmount = (payment + admin + prorate);
+                discount = totalAmount * discountPct / 100;
+
+
+                totalAmount = totalAmount - discount;
+
+                document.getElementById('DiscountMemberHelp').innerHTML = 'Discount Total for this account (' + discount + ')';
+                $('#MemberType_TotalAmount').autoNumeric('set', totalAmount);
+                $('#MemberType_Discount').val(discount);
+            }
+
+            $('.auto').on('change', function () {
+                reAmount();
+            });
+
+            $(window).load(function () {
+                spinn.TouchSpin({
+                    min: 1,
+                    max: 10,
+                    mousewheel: true,
+                    stepinterval: 50,
+                    maxboostedstep: 10000000
+                });
+                setOnChange();
+            });
+        });
+    </script>
+}

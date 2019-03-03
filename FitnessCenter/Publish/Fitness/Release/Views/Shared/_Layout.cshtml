@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+
+<html lang="id-ID" class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <title>Fitness - @ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    @Styles.Render("~/bundle/style/mandatory")
+    @Styles.Render("~/Assets/global/plugins/uniform/css/uniform.default.css")
+    @Styles.Render("~/bundle/style/level")
+
+    @RenderSection("styleLevel", false)
+
+    @Styles.Render("~/bundle/style/theme")
+
+    @RenderSection("styles", false)
+
+    <!-- END THEME STYLES -->
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+
+</head>
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-sidebar-closed-hide-logo light">
+    <!-- BEGIN HEADER -->
+    <div class="page-header navbar navbar-fixed-top">
+        <!-- BEGIN HEADER INNER -->
+        <div class="page-header-inner">
+            <!-- BEGIN LOGO -->
+            <div class="page-logo float-right">
+                <a href="@Url.Action("Index", "Home", new {area = ""})">
+                    <img src="~/assets/admin/layout4/img/logo-light.png" alt="logo" class="logo-default" />
+                </a>
+            </div>
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"></a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+
+            <div class="page-top float-left">
+                <!-- BEGIN HEADER SEARCH BOX -->
+                <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
+                <form class="search-form" action="extra_search.html" method="GET">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-sm" placeholder="Search..." name="query">
+                        <span class="input-group-btn">
+                            <a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
+                        </span>
+                    </div>
+                </form>
+                <!-- END HEADER SEARCH BOX -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="top-menu left">
+                    <ul class="nav navbar-nav pull-right">
+                        <li>
+                            <div class="menu-toggler sidebar-toggler">
+                                <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+                            </div>
+                        </li>
+                        <li class="separator hide">
+                        </li>
+                        @Html.Partial("_LoginPartial")
+                    </ul>
+                </div>
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+            <!-- END PAGE TOP -->
+        </div>
+        <!-- END HEADER INNER -->
+    </div>
+    <!-- END HEADER -->
+    <div class="clearfix">
+    </div>
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <!-- BEGIN SIDEBAR -->
+        <div class="page-sidebar-wrapper">
+            <div class="page-sidebar navbar-collapse collapse">
+                <!-- BEGIN SIDEBAR MENU -->
+                <ul id="sidebar" class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                    @*                    @if (Menu.SideBarMenu != null)*@
+                    @*                    {*@
+                    @*                        @Html.Raw(Menu.SideBarMenu)*@
+                    @*                    }*@
+
+                    @*                   @Html.Action("SideBar", "Menu", new { area = "" })*@
+                </ul>
+                <!-- END SIDEBAR MENU -->
+            </div>
+        </div>
+        <!-- END SIDEBAR -->
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                @RenderBody()
+            </div>
+        </div>
+        <!-- END CONTENT -->
+    </div>
+    <input type="hidden" id="refreshed" value="no" />
+    <div class="page-footer">
+        <div class="page-footer-inner">
+            2015 &copy; Fitness Center.
+        </div>
+        <div class="scroll-to-top">
+            <i class="icon-arrow-up"></i>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundle/script/core")
+    @Scripts.Render("~/bundle/script/menu")
+    @Scripts.Render("~/bundle/script/component")
+    @Scripts.Render("~/bundle/script/forminput")
+    @Scripts.Render("~/bundle/script/bootstrapModal")
+    @Scripts.Render("~/bundle/script/globalize")
+    @Scripts.Render("~/bundle/script/init")
+    @*    @Html.Partial("_MenuLayout")*@
+    <script>
+
+        $(document)
+            .ready(function () {
+                        menuLoad.init('@ViewContext.RouteData.Values["controller"]',
+                            '@ViewContext.RouteData.Values["action"]',
+                            '@ViewContext.RouteData.DataTokens["area"]',
+                            '@Request.Url.PathAndQuery');
+
+                //            Globalize("id");
+                Metronic.init(); // init metronic core components
+                Layout.init(); // init current layout
+            });
+    </script>
+
+    @RenderSection("scripts", false)
+    <!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

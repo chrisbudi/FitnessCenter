@@ -1,0 +1,243 @@
+﻿@using Services.Helpers
+@model ViewModel.Activity.MemberActivity
+@{
+    ViewBag.Title = "Check In Member";
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Check In <small>Member</small></h1>
+    </div>
+</div>
+
+
+@Html.Partial("_pageBreadcrumbs")
+
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="portlet light">
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet-body form">
+                    @using (Html.BeginForm("In", "InOutMember", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        @Html.HiddenFor(m => m.Activity.Status)
+
+
+                        <div class="col-md-12">
+                            <h3 class="block">Member Information</h3>
+                        </div>
+                        <div class="form-body">
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <div class="midtext">
+                                        <div class="col-md-12">
+                                            <a class="btn btn-default" id="personImageCapture">Capture Image</a>
+                                        </div>
+                                        @Html.Hidden("fotoSource")
+                                        @if (Model != null)
+                                        {
+                                            if (Model.Member == null || Model.Member.MFoto == null)
+                                            {
+                                                <img id="Member_MFoto" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" />
+                                            }
+                                            else
+                                            {
+                                                @Html.Image(Model.Member.MFoto, "Member_MFoto", "")
+                                            }
+                                        }
+                                        else
+                                        {
+                                            @Request.Params["memId"]
+                                            <img id="Member_MFoto" src="@Url.Action("LoadFotoMember", "Member", new {area = "Office", id = TempData["id"]})" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-9">
+                                @if (Model.Member != null)
+                                {
+                                    <div class="row">
+                                        <h4 class="form-section">Member - <b>@Html.DisplayFor(m => m.StatusMembership)</b></h4>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.Activity.MemberID, new { @class = "col-md-3 control-label" })
+                                                <div class="col-md-5">
+                                                    @Html.TextBoxFor(m => m.Activity.MemberID, new { @class = "form-control", @readonly = true })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Mulai</label>
+                                                <div class="col-md-5">
+                                                    @Html.TextBoxFor(m => m.Activity.AMMulai, new { @class = "form-control", @readonly = true, @Value = DateTime.Now.ToString("dd-MM-yyyy hh:mm:ss") })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.Activity.PersonBOID, new { @class = "col-md-3 control-label" })
+                                                <div class="col-md-5">
+                                                    @Html.TextBoxFor(m => m.Activity.PersonBOID, new { @class = "form-control", @readonly = true })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            @*                                            <div class="form-group">*@
+                                            @*                                                @Html.LabelFor(m => m.Activity.verifikasiMember, new { @class = "col-md-3 control-label" })*@
+                                            @*                                                <div class="col-md-5">*@
+                                            @*                                                    @Html.TextBoxFor(m => m.Activity.verifikasiMember, new { @class = "form-control", @readonly = true })*@
+                                            @*                                                </div>*@
+                                            @*                                            </div>*@
+                                            @*                                            <div class="form-group">*@
+                                            @*                                                @Html.LabelFor(m => m.Activity.verifikasiToken, new { @class = "col-md-3 control-label" })*@
+                                            @*                                                <div class="col-md-5">*@
+                                            @*                                                    @Html.TextBoxFor(m => m.Activity.verifikasiToken, new { @class = "form-control", @readonly = true })*@
+                                            @*                                                </div>*@
+                                            @*                                            </div>*@
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.Activity.LocationID, new { @class = "col-md-3 control-label" })
+                                                <div class="col-md-5">
+                                                    @Html.TextBoxFor(m => m.Activity.LocationID, new { @class = "form-control", @readonly = true })
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row">
+                                        <h4 class="form-section">Personal Trainer</h4>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Mulai</label>
+                                            <div class="col-md-5">
+                                                @Html.TextBoxFor(m => m.Membership.MSTglSelesai, new { @class = "form-control", @readonly = true, @Value = DateTime.Now.ToString("dd-MM-yyyy hh:mm:ss") })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(m => m.PersonalTrainer.trMembership.MSTglMulai, new { @class = "col-md-3 control-label" })
+                                            <div class="col-md-5">
+                                                @Html.TextBoxFor(m => m.PersonalTrainer.trMembership.MSTglMulai, new { @class = "form-control", @readonly = true })
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="row">
+                                        <h3>Activation Membership</h3>
+                                        <div class="col-md-6">
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.Membership.ActivationCode, new { @class = "col-md-3 control-label" })
+                                                <div class="col-md-5">
+                                                    @Html.TextBoxFor(m => m.Membership.ActivationCode, new { @class = "form-control", @readonly = true })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            <div class="form-group">
+
+                                                @Html.LabelFor(m => m.Membership.tMember.tPerson.PNama, new { @class = "col-md-3 control-label" })
+                                                <div class="col-md-5">
+                                                    @Html.TextBoxFor(m => m.Membership.tMember.tPerson.PNama, new { @class = "form-control", @readonly = true })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="col-md-6">
+                                                <label class="col-md-3 control-label">Mulai</label>
+                                                <div class="col-md-5">
+                                                    @Html.TextBoxFor(m => m.Activity.AMMulai, new { @class = "form-control", @readonly = true, @Value = DateTime.Now.ToString("dd-MM-yyyy hh:mm:ss") })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                                @if (Model.PersonalTrainer != null)
+                                {
+                                    <div class="row">
+                                        <h4 class="form-section">Status Member</h4>
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(m => m.PersonalTrainer.SisaJam, new { @class = "col-md-3 control-label" })
+                                            <div class="col-md-5">
+                                                @Html.TextBoxFor(m => m.PersonalTrainer.SisaJam, new { @class = "form-control", @readonly = true })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(m => m.PersonalTrainer.PTContractDate, new { @class = "col-md-3 control-label" })
+                                            <div class="col-md-5">
+                                                @Html.TextBoxFor(m => m.PersonalTrainer.PTContractDate, new { @class = "form-control", @readonly = true })
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-2 col-md-9">
+                                    @if (Model.Member != null)
+                                    {
+                                        <button type="submit" formaction="" class="btn btn-circle green bold"><i class="fa fa-check"></i> Check in</button>
+                                    }
+                                    else
+                                    {
+                                        <button type="submit" formaction="ActiveMember" class="btn btn-circle green bold"><i class="fa fa-check"></i> Activate Membership</button>
+                                    }
+
+                                    <a href="@Url.Action("Index", "InOutMember")" class="btn btn-circle red bold"><i class="fa fa-times"></i> Batal</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- END FORM PORTLET-->
+        </div>
+    </div>
+</div>
+
+<div id="info" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title">
+                <i class="fa fa-info-circle fa-lg font-blue">
+                    <b>Info</b>
+                </i>
+            </h4>
+        </div>
+        <div class="modal-body bold">
+            @ViewBag.Message
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+    <!-- /.modal-content -->
+</div>
+
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    @*1---------Camera---------*@
+    @Html.Partial("Camera/CameraView")
+
+    <script>
+        $(function () {
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+
+            pageCamera.init('#personImageCapture', 'Member_MFoto', 'fotoSource');
+
+            if ('@TempData["Message"]' !== "") {
+                $('#info').modal('show');
+            }
+        });
+    </script>
+}

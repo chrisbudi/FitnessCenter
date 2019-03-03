@@ -1,0 +1,291 @@
+﻿@using DataAccessService.Identity
+@{
+    ViewBag.Title = "Index";
+}
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>
+            Auth <small>Forms </small>
+        </h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+
+
+<div class="portlet light">
+    <div class="portlet-body">
+        <div class="row margin-bottom-20">
+            <div class="col-md-12">
+                <div class="table-toolbar">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="btn-group">
+                                <a href="@Url.Action("CreateModule", "Form", new {area = "Auth"})" class="btn green">
+                                    <i class="fa fa-plus"></i> Add New Module
+                                </a>
+                                <br />
+                                <div class="form-group">
+                                    @Html.Label("tipeModuleLabel", "Tipe Module :", new { @class = "bold" })
+
+                                    @Html.DropDownList("tipeModule", new SelectList(new FormsDataService().LoadAllModule()),
+                                        "** All Module **", new { @class = "form-control input-lg" })
+                                </div>
+                                @Html.Hidden("moduleId", null, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered table-hover" id="tableModule">
+                    <thead>
+                        <tr>
+                            <th class="table-checkbox">
+
+                            </th>
+                            <th width="3%">
+                                No
+                            </th>
+                            <th>
+                                Module
+                            </th>
+                            <th>
+                                Title
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                            <th>
+                                <i class="fa fa-cogs fa-lg"></i>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+
+                        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                        <div class="portlet box blue">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-dollar"></i>Tabel Detail
+                                </div>
+                                <div class="tools">
+                                    <a href="javascript:;" class="collapse">
+                                    </a>
+                                    <a href="javascript:;" class="reload">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div class="table-toolbar">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="btn-group">
+                                                <a id="createDetail" class="btn green hidden addDetail">
+                                                    <i class="fa fa-plus"></i> Add New
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-striped table-bordered table-hover" id="tableDetail">
+                                    <thead>
+                                        <tr>
+                                            <th width="3%">
+                                                No
+                                            </th>
+                                            <th>
+                                                Title
+                                            </th>
+                                            <th>
+                                                Controller
+                                            </th>
+                                            <th>
+                                                Action
+                                            </th>
+                                            <th>
+                                                Description
+                                            </th>
+                                            <th>
+                                                <i class="fa fa-cogs fa-lg"></i>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END EXAMPLE TABLE PORTLET-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    <script>
+
+        $(function () {
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+
+            // datatables Kelas Lab
+            var tableDetail = $('#tableDetail')
+                .DataTable({
+                    "serverSide": true,
+                    "processing": true,
+                    "ajax": {
+                        url: "@Url.RouteUrl("Auth_default", new {controller = "Form", action = "FormDetailResult"})",
+                        data: function (d) {
+                            d.idString = $('#moduleId').val();
+                        }
+                    },
+                    "deferRender": true,
+                    "filter": true,
+                    "lengthMenu": [5, 10, 25, 50, 75, 100],
+                    "pageLength": 5,
+                    "columnDefs": [
+                        {
+                            "data": "No"
+                        },
+                        {
+                            "data": "Title"
+
+                        },
+                        {
+                            "data": "Controller"
+
+                        },
+                        {
+                            "data": "Action"
+
+                        },
+                        {
+                            "data": "Description"
+
+                        },
+                        {
+                            "targets": -1,
+                            "data": 5,
+                            "render": function (data) {
+                                var d = data;
+                                return "<a href='@Url.RouteUrl("Default", new {controller = "Form", action = "EditDetailForm", area= "Auth"})/" + d + "'><i class='fa fa-edit fa-2x font-blue-soft'></i></a>";
+                            },
+                            "orderable": false,
+                            className: "td.center",
+                            "width": "3%"
+                        }
+                    ]
+                });
+
+
+            // datatables Lab
+            var tableModule = $('#tableModule')
+                .on('preXhr.dt', function (e, settings, data) {
+                    var datas = $('#tipeModule').val();
+                    if (datas !== "") {
+                        var myId = datas;
+                        data.idString = myId;
+                    } else {
+                        data.idString = "All";
+                    }
+
+                })
+                .DataTable({
+                    "serverSide": true,
+                    "processing": true,
+                    "ajax": "@Url.Action("FormResult", "Form", new {area = "Auth"})",
+                    @*{
+            url: "@Url.RouteUrl("Default", new {controller = "Form", action = "FormResult"})",
+        data:
+    function (d) {
+        d.idString = $('#tipeModule').val();
+    }
+    },*@
+                    "lengthMenu": [5, 10, 25, 50, 75, 100],
+                    "pageLength": 5,
+                    "columnDefs": [
+                        {
+                            "targets": [0],
+                            "data": null,
+                            "className": "green",
+                            "defaultContent": '<input type="checkbox" class="checkboxes" value="1"/>',
+                            "orderable": false
+                        },
+                        {
+                            "orderable": false
+                        },
+                        {
+                            "orderable": true
+                        },
+                        {
+                            "orderable": true
+                        },
+                        {
+                            "orderable": true
+                        },
+                        {
+                            "targets": -1,
+                            "data": 6,
+                            "render": function (data) {
+                                var d = data;
+                                return "<a href='@Url.Action("EditModule", "Form", new { area = "Auth" })/" + d + "'><i class='fa fa-edit fa-2x font-blue-soft'></i></a>";
+                            },
+                            "orderable": false,
+                            className: "td.center",
+                            "width": "3%"
+                        }
+                    ],
+                    "order": [[1, "asc"]],
+                });
+
+            // event refresh for reset datatables
+            $(window).load(function () {
+                var moduleId = $('#moduleId');
+                moduleId.val('');
+                tableDetail.ajax.reload();
+            });
+
+            // Checkbox for Relation Form ( 1 Field Relation )
+            $('#tipeModule').on('change', function () {
+                tableModule.ajax.reload();
+                return true;
+            });
+
+            // Checkbox for Relation Form ( 1 Field Relation )
+            $('#tableModule tbody').on('click', '.checkboxes', function () {
+                var moduleId = $('#moduleId');
+                var reloadDt = $(".reload");
+                var lhUrl = document.getElementById("createDetail");
+                $(this).parents('tr').toggleClass("active");
+                $('.addDetail').toggleClass('hidden');
+
+                // if checked get data view by kode
+                if ($(this).is(':checked')) {
+                    $('#tableModule tbody tr:not(.active) input[type=checkbox]').prop("disabled", true);
+                    var data = (tableModule.row($(this).parents('tr')).data());
+                    moduleId.val(data[0]);
+                    reloadDt.trigger("click");
+                    // dynamic url
+                    lhUrl.href = "@Url.Action("CreateDetailForm","Form", new { area = "Auth"})/" + moduleId.val();
+
+                } else {
+                    $('#tableModule tbody input[type=checkbox]').prop("disabled", false);
+                    moduleId.val('');
+                    reloadDt.trigger("click");
+                }
+                tableDetail.ajax.reload();
+                return true;
+            });
+            // Checkbox for Relation Form ( 2 Field Relation )
+        });
+
+    </script>
+}

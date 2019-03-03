@@ -1,0 +1,530 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{00CA8443-07ED-4263-8E2D-79B02BD800C5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataObjects</RootNamespace>
+    <AssemblyName>DataObjects</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\ApplicationGroupConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\ApplicationGroupRoleConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\ApplicationUserGroupConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\AspFormAuthorizationConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\AspFormConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\AspNetRoleConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\AspNetUserClaimConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\AspNetUserConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\AspNetUserLoginConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\AspNetUserRoleConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\ExcelLipo5Configuration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\ExcelPTConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\ExcelUploadDBConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\FitnessConfig.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Configuration\logConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\LogtestConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\StrActionKlaimConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\StrActionKlaimParamConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\strAktivitasSaleConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\strKlaimPTConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\strLocBOConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\strLocMemberConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\strPaymentConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\strPaymentMemberConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\strPersonEventConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\sysdiagramConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tActionPTConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tBankConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tCardStatuConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tEventConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tEventScoreConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tEventStepConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tKelaConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tLocFitnessCenterConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tMemberConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tMemberStateConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tMemberTypeConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tPaketPTConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tPaymentTypeConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tPersonConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tPosisiConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\trAktifitasKelaConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\trAktifitasMemberConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\trCinCoutConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\trEventScoreConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\trEventStepConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\trMembershipConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tRoleEventConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\trPaymentWithConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\trPembayaranConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\trPersonalTrainerConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\trPersonEventConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\trPlanAktifitasPTConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\trPlanKelaConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\trTTDConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tRuangKelaConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tSalesActionConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tStatusMemberConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tStatusMemberPriceConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tTypeStatusCinCoutConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\tUserBackOfficeConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\FitEntity.cs">
+      <DependentUpon>FitnessContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\FitnessContext.cs">
+      <DependentUpon>FitnessContext.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Entities\ApplicationGroup.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ApplicationGroupRole.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ApplicationUserGroup.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AspForm.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AspFormAuthorization.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AspNetRole.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AspNetUser.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AspNetUserClaim.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AspNetUserLogin.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AspNetUserRole.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ExcelLipo5.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ExcelPT.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ExcelUploadDB.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\FitnessEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\log.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Logtest.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\StrActionKlaim.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\StrActionKlaimParam.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\strAktivitasSale.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\strKlaimPT.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\strLocBO.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\strLocMember.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\strPayment.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\strPaymentMember.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\strPersonEvent.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sysdiagram.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tActionPT.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tBank.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tCardStatu.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\testprocedureReturnModel.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tEvent.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tEventScore.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tEventStep.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tKela.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tLocFitnessCenter.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tMember.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tMemberState.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tMemberType.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tPaketPT.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tPaymentType.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tPerson.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tPosisi.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\trAktifitasKela.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\trAktifitasMember.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\trCinCout.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\trEventScore.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\trEventStep.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\trMembership.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tRoleEvent.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\trPaymentWith.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\trPembayaran.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\trPersonalTrainer.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\trPersonEvent.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\trPlanAktifitasPT.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\trPlanKela.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\trTTD.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tRuangKela.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tSalesAction.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tStatusMember.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tStatusMemberPrice.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tTypeStatusCinCout.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\tUserBackOffice.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\FitnessInterfaces.cs">
+      <DependentUpon>FitnessInterfaces.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Interfaces\IFitEntity.cs">
+      <DependentUpon>FitnessInterfaces.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared\DynamicLinq.cs" />
+    <Compile Include="Shared\Extensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="EF.Reverse.POCO.Core.ttinclude" />
+    <None Include="EF.Reverse.POCO.ttinclude" />
+    <None Include="Entities\EF.Reverse.POCO.ttinclude" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data Validator\Data Validator.csproj">
+      <Project>{7f2db691-f6aa-4704-a065-0e1fe0f0a8cc}</Project>
+      <Name>Data Validator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Services.csproj">
+      <Project>{70f690e6-6146-4471-9cf3-dad3fb74e822}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\FitnessConfig.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FitnessConfig.cs</LastGenOutput>
+    </Content>
+    <Content Include="Context\FitnessContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FitnessContext.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\FitnessEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FitnessEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="Interfaces\FitnessInterfaces.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FitnessInterfaces.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

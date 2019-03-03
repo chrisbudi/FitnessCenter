@@ -1,0 +1,136 @@
+﻿@model ViewModel.Identity.FormRole
+
+@{
+    ViewBag.Title = "Create Form Role";
+}
+
+
+
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>
+            Create <small>Form Role</small>
+        </h1>
+    </div>
+</div>
+
+
+@Html.Partial("_pageBreadcrumbs")
+
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+
+<div class="portlet light">
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN FORM PORTLET-->
+                <div class="portlet box green ">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-plus"></i> Tambah Group Form
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        @using (Html.BeginForm("GroupAddForm", "FormRole", FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            @Html.Hidden("selectedForm")
+                            <div class="form-body">
+                                <div class="form-group">
+                                    @Html.Label("Role List :", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownListFor(m => m.AspFormAuthorization.GroupId, new SelectList(Model.ApplicationGroups, "id", "text"), new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Search", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-9">
+                                        <select name="country" class="multi-select" multiple="" id="FormList">
+                                            @foreach (var form in Model.AspForms)
+                                            {
+                                                <option value="@form.FormId">@form.Module - @form.title</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-2 col-md-9">
+                                        <button type="submit" class="btn btn-circle green bold"><i class="fa fa-check"></i> Simpan</button>
+                                        <a href="@Url.Action("Index", "FormRole", new {area = "Auth"})" class="btn btn-circle red bold"><i class="fa fa-times"></i> Batal</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    @Scripts.Render("~/assets/global/plugins/jquery-multi-select/js/jquery.multi-select.js")
+    @Scripts.Render("~/assets/global/plugins/quicksearch/jquery.quicksearch.js")
+
+
+    <script>
+
+        $(function () {
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+
+            $(window).load(function () {
+                //var tipeModule = $('#Module').find('option:selected').text();
+                //chooseTipe(tipeModule);
+            });
+            var selectedForm = $('#selectedForm');
+
+            $('#FormList').multiSelect({
+                selectableHeader: "<input type='text' placeholder='Search..' class='search-input form-control' autocomplete='off' >",
+                selectionHeader: "<input type='text' placeholder='Search..' class='search-input form-control' autocomplete='off' >",
+                afterInit: function (ms) {
+                    var that = this,
+                        $selectableSearch = that.$selectableUl.prev(),
+                        $selectionSearch = that.$selectionUl.prev(),
+                        selectableSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selectable:not(.ms-selected)',
+                        selectionSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selection.ms-selected';
+
+                    that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
+                        .on('keydown', function (e) {
+                            if (e.which === 40) {
+                                that.$selectableUl.focus();
+                                return false;
+                            }
+                        });
+
+                    that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
+                        .on('keydown', function (e) {
+                            if (e.which == 40) {
+                                that.$selectionUl.focus();
+                                return false;
+                            }
+                        });
+                },
+                afterSelect: function (values) {
+                    this.qs1.cache();
+                    this.qs2.cache();
+                    selectedForm.val(selectedForm.val().concat(' ' + values));
+
+                },
+                afterDeselect: function (values) {
+                    this.qs1.cache();
+                    this.qs2.cache();
+                    selectedForm.val(selectedForm.val().replace(' ' + values, ''));
+                }
+            });
+
+        });
+    </script>
+}

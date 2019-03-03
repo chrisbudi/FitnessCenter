@@ -1,0 +1,221 @@
+﻿@using Services.DataTables
+@using DataObjects.Entities
+@model ViewModel.Identity.FormAuth
+
+@{
+    ViewBag.Title = "Create Form Role";
+}
+
+@Html.Partial("_pageBreadcrumbs")
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN FORM PORTLET-->
+        <div class="portlet box green ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-plus"></i> Tambah Group Form
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @using (Html.BeginForm("CreateFormAuth", "FormAuth", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="form-body">
+                        <div class="form-group">
+                            @Html.Label("Role List", new { @class = "control-label col-md-1" })
+                            <div class="col-md-4">
+                                @*@Html.DropDownListFor(m => m.GroupId, new SelectList(Model.ApplicationGroups, "id", "text"), new { @class = "form-control" })*@
+                                @*@Html.DropDownListFor(m => m.GroupId, new SelectList(new WinCare.DataAccessService.DAIdentity.FormAuthDataService().GroupListSelect22(), "id", "text"),
+                                    "- Pilih Role -", new { @class = "form-control input-medium" })*@
+                                @Html.DropDownListFor(m => m.GroupId, new SelectList(Model.ApplicationGroups, "id", "text"),
+                                "- Pilih Role -", new { @class = "form-control input-medium" })
+
+                            </div>
+                        </div>
+                        <table class="table table-striped table-bordered table-hover" id="tableModule">
+                            <thead>
+                                <tr>
+                                    <th width="3%">
+                                        No
+                                    </th>
+                                    <th>
+                                        FormName
+                                    </th>
+                                    <th width="3%">
+                                        R
+                                    </th>
+                                    <th width="3%">
+                                        C
+                                    </th>
+                                    <th width="3%">
+                                        U
+                                    </th>
+                                    <th width="3%">
+                                        D
+                                    </th>
+                                    <th>
+                                        <input type="checkbox" id="parent_all" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-9">
+                                <button type="submit" class="btn btn-circle green bold"><i class="fa fa-check"></i> Simpan</button>
+                                <a href="@Url.Action("Index", "FormAuth")" class="btn btn-circle red bold"><i class="fa fa-times"></i> Batal</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END PAGE CONTENT-->
+@section Scripts {
+
+    <script>
+        $(function () {
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+
+            var tableModule = $('#tableModule')
+                .DataTable({
+                    "processing": true,
+                    "paging": false,
+                    "deferRender": true,
+                    @*"ajax": "@Url.Action("FormResult", "FormAuth")",*@
+                    "ajax":
+                    {
+                        url: "@Url.RouteUrl("Default", new {controller = "FormAuth", action = "FormResult"})",
+                        data:
+                            function (d) {
+                                d.idString = $('#GroupId').val();
+                            }
+                    },
+                    "serverSide": true,
+                    "filter": true,
+                    "columnDefs": [
+                        {
+                            "data": "No"
+                        },
+                        {
+                            "data": "Title"
+
+                        },
+                        {
+                            "targets": 2,
+                            "data": 2,
+                            "orderable": false,
+                            "className": "td.center",
+                            "render": function (data) {
+                                var d = data.split("_")[0].trim();
+                                var n = data.split("_")[2].trim();
+                                return "<span class='checked'>" +
+                                "<input type='checkbox' class='check_row' name='Selected' value='" + d + "'/>" +
+                                    " <input type='hidden' name='Crud[" + n + "].Id' value='" + d + "'/>" +
+                                "</span>";
+                            },
+                            "width": "3%"
+                        },
+                        {
+                            "targets": 3,
+                            "data": 3,
+                            "orderable": false,
+                            "className": "td.center",
+                            "render": function (data) {
+                                var d = data.split("_")[0].trim();
+                                var n = data.split("_")[2].trim();
+                                return "<span class='checked'>" +
+                                    "<input type='checkbox' class='check_row' name='Selected' value='" + d + "'/>" +
+                                    " <input type='hidden' name='Crud[" + n + "].Id' value='" + d + "'/>" +
+                                     "</span>";
+                            },
+                            "width": "3%"
+                        },
+                        {
+                            "targets": 4,
+                            "data": 4,
+                            "orderable": false,
+                            "className": "td.center",
+                            "render": function (data) {
+                                var d = data.split("_")[0].trim();
+                                var n = data.split("_")[2].trim();
+                                return "<span class='checked'>" +
+                                    "<input type='checkbox' class='check_row' name='Selected' value='" + d + "'/>" +
+                                    " <input type='hidden' name='Crud[" + n + "].Id' value='" + d + "'/>" +
+                                    "</span>";
+                            },
+                            "width": "3%"
+                        },
+                        {
+                            "targets": 5,
+                            "data": 5,
+                            "orderable": false,
+                            "className": "td.center",
+                            "render": function (data) {
+                                var d = data.split("_")[0].trim();
+                                var n = data.split("_")[2].trim();
+
+                                return "<span class='checked'>" +
+                                    "<input type='checkbox' class='check_row' name='Selected' value='" + d + "'/>" +
+                                    " <input type='hidden' name='Crud[" + n + "].Id' value='" + d + "'/>" +
+                                    "</span>";
+                            },
+                            "width": "3%"
+                        },
+                        {
+                            "targets": 6,
+                            "data": 0,
+                            "orderable": false,
+                            "className": "td.center",
+                            "render": function (data) {
+                                var d = data;
+                                return "<span class='checked'>" +
+                                "<input type='checkbox' id='CheckAll[" + d + "]' class='check_all' name='CheckAll[" + d + "]' values=" + d + "> " +
+                                "</span>";
+                            },
+                            "width": "3%"
+                        }
+                    ]
+                });
+
+            $('#parent_all').on('click', function () {
+                if ($(this).prop('checked')) {
+                    $("input:checkbox").prop("checked", true);
+                } else {
+                    $("input:checkbox").prop("checked", false);
+                };
+            });
+
+            tableModule.on('click', '.check_all', function () {
+                if ($(this).prop('checked')) {
+                    $(this).closest('td').prev().find('.check_row').prop("checked", true);
+                    $(this).closest('td').prev().prev().find('.check_row').prop("checked", true);
+                    $(this).closest('td').prev().prev().prev().find('.check_row').prop("checked", true);
+                    $(this).closest('td').prev().prev().prev().prev().find('.check_row').prop("checked", true);
+                } else {
+                    $(this).closest('td').prev().find('.check_row').prop("checked", false);
+                    $(this).closest('td').prev().prev().find('.check_row').prop("checked", false);
+                    $(this).closest('td').prev().prev().prev().find('.check_row').prop("checked", false);
+                    $(this).closest('td').prev().prev().prev().prev().find('.check_row').prop("checked", false);
+                }
+            });
+
+            $('#GroupId').on('change', function () {
+                tableModule.ajax.reload();
+                return true;
+            });
+        });
+    </script>
+}

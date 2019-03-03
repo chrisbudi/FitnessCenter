@@ -1,0 +1,15 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
+  &lt;Assembly Path="C:\[+]Project\FitnessCenter\FitnessCenter\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\[+]Project\FitnessCenter\FitnessCenter\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorlib.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\[+]Project\FitnessCenter\FitnessCenter\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 4\Assemblies\System.Web.Mvc.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.ComponentModel.DataAnnotations.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\[+]Project\FitnessCenter\FitnessCenter\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.Core.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.ReportSource.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\[+]Project\Fitness\FitnessCenter\FitnessCenter\FitnessCenter\Bin\PagedList.Mvc.dll" /&gt;&#xD;
+&lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

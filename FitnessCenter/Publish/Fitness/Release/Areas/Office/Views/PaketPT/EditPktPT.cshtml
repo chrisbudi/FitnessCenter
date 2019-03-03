@@ -1,0 +1,153 @@
+﻿@model DataObjects.Entities.tPaketPT
+@{
+    ViewBag.Title = "Edit Paket PT";
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Master <small>Paket PT</small></h1>
+    </div>
+</div>
+
+@Html.Partial("_pageBreadcrumbs")
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="portlet light">
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN FORM PORTLET-->
+                <div class="portlet box green ">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-plus"></i> Ubah Paket PT
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        @using (Html.BeginForm("EditPktPT", "PaketPT", FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            @Html.HiddenFor(m => m.tPaketPTID)
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Name</label>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(m => m.PPTNama, new { @class = "form-control input-medium", placeholder = "Nama" })
+                                        <div class="text-danger">
+                                            @Html.ValidationMessageFor(m => m.PPTNama)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Desc</label>
+                                    <div class="col-md-5">
+                                        @Html.TextAreaFor(m => m.PPTDesc, new { @class = "form-control input-medium", placeholder = "Nama" })
+                                        <div class="text-danger">
+                                            @Html.ValidationMessageFor(m => m.PPTDesc)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Total Person</label>
+                                    <div class="col-md-5">
+                                        @Html.EditorFor(m => m.PPTPersonTotal, new { htmlAttributes = new { @class = "form-control input-medium text-right", placeholder = "Total Person" } })
+                                        <div class="text-danger">
+                                            @Html.ValidationMessageFor(m => m.PPTPersonTotal)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Hour</label>
+                                    <div class="col-md-5">
+                                        @Html.EditorFor(m => m.PPTJam, new { htmlAttributes = new { @class = "form-control input-medium PPTNumber text-right", maxlength = 2, placeholder = "Jam" } })
+                                        <div class="text-danger">
+                                            @Html.ValidationMessageFor(m => m.PPTJam)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Price</label>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(m => m.PPTHarga, new { @class = "form-control input-medium auto text-right", maxlength = 11, placeholder = "Harga" })
+                                        <div class="text-danger">
+                                            @Html.ValidationMessageFor(m => m.PPTHarga)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Total Month</label>
+                                    @*@Html.LabelFor(m => m.PPTMasa, new { @class = "col-md-2 control-label" })*@
+                                    <div class="col-md-5">
+                                        @Html.EditorFor(m => m.PPTMasa, new { htmlAttributes = new { @class = "form-control input-medium PPTNumber text-right", placeholder = "Month" } })
+                                        <div class="text-danger">
+                                            @Html.ValidationMessageFor(m => m.PPTMasa)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">For Membership?</label>
+                                    <div class="col-md-5">
+                                        @Html.CheckBoxFor(m => m.PPTMembership, new { htmlAttributes = new { @class = "form-control input-medium text-right", placeholder = "Month" } })
+                                        <div class="text-danger">
+                                            @Html.ValidationMessageFor(m => m.PPTMembership)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.PPTStatus, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-5">
+                                        @Html.CheckBoxFor(m => m.PPTStatus, new { @class = "make-switch switch-large", placeholder = "" })
+                                        @Html.ValidationMessageFor(m => m.PPTStatus)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-2 col-md-9">
+                                        <button type="submit" class="btn btn-circle green bold"><i class="fa fa-check"></i> Simpan</button>
+                                        <a href="@Url.Action("Index", "PaketPT")" class="btn btn-circle red bold"><i class="fa fa-times"></i> Batal</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    @Scripts.Render("~/bundle/script/jqueryval")
+    <script>
+
+        $(function () {
+            function setMask(lookUp) {
+                $(lookUp)
+                    .inputmask('decimal',
+                    {
+                        radixPoint: ',',
+                        'groupSeparator': '.',
+                        autoGroup: true,
+                        digits: 2,
+                        digitsOptional: true
+                    });
+            }
+
+            $('.PPTNumber').keyup(function (e) {
+                if (/\D/g.test(this.value)) {
+                    // Filter non-digits from input value.
+                    this.value = this.value.replace(/\D/g, '');
+                }
+            });
+            setMask(".auto");
+        });
+
+    </script>
+}

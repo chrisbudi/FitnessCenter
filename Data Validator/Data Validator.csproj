@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7F2DB691-F6AA-4704-A065-0E1FE0F0A8CC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataValidator</RootNamespace>
+    <AssemblyName>DataValidator</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.MVC5.6.2.1.0\lib\Net45\FluentValidation.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\ValidationActionKlaimParam.cs" />
+    <Compile Include="Validation\CustomAttribute.cs" />
+    <Compile Include="Validation\ValidationApplicationGroup.cs" />
+    <Compile Include="Validation\ValidationApplicationGroupRole.cs" />
+    <Compile Include="Validation\ValidationApplicationUserGroup.cs" />
+    <Compile Include="Validation\ValidationAspForm.cs" />
+    <Compile Include="Validation\ValidationAspFormAuthorization.cs" />
+    <Compile Include="Validation\ValidationAspNetRole.cs" />
+    <Compile Include="Validation\ValidationAspNetUser.cs" />
+    <Compile Include="Validation\ValidationAspNetUserClaim.cs" />
+    <Compile Include="Validation\ValidationAspNetUserLogin.cs" />
+    <Compile Include="Validation\ValidationAspNetUserRole.cs" />
+    <Compile Include="Validation\Excel.cs" />
+    <Compile Include="Validation\ExcelCetakKartu.cs" />
+    <Compile Include="Validation\ExcelCetakKartu2.cs" />
+    <Compile Include="Validation\ExcelCetakKartu3.cs" />
+    <Compile Include="Validation\ExcelCetakKartuGayung.cs" />
+    <Compile Include="Validation\ExcelCetakKartuLipo.cs" />
+    <Compile Include="Validation\ExcelCetakKartuLipo2.cs" />
+    <Compile Include="Validation\ExcelFlashProject.cs" />
+    <Compile Include="Validation\ExcelMembership.cs" />
+    <Compile Include="Validation\ValidationexcelTemp.cs" />
+    <Compile Include="Validation\FitnessEntities.cs" />
+    <Compile Include="Validation\Validationlog.cs" />
+    <Compile Include="Validation\ValidationLogtest.cs" />
+    <Compile Include="Validation\ValidationStrActionKlaim.cs" />
+    <Compile Include="Validation\ValidationstrAktivitasSale.cs" />
+    <Compile Include="Validation\ValidationstrKlaimPT.cs" />
+    <Compile Include="Validation\ValidationstrLocBO.cs" />
+    <Compile Include="Validation\ValidationstrLocMember.cs" />
+    <Compile Include="Validation\ValidationstrPayment.cs" />
+    <Compile Include="Validation\ValidationstrPaymentMember.cs" />
+    <Compile Include="Validation\ValidationstrPersonEvent.cs" />
+    <Compile Include="Validation\Validationsysdiagram.cs" />
+    <Compile Include="Validation\ValidationtActionPT.cs" />
+    <Compile Include="Validation\ValidationtBank.cs" />
+    <Compile Include="Validation\ValidationtCardStatu.cs" />
+    <Compile Include="Validation\ValidationtestprocedureReturnModel.cs" />
+    <Compile Include="Validation\ValidationtEvent.cs" />
+    <Compile Include="Validation\ValidationtEventScore.cs" />
+    <Compile Include="Validation\ValidationtEventStep.cs" />
+    <Compile Include="Validation\ValidationtKela.cs" />
+    <Compile Include="Validation\ValidationtLocFitnessCenter.cs" />
+    <Compile Include="Validation\ValidationtMember.cs" />
+    <Compile Include="Validation\ValidationtMemberState.cs" />
+    <Compile Include="Validation\ValidationtMemberType.cs" />
+    <Compile Include="Validation\ValidationtPaketPT.cs" />
+    <Compile Include="Validation\ValidationtPaymentType.cs" />
+    <Compile Include="Validation\ValidationtPerson.cs" />
+    <Compile Include="Validation\ValidationtPosisi.cs" />
+    <Compile Include="Validation\ValidationtrAktifitasKela.cs" />
+    <Compile Include="Validation\ValidationtrAktifitasMember.cs" />
+    <Compile Include="Validation\ValidationtrCinCout.cs" />
+    <Compile Include="Validation\ValidationtrEventScore.cs" />
+    <Compile Include="Validation\ValidationtrEventStep.cs" />
+    <Compile Include="Validation\ValidationtrMembership.cs" />
+    <Compile Include="Validation\ValidationtRoleEvent.cs" />
+    <Compile Include="Validation\ValidationtrPaymentWith.cs" />
+    <Compile Include="Validation\ValidationtrPembayaran.cs" />
+    <Compile Include="Validation\ValidationtrPersonalTrainer.cs" />
+    <Compile Include="Validation\ValidationtrPersonEvent.cs" />
+    <Compile Include="Validation\ValidationtrPlanAktifitasPT.cs" />
+    <Compile Include="Validation\ValidationtrPlanKela.cs" />
+    <Compile Include="Validation\ValidationtrTTD.cs" />
+    <Compile Include="Validation\ValidationtRuangKela.cs" />
+    <Compile Include="Validation\ValidationtSalesAction.cs" />
+    <Compile Include="Validation\ValidationtStatusMember.cs" />
+    <Compile Include="Validation\ValidationtStatusMemberPrice.cs" />
+    <Compile Include="Validation\ValidationtTypeStatusCinCout.cs" />
+    <Compile Include="Validation\ValidationtUserBackOffice.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Service\Services.csproj">
+      <Project>{70f690e6-6146-4471-9cf3-dad3fb74e822}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

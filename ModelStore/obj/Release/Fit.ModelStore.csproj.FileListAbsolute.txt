@@ -1,0 +1,10 @@
+C:\[+]Project\FitnessCenter\FitnessCenter\Fit.ModelStore\bin\Release\Fit.ViewStore.dll.config
+C:\[+]Project\FitnessCenter\FitnessCenter\Fit.ModelStore\bin\Release\Fit.ViewStore.dll
+C:\[+]Project\FitnessCenter\FitnessCenter\Fit.ModelStore\bin\Release\Fit.ViewStore.pdb
+C:\[+]Project\FitnessCenter\FitnessCenter\Fit.ModelStore\bin\Release\EntityFramework.dll
+C:\[+]Project\FitnessCenter\FitnessCenter\Fit.ModelStore\bin\Release\EntityFramework.SqlServer.dll
+C:\[+]Project\FitnessCenter\FitnessCenter\Fit.ModelStore\bin\Release\EntityFramework.xml
+C:\[+]Project\FitnessCenter\FitnessCenter\Fit.ModelStore\bin\Release\EntityFramework.SqlServer.xml
+C:\[+]Project\FitnessCenter\FitnessCenter\Fit.ModelStore\obj\Release\Fit.ModelStore.csprojResolveAssemblyReference.cache
+C:\[+]Project\FitnessCenter\FitnessCenter\Fit.ModelStore\obj\Release\Fit.ViewStore.dll
+C:\[+]Project\FitnessCenter\FitnessCenter\Fit.ModelStore\obj\Release\Fit.ViewStore.pdb

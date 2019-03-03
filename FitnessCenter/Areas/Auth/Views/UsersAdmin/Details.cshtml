@@ -1,0 +1,68 @@
+﻿@model IdentityModel.Model.ApplicationUser
+@{
+    ViewBag.Title = "Details Auth";
+}
+
+<!-- BEGIN PAGE HEADER-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>
+            Auth <small>Detail User</small>
+        </h1>
+    </div>
+</div>
+
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="#">Home</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="#">User Back Office</a>
+        <i class="fa fa-circle"></i>
+    </li>
+</ul>
+
+
+<div class="row">
+    <div class="portlet light">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs font-green-sharp"></i>
+                <span class="caption-subject font-green-sharp bold uppercase">User </span>
+                <span class="caption-helper">Back Office</span>
+            </div>
+        </div>
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.UserName)
+                </dd>
+            </dl>
+        </div>
+        <h4>List ofGroups this user belongs to:</h4>
+        @if (ViewBag.GroupNames.Count == 0)
+        {
+            <hr />
+            <p>No GRoups found for this user.</p>
+        }
+        <table class="table">
+            @foreach (var item in ViewBag.GroupNames)
+            {
+                <tr>
+                    <td>
+                        @item
+                    </td>
+                </tr>
+            }
+        </table>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index", "UsersAdmin", new { area = "Auth" })
+        </p>
+    </div>
+</div>

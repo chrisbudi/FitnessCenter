@@ -1,0 +1,389 @@
+﻿@model ViewModel.Activity.MemberActivity
+@{
+    ViewBag.Title = "In";
+}
+@section styles{
+    <link href="~/assets/admin/pages/css/profile.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css" />
+}
+<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+<div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                Widget settings form goes here
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn blue">Save changes</button>
+                <button type="button" class="btn default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+<!-- BEGIN PAGE HEADER-->
+<!-- BEGIN PAGE HEAD -->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>Membership <small>Check IN</small></h1>
+    </div>
+    <!-- END PAGE TITLE -->
+    <!-- BEGIN PAGE TOOLBAR -->
+    <!-- END PAGE TOOLBAR -->
+</div>
+<!-- END PAGE HEAD -->
+@Html.Partial("_pageBreadcrumbs")
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN PROFILE SIDEBAR -->
+        <div class="profile-sidebar" style="width: 250px;">
+        </div>
+        <!-- END BEGIN PROFILE SIDEBAR -->
+        <!-- BEGIN PROFILE CONTENT -->
+        @using (Html.BeginForm("In", "InOutMember", FormMethod.Post, new { }))
+        {
+
+            <div class="profile-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="portlet light">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-shopping-cart"></i>Membership Check IN
+                                </div>
+                                <div class="actions btn btn-set">
+                                    <a class="btn btn-default" href="@Url.Action("Index")">
+                                        <i class="fa fa-angle-left"></i> Back
+                                    </a>
+                                    @if (Model.Membership.tMember.MemberNO != null)
+                {
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fa fa-check"></i> Check In
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button type="submit" formaction="@Url.Action("ActiveMember")" class="btn btn-success btn-submit">
+                                            <i class="fa fa-check"></i> Active
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="profile-sidebar col-md-3" style="width: 250px;">
+                                    <div class="portlet light profile-sidebar-portlet">
+                                        <!-- SIDEBAR USERPIC -->
+                                        @Html.Hidden("fotoSource")
+                                        <div class="profile-userpic">
+                                            @if (Model.Member.MFoto == null)
+                                            {
+                                                <img src="~/assets/admin/pages/media/profile/avatar2.png" id="Member_MFoto" class="img-responsive" alt="">
+
+                                            }
+                                            else
+                                            {
+                                                <img src='data:image/png;base64,@Model.Member.MFoto' id="Member_MFoto" class="img-responsive" />
+                                            }
+                                        </div>
+                                        <!-- END SIxDEBAR USERPIC -->
+                                        <!-- SIDEBAR USER TITLE -->
+                                        <div class="profile-usertitle">
+                                            <div class="profile-usertitle-name">
+                                                @Model.Membership.tMember.tPerson.PNama
+                                            </div>
+                                            <div class="profile-usertitle-job">
+                                                @Model.StatusMembership
+                                            </div>
+                                        </div>
+                                        <!-- END SIDEBAR USER TITLE -->
+                                        <!-- SIDEBAR BUTTONS -->
+                                        <div class="profile-userbuttons">
+                                            <button type="button" id="personImageCapture" class="btn btn-circle green-haze btn-sm">change image</button>
+                                            @*                        <button type="button" class="btn btn-circle btn-danger btn-sm">Message</button>*@
+                                        </div>
+                                        <!-- END SIDEBAR BUTTONS -->
+                                        <!-- SIDEBAR MENU -->
+                                        <div class="profile-usermenu">
+
+                                        </div>
+                                        <!-- END MENU -->
+                                    </div>
+                                </div>
+
+                                <div class="row col-md-9">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="portlet yellow-crusta box">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="fa fa-cogs"></i>Person Information
+                                                </div>
+                                            </div>
+                                            @Html.HiddenFor(m => m.Membership.MemberID)
+                                            <div class="portlet-body">
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Name: </div>
+                                                    <div class="col-md-7 value">@Model.Membership.tMember.tPerson.PNama</div>
+                                                </div>
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Gender: </div>
+                                                    <div class="col-md-7 value"> @(Model.Membership.tMember.tPerson.PGender == "M" ? "Male" : "Female") </div>
+                                                </div>
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Address: </div>
+                                                    <div class="col-md-7 value"> @Model.Membership.tMember.tPerson.PAlamat </div>
+                                                </div>
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Birth Date: </div>
+                                                    <div class="col-md-7 value"> @Model.Membership.tMember.tPerson.PTglLahir.Value.ToString("dd MM yyyy")</div>
+                                                </div>
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Email: </div>
+                                                    <div class="col-md-7 value"> @Model.Membership.tMember.tPerson.PEmail </div>
+                                                </div>
+                                                @if (Model.Membership.tMember.tPerson.PIdentitas != null)
+                                                {
+
+                                                    <div class="row static-info">
+                                                        <div class="col-md-5 name"> Id: </div>
+                                                        <div class="col-md-7 value">
+                                                            @Model.Membership.tMember.tPerson.PIdentitas
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+
+                                                    <div class="row">
+                                                        <div class="col-md-5 Bold"> Identitas: </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(m => m.PersonIdentitas, new { @class = "form-control", placeholder = "Identitas" })
+                                                            <span class="help-block">
+                                                                Data person identitas
+                                                            </span>
+                                                            <div class="text-danger">
+                                                                @Html.ValidationMessageFor(m => m.PersonIdentitas)
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="portlet blue-hoki box">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="fa fa-cogs"></i>Membership Information
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Activation Code: </div>
+                                                    <div class="col-md-7 value"> @Model.Membership.ActivationCode </div>
+                                                    @Html.HiddenFor(m => m.Membership.ActivationCode)
+                                                    @Html.HiddenFor(m => m.Membership.tMember.MemberID)
+                                                </div>
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Member No: </div>
+                                                    <div class="col-md-7 value"> @Model.Membership.tMember.MemberNO </div>
+                                                </div>
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Start Date: </div>
+                                                    <div class="col-md-7 value"> @Model.Membership.MSTglMulai.ToString("dd MM yyyy") </div>
+                                                </div>
+
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> End Date: </div>
+                                                    <div class="col-md-7 value"> @Model.Membership.MSTglSelesai.ToString("dd MM yyyy") </div>
+                                                </div>
+
+                                                <div class="row static-info">
+                                                    <div class="col-md-5 name"> Total Month: </div>
+                                                    <div class="col-md-7 value"> @Model.Membership.TotalMonth </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row  col-md-9">
+                                    @if (Model.PersonalTrainer != null)
+                                    {
+
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="portlet green-meadow box">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="fa fa-cogs"></i>Personal Trainer Information
+                                                    </div>
+                                                </div>
+
+                                                <div class="portlet-body">
+                                                    <div class="row static-info">
+                                                        <div class="col-md-5 name"> Personal Trainer Name: </div>
+                                                        <div class="col-md-7 value"> @Model.PersonalTrainer.trMembership.tMember.tPerson.PNama</div>
+                                                    </div>
+                                                    <div class="row static-info">
+                                                        <div class="col-md-5 name"> Contract Date: </div>
+                                                        <div class="col-md-7 value"> @Model.PersonalTrainer.trMembership.MSTglMulai.ToString("dd MM yyyy") </div>
+                                                    </div>
+                                                    <div class="row static-info">
+                                                        <div class="col-md-5 name"> End Contract Date: </div>
+                                                        <div class="col-md-7 value"> @Model.PersonalTrainer.trMembership.MSTglSelesai.ToString("dd MM yyyy")</div>
+                                                    </div>
+                                                    <div class="row static-info">
+                                                        <div class="col-md-5 name"> Total Hour: </div>
+                                                        <div class="col-md-7 value"> @Model.PersonalTrainer.SisaJam </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                    @*@if (Model.PersonalTrainer != null)
+                                    {
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="portlet red-sunglo box">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="fa fa-cogs"></i>Membership Payment Information
+                                                    </div>
+                                                </div>
+
+                                                <div class="portlet-body">
+                                                    <div class="row static-info">
+                                                        <div class="row static-info">
+
+                                                            <div class="col-md-5 name"> Nama Personal Trainer: </div>
+                                                            @if(Model.PersonalTrainer.tUserBackOffice != null)
+                                                            {
+                                                                <div class="col-md-7 value"> @Model.PersonalTrainer.tUserBackOffice.tPerson.PNama</div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="col-md-7 value"> <span class="text-danger Bold">Belum Di tentukan</span></div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }*@
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="portlet grey-cascade box">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class="fa fa-cogs"></i>Check In History
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover table-bordered table-striped" id="datatable_member">
+                                                    <thead>
+                                                        <tr>
+                                                            <th widht="1%"> No </th>
+                                                            <th widht="20%"> CheckIN </th>
+                                                            <th widht="20%"> Mulai </th>
+                                                            <th widht="20%"> Selesai </th>
+                                                            <th widht="20%"> Location </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- END PAGE CONTENT-->
+@section Scripts {
+    @Scripts.Render("~/bundle/script/datatable")
+    @Scripts.Render("~/bundle/script/jqueryval")
+
+    @*1---------Camera---------*@
+    @Html.Partial("Camera/CameraView")
+
+
+    <script>
+        $(function () {
+            //Metronic.init(); // init metronic core components
+            //Layout.init(); // init current layout
+
+            pageCamera.init('#personImageCapture', 'Member_MFoto', 'fotoSource');
+
+            var grid = new window.Datatable();
+            grid.init({
+                src: $("#datatable_member"),
+                onSuccess: function (grid) {
+                    //alert('sucsess');
+
+                },
+                onError: function (grid) {
+                    //alert('fail');
+                },
+                loadingMessage: 'Loading...',
+                dataTable: {
+                    // here you can define a typical datatable settings from https://datatables.net/usage/options
+
+                    // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
+                    // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/scripts/datatable.js).
+                    // So when dropdowns used the scrollable div should be removed.
+                    //"dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r>t<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
+                    "lengthMenu": [
+                        [10, 20, 50, 100, 150],
+                        [10, 20, 50, 100, 150] // change per page values here
+                    ],
+
+                    "pageLength": 10, // default record count per page
+
+                    "drawCallback": function (settings) {
+
+                    },
+
+                    "ajax": {
+                        "url": "@Url.Action("HistoryResult")", // ajax source
+                        "data": function (d) {
+                            //                            alert(@Model.Membership.MemberID);
+                            d.memberid = @Model.Membership.MemberID;
+                        }
+                    },
+
+
+                    "order": [
+                        [1, "asc"]
+                    ] // set first column as a default sort by asc
+                }
+            });
+
+            gridEvent.setEvent(grid);
+
+
+
+            if ('@TempData["Message"]' !== "") {
+                $('#info').modal('show');
+            }
+        });
+    </script>
+}

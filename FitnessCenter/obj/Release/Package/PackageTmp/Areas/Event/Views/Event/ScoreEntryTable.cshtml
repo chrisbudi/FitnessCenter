@@ -1,0 +1,23 @@
+﻿@model DataObjects.Entities.tEventStep
+
+    <table class="table table-bordered table-hover datatable_eventScore" id="datatable_eventScore__id_">
+        <thead>
+            <tr role="row" class="heading">
+                <th width="5%" style="display:none;"> HeaderID </th>
+                <th width="5%"> </th>
+                <th width="25%"> Score&nbsp;Name </th>
+                <th width="25%"> Min&nbsp;Score </th>
+                <th width="25%"> Max&nbsp;Score </th>
+                <th width="10%"> </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var score in Model.tEventScores)
+                {
+                    Html.RenderPartial("ScoreEntryEditor", score);
+                }
+            }
+        </tbody>
+    </table>
