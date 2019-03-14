@@ -43,3 +43,12 @@ D:\@Project\Fitness\FitnessCenter\FitnessCenter\Log\obj\Debug\Log.dll
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\Log\obj\Debug\Log.pdb
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\Log\obj\Debug\Log.csproj.CopyComplete
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\Log\obj\Debug\Log.csprojAssemblyReference.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Log\bin\Debug\Log.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Log\bin\Debug\Log.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Log\bin\Debug\log4net.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Log\bin\Debug\log4net.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Log\obj\Debug\Log.csprojAssemblyReference.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Log\obj\Debug\Log.csproj.CoreCompileInputs.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Log\obj\Debug\Log.csproj.CopyComplete
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Log\obj\Debug\Log.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Log\obj\Debug\Log.pdb

@@ -160,3 +160,35 @@ D:\@Project\Fitness\FitnessCenter\FitnessCenter\EntityScheme\obj\Debug\Scheme.dl
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\EntityScheme\obj\Debug\Scheme.pdb
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\EntityScheme\obj\Debug\Data Scheme.csproj.CopyComplete
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\EntityScheme\obj\Debug\Data Scheme.csprojAssemblyReference.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\Scheme.dll.config
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\Scheme.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\Scheme.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\DataObjects.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\EntityFramework.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\DataValidator.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\Services.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\System.Web.Mvc.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\System.Web.WebPages.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\System.Web.Razor.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\DataObjects.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\DataObjects.dll.config
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\EntityFramework.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\DataValidator.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\DataValidator.dll.config
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\Services.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\Services.dll.config
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\System.Web.Mvc.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\System.Web.WebPages.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\System.Web.Razor.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\obj\Debug\Data Scheme.csprojAssemblyReference.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\obj\Debug\Data Scheme.csproj.CoreCompileInputs.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\obj\Debug\Data Scheme.csproj.CopyComplete
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\obj\Debug\Scheme.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\EntityScheme\obj\Debug\Scheme.pdb

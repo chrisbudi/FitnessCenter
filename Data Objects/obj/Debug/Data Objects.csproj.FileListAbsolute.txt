@@ -165,3 +165,34 @@ D:\@Project\Fitness\FitnessCenter\FitnessCenter\Data Objects\obj\Debug\DataObjec
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\Data Objects\obj\Debug\DataObjects.pdb
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\Data Objects\obj\Debug\Data Objects.csproj.CopyComplete
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\Data Objects\obj\Debug\Data Objects.csprojAssemblyReference.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\DataObjects.dll.config
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\DataObjects.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\DataObjects.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\DataValidator.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\EntityFramework.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\Services.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\System.Web.Helpers.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\System.Web.Mvc.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\System.Web.Razor.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\System.Web.WebPages.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\DataValidator.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\DataValidator.dll.config
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\Services.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\Services.dll.config
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\EntityFramework.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\System.Web.Helpers.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\System.Web.Mvc.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\System.Web.Razor.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\System.Web.WebPages.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\obj\Debug\Data Objects.csprojAssemblyReference.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\obj\Debug\Data Objects.csproj.CoreCompileInputs.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\obj\Debug\Data Objects.csproj.CopyComplete
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\obj\Debug\DataObjects.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Objects\obj\Debug\DataObjects.pdb

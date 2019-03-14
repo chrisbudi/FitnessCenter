@@ -192,3 +192,53 @@ D:\@Project\Fitness\FitnessCenter\FitnessCenter\Data Validator\obj\Debug\DataVal
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\Data Validator\obj\Debug\DataValidator.pdb
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\Data Validator\obj\Debug\Data Validator.csproj.CopyComplete
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\Data Validator\obj\Debug\Data Validator.csprojAssemblyReference.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\DataValidator.dll.config
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\DataValidator.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\DataValidator.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\EntityFramework.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\FluentValidation.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\FluentValidation.Mvc.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\Services.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\System.Web.Helpers.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\System.Web.Mvc.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\System.Web.Razor.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\System.Web.WebPages.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\Services.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\Services.dll.config
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\EntityFramework.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\FluentValidation.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\FluentValidation.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\FluentValidation.Mvc.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\System.Web.Helpers.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\System.Web.Mvc.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\System.Web.Razor.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\System.Web.WebPages.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\cs\FluentValidation.resources.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\da\FluentValidation.resources.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\de\FluentValidation.resources.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\es\FluentValidation.resources.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\fa\FluentValidation.resources.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\fi\FluentValidation.resources.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\fr\FluentValidation.resources.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\it\FluentValidation.resources.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\ko\FluentValidation.resources.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\mk\FluentValidation.resources.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\nl\FluentValidation.resources.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\pl\FluentValidation.resources.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\pt\FluentValidation.resources.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\ru\FluentValidation.resources.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\sv\FluentValidation.resources.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\tr\FluentValidation.resources.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\bin\Debug\zh-CN\FluentValidation.resources.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\obj\Debug\Data Validator.csprojAssemblyReference.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\obj\Debug\Data Validator.csproj.CoreCompileInputs.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\obj\Debug\Data Validator.csproj.CopyComplete
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\obj\Debug\DataValidator.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Data Validator\obj\Debug\DataValidator.pdb

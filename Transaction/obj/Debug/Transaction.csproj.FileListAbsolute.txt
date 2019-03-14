@@ -30,3 +30,9 @@ D:\@Project\Fitness\FitnessCenter\FitnessCenter\Transaction\obj\Debug\Transactio
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\Transaction\obj\Debug\Transaction.dll
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\Transaction\obj\Debug\Transaction.pdb
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\Transaction\obj\Debug\Transaction.csprojAssemblyReference.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Transaction\bin\Debug\Transaction.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Transaction\bin\Debug\Transaction.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Transaction\obj\Debug\Transaction.csprojAssemblyReference.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Transaction\obj\Debug\Transaction.csproj.CoreCompileInputs.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Transaction\obj\Debug\Transaction.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Transaction\obj\Debug\Transaction.pdb
