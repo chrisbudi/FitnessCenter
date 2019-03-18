@@ -22,7 +22,7 @@ namespace UareUSampleCSharp
             set { fmds = value; }
         }
         private Dictionary<int, Fmd> fmds = new Dictionary<int, Fmd>();
-        
+
         /// <summary>
         /// Reset the UI causing the user to reselect a reader.
         /// </summary>
@@ -278,7 +278,7 @@ namespace UareUSampleCSharp
                 }
             }
         }
-        
+
         /// <summary>
         /// Check quality of the resulting capture.
         /// </summary>
@@ -371,7 +371,7 @@ namespace UareUSampleCSharp
         #region SendMessage
         private enum Action
         {
-           UpdateReaderState 
+            UpdateReaderState
         }
         private delegate void SendMessageCallback(Action state, object payload);
         private void SendMessage(Action state, object payload)
@@ -392,25 +392,25 @@ namespace UareUSampleCSharp
                             if ((Reader)payload != null)
                             {
                                 txtReaderSelected.Text = ((Reader)payload).Description.SerialNumber;
-                                btnCapture.Enabled = true;
-                                btnStreaming.Enabled = true;
-                                btnVerify.Enabled = true;
-                                btnIdentify.Enabled = true;
-                                btnEnroll.Enabled = true;
+                                //btnCapture.Enabled = true;
+                                //btnStreaming.Enabled = true;
+                                //btnVerify.Enabled = true;
+                                //btnIdentify.Enabled = true;
+                                //btnEnroll.Enabled = true;
                                 btnEnrollmentControl.Enabled = true;
-                                if (fmds.Count > 0)
-                                {
-                                    btnIdentificationControl.Enabled = true;
-                                }
+                                //if (fmds.Count > 0)
+                                //{
+                                btnIdentificationControl.Enabled = true;
+                                //}
                             }
                             else
                             {
                                 txtReaderSelected.Text = String.Empty;
-                                btnCapture.Enabled = false;
-                                btnStreaming.Enabled = false;
-                                btnVerify.Enabled = false;
-                                btnIdentify.Enabled = false;
-                                btnEnroll.Enabled = false;
+                                //btnCapture.Enabled = false;
+                                //btnStreaming.Enabled = false;
+                                //btnVerify.Enabled = false;
+                                //btnIdentify.Enabled = false;
+                                //btnEnroll.Enabled = false;
                                 btnEnrollmentControl.Enabled = false;
                                 btnIdentificationControl.Enabled = false;
                             }

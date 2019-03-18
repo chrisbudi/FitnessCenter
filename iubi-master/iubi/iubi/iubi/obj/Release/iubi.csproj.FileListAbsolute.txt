@@ -1,0 +1,111 @@
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\iubi.exe.config
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\iubi.exe
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\iubi.pdb
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\log4net.dll
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\Newtonsoft.Json.dll
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperSocket.Common.dll
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperSocket.SocketBase.dll
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperSocket.SocketEngine.dll
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperWebSocket.dll
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\log4net.xml
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\Newtonsoft.Json.xml
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperSocket.Common.pdb
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperSocket.SocketBase.pdb
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperSocket.SocketEngine.pdb
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperWebSocket.pdb
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperWebSocket.xml
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\obj\Release\Interop.DPFPShrXLib.dll
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\obj\Release\iubi.csproj.ResolveComReference.cache
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\obj\Release\iubi.iubi.resources
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\obj\Release\iubi.csproj.GenerateResource.Cache
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\obj\Release\iubi.exe
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\obj\Release\iubi.pdb
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\iubi.exe.manifest
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\iubi.application
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\obj\Release\iubi.exe.manifest
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\obj\Release\iubi.application
+C:\Users\Usuario TI\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\obj\Release\iubi.csprojResolveAssemblyReference.cache
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\iubi.exe.config
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\iubi.exe.manifest
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\iubi.application
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\iubi.exe
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\iubi.pdb
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\log4net.dll
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\Newtonsoft.Json.dll
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperSocket.Common.dll
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperSocket.SocketBase.dll
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperSocket.SocketEngine.dll
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperWebSocket.dll
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\log4net.xml
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\Newtonsoft.Json.xml
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperSocket.Common.pdb
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperSocket.SocketBase.pdb
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperSocket.SocketEngine.pdb
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperWebSocket.pdb
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\bin\Release\SuperWebSocket.xml
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\obj\Release\Interop.DPFPShrXLib.dll
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\obj\Release\iubi.csproj.ResolveComReference.cache
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\obj\Release\iubi.iubi.resources
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\obj\Release\iubi.csproj.GenerateResource.Cache
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\obj\Release\iubi.exe.manifest
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\obj\Release\iubi.application
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\obj\Release\iubi.exe
+C:\Users\oswaldpale\Documents\Visual Studio 2015\Projects\iubi\iubi\iubi\obj\Release\iubi.pdb
+D:\Desktop\iubi-master\iubi\iubi\obj\Release\iubi.csprojAssemblyReference.cache
+D:\Desktop\iubi-master\iubi\iubi\obj\Release\Interop.DPFPShrXLib.dll
+D:\Desktop\iubi-master\iubi\iubi\obj\Release\iubi.csproj.ResolveComReference.cache
+D:\Desktop\iubi-master\iubi\iubi\obj\Release\iubi.iubi.resources
+D:\Desktop\iubi-master\iubi\iubi\obj\Release\iubi.csproj.GenerateResource.cache
+D:\Desktop\iubi-master\iubi\iubi\obj\Release\iubi.csproj.CoreCompileInputs.cache
+D:\Desktop\iubi-master\iubi\iubi\obj\Release\iubi.exe
+D:\Desktop\iubi-master\iubi\iubi\obj\Release\iubi.pdb
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\iubi.exe.config
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\iubi.exe.manifest
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\iubi.application
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\iubi.exe
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\iubi.pdb
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\log4net.dll
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\Newtonsoft.Json.dll
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\SuperSocket.Common.dll
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\SuperSocket.SocketBase.dll
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\SuperSocket.SocketEngine.dll
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\SuperWebSocket.dll
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\log4net.xml
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\Newtonsoft.Json.xml
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\SuperSocket.Common.pdb
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\SuperSocket.SocketBase.pdb
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\SuperSocket.SocketEngine.pdb
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\SuperWebSocket.pdb
+D:\Desktop\iubi-master\iubi\iubi\bin\Release\SuperWebSocket.xml
+D:\Desktop\iubi-master\iubi\iubi\obj\Release\iubi.exe.manifest
+D:\Desktop\iubi-master\iubi\iubi\obj\Release\iubi.application
+D:\Desktop\iubi-master\iubi\iubi\obj\Release\iubi.csproj.CopyComplete
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\iubi.exe.config
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\iubi.exe.manifest
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\iubi.application
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\iubi.exe
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\iubi.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\log4net.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\Newtonsoft.Json.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\SuperSocket.Common.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\SuperSocket.SocketBase.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\SuperSocket.SocketEngine.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\SuperWebSocket.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\log4net.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\Newtonsoft.Json.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\SuperSocket.Common.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\SuperSocket.SocketBase.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\SuperSocket.SocketEngine.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\SuperWebSocket.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\bin\Release\SuperWebSocket.xml
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\obj\Release\iubi.csprojAssemblyReference.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\obj\Release\Interop.DPFPShrXLib.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\obj\Release\iubi.csproj.ResolveComReference.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\obj\Release\iubi.iubi.resources
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\obj\Release\iubi.csproj.GenerateResource.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\obj\Release\iubi.csproj.CoreCompileInputs.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\obj\Release\iubi.exe.manifest
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\obj\Release\iubi.application
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\obj\Release\iubi.csproj.CopyComplete
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\obj\Release\iubi.exe
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\iubi-master\iubi\iubi\obj\Release\iubi.pdb

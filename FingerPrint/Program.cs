@@ -11,14 +11,14 @@ namespace UareUSampleCSharp
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        [MTAThread]
+        [STAThread]
         static void Main()
         {
-            #if (!WindowsCE)
+#if (!WindowsCE)
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.EnableVisualStyles();
-            #endif
+#endif
             Application.Run(new Form_Main());
         }
     }

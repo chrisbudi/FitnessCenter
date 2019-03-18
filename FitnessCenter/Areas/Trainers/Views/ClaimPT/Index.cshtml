@@ -40,6 +40,7 @@
                     </form>
                 </div>
             </div>
+            <button id="testbutton">test button</button>
             <br />
             <ul class="nav nav-tabs">
                 <li class="active">
@@ -172,6 +173,41 @@
     @Scripts.Render("~/bundle/script/datatable")
     <script>
         $(function () {
+              //init web socket
+            var iubi = new WebSocket('ws://127.0.0.1:2015')
+            console.log(iubi, "iubi");
+
+            iubi.onerror = function (error) {
+                Ext.Msg.info({
+                    ui: 'warning',
+                    title: 'UI',
+                    html: 'The service of the Reader U Are U 4500 Digital Person is inactive',
+                    iconCls: '#Error '
+                });
+            };
+
+            function loadDevice() {
+                iubi.send("");
+            }
+
+            iubi.onmessage = function (evt) {
+                var data;
+                console.log(evt, "evt");
+                eval(evt.data);
+                console.log(data)
+
+
+                switch (data.type) {
+                    case 'validate':
+                        var r = data.payload[0];
+                        IMDACTILAR.setImageUrl('data:image/png;base64,' + r.data + '');
+                }
+            }
+
+            $('#testbutton').on('click', function () {
+                loadDevice();
+            });
+
             const gridplan = new Datatable();
             const gridPersonalTrainer = new Datatable();
             gridPersonalTrainer.init({

@@ -888,3 +888,4 @@ C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\FitnessCenter\obj\Debug
 C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\FitnessCenter\obj\Debug\FitnessCenter.csproj.CopyComplete
 C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\FitnessCenter\obj\Debug\FitnessCenter.dll
 C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\FitnessCenter\obj\Debug\FitnessCenter.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\FitnessCenter\bin\Microsoft.WebSockets.dll

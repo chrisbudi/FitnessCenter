@@ -1,29 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using DPUruNet;
+using UareUSampleCSharp.Models;
+using static System.Windows.Forms.ComboBox;
 
 namespace UareUSampleCSharp
 {
     public partial class EnrollmentControl : Form
     {
         /// <summary>
-    /// Holds the main form with many functions common to all of SDK actions.
-    /// </summary>
+        /// Holds the main form with many functions common to all of SDK actions.
+        /// </summary>
         public Form_Main _sender;
+        FitnessdbContext db = new FitnessdbContext();
+        private bool _canUpdate = true;
+
+        private bool _needUpdate = false;
+
 
         private DPCtlUruNet.EnrollmentControl _enrollmentControl;
-        
+
         public EnrollmentControl()
         {
             InitializeComponent();
         }
-        
+
         /// <summary>
-    /// Initialize the form.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    /// <remarks></remarks>
+        /// Initialize the form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <remarks></remarks>
         private void EnrollmentControl_Load(object sender, EventArgs e)
         {
             if (_enrollmentControl != null)
@@ -34,10 +43,16 @@ namespace UareUSampleCSharp
             {
                 _enrollmentControl = new DPCtlUruNet.EnrollmentControl(_sender.CurrentReader, Constants.CapturePriority.DP_PRIORITY_COOPERATIVE);
                 _enrollmentControl.BackColor = System.Drawing.SystemColors.Window;
-                _enrollmentControl.Location = new System.Drawing.Point(3, 3);
+                _enrollmentControl.Location = new System.Drawing.Point(3, 100);
                 _enrollmentControl.Name = "ctlEnrollmentControl";
                 _enrollmentControl.Size = new System.Drawing.Size(482, 346);
                 _enrollmentControl.TabIndex = 0;
+                _enrollmentControl.ResetText();
+
+                //_enrollmentControl.
+
+
+                //event in enrollment control
                 _enrollmentControl.OnCancel += new DPCtlUruNet.EnrollmentControl.CancelEnrollment(this.enrollment_OnCancel);
                 _enrollmentControl.OnCaptured += new DPCtlUruNet.EnrollmentControl.FingerprintCaptured(this.enrollment_OnCaptured);
                 _enrollmentControl.OnDelete += new DPCtlUruNet.EnrollmentControl.DeleteEnrollment(this.enrollment_OnDelete);
@@ -82,8 +97,8 @@ namespace UareUSampleCSharp
                 }
 
                 // Disconnect reader from enrollment control
-                _enrollmentControl.Reader = null; 
-                                
+                _enrollmentControl.Reader = null;
+
                 MessageBox.Show("Error:  " + captureResult.ResultCode);
                 btnCancel.Enabled = false;
             }
@@ -154,13 +169,13 @@ namespace UareUSampleCSharp
             btnCancel.Enabled = true;
         }
         #endregion
-        
+
         /// <summary>
-    /// Cancel enrollment when window is closed.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    /// <remarks></remarks>
+        /// Cancel enrollment when window is closed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <remarks></remarks>
         private void btnCancel_Click(object sender, EventArgs e)
         {
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
@@ -173,24 +188,24 @@ namespace UareUSampleCSharp
                 _enrollmentControl.Cancel();
             }
         }
-        
+
         /// <summary>
-    /// Close window.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    /// <remarks></remarks>
+        /// Close window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <remarks></remarks>
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        
+
         /// <summary>
-    /// Cancel enrollment when window is closed.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    /// <remarks></remarks>
+        /// Cancel enrollment when window is closed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <remarks></remarks>
         private void frmEnrollment_Closed(object sender, EventArgs e)
         {
             _enrollmentControl.Cancel();
@@ -201,6 +216,37 @@ namespace UareUSampleCSharp
             txtMessage.Text += message + "\r\n\r\n";
             txtMessage.SelectionStart = txtMessage.TextLength;
             txtMessage.ScrollToCaret();
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            var txt = member_search_type.Text;
+            //List<string> searchString;
+            var member = db.TMember.
+                Where(m => m.Person.Pnama.Contains(member_search_type.Text) || m.MemberNo.Contains(txt)).
+                Take(20).
+                Select(m => new
+                {
+                    member = m.MemberId + " - " + m.MemberNo + " - " + m.Person.Pnama
+                }).Select(m => m.member).ToList();
+
+
+
+
+
+            if (member.Count() > 0)
+            {
+                member_search_type.DataSource = member.ToList();
+                member_search_type.DroppedDown = true;
+                member_search_type.SelectionStart = txt.Length;
+                member_search_type.Focus();
+                return;
+            }
+            else
+            {
+                member_search_type.DroppedDown = false;
+                member_search_type.SelectionStart = txt.Length;
+            }
         }
     }
 }
