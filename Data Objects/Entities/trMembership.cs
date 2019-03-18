@@ -21,7 +21,6 @@ namespace DataObjects.Entities
         public int trMembershipID { get; set; }
         public int? ParentID { get; set; }
         public int LocationID { get; set; }
-        public System.DateTime? MSInput { get; set; }
         public byte[] MSTime { get; set; }
         public System.DateTime MSTglMulai { get; set; }
         public System.DateTime MSTglSelesai { get; set; }
@@ -29,8 +28,6 @@ namespace DataObjects.Entities
         public int PersonBOIDSales { get; set; }
         public int StatusMID { get; set; }
         public decimal? Subtotal { get; set; }
-        public string DiscType { get; set; }
-        public decimal? DiscVal { get; set; }
         public decimal? Disc { get; set; }
         public decimal? Total { get; set; }
         public int? GenBayar { get; set; }
@@ -45,6 +42,9 @@ namespace DataObjects.Entities
         public int TotalMonth { get; set; }
         public string AccountingStatus { get; set; }
         public string ActivationCode { get; set; }
+        public System.DateTime? MSInput { get; set; }
+        public string DiscType { get; set; }
+        public decimal? DiscVal { get; set; }
 
         public virtual System.Collections.Generic.ICollection<strAktivitasSale> strAktivitasSales { get; set; }
         public virtual System.Collections.Generic.ICollection<strPaymentMember> strPaymentMembers_MembershipDTLID { get; set; }

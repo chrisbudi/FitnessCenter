@@ -20,3 +20,9 @@ D:\@Project\Fitness\FitnessCenter\FitnessCenter\Encription\obj\Debug\Encryption.
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\Encription\obj\Debug\Encryption.csproj.CoreCompileInputs.cache
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\Encription\obj\Debug\Encryption.dll
 D:\@Project\Fitness\FitnessCenter\FitnessCenter\Encription\obj\Debug\Encryption.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Encription\bin\Debug\Encryption.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Encription\bin\Debug\Encryption.pdb
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Encription\obj\Debug\Encryption.csprojAssemblyReference.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Encription\obj\Debug\Encryption.csproj.CoreCompileInputs.cache
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Encription\obj\Debug\Encryption.dll
+C:\Users\Chris\Source\github\FitnessCenter\FitnessCenter\Encription\obj\Debug\Encryption.pdb

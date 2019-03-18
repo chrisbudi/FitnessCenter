@@ -322,6 +322,9 @@
     <Compile Include="Entities\Logtest.cs">
       <DependentUpon>FitnessEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\stMemberFingerPrint.cs">
+      <DependentUpon>FitnessEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\StrActionKlaim.cs">
       <DependentUpon>FitnessEntities.tt</DependentUpon>
     </Compile>

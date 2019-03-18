@@ -15,19 +15,17 @@ namespace DataObjects.Entities
     using System.ComponentModel.DataAnnotations;
 
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.19.3.0")]
-    public partial class ExcelLipo5
+    public partial class stMemberFingerPrint
     {
-        public int No { get; set; }
-        public string Agreement { get; set; }
-        public string AgreementFix { get; set; }
-        public string MemberName { get; set; }
-        public string MembershipType { get; set; }
-        public string MembershipPrFix { get; set; }
-        public string MembershipFix { get; set; }
-        public int? Monthly { get; set; }
-        public string Note { get; set; }
+        public int stMemberFingerprintId { get; set; }
+        public int? MemberId { get; set; }
+        public string note { get; set; }
+        public byte[] pict1 { get; set; }
+        public byte[] pict2 { get; set; }
 
-        public ExcelLipo5()
+        public virtual tMember tMember { get; set; }
+
+        public stMemberFingerPrint()
         {
             InitializePartial();
         }

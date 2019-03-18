@@ -187,7 +187,17 @@
             };
 
             function loadDevice() {
-                iubi.send("");
+                jsonFormat = {
+                    "type": "register",
+                    "payload": [
+                        {
+                            "user": "chris",
+                            "fingers": 1
+                        }
+                    ]
+
+                }
+                iubi.send(JSON.stringify(jsonFormat));
             }
 
             iubi.onmessage = function (evt) {
