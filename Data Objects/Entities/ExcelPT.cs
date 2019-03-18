@@ -12,9 +12,10 @@
 
 namespace DataObjects.Entities
 {
-    using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations;
 
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.19.3.0")]
+	[MetadataType(typeof(DataValidator.Validation.ValidationExcelPT))]
     public partial class ExcelPT
     {
         public int No { get; set; }

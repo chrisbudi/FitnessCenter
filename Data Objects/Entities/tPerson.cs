@@ -38,6 +38,7 @@ namespace DataObjects.Entities
         public string PPinBB { get; set; }
         public string Id { get; set; }
 
+        public virtual System.Collections.Generic.ICollection<stMemberFingerPrint> stMemberFingerPrints { get; set; }
         public virtual System.Collections.Generic.ICollection<tMember> tMembers { get; set; }
         public virtual System.Collections.Generic.ICollection<trPersonEvent> trPersonEvents { get; set; }
         public virtual System.Collections.Generic.ICollection<trTTD> trTTDs { get; set; }
@@ -47,6 +48,7 @@ namespace DataObjects.Entities
 
         public tPerson()
         {
+            stMemberFingerPrints = new System.Collections.Generic.List<stMemberFingerPrint>();
             tMembers = new System.Collections.Generic.List<tMember>();
             trPersonEvents = new System.Collections.Generic.List<trPersonEvent>();
             trTTDs = new System.Collections.Generic.List<trTTD>();

@@ -52,6 +52,9 @@ namespace DataObjects.Configuration
             Property(x => x.TotalMonth).HasColumnName(@"TotalMonth").IsRequired().HasColumnType("int");
             Property(x => x.AccountingStatus).HasColumnName(@"AccountingStatus").IsOptional().IsUnicode(false).HasColumnType("varchar").HasMaxLength(20);
             Property(x => x.ActivationCode).HasColumnName(@"ActivationCode").IsOptional().IsUnicode(false).HasColumnType("varchar").HasMaxLength(10);
+            Property(x => x.MSInput).HasColumnName(@"MSInput").IsOptional().HasColumnType("datetime");
+            Property(x => x.DiscType).HasColumnName(@"DiscType").IsOptional().IsUnicode(false).HasColumnType("varchar").HasMaxLength(50);
+            Property(x => x.DiscVal).HasColumnName(@"DiscVal").IsOptional().HasColumnType("decimal");
 
             HasOptional(a => a.trMembership_ParentID).WithMany(b => b.trMemberships).HasForeignKey(c => c.ParentID);
             HasRequired(a => a.tCardStatu).WithMany(b => b.trMemberships).HasForeignKey(c => c.CardStatus);

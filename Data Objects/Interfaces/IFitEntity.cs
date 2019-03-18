@@ -31,6 +31,7 @@ namespace DataObjects.Interfaces
         System.Data.Entity.DbSet<ExcelUploadDB> ExcelUploadDBs { get; set; }
         System.Data.Entity.DbSet<log> logs { get; set; }
         System.Data.Entity.DbSet<Logtest> Logtests { get; set; }
+        System.Data.Entity.DbSet<stMemberFingerPrint> stMemberFingerPrints { get; set; }
         System.Data.Entity.DbSet<StrActionKlaim> StrActionKlaims { get; set; }
         System.Data.Entity.DbSet<StrActionKlaimParam> StrActionKlaimParams { get; set; }
         System.Data.Entity.DbSet<strAktivitasSale> strAktivitasSales { get; set; }

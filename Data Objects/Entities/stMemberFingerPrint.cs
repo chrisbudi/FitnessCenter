@@ -18,12 +18,12 @@ namespace DataObjects.Entities
     public partial class stMemberFingerPrint
     {
         public int stMemberFingerprintId { get; set; }
-        public int? MemberId { get; set; }
+        public int? PersonId { get; set; }
         public string note { get; set; }
         public byte[] pict1 { get; set; }
         public byte[] pict2 { get; set; }
 
-        public virtual tMember tMember { get; set; }
+        public virtual tPerson tPerson { get; set; }
 
         public stMemberFingerPrint()
         {

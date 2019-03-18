@@ -29,7 +29,6 @@ namespace DataObjects.Entities
         public int? MemberTypeID { get; set; }
         public string MFotoUrl { get; set; }
 
-        public virtual System.Collections.Generic.ICollection<stMemberFingerPrint> stMemberFingerPrints { get; set; }
         public virtual System.Collections.Generic.ICollection<strLocMember> strLocMembers { get; set; }
         public virtual System.Collections.Generic.ICollection<trAktifitasMember> trAktifitasMembers { get; set; }
         public virtual System.Collections.Generic.ICollection<trMembership> trMemberships { get; set; }
@@ -42,7 +41,6 @@ namespace DataObjects.Entities
 
         public tMember()
         {
-            stMemberFingerPrints = new System.Collections.Generic.List<stMemberFingerPrint>();
             strLocMembers = new System.Collections.Generic.List<strLocMember>();
             trAktifitasMembers = new System.Collections.Generic.List<trAktifitasMember>();
             trMemberships = new System.Collections.Generic.List<trMembership>();

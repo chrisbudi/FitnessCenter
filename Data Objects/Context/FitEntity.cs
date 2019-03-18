@@ -36,6 +36,7 @@ namespace DataObjects.Context
         public System.Data.Entity.DbSet<ExcelUploadDB> ExcelUploadDBs { get; set; }
         public System.Data.Entity.DbSet<log> logs { get; set; }
         public System.Data.Entity.DbSet<Logtest> Logtests { get; set; }
+        public System.Data.Entity.DbSet<stMemberFingerPrint> stMemberFingerPrints { get; set; }
         public System.Data.Entity.DbSet<StrActionKlaim> StrActionKlaims { get; set; }
         public System.Data.Entity.DbSet<StrActionKlaimParam> StrActionKlaimParams { get; set; }
         public System.Data.Entity.DbSet<strAktivitasSale> strAktivitasSales { get; set; }
@@ -90,7 +91,6 @@ namespace DataObjects.Context
         public FitEntity()
             : base("Name=FitnessDbContext")
         {
-            //            allow multiple nested DataReaders = turn on MultipleActiveResultSets. 
         }
 
         public FitEntity(string connectionString)
@@ -146,6 +146,7 @@ namespace DataObjects.Context
             modelBuilder.Configurations.Add(new ExcelUploadDBConfiguration());
             modelBuilder.Configurations.Add(new logConfiguration());
             modelBuilder.Configurations.Add(new LogtestConfiguration());
+            modelBuilder.Configurations.Add(new stMemberFingerPrintConfiguration());
             modelBuilder.Configurations.Add(new StrActionKlaimConfiguration());
             modelBuilder.Configurations.Add(new StrActionKlaimParamConfiguration());
             modelBuilder.Configurations.Add(new strAktivitasSaleConfiguration());
@@ -210,6 +211,7 @@ namespace DataObjects.Context
             modelBuilder.Configurations.Add(new ExcelUploadDBConfiguration(schema));
             modelBuilder.Configurations.Add(new logConfiguration(schema));
             modelBuilder.Configurations.Add(new LogtestConfiguration(schema));
+            modelBuilder.Configurations.Add(new stMemberFingerPrintConfiguration(schema));
             modelBuilder.Configurations.Add(new StrActionKlaimConfiguration(schema));
             modelBuilder.Configurations.Add(new StrActionKlaimParamConfiguration(schema));
             modelBuilder.Configurations.Add(new strAktivitasSaleConfiguration(schema));
@@ -257,7 +259,7 @@ namespace DataObjects.Context
             modelBuilder.Configurations.Add(new tUserBackOfficeConfiguration(schema));
             return modelBuilder;
         }
-
+        
         // Stored Procedures
         public System.Collections.Generic.List<testprocedureReturnModel> testprocedure()
         {
@@ -270,7 +272,7 @@ namespace DataObjects.Context
             var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
             var procResultData = Database.SqlQuery<testprocedureReturnModel>("EXEC @procResult = [dbo].[testprocedure] ", procResultParam).ToList();
 
-            procResult = (int)procResultParam.Value;
+            procResult = (int) procResultParam.Value;
             return procResultData;
         }
 
@@ -281,10 +283,10 @@ namespace DataObjects.Context
                 nameParam.Value = System.DBNull.Value;
 
             var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
-
+ 
             Database.ExecuteSqlCommand("EXEC @procResult = [dbo].[Tool_ScriptDiagram] @name", nameParam, procResultParam);
-
-            return (int)procResultParam.Value;
+ 
+            return (int) procResultParam.Value;
         }
 
         public int Tool_ScriptDiagram2005(string name)
@@ -294,10 +296,10 @@ namespace DataObjects.Context
                 nameParam.Value = System.DBNull.Value;
 
             var procResultParam = new System.Data.SqlClient.SqlParameter { ParameterName = "@procResult", SqlDbType = System.Data.SqlDbType.Int, Direction = System.Data.ParameterDirection.Output };
-
+ 
             Database.ExecuteSqlCommand("EXEC @procResult = [dbo].[Tool_ScriptDiagram2005] @name", nameParam, procResultParam);
-
-            return (int)procResultParam.Value;
+ 
+            return (int) procResultParam.Value;
         }
 
     }

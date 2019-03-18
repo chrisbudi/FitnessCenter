@@ -26,7 +26,7 @@ namespace DataObjects.Configuration
         public LogtestConfiguration(string schema)
         {
             ToTable(schema + ".Logtest");
-            HasKey(x => new { x.Id, x.Date, x.Thread, x.Level, x.Logger, x.Message });
+            HasKey(x => x.Id);
 
             Property(x => x.Id).HasColumnName(@"Id").IsRequired().HasColumnType("int").HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.Date).HasColumnName(@"Date").IsRequired().HasColumnType("datetime");
