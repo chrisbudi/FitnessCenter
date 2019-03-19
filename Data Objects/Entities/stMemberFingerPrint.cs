@@ -19,9 +19,9 @@ namespace DataObjects.Entities
     {
         public int stMemberFingerprintId { get; set; }
         public int? PersonId { get; set; }
+        public short? seq { get; set; }
         public string note { get; set; }
-        public byte[] pict1 { get; set; }
-        public byte[] pict2 { get; set; }
+        public byte[] pict { get; set; }
 
         public virtual tPerson tPerson { get; set; }
 

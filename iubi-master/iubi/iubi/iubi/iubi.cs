@@ -41,8 +41,8 @@ namespace iubi
             Console.WriteLine("                                                                                 ");
             Console.WriteLine("     ------------------------------------------------------------------------    ");
             Console.WriteLine("     ------------------------------------------------------------------------    ");
-            Console.WriteLine("     --------Corriendo Servicio Lector Biometrico----------------------------    ");
-            Console.WriteLine("     ------------- IP: 127.0.0.1 ---------------- Puerto:2015----------------    ");
+            Console.WriteLine("     --------Connection to biomatrix Services    ----------------------------    ");
+            Console.WriteLine("     ------------- IP: 127.0.0.1 ---------------- port:2015----------------    ");
             Console.WriteLine("     ------------------------------------------------------------------------    ");
             Console.WriteLine("     ------------------------------------------------------------------------    ");
             Thread ComThread = new Thread(() =>

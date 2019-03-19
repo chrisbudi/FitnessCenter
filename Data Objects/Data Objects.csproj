@@ -129,6 +129,9 @@
     <Compile Include="Configuration\LogtestConfiguration.cs">
       <DependentUpon>FitnessConfig.tt</DependentUpon>
     </Compile>
+    <Compile Include="Configuration\stMemberFingerPrintConfiguration.cs">
+      <DependentUpon>FitnessConfig.tt</DependentUpon>
+    </Compile>
     <Compile Include="Configuration\StrActionKlaimConfiguration.cs">
       <DependentUpon>FitnessConfig.tt</DependentUpon>
     </Compile>

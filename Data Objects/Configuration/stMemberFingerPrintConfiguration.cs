@@ -30,9 +30,9 @@ namespace DataObjects.Configuration
 
             Property(x => x.stMemberFingerprintId).HasColumnName(@"stMemberFingerprintId").IsRequired().HasColumnType("int").HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.PersonId).HasColumnName(@"PersonId").IsOptional().HasColumnType("int");
-            Property(x => x.note).HasColumnName(@"note").IsOptional().IsFixedLength().HasColumnType("nchar").HasMaxLength(10);
-            Property(x => x.pict1).HasColumnName(@"pict1").IsOptional().HasColumnType("image").HasMaxLength(2147483647);
-            Property(x => x.pict2).HasColumnName(@"pict2").IsOptional().HasColumnType("image").HasMaxLength(2147483647);
+            Property(x => x.seq).HasColumnName(@"seq").IsOptional().HasColumnType("smallint");
+            Property(x => x.note).HasColumnName(@"note").IsOptional().IsUnicode(false).HasColumnType("varchar").HasMaxLength(50);
+            Property(x => x.pict).HasColumnName(@"pict").IsOptional().HasColumnType("image").HasMaxLength(2147483647);
 
             HasOptional(a => a.tPerson).WithMany(b => b.stMemberFingerPrints).HasForeignKey(c => c.PersonId);
         }

@@ -96,28 +96,56 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="text-center">
-                                        <div class="midtext">
-                                            <div class="col-md-12">
-                                                <a class="btn btn-default" id="personImageCapture">Capture Image</a>
-                                            </div>
-                                            @Html.Hidden("fotoSource")
-                                            @if (Model != null)
-                                            {
-                                                if (Model.MFoto == null)
+                                    <div class="row">
+                                        <div class="text-center">
+                                            <div class="midtext">
+                                                <div class="col-md-12">
+                                                    <a class="btn btn-default" id="personImageCapture">Capture Image</a>
+                                                </div>
+                                                @Html.Hidden("fotoSource")
+                                                @if (Model != null)
                                                 {
-                                                    <img id="MFoto" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" />
+                                                    if (Model.MFoto == null)
+                                                    {
+                                                        <img id="MFoto" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="@Model.MFotoUrl" />
+                                                    }
                                                 }
                                                 else
                                                 {
-                                                    <img src="@Model.MFotoUrl" />
+                                                    @Request.Params["memId"]
+                                                    <img id="MFoto" src="@Url.Action("LoadFotoMember", "Member", new {area = "Office", id = TempData["id"]})" />
                                                 }
-                                            }
-                                            else
-                                            {
-                                                @Request.Params["memId"]
-                                                <img id="MFoto" src="@Url.Action("LoadFotoMember", "Member", new {area = "Office", id = TempData["id"]})" />
-                                            }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="text-center">
+                                            <div class="midtext">
+                                                <div class="col-md-12">
+                                                    <a class="btn btn-default" id="personFPrintCapture">Capture Finger Print</a>
+                                                    <a class="btn btn-default" id="personFPrintClean">Clean Finger Print</a>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <img id="FingerFotoFormat1" class="imageFPrint" style="height:100px;width:100px" />
+                                                        @Html.Hidden("finger1")
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <img id="FingerFotoFormat2" class="imageFPrint" style="height:100px;width:100px" />
+                                                        @Html.Hidden("finger2")
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <img id="FingerFotoFormat3" class="imageFPrint" style="height:100px;width:100px" />
+                                                        @Html.Hidden("finger3")
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -199,13 +227,7 @@
                                             @Html.ValidationMessageFor(m => m.tPerson.PPinBB)
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        @Html.LabelFor(m => m.tPerson.PPinBB, new { @class = "col-md-3 control-label" })
-                                        <div class="col-md-8">
-                                            @Html.TextBoxFor(m => m.tPerson.PPinBB, new { @class = "form-control", placeholder = "Pin BB1" })
-                                            @Html.ValidationMessageFor(m => m.tPerson.PPinBB)
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                             <!--/span-->
@@ -248,13 +270,91 @@
 
 
     <script>
-
+        var cleanImage = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
         $(function () {
             //Metronic.init(); // init metronic core components
             //Layout.init(); // init current layout
             ComponentsPickers.init();
 
             pageCamera.init('#personImageCapture', 'MFoto', 'fotoSource');
+
+             var iubi = new WebSocket('ws://127.0.0.1:2015')
+            console.log(iubi, "iubi");
+
+            iubi.onerror = function (error) {
+                Ext.Msg.info({
+                    ui: 'warning',
+                    title: 'UI',
+                    html: 'The service of the Reader U Are U 4500 Digital Person is inactive',
+                    iconCls: '#Error '
+                });
+            };
+
+            function loadDevice() {
+                jsonFormat = {
+                    "type": "register",
+                    "payload": [
+                        {
+                            "user": "chris",
+                            "fingers": 1
+                        }
+                    ]
+
+                }
+                iubi.send(JSON.stringify(jsonFormat));
+            }
+
+            iubi.onmessage = function (evt) {
+                var data;
+                //console.log(evt, "evt");
+                eval(evt.data);
+                console.log(data, "data")
+
+
+                switch (data.type) {
+                    case 'validate':
+                        var r = data.payload[0];
+                        $('#FingerFotoFormat1').setImageUrl('data:image/png;base64,' + r.data + '');
+                        console.log(r.data)
+                    case 'register':
+                        var r = data.payload[0];
+
+                        console.log($('#FingerFotoFormat1').attr('src'), "source file")
+                        if ($('#FingerFotoFormat1').attr('src') == undefined || $('#FingerFotoFormat1').attr('src') == cleanImage) {
+                            $('#finger1').val(r.data)
+                            $('#FingerFotoFormat1').attr('src', 'data:image/png;base64,' + r.data + '');
+
+                            return;
+                        }
+                        if ($('#FingerFotoFormat2').attr('src') == undefined || $('#FingerFotoFormat2').attr('src') == cleanImage) {
+                            $('#finger2').val(r.data)
+                            $('#FingerFotoFormat2').attr('src', 'data:image/png;base64,' + r.data + '');
+
+                            return;
+                        }
+                        if ($('#FingerFotoFormat3').attr('src') == undefined || $('#FingerFotoFormat3').attr('src') == cleanImage) {
+                            $('#finger3').val(r.data)
+                            $('#FingerFotoFormat3').attr('src', 'data:image/png;base64,' + r.data + '');
+
+                            return;
+                        }
+                }
+            }
+
+            $('#personFPrintClean').on('click', function () {
+
+                $('.imageFPrint').attr('src', cleanImage);
+
+
+                $('#finger1').val("");
+                $('#finger2').val("");
+                $('#finger3').val("");
+            })
+
+            $('#personFPrintCapture').on('click', function () {
+                loadDevice();
+            });
+
 
             pageReporting.init('@Url.Action("ReportPage", "Reporting", new { area = "" })', $('#btnPrintAgreement'), '');
             pageReporting.init('@Url.Action("ReportPage", "Reporting", new { area = "" })', $('#btnPrintQR'), '');
